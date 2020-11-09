@@ -2,11 +2,11 @@
   "name": "node-proj",
   "version": "1.0.0",
   "description": "",
-  "main": "src/05.index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/05.indexcopy.js",
-    "bn": "babel-node src/05.index.js",
-    "pm2:dev": "pm2 start src/05.indexcopy.js --log logs/combined.log --time",
+    "start": "nodemon --exec babel-node src/index.js",
+    "bn": "babel-node src/index.js",
+    "pm2:dev": "pm2 start src/index.js --log logs/combined.log --time",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
