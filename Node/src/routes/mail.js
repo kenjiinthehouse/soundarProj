@@ -1,6 +1,6 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
-const db = require(__dirname + "/../db_connect");
+const db = require(__dirname + "/../db_connect2");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const config = {

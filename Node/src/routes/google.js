@@ -2,7 +2,7 @@ require("dotenv").config();
 const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const db = require(__dirname + "/../db_connect");
+const db = require(__dirname + "/../db_connect2");
 const router = express.Router();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
@@ -151,7 +151,7 @@ router.get(
 
     const token = jwt.sign(
       req.user,
-      "f13e4aec0c331094f1a999caab5bc584b4b398e3f007ce0a87105b6daf8ef481106a13e0ff9fe06fe3735a38120b8f468778b7f811ce19fe54d5a1831b1f8780"
+      process.env.TOKEN_SECRET
     );
 
     const url = go_back_react + token;

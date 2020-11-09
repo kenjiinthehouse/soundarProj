@@ -2,7 +2,7 @@ const express = require("express");
 const moment = require("moment-timezone");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const db = require(__dirname + "/../db_connect");
+const db = require(__dirname + "/../db_connect2");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const upload2 = require(__dirname + "/../upload-img-module-sa");
@@ -30,10 +30,7 @@ router.post("/login", async (req, res) => {
 
     // output.token={...rs[0]};
 
-    output.token = jwt.sign(
-      { ...rs[0] },
-      "f13e4aec0c331094f1a999caab5bc584b4b398e3f007ce0a87105b6daf8ef481106a13e0ff9fe06fe3735a38120b8f468778b7f811ce19fe54d5a1831b1f8780"
-    );
+    output.token = jwt.sign({ ...rs[0] }, process.env.TOKEN_SECRET);
   }
 
   res.json(output);
@@ -151,17 +148,16 @@ router.post("/jwt", (req, res) => {
   // req.body.token
 
   // console.log("token",req.body.token)
-  jwt.verify(
-    req.body.token,
-    "f13e4aec0c331094f1a999caab5bc584b4b398e3f007ce0a87105b6daf8ef481106a13e0ff9fe06fe3735a38120b8f468778b7f811ce19fe54d5a1831b1f8780",
-    function (error, payload) {
-      if (error) {
-        res.json({ error: error });
-      } else {
-        res.json(payload);
-      }
+  jwt.verify(req.body.token, process.env.TOKEN_SECRET, function (
+    error,
+    payload
+  ) {
+    if (error) {
+      res.json({ error: error });
+    } else {
+      res.json(payload);
     }
-  );
+  });
 });
 //開通會員驗證
 router.get("/verify", async (req, res) => {
@@ -193,10 +189,7 @@ router.get("/reset", async (req, res) => {
 
   const reset_password = "http://localhost:3000/passwordreset?jwt=";
 
-  const token = jwt.sign(
-    { ...rs[0] },
-    "f13e4aec0c331094f1a999caab5bc584b4b398e3f007ce0a87105b6daf8ef481106a13e0ff9fe06fe3735a38120b8f468778b7f811ce19fe54d5a1831b1f8780"
-  );
+  const token = jwt.sign({ ...rs[0] }, process.env.TOKEN_SECRET);
 
   const url = reset_password + token;
 
@@ -309,10 +302,7 @@ router.post("/picture-jwt", async (req, res) => {
 
     // output.token={...rs[0]};
 
-    output.token = jwt.sign(
-      { ...rs[0] },
-      "f13e4aec0c331094f1a999caab5bc584b4b398e3f007ce0a87105b6daf8ef481106a13e0ff9fe06fe3735a38120b8f468778b7f811ce19fe54d5a1831b1f8780"
-    );
+    output.token = jwt.sign({ ...rs[0] }, process.env.TOKEN_SECRET);
 
     output.source = { ...rs[0] };
   }
