@@ -8,18 +8,31 @@ const cors = require('cors');
 
 
 app.use(cors());
-//set top middleware
-//which to use is decided by header content-type
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+//Ruby區
+app.use('/coupon',require(__dirname + '/routes/coupon-api').router)
+app.use('/order',require(__dirname + '/routes/order-api'))
+app.use('/comment',require(__dirname + '/routes/comment-api'))
 
+//Jen 區
+//article
+app.use('/article', require(__dirname + '/routes/article'));
+//article-comment
+app.use('/article/comment', require(__dirname + '/routes/article_comment'));
+
+//尚潔區
+app.use('/activity',require(__dirname + '/routes/activity'));
+app.use('/studio',require(__dirname + '/routes/studio'));
+app.use('/ticket_order',require(__dirname + '/routes/ticket_order'));
+app.use('/rent_order',require(__dirname + '/routes/rent_order'));
+
+//小杰區
 app.use('/podcaster_dashboard',require(__dirname + '/routes/podcaster_dashboard'));
-
 app.use('/explore',require(__dirname + '/routes/explore'));
 
 app.get('/', function (req, res) {
-    // res.send('Hello World!');
     res.send('已開啟express')
 });
 
