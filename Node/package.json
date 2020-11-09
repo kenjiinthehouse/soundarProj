@@ -1,11 +1,11 @@
 {
-  "name": "node-proj",
+  "name": "project1",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
-    "bn": "babel-node src/index.js",
+    "bn": "nodemon --exec babel-node src/index.js",
+    "bn1": "babel-node src/index.js",
     "pm2:dev": "pm2 start src/index.js --log logs/combined.log --time",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +27,10 @@
     "moment-timezone": "^0.5.31",
     "multer": "^1.4.2",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.4.13",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "request-progress": "^3.0.0",
     "uuid": "^8.3.0"
   }
 }
