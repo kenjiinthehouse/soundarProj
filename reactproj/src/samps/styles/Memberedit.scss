@@ -1,20 +1,16 @@
-
+@import '~bootstrap/scss/bootstrap.scss';
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 
 .sa-Memberedit-wrap {
-  // width: 100%;
-  // height: 100%;
-  .container{
-    width: 1360px;
-  }
+  width: 100%;
 
+  height: 100%;
 }
 
 .sa-Memberedit-area {
-  width: 100%;
   margin-top: 10.25rem;
-  margin-bottom: 10.25rem;
 
+  margin-bottom: 10.25rem;
 }
 
 .sa-Memberedit-picture-area {

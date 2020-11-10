@@ -4,15 +4,8 @@ import { Modal, Button } from 'react-bootstrap';
 import { initMemberAsync, logOut } from '../../actions/index';
 import { connect } from 'react-redux';
 import '../styles/Audiocollection.scss';
-//react icon
-import { ImFolderDownload } from 'react-icons/im';
-import { RiDislikeFill } from 'react-icons/ri';
-import { BsPlayFill } from 'react-icons/bs';
 
 function Audiocollection(props) {
-  //取得播放state
-  const { globalAudioArry, setGlobalAudioArry } = props;
-
   function truncate(str, n) {
     return str.length > n ? str.substr(0, n - 1) + '...' : str;
   }
@@ -25,21 +18,17 @@ function Audiocollection(props) {
   const [downloadingid, setDownloadingid] = useState('');
   // const [downloading, setdownLoading] = useState(false)
 
-  //設定大頭貼來源是否有http
-  const [pictureurl, setPictureurl] = useState('');
-
   const Filedownload = React.useRef(null);
-  //判斷大頭貼來源是否有http
-  const setPicture = function (pic) {
-    if (pic.includes('http')) {
-      setPictureurl(pic);
-    } else {
-      setPictureurl(`ppicture/${pic}`);
-    }
-  };
   const handleClick = (event) => {
     Filedownload.current.click();
   };
+
+  // const loading = (
+  //   <div class="spinner-border text-primary" role="status">
+  //     <span class="sr-only">Loading...</span>
+  //   </div>
+  // )
+
   const setbox = function () {
     console.log('length', audio_collect.length);
     if (audio_collect.length < 3) {
@@ -84,33 +73,17 @@ function Audiocollection(props) {
     console.log('data', data);
     getaudio_collect();
   };
-
-  // 播放音檔
-  const audio_play = function (musicSrc, cover, name, singer) {
-    let payload = {
-      musicSrc:
-        musicSrc.indexOf('http') !== -1
-          ? musicSrc
-          : `http://localhost:3000/audios/${musicSrc}`,
-
-      cover: cover,
-      name: name,
-      singer: singer,
-    };
-
-    if (globalAudioArry[0] && globalAudioArry[0].name === name) {
-      return null;
-    } else {
-      setGlobalAudioArry([payload, ...globalAudioArry]);
-    }
-  };
-
-  //抓資料的同時 設定大頭是否有http
+  // useEffect(() => {
+  //   // props.logOut()
+  //   props.initMemberAsync()
+  //   // console.log("hi")
+  // }, [])
+  // useEffect(() => {
+  //   props.initMemberAsync()
+  // }, [])
   useEffect(() => {
     getaudio_collect();
-    if (props.member.profile_picture) {
-      setPicture(props.member.profile_picture);
-    }
+    // setbox()
   }, [props.member]);
 
   useEffect(() => {
@@ -118,6 +91,7 @@ function Audiocollection(props) {
   }, [audio_collect]);
 
   const downloadfile = async function (link, audio_id) {
+    // console.log('link', link)
     setDownloadingid(audio_id);
     const url = 'http://localhost:5566/member_collection/download';
     const request = new Request(url, {
@@ -164,7 +138,7 @@ function Audiocollection(props) {
                     {props.member.profile_picture ? (
                       <img
                         className="sa-collection-title-photo-img"
-                        src={pictureurl}
+                        src={`ppicture/${props.member.profile_picture}`}
                       ></img>
                     ) : (
                       <img
@@ -223,18 +197,7 @@ function Audiocollection(props) {
                       className="sa-collection-list-body"
                     >
                       <div className="sa-collection-list-body-play">
-                        <div
-                          className="sa-collection-list-body-play-photo"
-                          onClick={() => {
-                            audio_play(
-                              item.musicSrc,
-                              item.cover,
-                              item.name,
-                              item.singer
-                            );
-                          }}
-                        >
-                          {/* 播放鍵 */}
+                        <div className="sa-collection-list-body-play-photo">
                           <img
                             className="sa-collection-list-body-play-photo-img"
                             src="/sa_img/svgicon/play_arrow.svg"
@@ -243,45 +206,18 @@ function Audiocollection(props) {
                         </div>
                       </div>
                       <div className="sa-collection-list-body-channelname">
-                        <div
-                          className="sa-collection-list-body-channel-picture"
-                          onClick={() => {
-                            props.history.push(
-                              `/channel_page/${item.channel_catagory.toLowerCase()}/${
-                                item.podcaster_id
-                              }`
-                            );
-                          }}
-                        >
+                        <div className="sa-collection-list-body-channel-picture">
                           <img
                             className="sa-collection-list-body-channel-picture-img"
                             src={item.cover}
                             alt=""
                           ></img>
                         </div>
-                        <div
-                          className="sa-collection-list-body-channel-name"
-                          onClick={() => {
-                            props.history.push(
-                              `/channel_page/${item.channel_catagory.toLowerCase()}/${
-                                item.podcaster_id
-                              }`
-                            );
-                          }}
-                        >
+                        <div className="sa-collection-list-body-channel-name">
                           {item.singer}
                         </div>
                       </div>
-                      <div
-                        className="sa-collection-list-body-audioname"
-                        onClick={() => {
-                          props.history.push(
-                            `/channel_page/${item.channel_catagory.toLowerCase()}/${
-                              item.podcaster_id
-                            }/${item.audio_id}`
-                          );
-                        }}
-                      >
+                      <div className="sa-collection-list-body-audioname">
                         {/* {item.name} */}
                         <span>{truncate(item.name, 12)} </span>
                       </div>
@@ -295,8 +231,7 @@ function Audiocollection(props) {
                             delete_audio(item.audio_id);
                           }}
                         >
-                          <RiDislikeFill />
-                          {/* 取消收藏 */}
+                          取消收藏
                         </div>
                         <div
                           onClick={() => {
@@ -305,9 +240,7 @@ function Audiocollection(props) {
                           className="sa-collection-list-body-setting-download"
                         >
                           {downloadingid != item.audio_id ? (
-                            <span>
-                              <ImFolderDownload />
-                            </span>
+                            <span>下載</span>
                           ) : (
                             <div
                               class="spinner-border text-primary"

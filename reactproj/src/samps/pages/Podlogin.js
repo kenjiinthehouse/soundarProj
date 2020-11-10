@@ -1,52 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Switch, withRouter } from 'react-router-dom';
-import { Modal, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import '../styles/Podlogin.scss';
-import { initMember, initMemberAsync } from '../../actions/index';
+import React, { useEffect, useState } from 'react'
+import { Link, Switch, withRouter } from 'react-router-dom'
+import { Modal, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import '../styles/Podlogin.scss'
+import { initMember, initMemberAsync } from '../../actions/index'
 
 // import googleicon from '../img/google-icon.png'
 
 function Podlogin(props) {
-  const [account, setAccount] = useState('');
-  const [password, setPassword] = useState('');
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [show2, setShow2] = useState(false);
-  const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => setShow2(true);
-  const [eyes, setEyes] = useState(1);
-  const [passwordstate, setPasswordstate] = useState('password');
+  const [account, setAccount] = useState('')
+  const [password, setPassword] = useState('')
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const [show2, setShow2] = useState(false)
+  const handleClose2 = () => setShow2(false)
+  const handleShow2 = () => setShow2(true)
+  const [eyes, setEyes] = useState(1)
+  const [passwordstate, setPasswordstate] = useState('password')
 
   useEffect(() => {
     // console.log(uu.get('jwt'))
     if (!localStorage.getItem('jwt')) {
-      const uu = new URLSearchParams(window.location.search);
+      const uu = new URLSearchParams(window.location.search)
       if (uu.get('jwt')) {
-        localStorage.setItem('jwt', JSON.stringify(uu.get('jwt')));
-        props.initMemberAsync();
+        localStorage.setItem('jwt', JSON.stringify(uu.get('jwt')))
+        props.initMemberAsync()
       }
     }
-  }, []);
+    // setAccount(props.member.account)
+    // setNickname(props.member.nickname)
+    // props.member.nickname
+  }, [])
   useEffect(() => {
     // console.log(uu.get('jwt'))
-    const uu = new URLSearchParams(window.location.search);
+    const uu = new URLSearchParams(window.location.search)
     if (uu.get('hash')) {
-      handleShow2();
+      handleShow2()
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (eyes == 1) {
-      setPasswordstate('password');
+      setPasswordstate('password')
     } else {
-      setPasswordstate('text');
+      setPasswordstate('text')
     }
-  }, [eyes]);
+  }, [eyes])
 
   const login = async function (account, password) {
-    const url = 'http://localhost:5566/member/login';
+    const url = 'http://localhost:5566/member/login'
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -57,17 +60,17 @@ function Podlogin(props) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
-    });
+    })
 
     try {
-      const response = await fetch(request);
-      const data = await response.json();
+      const response = await fetch(request)
+      const data = await response.json()
       // data會是一個物件值
       // console.log(data)
 
       if (data.success) {
-        localStorage.setItem('jwt', JSON.stringify(data.token));
-        const url2 = 'http://localhost:5566/member/jwt';
+        localStorage.setItem('jwt', JSON.stringify(data.token))
+        const url2 = 'http://localhost:5566/member/jwt'
         const request2 = new Request(url2, {
           method: 'POST',
           body: JSON.stringify({
@@ -77,34 +80,31 @@ function Podlogin(props) {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           }),
-        });
+        })
         try {
-          const response2 = await fetch(request2);
-          const data2 = await response2.json();
+          const response2 = await fetch(request2)
+          const data2 = await response2.json()
 
           // console.log('data2', data2)
 
-          props.initMember(data2);
-          props.history.push('/');
+          props.initMember(data2)
         } catch (error) {}
 
         // props.initMember(data.token)
       } else {
-        handleShow();
+        handleShow()
       }
     } catch (error) {
       //setError(error)
     }
-  };
+  }
 
   const messageModal = (
     <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
       <Modal.Header>
         <Modal.Title>提醒</Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{ height: '3rem' }}>
-        帳號或密碼錯誤，請重新輸入
-      </Modal.Body>
+      <Modal.Body>帳號或密碼錯誤，請重新輸入</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           確定
@@ -119,7 +119,7 @@ function Podlogin(props) {
         </Button> */}
       </Modal.Footer>
     </Modal>
-  );
+  )
 
   const messageModal2 = (
     <Modal
@@ -131,12 +131,12 @@ function Podlogin(props) {
       <Modal.Header closeButton>
         <Modal.Title>驗證成功</Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{ height: '3rem' }}>點選前往，回到首頁</Modal.Body>
+      <Modal.Body>點選前往，回到首頁</Modal.Body>
       <Modal.Footer>
         <Button
           variant="secondary"
           onClick={() => {
-            props.history.push('/');
+            props.history.push('/')
           }}
         >
           前往
@@ -151,7 +151,7 @@ function Podlogin(props) {
         </Button> */}
       </Modal.Footer>
     </Modal>
-  );
+  )
 
   return (
     <>
@@ -179,7 +179,7 @@ function Podlogin(props) {
                   placeholder="Enter email"
                   value={account}
                   onChange={(e) => {
-                    setAccount(e.target.value);
+                    setAccount(e.target.value)
                   }}
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
@@ -197,7 +197,7 @@ function Podlogin(props) {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => {
-                      setPassword(e.target.value);
+                      setPassword(e.target.value)
                     }}
                   />
 
@@ -205,7 +205,7 @@ function Podlogin(props) {
                     <div
                       className="sa-Podlogin-eyes"
                       onClick={() => {
-                        setEyes(2);
+                        setEyes(2)
                       }}
                     >
                       <img
@@ -218,7 +218,7 @@ function Podlogin(props) {
                     <div
                       className="sa-Podlogin-eyes"
                       onClick={() => {
-                        setEyes(1);
+                        setEyes(1)
                       }}
                     >
                       <img
@@ -239,7 +239,7 @@ function Podlogin(props) {
               <div
                 className="sa-Podlogin-login-area"
                 onClick={() => {
-                  login(account, password);
+                  login(account, password)
                 }}
               >
                 登入
@@ -281,12 +281,12 @@ function Podlogin(props) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 const mapStateToProps = (store) => {
-  return { member: store.member };
-};
+  return { member: store.member }
+}
 export default withRouter(
   connect(mapStateToProps, { initMember, initMemberAsync })(Podlogin)
-);
+)

@@ -233,7 +233,7 @@ function Memberedit(props) {
       <Modal.Header closeButton>
         <Modal.Title>上傳頭貼</Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{ height: '20rem' }}>
+      <Modal.Body>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             {/* <label htmlFor="exampleFormControlFile1">Example file input</label> */}

@@ -21,10 +21,6 @@ import articleDetailNext from './articleDetailNext';
 //samps
 import member from './member';
 
-//kenji
-import msgBoardReducer from './msgBoardReducer';
-import replyReducer from './replyReducer';
-
 // 合併所有的reducers成一個大的reducer
 export const rootReducer = combineReducers({
   podcasterDashboardInfoState,
@@ -39,9 +35,4 @@ export const rootReducer = combineReducers({
   articleDetailPre,
   articleDetailNext,
   member,
-  memberRatingState,
-  memberAudioCollection,
-  msgBoardReducer,
-  replyReducer,
-  memberChannelCollection,
 });

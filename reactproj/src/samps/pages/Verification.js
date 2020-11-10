@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Switch, withRouter } from 'react-router-dom';
-import { Modal, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import '../styles/Verification.scss';
+import React, { useEffect, useState } from 'react'
+import { Link, Switch, withRouter } from 'react-router-dom'
+import { Modal, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import '../styles/Verification.scss'
 
 function Verification(props) {
   // sa-Verification-
 
-  const [email, setEmail] = useState('');
-  const [show, setShow] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [email, setEmail] = useState('')
+  const [show, setShow] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const sendmail = async function (email) {
-    const url = 'http://localhost:5566/mail/passwordreset';
+    const url = 'http://localhost:5566/mail/passwordreset'
 
     const request = new Request(url, {
       method: 'POST',
@@ -25,51 +25,47 @@ function Verification(props) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
-    });
+    })
 
     try {
-      const response = await fetch(request);
-      const data = await response.json();
+      const response = await fetch(request)
+      const data = await response.json()
       if (!data.success) {
-        handleShow();
+        handleShow()
       } else {
-        verify();
+        verify()
       }
       // data會是一個物件值
-      console.log(data);
+      console.log(data)
     } catch (error) {
       //setError(error)
     }
-    console.log(email);
-  };
+    console.log(email)
+  }
 
   const verify = function () {
-    setSuccess(true);
+    setSuccess(true)
     // sendmail(email)
-    handleShow();
-  };
+    handleShow()
+  }
 
   const messageModal = (
     <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
       {/* <Modal.Header closeButton></Modal.Header> */}
-      <Modal.Header>
+      <Modal.Header >
         <Modal.Title>提醒</Modal.Title>
       </Modal.Header>
       {success ? (
-        <Modal.Body style={{ height: '3rem' }}>
-          密碼重置信已發出，請查看信箱
-        </Modal.Body>
+        <Modal.Body>密碼重置信已發出，請查看信箱</Modal.Body>
       ) : (
-        <Modal.Body style={{ height: '3rem' }}>
-          您輸入的信箱尚未註冊，請重新輸入
-        </Modal.Body>
+        <Modal.Body>您輸入的信箱尚未註冊，請重新輸入</Modal.Body>
       )}
       <Modal.Footer>
         {success ? (
           <Button
             variant="secondary"
             onClick={() => {
-              props.history.push('/');
+              props.history.push('/')
             }}
           >
             前往首頁
@@ -89,7 +85,7 @@ function Verification(props) {
         </Button> */}
       </Modal.Footer>
     </Modal>
-  );
+  )
   return (
     <>
       {messageModal}
@@ -111,7 +107,7 @@ function Verification(props) {
                   placeholder="Enter email"
                   value={email}
                   onChange={(e) => {
-                    setEmail(e.target.value);
+                    setEmail(e.target.value)
                   }}
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
@@ -122,7 +118,7 @@ function Verification(props) {
               <div
                 className="sa-Verification-enter-area sa-Verification-check-button"
                 onClick={() => {
-                  sendmail(email);
+                  sendmail(email)
                 }}
               >
                 確認
@@ -131,7 +127,7 @@ function Verification(props) {
               <div
                 className="sa-Verification-previous-page sa-Verification-check-button"
                 onClick={() => {
-                  props.history.goBack();
+                  props.history.goBack()
                 }}
               >
                 上一頁
@@ -145,6 +141,6 @@ function Verification(props) {
         </div>
       </div>
     </>
-  );
+  )
 }
-export default withRouter(Verification);
+export default withRouter(Verification)

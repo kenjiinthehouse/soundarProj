@@ -75,7 +75,7 @@ function Applymembership(props) {
       }
 
       console.log(data)
-    } catch (error) { }
+    } catch (error) {}
   }
   const register = async function () {
     const url = 'http://localhost:5566/member/register'
@@ -97,7 +97,7 @@ function Applymembership(props) {
       const data = await response.json()
 
       console.log(data)
-    } catch (error) { }
+    } catch (error) {}
   }
 
   const messageModal = (
@@ -105,7 +105,7 @@ function Applymembership(props) {
       <Modal.Header>
         <Modal.Title>溫馨提醒</Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{ height: '8rem' }}>
+      <Modal.Body>
         {errormsg.map((item, index) => (
           <div key={item.key}>{item.msg}</div>
         ))}
@@ -169,7 +169,7 @@ function Applymembership(props) {
                     accountCheck(account)
                   }}
 
-                //   placeholder="Enter email"
+                  //   placeholder="Enter email"
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.
@@ -188,8 +188,8 @@ function Applymembership(props) {
                     setPassword(e.target.value)
                   }}
 
-                //   aria-describedby="emailHelp"
-                //   placeholder="Enter email"
+                  //   aria-describedby="emailHelp"
+                  //   placeholder="Enter email"
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.
@@ -208,7 +208,7 @@ function Applymembership(props) {
                   onChange={(e) => {
                     setPasswordcheck(e.target.value)
                   }}
-                //   placeholder="Enter email"
+                  //   placeholder="Enter email"
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.
@@ -225,7 +225,7 @@ function Applymembership(props) {
                   onChange={(e) => {
                     setNickname(e.target.value)
                   }}
-                //   placeholder="Enter email"
+                  //   placeholder="Enter email"
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.

@@ -8,15 +8,6 @@ import '../styles/Channelcollection.scss';
 function Channelcollection(props) {
   const [channel_collect, setChannel_collect] = useState([]);
   const [collect_box, setCollect_box] = useState('');
-  //設定大頭貼來源是否有http
-  const [pictureurl, setPictureurl] = useState('');
-  const setPicture = function (pic) {
-    if (pic.includes('http')) {
-      setPictureurl(pic);
-    } else {
-      setPictureurl(`ppicture/${pic}`);
-    }
-  };
   const getChannel = async function () {
     const url = 'http://localhost:5566/member_collection/channel_collection';
 
@@ -49,9 +40,6 @@ function Channelcollection(props) {
 
   useEffect(() => {
     getChannel();
-    if (props.member.profile_picture) {
-      setPicture(props.member.profile_picture);
-    }
   }, [props.member]);
 
   useEffect(() => {
@@ -76,7 +64,7 @@ function Channelcollection(props) {
                     {props.member.profile_picture ? (
                       <img
                         className="sa-collection-title-photo-img"
-                        src={pictureurl}
+                        src={`ppicture/${props.member.profile_picture}`}
                       ></img>
                     ) : (
                       <img

@@ -4,6 +4,7 @@ import { Link, Router, Switch, withRouter } from 'react-router-dom'
 import '../styles/Sidebar.scss'
 import Memberedit from '../components/Memberedit'
 
+<<<<<<< HEAD
 //活動訂單
 <<<<<<< HEAD
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
@@ -15,16 +16,25 @@ import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome
 //page8
 import PodcasterAudioList from './../../jay/jay_pages/PodcasterAudioList.js';
 
+=======
+>>>>>>> 938527f... samps member
 function Membersidebar(props) {
   const [activenumber, setActivenumber] = useState(1)
 
   return (
     <>
       <div className="sa-Memberedit-wrap">
+<<<<<<< HEAD
         <div className="container">
           <div className="row">
             <div className="sa-Memberedit-area d-flex">
               <div className="side-bar-container col-3 pr-4">
+=======
+        <div className="sa-Memberedit-area">
+          <div className="container">
+            <div className="row">
+              <div className="side-bar-container">
+>>>>>>> 938527f... samps member
                 <div className="side-bar-member-area">
                   <div className="side-bar-member-title">
                     <img
@@ -164,6 +174,7 @@ function Membersidebar(props) {
                 </div>
               </div>
 
+<<<<<<< HEAD
               <div className="sa-sidebar-mainarea col-9">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
@@ -183,6 +194,17 @@ function Membersidebar(props) {
                   <></>
                 )}
                 {activenumber == 8 ? <PodcasterAudioList {...props} /> : <></>}
+=======
+              <div className="sa-sidebar-mainarea">
+                {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
+                {activenumber == 2 ? <div>2</div> : <></>}
+                {activenumber == 3 ? <div>3</div> : <></>}
+                {activenumber == 4 ? <div>4</div> : <></>}
+                {activenumber == 5 ? <div>5</div> : <></>}
+                {activenumber == 6 ? <div>6</div> : <></>}
+                {activenumber == 7 ? <div>7</div> : <></>}
+                {activenumber == 8 ? <div>8</div> : <></>}
+>>>>>>> 938527f... samps member
               </div>
             </div>
           </div>
