@@ -1,0 +1,45 @@
+$primary: #2690df;
+$baseSize: 16px;
+$fontColorDark: #232d2f;
+
+@function font($level: 1) {
+  @return $baseSize * $level;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
+//未引入index.scss
+
+// test
+
+.showing {
+  animation: show 1s ease-in;
+  display: block !important;
+}
+@keyframes show {
+  0% {
+    max-height: 0px;
+  }
+  100% {
+    max-height: 1000px;
+  }
+}
+.closing {
+  animation: close 1s ease-out;
+  display: block !important;
+}
+@keyframes close {
+  0% {
+    max-height: 1000px;
+  }
+  100% {
+    max-height: 0px;
+  }
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+.card-header {
+  min-width: 15rem;
+}

@@ -1,7 +1,10 @@
 import './../jay_styles/PodcasterDashboardHome.scss';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { initalDashboardAsync, editChannelAsync } from '../../jay_actions/index';
+import {
+  initalDashboardAsync,
+  editChannelAsync,
+} from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 import ChannelEdditImgModal from '../jay_components/ChannelEdditImgModal.js';
 
@@ -72,7 +75,7 @@ function PodcasterDashboardHome(props) {
     <>
       {props.channel_data.map((item, index) => {
         return (
-          <div className="container" key={index}>
+          <div className="container w-100" key={index}>
             <div className="row justify-content-center">
               <div className="jay-podcastImgArea my-3">
                 <img

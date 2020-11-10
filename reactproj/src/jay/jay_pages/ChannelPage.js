@@ -323,7 +323,19 @@ function ChannelPage(props) {
                           name: playTargetAudio.audio_title,
                           singer: playTargetAudio.channel_title,
                         };
-                        setGlobalAudioArry([...globalAudioArry, payload]);
+                        if (globalAudioArry[0]) {
+                          let alreadyInArry = false;
+                          globalAudioArry.forEach((item) => {
+                            if (item.name === payload.name) {
+                              alreadyInArry = true;
+                            }
+                          });
+                          if (alreadyInArry !== true) {
+                            setGlobalAudioArry([...globalAudioArry, payload]);
+                          }
+                        } else {
+                          setGlobalAudioArry([...globalAudioArry, payload]);
+                        }
                       }}
                     >
                       <RiPlayListAddLine style={{ fontSize: '2rem' }} />

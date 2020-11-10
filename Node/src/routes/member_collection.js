@@ -50,8 +50,10 @@ router.post("/channel_collection", async (req, res) => {
     success: false,
     message: "",
   };
+  // const sql =
+  //   "SELECT a.`member_id`,a.`channel_id`,b.channel_title,b.podcaster_img as channel_img FROM `channel_collection` as a LEFT JOIN podcast_channel_info as b on a.`channel_id`=b.sid WHERE `member_id`=?";
   const sql =
-    "SELECT a.`member_id`,a.`channel_id`,b.channel_title,b.podcaster_img as channel_img FROM `channel_collection` as a LEFT JOIN podcast_channel_info as b on a.`channel_id`=b.sid WHERE `member_id`=?";
+    "SELECT a.`member_id`,a.`channel_id`,b.channel_title,b.podcaster_img as channel_img ,b.channel_catagory FROM `channel_collection` as a LEFT JOIN podcast_channel_info as b on a.`channel_id`=b.sid WHERE `member_id`=?";
 
   const sid = req.body.sid;
 

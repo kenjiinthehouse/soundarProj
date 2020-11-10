@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+// import './reckie/styles/custom.scss';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -27,6 +28,15 @@ import ActivityCart from './chieh/ch_pages/ActivityCart';
 import ActivityOrder from './chieh/ch_pages/ActivityOrder';
 import StudioMain from './chieh/ch_pages/StudioMain';
 import Payment from './chieh/ch_pages/Payment';
+import Applymembership from './samps/pages/Applymembership';
+import Audiocollection from './samps/pages/Audiocollection';
+import Channelcollection from './samps/pages/Channelcollection';
+import Membersidebar from './samps/pages/Membersidebar';
+import Passwordreset from './samps/pages/Passwordreset';
+import Podlogin from './samps/pages/Podlogin';
+import Verification from './samps/pages/Verification';
+import ProductMainPage from './reckie/pages/ProductMainPage';
+import ProductItemPage from './reckie/pages/ProductItemPage';
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -40,28 +50,28 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
-              <Route exact path="/channel_info/:podcaster_id?">
+              <Route path="/channel_info/:podcaster_id?">
                 <PodcasterDashboardHome />
               </Route>
-              <Route exact path="/channel_audio_list/:podcaster_id?">
+              <Route path="/channel_audio_list/:podcaster_id?">
                 <PodcasterAudioList
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
                 />
               </Route>
-              <Route exact path="/explore_home_page">
+              <Route path="/explore_home_page">
                 <ExploreHomePage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
                 />
               </Route>
-              <Route exact path="/explore/category/:cate_term">
+              <Route path="/explore/category/:cate_term">
                 <ExploreCateChannelPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
                 />
               </Route>
-              <Route exact path="/channel_page/:cate_term/:podcaster_id">
+              <Route path="/channel_page/:cate_term/:podcaster_id">
                 <ChannelPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
@@ -106,6 +116,34 @@ function App() {
               </Route>
               <Route path="/payment">
                 <Payment />
+              </Route>
+              <Route path="/login">
+                <Podlogin />
+              </Route>
+              <Route path="/verify">
+                <Verification />
+              </Route>
+              <Route path="/passwordreset">
+                <Passwordreset />
+              </Route>
+              <Route path="/applymember">
+                <Applymembership />
+              </Route>
+              <Route path="/memberedit">
+                <Membersidebar />
+              </Route>
+              <Route path="/audiocollect">
+                <Audiocollection />
+              </Route>
+              <Route path="/channelcollect">
+                <Channelcollection />
+              </Route>
+
+              <Route path="/productlist/:page?">
+                <ProductMainPage />
+              </Route>
+              <Route path="/product/:pd_id?">
+                <ProductItemPage />
               </Route>
             </Switch>
           </ScrollToTop>
