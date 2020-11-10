@@ -9,6 +9,9 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+//reckie區
+app.use('/products',require(__dirname + '/routes/products'));
+
 
 //sa區
 app.use("/mail", require(__dirname + "/routes/mail"));
