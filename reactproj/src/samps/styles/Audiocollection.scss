@@ -1,0 +1,229 @@
+.sa-100vh {
+  height: 100vh;
+  width: 100%;
+  background-color: #232d2f;
+}
+
+.sa-collection-wrap {
+  width: 100%;
+  background-color: #232d2f;
+
+  // min-height: 100vh;
+  // margin-top: 4rem;
+}
+
+.sa-collection-title-bc {
+  padding-top: 3.5rem;
+  width: 100%;
+  height: 19.75rem;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sa-collection-title-bc::before {
+  content: '';
+  z-index: 0;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 15.75rem;
+  background-image: url('http://localhost:3000/sa_img/collectbc.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-filter: grayscale(1) brightness(0.5);
+}
+
+.sa-collection-title-wrap {
+  color: #f8f8f8;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  // padding-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+}
+
+.sa-collection-title-line1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.sa-collection-title-line2 {
+  color: #f8f8f8;
+  font-size: 4rem;
+}
+
+.sa-collection-title-line3 {
+  display: flex;
+  align-items: center;
+}
+.sa-collection-title-photo {
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.sa-collection-title-photo-img {
+  height: 100%;
+}
+
+.sa-collection-title-nickname {
+  padding-left: 1.5rem;
+  font-size: 1.5rem;
+}
+.sa-collection-title-audionumber {
+  padding-left: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.test1 {
+  color: #f8f8f8;
+}
+
+.sa-collection-list-wrap {
+  width: 100%;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #909393;
+}
+
+.sa-collection-list-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sa-collection-list-head-play {
+  width: 10%;
+  font-size: 2rem;
+}
+.sa-collection-list-head-channelname {
+  width: 40%;
+  font-size: 2rem;
+}
+.sa-collection-list-head-audioname {
+  width: 30%;
+  font-size: 2rem;
+}
+.sa-collection-list-head-date {
+  width: 30%;
+  font-size: 2rem;
+}
+.sa-collection-list-head-setting {
+  width: 20%;
+  font-size: 2rem;
+  // text-align: right;
+}
+
+.sa-collection-list-head-hr {
+  background-color: #707070;
+  height: 2px;
+  width: 94.188rem;
+}
+
+.sa-collection-list-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+.sa-collection-list-body-play {
+  width: 10%;
+  font-size: 2rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.sa-collection-list-body-play-photo {
+}
+.sa-collection-list-body-play-photo-img {
+  height: 2rem;
+  width: 2rem;
+}
+
+.sa-collection-list-body-channelname {
+  width: 40%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.sa-collection-list-body-channel-picture {
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-right: 1rem;
+}
+
+.sa-collection-list-body-channel-picture-img {
+  height: 100%;
+}
+.sa-collection-list-body-audioname {
+  width: 30%;
+  font-size: 1.5rem;
+}
+.sa-collection-list-body-date {
+  width: 30%;
+  font-size: 1.5rem;
+}
+.sa-collection-list-body-setting {
+  display: flex;
+  justify-content: right;
+
+  width: 20%;
+  font-size: 1.5rem;
+  // text-align: right;
+}
+.sa-collection-list-body-setting-cancel {
+  margin-right: 1rem;
+}
+
+.sa-collection-list-body-setting-cancel:hover,
+.sa-collection-list-body-setting-cancel:active {
+  color: #ffffff;
+  cursor: pointer;
+}
+.sa-collection-list-body-setting-download:hover,
+.sa-collection-list-body-setting-download:active {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.sa-nothingbox {
+  padding-top: 8rem;
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+}
+.sa-nothingbox-title {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.sa-nothingbox-go {
+  font-size: 2rem;
+  padding-bottom: 7rem;
+}
+.sa-nothingbox-go:hover {
+  cursor: pointer;
+}
+
+.sa-nothingbox-go:active {
+  cursor: pointer;
+  color: #fc774c;
+}
+
+// overflow : hidden;
+// text-overflow : ellipsis;

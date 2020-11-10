@@ -16,16 +16,23 @@ import PodcasterAudioList from './jay/jay_pages/PodcasterAudioList.js';
 import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
 import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
 import ChannelPage from './jay/jay_pages/ChannelPage.js';
-import ArticleHome from './jen/pages/ArticleHome'
-import ArticlePage from './jen/pages/ArticlePage'
-import Cart from './ruby/ruby_pages/CartPage.js'
-import Checkout from './ruby/ruby_pages/CheckoutPage.js'
-import Orderlist from './ruby/ruby_pages/OrderPage.js'
-import ActivityMain from './chieh/ch_pages/ActivityMain'
-import ActivityCart from './chieh/ch_pages/ActivityCart'
-import ActivityOrder from './chieh/ch_pages/ActivityOrder'
-import StudioMain from './chieh/ch_pages/StudioMain'
-import Payment from './chieh/ch_pages/Payment'
+import ArticleHome from './jen/pages/ArticleHome';
+import ArticlePage from './jen/pages/ArticlePage';
+import Cart from './ruby/ruby_pages/CartPage.js';
+import Checkout from './ruby/ruby_pages/CheckoutPage.js';
+import Orderlist from './ruby/ruby_pages/OrderPage.js';
+import ActivityMain from './chieh/ch_pages/ActivityMain';
+import ActivityCart from './chieh/ch_pages/ActivityCart';
+import ActivityOrder from './chieh/ch_pages/ActivityOrder';
+import StudioMain from './chieh/ch_pages/StudioMain';
+import Payment from './chieh/ch_pages/Payment';
+import Applymembership from './samps/pages/Applymembership';
+import Audiocollection from './samps/pages/Audiocollection';
+import Channelcollection from './samps/pages/Channelcollection';
+import Membersidebar from './samps/pages/Membersidebar';
+import Passwordreset from './samps/pages/Passwordreset';
+import Podlogin from './samps/pages/Podlogin';
+import Verification from './samps/pages/Verification';
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -97,6 +104,27 @@ function App() {
               </Route>
               <Route path="/payment">
                 <Payment />
+              </Route>
+              <Route path="/login">
+                <Podlogin />
+              </Route>
+              <Route path="/verify">
+                <Verification />
+              </Route>
+              <Route path="/passwordreset">
+                <Passwordreset />
+              </Route>
+              <Route path="/applymember">
+                <Applymembership />
+              </Route>
+              <Route path="/memberedit">
+                <Membersidebar />
+              </Route>
+              <Route path="/audiocollect">
+                <Audiocollection />
+              </Route>
+              <Route path="/channelcollect">
+                <Channelcollection />
               </Route>
             </Switch>
           </ScrollToTop>

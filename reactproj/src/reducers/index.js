@@ -8,12 +8,15 @@ import exploreCateChannel from './exploreCateChannel';
 import channelPageData from './channelPageData';
 
 //jen
-import articleList from './articleList'
-import articleListPages from './articleListPages'
-import articleListTotalRows from './articleListTotalRows'
-import articleDetail from './articleDetail'
-import articleDetailPre from './articleDetailPre'
-import articleDetailNext from './articleDetailNext'
+import articleList from './articleList';
+import articleListPages from './articleListPages';
+import articleListTotalRows from './articleListTotalRows';
+import articleDetail from './articleDetail';
+import articleDetailPre from './articleDetailPre';
+import articleDetailNext from './articleDetailNext';
+
+//samps
+import member from './member';
 
 // 合併所有的reducers成一個大的reducer
 export const rootReducer = combineReducers({
@@ -28,4 +31,5 @@ export const rootReducer = combineReducers({
   articleListTotalRows,
   articleDetailPre,
   articleDetailNext,
+  member,
 });
