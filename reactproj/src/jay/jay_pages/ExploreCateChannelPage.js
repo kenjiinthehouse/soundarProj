@@ -3,7 +3,7 @@ import 'animate.css/animate.min.css';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { initalExploreCatePageAsync } from '../jay_actions/index';
+import { initalExploreCatePageAsync } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
 //components

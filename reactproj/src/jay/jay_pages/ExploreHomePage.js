@@ -3,7 +3,7 @@ import 'animate.css/animate.min.css';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { initalExploreHomePageAsync } from '../jay_actions/index';
+import { initalExploreHomePageAsync } from '../../jay_actions/index';
 import { withRouter, Link } from 'react-router-dom';
 
 //components

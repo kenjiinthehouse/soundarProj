@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 // action、props
-import { initalAudioListAsync, delAudioAsync } from '../jay_actions/index';
+import { initalAudioListAsync, delAudioAsync } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
 // react icon

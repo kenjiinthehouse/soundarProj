@@ -1,4 +1,4 @@
-import './../jay_styles/ChannelPage.scss';
+import './../jay_styles/ChannelAudioPage.scss';
 import 'animate.css/animate.min.css';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
@@ -17,11 +17,7 @@ import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 
 // react icon
-import {
-  RiMusic2Fill,
-  RiPlayListAddLine,
-  RiBroadcastLine,
-} from 'react-icons/ri';
+import { RiMusic2Fill, RiPlayListAddLine } from 'react-icons/ri';
 import { FaRss, FaHeart } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
@@ -31,7 +27,7 @@ import { TiArrowSortedUp } from 'react-icons/ti';
 import 'antd/dist/antd.css';
 import { Rate, Input } from 'antd';
 
-function ChannelPage(props) {
+function ChannelAudioPage(props) {
   const styles = {
     fadeIn01: {
       animation: '2s',
@@ -51,7 +47,7 @@ function ChannelPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
-  const { cate_term, podcaster_id } = useParams();
+  const { cate_term, podcaster_id, audio_sid } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
   const transTermToChinese = () => {
     switch (cate_term) {
@@ -96,7 +92,7 @@ function ChannelPage(props) {
       await props.initalChannelPageAsync(podcaster_id);
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 500);
     }
     initialGetData();
   }, []);
@@ -137,8 +133,23 @@ function ChannelPage(props) {
               >
                 {breadcrumbCateTerm}類
               </li>
-              <li className="breadcrumb-item jay-now-page" aria-current="page">
+              <li
+                className="breadcrumb-item jay-not-now-page"
+                aria-current="page"
+                onClick={() => {
+                  props.history.push(
+                    `/channel_page/${cate_term}/${podcaster_id}`
+                  );
+                }}
+              >
                 {props.channel_data.map((item) => item.channel_title)}
+              </li>
+              <li className="breadcrumb-item jay-now-page" aria-current="page">
+                {props.channel_audio_data.map((item) => {
+                  if (item.sid === +audio_sid) {
+                    return truncate(item.audio_title, 50);
+                  }
+                })}
               </li>
             </ol>
           </nav>
@@ -209,146 +220,119 @@ function ChannelPage(props) {
               );
             })}
             <div className="col-9 jay-main-bar" style={styles.fadeIn02}>
-              {props.channel_data.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <h5>頻道介紹</h5>
-                    <p
-                      style={{
-                        whiteSpace: 'pre-wrap',
-                        fontSize: '1rem',
-                      }}
-                    >
-                      {item.podcaster_description}
-                    </p>
-                  </div>
-                );
-              })}
-              <hr className="jay-cate-hr" />
               {props.channel_audio_data.map((item, index) => {
-                return (
-                  <div
-                    className=" position-relative channel-page-audio-list"
-                    key={index}
-                  >
-                    <div
-                      className=" d-flex py-3 px-3 mb-3 mh14"
-                      onClick={() => {
-                        props.history.push(
-                          `/channel_page/${cate_term}/${podcaster_id}/${item.sid}`
-                        );
-                      }}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <div>
-                        <h6>{item.audio_title}</h6>
-                        <p>{truncate(item.audio_content_snippet, 120)}</p>
-                        <span>{item.pubDate}</span>
+                if (item.sid === +audio_sid) {
+                  return (
+                    <div key={index}>
+                      <div className=" d-flex py-3 px-5 mb-3 audio-info">
+                        <div>
+                          <h5 className=" mb-3">
+                            單集名稱：
+                            <br />
+                            {item.audio_title}
+                          </h5>
+                          <p
+                            style={{
+                              whiteSpace: 'pre-wrap',
+                              fontSize: '1rem',
+                            }}
+                          >
+                            {item.audio_content}
+                          </p>
+                          <div className="d-flex justify-content-between align-items-end mt-3">
+                            <span className=" d-block w-50">
+                              {item.pubDate}
+                            </span>
+                            <div className=" d-flex justify-content-around align-items-center w-50">
+                              <div
+                                className="audio-info-icon"
+                                onClick={(event) => {
+                                  let playTargetAudio = null;
+                                  [
+                                    playTargetAudio,
+                                  ] = props.channel_audio_data.filter(
+                                    (v) => v.sid === item.sid
+                                  );
+                                  let payload = {
+                                    musicSrc:
+                                      playTargetAudio.audio_file.indexOf(
+                                        'http'
+                                      ) !== -1
+                                        ? playTargetAudio.audio_file
+                                        : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
+                                    cover: playTargetAudio.podcaster_img,
+                                    name: playTargetAudio.audio_title,
+                                    singer: playTargetAudio.channel_title,
+                                  };
+                                  if (
+                                    globalAudioArry[0] &&
+                                    globalAudioArry[0].name === payload.name
+                                  ) {
+                                    return null;
+                                  } else {
+                                    setGlobalAudioArry([
+                                      payload,
+                                      ...globalAudioArry,
+                                    ]);
+                                  }
+                                }}
+                              >
+                                {playingAudio &&
+                                playingAudio.name === item.audio_title ? (
+                                  <AiFillPlayCircle
+                                    style={{
+                                      fontSize: '2.5rem',
+                                      color: '#F780AE',
+                                    }}
+                                  />
+                                ) : (
+                                  <AiFillPlayCircle
+                                    style={{ fontSize: '2.5rem' }}
+                                  />
+                                )}
+                              </div>
+                              <div
+                                className="audio-info-icon"
+                                onClick={(event) => {
+                                  let playTargetAudio = null;
+                                  [
+                                    playTargetAudio,
+                                  ] = props.channel_audio_data.filter(
+                                    (v) => v.sid === item.sid
+                                  );
+                                  let payload = {
+                                    musicSrc:
+                                      playTargetAudio.audio_file.indexOf(
+                                        'http'
+                                      ) !== -1
+                                        ? playTargetAudio.audio_file
+                                        : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
+                                    cover: playTargetAudio.podcaster_img,
+                                    name: playTargetAudio.audio_title,
+                                    singer: playTargetAudio.channel_title,
+                                  };
+                                  setGlobalAudioArry([
+                                    ...globalAudioArry,
+                                    payload,
+                                  ]);
+                                }}
+                              >
+                                <RiPlayListAddLine
+                                  style={{ fontSize: '2rem' }}
+                                />
+                              </div>
+                              <div className="audio-info-icon">
+                                <FaHeart style={{ fontSize: '2rem' }} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div
-                      className="channel-audio-list-icon position-absolute"
-                      style={{ left: '70%' }}
-                      onMouseEnter={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.add('mh15');
-                      }}
-                      onMouseLeave={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.remove('mh15');
-                      }}
-                      onClick={(event) => {
-                        let playTargetAudio = null;
-                        [playTargetAudio] = props.channel_audio_data.filter(
-                          (v) => v.sid === item.sid
-                        );
-                        let payload = {
-                          musicSrc:
-                            playTargetAudio.audio_file.indexOf('http') !== -1
-                              ? playTargetAudio.audio_file
-                              : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
-                          cover: playTargetAudio.podcaster_img,
-                          name: playTargetAudio.audio_title,
-                          singer: playTargetAudio.channel_title,
-                        };
-                        if (
-                          globalAudioArry[0] &&
-                          globalAudioArry[0].name === payload.name
-                        ) {
-                          return null;
-                        } else {
-                          setGlobalAudioArry([payload, ...globalAudioArry]);
-                        }
-                      }}
-                    >
-                      {playingAudio &&
-                      playingAudio.name === item.audio_title ? (
-                        <AiFillPlayCircle
-                          style={{ fontSize: '2.5rem', color: '#F780AE' }}
-                        />
-                      ) : (
-                        <AiFillPlayCircle style={{ fontSize: '2.5rem' }} />
-                      )}
-                    </div>
-                    <div
-                      className="channel-audio-list-icon position-absolute"
-                      style={{ left: '80%' }}
-                      onMouseEnter={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.add('mh15');
-                      }}
-                      onMouseLeave={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.remove('mh15');
-                      }}
-                      onClick={(event) => {
-                        let playTargetAudio = null;
-                        [playTargetAudio] = props.channel_audio_data.filter(
-                          (v) => v.sid === item.sid
-                        );
-                        let payload = {
-                          musicSrc:
-                            playTargetAudio.audio_file.indexOf('http') !== -1
-                              ? playTargetAudio.audio_file
-                              : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
-                          cover: playTargetAudio.podcaster_img,
-                          name: playTargetAudio.audio_title,
-                          singer: playTargetAudio.channel_title,
-                        };
-                        setGlobalAudioArry([...globalAudioArry, payload]);
-                      }}
-                    >
-                      <RiPlayListAddLine style={{ fontSize: '2rem' }} />
-                    </div>
-                    <div
-                      className="channel-audio-list-icon position-absolute"
-                      style={{ left: '90%' }}
-                      onMouseEnter={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.add('mh15');
-                      }}
-                      onMouseLeave={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.remove('mh15');
-                      }}
-                    >
-                      <FaHeart style={{ fontSize: '2rem' }} />
-                    </div>
-                  </div>
-                );
+                  );
+                }
               })}
+              <hr className="jay-cate-hr" />
             </div>
           </div>
         </div>
@@ -385,6 +369,6 @@ const mapStateToProps = (store) => {
 
 export default withRouter(
   connect(mapStateToProps, { initalChannelPageAsync, initalDashboardAsync })(
-    ChannelPage
+    ChannelAudioPage
   )
 );

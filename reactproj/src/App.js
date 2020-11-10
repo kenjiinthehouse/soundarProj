@@ -16,16 +16,17 @@ import PodcasterAudioList from './jay/jay_pages/PodcasterAudioList.js';
 import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
 import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
 import ChannelPage from './jay/jay_pages/ChannelPage.js';
-import ArticleHome from './jen/pages/ArticleHome'
-import ArticlePage from './jen/pages/ArticlePage'
-import Cart from './ruby/ruby_pages/CartPage.js'
-import Checkout from './ruby/ruby_pages/CheckoutPage.js'
-import Orderlist from './ruby/ruby_pages/OrderPage.js'
-import ActivityMain from './chieh/ch_pages/ActivityMain'
-import ActivityCart from './chieh/ch_pages/ActivityCart'
-import ActivityOrder from './chieh/ch_pages/ActivityOrder'
-import StudioMain from './chieh/ch_pages/StudioMain'
-import Payment from './chieh/ch_pages/Payment'
+import ChannelAudioPage from './jay/jay_pages/ChannelAudioPage.js';
+import ArticleHome from './jen/pages/ArticleHome';
+import ArticlePage from './jen/pages/ArticlePage';
+import Cart from './ruby/ruby_pages/CartPage.js';
+import Checkout from './ruby/ruby_pages/CheckoutPage.js';
+import Orderlist from './ruby/ruby_pages/OrderPage.js';
+import ActivityMain from './chieh/ch_pages/ActivityMain';
+import ActivityCart from './chieh/ch_pages/ActivityCart';
+import ActivityOrder from './chieh/ch_pages/ActivityOrder';
+import StudioMain from './chieh/ch_pages/StudioMain';
+import Payment from './chieh/ch_pages/Payment';
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -62,6 +63,14 @@ function App() {
               </Route>
               <Route exact path="/channel_page/:cate_term/:podcaster_id">
                 <ChannelPage
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                  playingAudio={playingAudio}
+                  setPlayingAudio={setPlayingAudio}
+                />
+              </Route>
+              <Route path="/channel_page/:cate_term/:podcaster_id/:audio_sid">
+                <ChannelAudioPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
                   playingAudio={playingAudio}

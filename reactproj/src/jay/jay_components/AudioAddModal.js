@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import 'react-jinke-music-player/assets/index.css';
 
 // action、props
-import { addAudioAsync, initalAudioListAsync } from '../jay_actions/index';
+import { addAudioAsync, initalAudioListAsync } from '../../jay_actions/index';
 import { withRouter } from 'react-router-dom';
 
 // bootstrap

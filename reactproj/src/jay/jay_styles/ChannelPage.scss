@@ -23,14 +23,14 @@
     filter: brightness(0.7);
 }
 .channel-page-audio-list p{
-    max-width: 500px;
+    max-width:65%;
     filter: brightness(0.8);
 }
 .channel-page-audio-list{
     background-color: rgba($color: #F8F8F8, $alpha: 0.1);
 }
 .channel-page-audio-list h6{
-    max-width: 500px;
+    max-width: 65%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

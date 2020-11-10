@@ -7,7 +7,7 @@ import {
   initalAudioListAsync,
   editAudioAsync,
   delAudioAsync,
-} from '../jay_actions/index';
+} from '../../jay_actions/index';
 import { withRouter } from 'react-router-dom';
 
 // bootstrap

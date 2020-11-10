@@ -1,0 +1,23 @@
+.audio-info p{
+    filter: brightness(0.8);
+}
+.audio-info{
+    background-color: rgba($color: #F8F8F8, $alpha: 0.1);
+}
+.audio-info h5{
+    line-height: 1.8;
+}
+.audio-info span{
+    display: block;
+    color: #F8F8F8;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    filter: brightness(0.7);
+}
+.audio-info-icon{
+    color: rgba($color: #F8F8F8, $alpha: 1.0);
+}
+.audio-info-icon:hover{
+    cursor: pointer;
+    color: #2690DF;
+}
