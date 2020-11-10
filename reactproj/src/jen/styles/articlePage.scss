@@ -1,0 +1,80 @@
+//ArticlePage CSS------------------
+.article-page-date {
+  font-size: 2.5rem;
+  margin-top: 19.3rem;
+  text-align: center;
+  width: 14.5rem;
+}
+
+.article-content-wrap {
+  width: 63.25rem;
+  .article-title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    padding-bottom:2.5rem;
+  }
+
+  .article-img {
+    width: 63.25rem;
+    height: 25.438rem;
+    overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .article-font-change {
+    margin: 2rem 0;
+    .title{
+      width:auto;
+    }
+    p {
+      margin: 0.5rem;
+      border-radius: 50%;
+      text-align: center;
+    }
+    p:hover{
+      cursor:pointer;
+    }
+    p.active {
+      color:#707070;
+    }
+  }
+
+  .article-content-area {
+    width: 100%;
+    color: #f8f8f8;
+    line-height: 2.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 4rem;
+    text-align: justify;
+    //使跳脫文字有作用
+    white-space: pre-wrap;
+    p{
+      //  text-indent:2rem;
+    }
+  }
+
+  .article-page-category {
+    padding-bottom: 2.531rem;
+    border-bottom: solid 1px #707070;
+    .span-font {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  }
+
+  .article-page-others {
+    padding: 1.29rem 0 2rem 0;
+    .article-page-previous,
+    .article-page-next{
+      cursor:pointer;
+    }
+    .article-page-previous:hover,
+    .article-page-next:hover{
+      color:#707070;
+    }
+
+  }
+}

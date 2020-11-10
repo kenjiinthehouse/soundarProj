@@ -1,0 +1,71 @@
+$myBtm: #405b55;
+// 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
+html body {
+  // background-color: $primary !important;
+  // color: #ffffff;
+  cursor: default;
+}
+.ant-layout{
+    background-color: #fff;
+}
+//Nav
+.ant-layout-header {
+  color: #fff;
+  background: rgba($color: #232d2f, $alpha: 0.95);
+  min-width: 100%;
+  min-height: 3rem;
+  border-bottom: 1px solid rgba($color: #F8F8F8, $alpha: 0.1);
+}
+.ant-layout-header {
+  position: fixed;
+  z-index: 10;
+}
+.ant-layout-footer {
+  line-height: 1.5;
+}
+.ant-layout-content {
+  color: #ffffff;
+}
+//垂直分隔線
+.diverVertical {
+  display: inline-block;
+  height: 2.5rem;
+  vertical-align: middle;
+  border-left: 1px solid #ffffff;
+  padding: 0px;
+}
+header .MuiButton-label,
+header .MuiIconButton-label {
+  color: #ffffff;
+}
+@media (min-width: 1000px) {
+  .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
+    display: none !important;
+  }
+  Header .navBarLogInBtn {
+    display: none !important;
+  }
+}
+@media (max-width: 1000px) {
+  Header .navBarBtn {
+    display: none !important;
+  }
+}
+.MuiList-padding {
+  background-color: #232d2f;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+  padding: 0px;
+}
+.ant-layout-content {
+  margin-top: 3rem;
+}
+.logo {
+  float: left;
+  width: 7.875rem;
+  height: 2.125rem;
+  margin: 1rem 0 1rem 0;
+  background-image: url(../jay_imgs_svgs/logofordark.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}

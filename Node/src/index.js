@@ -9,17 +9,14 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 //reckie區
 app.use('/products',require(__dirname + '/routes/products'));
 
-
 //sa區
 app.use("/mail", require(__dirname + "/routes/mail"));
-
 app.use("/google", require(__dirname + "/routes/google"));
-
 app.use("/member", require(__dirname + "/routes/member"));
-
 app.use("/member_collection", require(__dirname + "/routes/member_collection"));
 
 //Ruby區
@@ -45,6 +42,10 @@ app.use(
   require(__dirname + "/routes/podcaster_dashboard")
 );
 app.use("/explore", require(__dirname + "/routes/explore"));
+
+// kenji 區留言板
+app.use('/msg', require(__dirname + '/routes/msgBoard'));
+
 
 app.get("/", function (req, res) {
   res.send("已開啟express");

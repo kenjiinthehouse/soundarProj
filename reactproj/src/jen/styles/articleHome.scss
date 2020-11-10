@@ -1,0 +1,243 @@
+//ArticleHome CSS------------------
+.article-cate-btn:focus,
+.article-search-btn:focus,
+.article-tags-btn:focus {
+  outline: none; //去除BS預設active外框
+}
+
+.article-sort-btn span:hover,
+.article-card-cates:hover {
+  cursor: pointer;
+}
+
+.article-cate-row {
+  .article-search-wrap {
+    position: relative;
+    width: 23.75rem;
+    height: 3rem;
+
+    .article-search-input {
+      position: absolute;
+      width: 100%;
+      color: #f8f8f8;
+      border: solid 1px #f8f8f8;
+      border-radius: 38px;
+      background-color: #232d2f;
+      padding-left: 3rem;
+      padding-right: 1rem;
+      line-height: 3rem;
+      outline: none; //input預設外框
+    }
+
+    input::-webkit-search-cancel-button {
+      display: none;
+    }
+
+    .icon {
+      position: absolute;
+      top: 0.9rem;
+      left: 1.2rem;
+      z-index: 2;
+      font-size: 1.2rem;
+    }
+    .icon-cancel {
+      position: absolute;
+      top: calc(50% - 0.9rem);
+      right: 1.2rem;
+      z-index: 2;
+      font-size: 2rem;
+    }
+
+    .article-search-btn {
+      position: absolute;
+      right: 0;
+      width: 7rem;
+      background-color: #444c4e;
+      color: #f8f8f8;
+      background-color: none;
+      border-radius: 38px;
+      border: 1px solid #f8f8f8;
+      margin-left: 1rem;
+      font-size: 1.25rem;
+      line-height: 3rem;
+    }
+    .article-search-btn:hover {
+      background-color: #232d2f;
+    }
+  }
+
+  .article-cate-btn {
+    color: #f8f8f8;
+    border-radius: 38px;
+    border: 1px solid #f8f8f8;
+    padding: 0 1.5rem;
+    margin-left: 2rem;
+    background-color: #232d2f;
+    font-size: 1.25rem;
+    line-height: 3rem;
+  }
+  .article-cate-btn:hover {
+    background-color: #2690df;
+  }
+
+  .active {
+    //article-cate-btn專屬
+    background-color: #2690df;
+  }
+}
+
+.article-tags-row {
+  margin: 5.975rem 0rem 1.939rem 1rem;
+
+  .article-sort-btn {
+    span {
+      border-radius: 38px;
+      font-size: 1.25rem;
+      line-height: 1.8;
+      font-weight: 500;
+      padding: 0.5rem 1.2rem 0.5rem 1rem;
+    }
+    span:hover {
+      // color: #444c4e;
+      background-color: #444c4e;
+      border-radius: 38px;
+      // border-bottom: 4px solid #444c4e;
+    }
+    .active {
+      background-color: #444c4e;
+    }
+  }
+
+  //for tags btn
+  .news {
+    background-color: #b9e3ff;
+    color: #232d2f;
+  }
+  .bussiness {
+    background-color: #fadb28;
+    color: #232d2f;
+  }
+  .technology {
+    background-color: #84e5bd;
+    color: #232d2f;
+  }
+  .education {
+    background-color: #f780ae;
+    color: #232d2f;
+  }
+  .story {
+    background-color: #846def;
+    color: #232d2f;
+  }
+  .entainment {
+    background-color: #f7aa99;
+    color: #232d2f;
+  }
+  .all,
+  .sport {
+    background-color: #f8f8f8;
+    color: #232d2f;
+  }
+}
+
+.article-card {
+  width: 85rem;
+  height: 22.5rem;
+  border-radius: 5px;
+  background-color: #707070;
+  margin-bottom: 1rem;
+
+  .article-card-date {
+    margin: 0 3.6rem;
+    h4 {
+      font-weight: 500;
+      font-size: 2rem;
+    }
+  }
+
+  .article-card-img {
+    width: 21.75rem;
+    height: 17.125rem;
+    border-radius: 5px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .article-card-body {
+    height: 100%;
+    padding: 2.69rem 4.125rem;
+
+    .article-card-title {
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .article-card-content {
+      width: 42.063rem;
+      height: 9rem;
+      line-height: 3;
+      margin-bottom: 1.625rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-align: justify;
+      text-indent: 2rem;
+    }
+
+    .article-card-cates {
+      font-size: 1.25rem;
+      font-weight: 500;
+      a {
+        color: #f8f8f8;
+      }
+    }
+      
+  }
+}
+
+.article-pagination {
+  margin-top: 4rem;
+
+  li {
+    list-style-type: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #44494a;
+    border: 1px solid #f8f8f8;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: #f8f8f8;
+      font-size: 1rem;
+    }
+  }
+  li:hover,
+  li:active {
+    background-color: #2690df;
+  }
+  li:first-child {
+    border-radius: 5px 0 0 5px;
+    a {
+      // color: #f8f8f8;
+      font-size: 1.25rem;
+    }
+  }
+  li:last-child {
+    border-radius: 0 5px 5px 0;
+    a {
+      // color: #f8f8f8;
+      font-size: 1.25rem;
+    }
+  }
+}

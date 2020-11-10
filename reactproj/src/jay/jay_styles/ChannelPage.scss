@@ -1,0 +1,56 @@
+.jay-channel-head-pic-area{
+    max-width: 13rem;
+    max-height: 13rem;
+    overflow: hidden;
+}
+.jay-channel-head-pic-area img{
+    width: 100%;
+    object-fit: cover;
+}
+.jay-side-bar{
+    color: #F8F8F8;
+}
+.jay-side-bar a,
+.jay-side-bar a:hover{
+    color: rgba($color: #F8F8F8, $alpha: 0.8);
+}
+.jay-side-bar a:hover{
+    text-decoration: none;
+    color: rgba($color: #F8F8F8, $alpha: 1.0);
+    ;
+}
+.jay-side-bar span{
+    filter: brightness(0.7);
+}
+.channel-page-audio-list p{
+    max-width: 500px;
+    filter: brightness(0.8);
+}
+.channel-page-audio-list{
+    background-color: rgba($color: #F8F8F8, $alpha: 0.1);
+}
+.channel-page-audio-list h6{
+    max-width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.channel-page-audio-list span{
+    display: block;
+    color: #F8F8F8;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    filter: brightness(0.7);
+}
+.channel-audio-list-icon{
+    color: rgba($color: #F8F8F8, $alpha: 1.0);
+    top: 50%;
+    z-index: 10;
+    transform: translate(0, -50%);
+}
+.channel-audio-list-icon:hover{
+    cursor: pointer;
+    color: #2690DF;
+}
+
+

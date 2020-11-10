@@ -1,0 +1,92 @@
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+// GooglgeFonts
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+// 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
+
+//Article系列 CSS------------------
+.article-body {
+  background-color: #232d2f;
+  color: #f8f8f8;
+  font-family: 'Noto Sans TC', sans-serif, 'ROBOTO';
+
+  a:hover {
+    text-decoration: none;
+  }
+  .carousel {
+    padding-top: 3rem; //留Navbar空隙
+
+    li {
+      width: 10px;
+      height: 10px;
+      border-radius: 50% 50%;
+    }
+    .carousel-img {
+      width: 120rem;
+      height: 80vh;
+      overflow: hidden;
+
+      img {
+        height: 200%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .article-container {
+    width: 85rem;
+    padding-bottom: 5rem;
+
+    .article-breadcrumb {
+      // width: 100%;
+      height: 2rem;
+      font-size: 1rem;
+      margin: 4rem 0;
+      ol {
+        background-color: #232d2f;
+        li {
+          a {
+            color: #f8f8f8;
+          }
+        }
+        li:last-child{
+          a{
+            color:#444c4e;
+            cursor:default;
+          }
+        }
+      }
+    }
+
+    .article-tags-btn {
+      color: #f8f8f8;
+      border-radius: 25px;
+      border: 1px solid #f8f8f8;
+      padding: 0.2rem 1.5rem;
+      margin-left: 1rem;
+      background-color: #232d2f;
+    }
+
+    @import './articleHome.scss';
+    @import './articlePage.scss';
+  }
+  .icon {
+    font-size: 1.5rem;
+    color: #f8f8f8;
+  }
+  .article-click-to-top {
+    background-color: #444c4e;
+    border-radius: 50% 50%;
+    opacity: 0.5;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    color: #f8f8f8;
+    padding: 1rem;
+    display: none;
+  }
+  .article-click-to-top:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}

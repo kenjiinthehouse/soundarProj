@@ -1,0 +1,38 @@
+.jay-podcastImgArea{
+    width: 6.75rem;
+    height: 6.75rem;
+}
+
+.jay-podcastImgArea img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+div.custom-table-width .jay-table th,
+div.custom-table-width .jay-table td{
+    border-top: 0px;
+    border-bottom: 1px solid #dee2e6;
+    padding-top: 2rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+hr.jay-dashboard-hr{
+    border: 1px solid #707070 ;
+}
+
+.jay-table {
+    table-layout: fixed;   // 表格和欄寬將根據所給定的寬度來顯示
+    min-width: 100%;     // 避免因寬度不足而字疊在一起（根據表格內容設定寬度）
+  }
+
+.jay-table tbody th:nth-child(0) {
+  width: 10%;
+}
+
+
+.jay-table tbody td:nth-child(1) {
+  width: 10%;
+}

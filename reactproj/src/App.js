@@ -1,25 +1,97 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+//components
+import MyNavbar from './jay/jay_components/MyNavbar.js';
+import ScrollToTop from './jay/jay_components/ScrollToTop.js';
+import MainContent from './jay/jay_components/MainContent.js';
+import { Layout } from 'antd';
+
+//pages
+import PodcasterDashboardHome from './jay/jay_pages/PodcasterDashboardHome';
+import AudioPlayer from './jay/jay_components/AudioPlayer.js';
+import PodcasterAudioList from './jay/jay_pages/PodcasterAudioList.js';
+import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
+import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
+import ChannelPage from './jay/jay_pages/ChannelPage.js';
+import ArticleHome from './jen/pages/ArticleHome'
+import ArticlePage from './jen/pages/ArticlePage'
+import Cart from './ruby/ruby_pages/CartPage.js'
+import Checkout from './ruby/ruby_pages/CheckoutPage.js'
+import Orderlist from './ruby/ruby_pages/OrderPage.js'
+
 function App() {
+  const [globalAudioArry, setGlobalAudioArry] = useState([]);
+  const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
+  const [playingAudio, setPlayingAudio] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout>
+        <MyNavbar />
+        <MainContent>
+          <ScrollToTop>
+            <Switch>
+              <Route exact path="/channel_info/:podcaster_id?">
+                <PodcasterDashboardHome />
+              </Route>
+              <Route exact path="/channel_audio_list/:podcaster_id?">
+                <PodcasterAudioList
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
+              </Route>
+              <Route exact path="/explore_home_page">
+                <ExploreHomePage
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
+              </Route>
+              <Route exact path="/explore/category/:cate_term">
+                <ExploreCateChannelPage
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
+              </Route>
+              <Route exact path="/channel_page/:cate_term/:podcaster_id">
+                <ChannelPage
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                  playingAudio={playingAudio}
+                  setPlayingAudio={setPlayingAudio}
+                />
+              </Route>
+              <Route path="/article">
+                <ArticleHome />
+              </Route>
+              <Route path="/articlepage/:sid">
+                <ArticlePage />
+              </Route>
+              <Route path="/cart">
+                <Cart />
+              </Route>
+              <Route path="/checkout">
+                <Checkout />
+              </Route>
+              <Route path="/orderlist">
+                <Orderlist />
+              </Route>
+            </Switch>
+          </ScrollToTop>
+
+          <AudioPlayer
+            globalAudioArry={globalAudioArry}
+            setGlobalAudioArry={setGlobalAudioArry}
+            audioPlayerTheme={audioPlayerTheme}
+            setAudioPlayerTheme={setAudioPlayerTheme}
+            playingAudio={playingAudio}
+            setPlayingAudio={setPlayingAudio}
+          />
+        </MainContent>
+      </Layout>
+    </Router>
   );
 }
 
