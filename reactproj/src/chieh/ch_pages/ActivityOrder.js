@@ -159,79 +159,9 @@ function ActivityOrder(props){
                 <OpenOrder />
             </Tab>
             <Tab eventKey="cancel" title="已取消">
-                <div className="bg-dark w-100 mt-4 pl-4"><h6 className="text-light">訂單編號: 20200927T0001A</h6></div>
-                <div className="order-info d-flex justify-content-between w-100">
-                    <div className="">
-                        <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td>訂購日期</td>
-                                        <td>2020-09-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td>訂單狀態</td>
-                                        <td>已付款</td>
-                                    </tr>
-                                    <tr>
-                                        <td>訂單金額</td>
-                                        <td>NT$4,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>活動日期</td>
-                                        <td>2020-10-27 09:00 ~ 12:00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                    </div>
-                    <div className="">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td>購買項目</td>
-                                    <td>跟上影音新浪潮｜Podcast企劃+影音內容+影音行銷</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>     
                 <OpenOrder />
             </Tab>
             <Tab eventKey="refund" title="退票紀錄">
-                <div className="bg-dark w-100 mt-4 pl-4"><h6 className="text-light">訂單編號: 20200927T0001A</h6></div>
-                <div className="order-info d-flex justify-content-between w-100">
-                    <div className="">
-                        <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td>訂購日期</td>
-                                        <td>2020-09-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td>訂單狀態</td>
-                                        <td>已付款</td>
-                                    </tr>
-                                    <tr>
-                                        <td>訂單金額</td>
-                                        <td>NT$4,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>活動日期</td>
-                                        <td>2020-10-27 09:00 ~ 12:00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                    </div>
-                    <div className="">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td>購買項目</td>
-                                    <td>跟上影音新浪潮｜Podcast企劃+影音內容+影音行銷</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>     
                 <OpenOrder />
             </Tab>
           </Tabs>

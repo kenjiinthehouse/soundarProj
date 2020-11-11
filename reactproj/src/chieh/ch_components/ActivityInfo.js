@@ -1,12 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { FaHotjar,FaMapMarkedAlt } from 'react-icons/fa'
-import OptionCard from './OptionCard'
 
 function ActivityInfo(props) {
   return (
     <>
-      <div className="container d-flex">
         <div className="activity-info">
             <h5 className="title"><FaHotjar style={{ color: '#fc774c'}}/> Podcast崛起、影片正夯 </h5>
             <p className="text-act">影音內容將為品牌帶來流量高峰，品牌如何做好影片、踏入Podcast？<br/>
@@ -45,10 +43,9 @@ function ActivityInfo(props) {
             <hr />
             <h5 className="title mt-5"><FaMapMarkedAlt style={{ color: '#fc774c'}}/> 交通資訊 </h5>
             <p>活動地點：台北市大安區復興南路一段390號</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0049657993086!2d121.5412041507614!3d25.03390554437016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abd379a5ec97%3A0xec12a62666a81e3d!2zMTA25Y-w5YyX5biC5aSn5a6J5Y2A5b6p6IiI5Y2X6Lev5LiA5q61Mzkw6Jmf!5e0!3m2!1szh-TW!2stw!4v1604138400418!5m2!1szh-TW!2stw" width="896" height="450" frameborder="0" style={{border:0}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0049657993086!2d121.5412041507614!3d25.03390554437016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abd379a5ec97%3A0xec12a62666a81e3d!2zMTA25Y-w5YyX5biC5aSn5a6J5Y2A5b6p6IiI5Y2X6Lev5LiA5q61Mzkw6Jmf!5e0!3m2!1szh-TW!2stw!4v1604138400418!5m2!1szh-TW!2stw" width="896" height="450" frameborder="0" style={{border:0}} allowFullscreen="false" aria-hidden="false" tabIndex="0"></iframe>
         </div>
-        <OptionCard/>
-      </div>
+
     </>
   )
 }
