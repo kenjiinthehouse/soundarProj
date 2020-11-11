@@ -26,7 +26,7 @@ function ChannelRatingModal(props) {
       await props.initalRateModalAsync(props.member.sid, podcaster_id);
     }
     initialGetData();
-  }, []);
+  }, [props.member]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

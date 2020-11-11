@@ -23,6 +23,8 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 import MsgBoard from './../../kenji/components/MsgBoard';
+// bootstrap
+import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
 // react icon
 import { RiMusic2Fill, RiPlayListAddLine } from 'react-icons/ri';
@@ -55,7 +57,6 @@ function ChannelAudioPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
-  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id, audio_sid } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -455,10 +456,6 @@ function ChannelAudioPage(props) {
         show={showRatingModel}
         onHide={() => setShowRatingModel(false)}
       />
-      <InformLoginModal
-        show={showInformLoginModal}
-        onHide={() => setShowInformLoginModal(false)}
-      />
     </StyleRoot>
   );
 
@@ -499,11 +496,5 @@ export default withRouter(
     initalChannelPageAsync,
     initalDashboardAsync,
     getMsgAsync,
-    initMemberChannelCollectionAsync,
-    initMemberAudioCollectionAsync,
-    addCollection,
-    delCollection,
-    addChannelCollection,
-    delChannelCollection,
   })(ChannelAudioPage)
 );
