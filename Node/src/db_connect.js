@@ -14,7 +14,7 @@ const pool = mysql2.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "mfee09_project",
+  database: "pd_test",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

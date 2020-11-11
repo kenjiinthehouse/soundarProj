@@ -9,12 +9,10 @@ import {Form} from 'react-bootstrap'
 
 function ItemTabBar(props){
   console.log('props',props)
-  const{pdDetail}=props
+  const{pdDetail,SubImg}=props
   const [products,setProducts]= useState([])
 
-  
-  
-  
+
   //Sticky Tab Bar
   useEffect(()=>{
     // document.addEventListener('DOMContentLoaded', function() {
@@ -29,7 +27,7 @@ function ItemTabBar(props){
           // console.log('fakePoint',fakePoint)
        let y = fakePoint.offsetTop;
 
-          if(document.body.scrollTop >=y|| window.pageYOffset >= y){
+          if(document.body.scrollTop >= y-64|| window.pageYOffset >= y-64){
             ItemTabBar.classList.add('tabFixed')
           }else{
             ItemTabBar.classList.remove('tabFixed')
@@ -53,7 +51,7 @@ useEffect(()=>{},[pdDetail])
       const fakePoint = document.querySelector('.fake-point')
       let y = fakePoint.offsetTop
                 window.scrollTo({ 
-                    top: y, 
+                    top: y-64, 
                     behavior: "smooth" 
                 });
               }
@@ -67,7 +65,7 @@ useEffect(()=>{},[pdDetail])
       let contentHeight1Y = contentHeight1.offsetTop
       let contentHeight2Y = contentHeight2.offsetTop
                 window.scrollTo({ 
-                    top: (y+(contentHeight2Y-contentHeight1Y)), 
+                    top: (y+(contentHeight2Y-contentHeight1Y)-64), 
                     behavior: "smooth" 
                 });
               }
@@ -80,7 +78,7 @@ useEffect(()=>{},[pdDetail])
       let contentHeight3Y = contentHeight3.offsetTop
       let contentHeight1Y = contentHeight1.offsetTop
               window.scrollTo({ 
-              top: (y+(contentHeight3Y-contentHeight1Y)), 
+              top: (y+(contentHeight3Y-contentHeight1Y)-64), 
                   behavior: "smooth" 
               });
       }
@@ -96,11 +94,24 @@ useEffect(()=>{},[pdDetail])
     <div className="re-tabs" onClick={(e)=>{handleActive(e);scrollToTab3();}}>評論</div>
     </div>
 
+    <div className="pdIntroPart" >
+      <div className="container">
+      <div className="contentHeight1" >
+      <h2 className="light">產品介紹</h2>
+      </div>
+      <div className="d-flex pdIntroImgField">
+        {SubImg.map((item,index)=>{
+        if(index >1)return<></>
+        return <img src={item.indexOf('http')=== -1 ? `/img/${item}`:item}  key={index} className="contentPics col"/>
+      })}
+      </div>
+      <p className="light pdIntroTextSpace">{pdDetail?pdDetail.pd_info:''}</p>
+      </div>
+    </div>
     <div className="container">
-    <div className="contentHeight1" ><h2>產品介紹</h2></div>
       <h2 className="contentHeight2">規格</h2>
       <table class="table table-striped">
-  <thead>
+      <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">First</th>
