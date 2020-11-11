@@ -7,6 +7,7 @@ import explorePopularChannel from './explorePopularChannel';
 import exploreCateChannel from './exploreCateChannel';
 import channelPageData from './channelPageData';
 import memberRatingState from './memberRatingState';
+import memberAudioCollection from './memberAudioCollection';
 
 //jen
 import articleList from './articleList';
@@ -34,4 +35,5 @@ export const rootReducer = combineReducers({
   articleDetailNext,
   member,
   memberRatingState,
+  memberAudioCollection,
 });

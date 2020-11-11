@@ -72,7 +72,9 @@ function ChannelRatingModal(props) {
             {props.member && props.member.sid ? (
               <Rate
                 style={{ fontSize: '1.5rem', filter: 'brightness(0.95)' }}
-                defaultValue={props.rating_state[0].score}
+                defaultValue={
+                  props.rating_state[0] ? props.rating_state[0].score : 0
+                }
                 onChange={(value) => {
                   setRateValue(value);
                 }}
