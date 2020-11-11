@@ -1,4 +1,5 @@
 import React from 'react'
+import './../ch_styles/custom.scss';
 import { Link, Switch, withRouter } from 'react-router-dom'
 import PaymentStep from '../ch_components/PaymentStep'
 import { IoIosArrowDroprightCircle } from 'react-icons/io'
