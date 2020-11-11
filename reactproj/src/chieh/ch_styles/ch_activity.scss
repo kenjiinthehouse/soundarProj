@@ -1,5 +1,6 @@
 //-----ActivityMain-----//
 .activity-main {
+  padding-bottom: 80px;
   .chieh-breadcrumb {
     .breadcrumb {
       // margin-top: 4.375rem;
@@ -138,7 +139,8 @@
     }
 
     .nav-link.active,
-    .show > .nav-link {
+    .nav-pills .show > .nav-link {
+      color: #232d2f;
       border-bottom: 5px solid #2690df;
       background-color: #fff;
       opacity: 1;
