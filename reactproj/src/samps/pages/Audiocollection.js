@@ -270,10 +270,10 @@ function Audiocollection(props) {
 const mapStateToProps = (store) => {
   return { member: store.member };
 };
+
 export default withRouter(
   connect(mapStateToProps, { initMemberAsync, logOut })(Audiocollection)
 );
-
 // <div className="sa-collection-list-body">
 // <div className="sa-collection-list-body-play">
 //   <div className="sa-collection-list-body-play-photo">

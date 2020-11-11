@@ -45,6 +45,20 @@ router.post("/delete_audio", async (req, res) => {
   res.json(rs);
 });
 
+router.post("/add_audio", async (req, res) => {
+  // INSERT INTO `audio_collection`(`member_id`, `audio_id`) VALUES (5,5)
+  const sql =
+    "INSERT INTO `audio_collection`(`member_id`, `audio_id`) VALUES (?,?)";
+  const sid = req.body.sid;
+  const audio_id = req.body.audio_id;
+  const [{ affectedRows }] = await db.query(sql, [sid, audio_id]);
+
+  res.json({
+    success: !!affectedRows,
+    affectedRows,
+  });
+});
+
 router.post("/channel_collection", async (req, res) => {
   const output = {
     body: req.body,
@@ -105,7 +119,7 @@ router.post("/download", async (req, res) => {
   res.json(output);
 });
 
-router.post("/collect",multer().none(), async (req, res) => {
+router.post("/collect", multer().none(), async (req, res) => {
   const output = {
     body: req.body,
     success: false,
