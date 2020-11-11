@@ -1,6 +1,14 @@
 //-----ActivityMain-----//
 .activity-main {
-  margin-top: 24px;
+  .chieh-breadcrumb {
+    .breadcrumb {
+      // margin-top: 4.375rem;
+      margin-bottom: 0;
+      // height: 38px;
+    }
+  }
+
+  // margin-top: 24px;
   .btn-option {
     width: 11.875rem;
     height: 3.75rem;

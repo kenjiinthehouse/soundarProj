@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { FaRegCalendarAlt,FaMapMarkerAlt,FaTags } from 'react-icons/fa'
 import { withRouter } from 'react-router-dom'
 import { Tabs, Tab } from 'react-bootstrap';
-import Breadcrumb from '../ch_components/Breadcrumb'
+import './../ch_styles/custom.scss';
+// import Breadcrumb from '../ch_components/Breadcrumb'
 
 //方案票價、活動內容、注意事項
 import ActivityAttention from '../ch_components/ActivityAttention'
@@ -107,8 +108,9 @@ function ActivityMain(props) {
 
     return (
       <>
-        <Breadcrumb/>
+        
         <div className="activity-main">
+        {/* <Breadcrumb/> */}
         {activityData.map((item)=>{
           return (
             <img key={item} src= {item[0].activity_img} className="activity-demo"/>
