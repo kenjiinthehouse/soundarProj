@@ -1,0 +1,285 @@
+@import '~bootstrap/scss/bootstrap.scss';
+html body {
+  // background-color: $primary !important;
+  // color: #ffffff;
+  cursor: default;
+}
+ul,
+li {
+  list-style: none;
+}
+
+a,
+a:active,
+a:focus,
+a:hover {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+////////////////////////////////////MSG BOARD START//////////////////////////////////////
+//msg Board
+.cmtArea {
+  /* border: 1px solid black; */
+  margin: 0px;
+  padding: 0px;
+  width: 35rem !important;
+  color: #f8f8f8;
+}
+
+// .cmtArea.container {
+//   background-color: $secondary;
+// }
+
+.cmtArea .cmtBoxArea {
+  width: 100%;
+  /* min-height: 8.125rem; */
+  border-bottom: 1px solid #909393;
+}
+
+.cmtModule,
+.cmtModuleHead {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  /* border: 1px solid black; */
+}
+.cmtModuleHead {
+  margin: 0px 0px 1.875rem 0px;
+  padding: 0px;
+  width: 100%;
+  height: 2.5rem;
+}
+.cmtModuleHead h5 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.75rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.46;
+  letter-spacing: normal;
+  text-align: left;
+  color: #f8f8f8;
+}
+.cmtModuleHead span {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  opacity: 0.5;
+}
+
+.writeBox {
+  position: relative;
+}
+
+.writeCmt {
+  position: relative;
+}
+
+.writeCmt textarea {
+  width: 33rem;
+  height: 5.875rem;
+  border-radius: 5px;
+  background-color: #909393;
+  resize: none;
+  outline: none;
+  border: none;
+  position: relative;
+}
+
+.cmtSendBox {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translate(50%,0%);
+}
+
+.cmtSendBtn {
+  margin: 0px;
+  padding: 0px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.writeCmt label {
+  position: absolute;
+  top: 2rem;
+  left: 1.75rem;
+}
+
+.cmtSortOption {
+  width: 100%;
+  height: 4.5rem;
+  border-bottom: 1px solid #909393;
+}
+
+.cmtSortOption ul,
+.cmtContainer ul {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+}
+
+.cmtSortOption ul li {
+  display: inline-block;
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+}
+
+.cmtBoxArea .cmtInfo {
+  width: 100%;
+  /* height: 1.688rem; */
+  padding-top: 1.375rem;
+  padding-bottom: 0.938rem;
+}
+
+/* .cmtBoxArea .cmtTextWrap {
+  margin-bottom: 0.938rem;
+} */
+
+.cmtBoxArea .cmtTools {
+  padding-top: 0.938rem;
+  padding-bottom: 0.2rem;
+}
+
+.userHeadIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 50%;
+  left: 50%;
+  background-size: contain;
+  border-radius: 50%;
+  background-image: url(http://0.gravatar.com/avatar/fa4df8540bab3cb38f7dfa60c6e0522c?size=2000);
+  /* background-image: url(/img/1-2.png); */
+}
+
+.cmtNickname {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  /* padding-right: 1rem; */
+}
+
+.cmtInfoDate {
+  font-size: 0.75rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.5);
+  /* color: rgba(0, 0, 0, 0.87); */
+}
+
+.cmtBoxContent {
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.cmtTools span {
+  font-size: 0.75rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.cmtReplyIco {
+  padding-top: 1.2rem;
+}
+
+.cmtReplyIco img {
+  width: 1.187rem;
+  height: 0.938rem;
+}
+
+.cmtReply {
+  width: 100%;
+}
+
+.cmtBoxReplyArea {
+  /* height: 7.438rem; */
+  border-bottom: 1px solid #909393;
+}
+
+.cmtBoxReplyArea .cmtInfo {
+  padding-top: 0.938rem;
+  padding-bottom: 0.938rem;
+}
+
+.cmtBoxReplyArea .cmtTools {
+  padding-top: 0.938rem;
+}
+
+/* 回應按鈕 */
+
+// .replyBtn {
+//   padding-right: 1.25rem;
+//   background-image: url(/img/arrow_drop_down-24px.svg);
+//   background-position: right bottom;
+//   background-repeat: no-repeat;
+// }
+
+// .replyBtnOn {
+//   padding-right: 1.25rem;
+//   background-image: url(/img/arrow_drop_up-24px.svg);
+//   background-position: right bottom;
+//   background-repeat: no-repeat;
+// }
+
+.replyAccording {
+  cursor: pointer;
+}
+
+.pointAccording {
+  cursor: pointer;
+}
+// icon
+
+.addBtn {
+  font-size: 2.5rem;
+  color: #5b5b5b;
+}
+
+.hotBtn,
+.sortBtn {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.cmtToolsBtn {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.replyArrow {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.emptyReplyBox {
+  margin-bottom: 3em;
+}
+////////////////////////////////////MSG END//////////////////////////////////////
