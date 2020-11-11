@@ -4,6 +4,7 @@ import {
   INIT_EXPLORE_HOMEPAGE,
   INIT_EXPLORE_CATEPAGE,
   INIT_CHANNEL_PAGE_DATA,
+  INIT_RATE_MODAL,
 } from './actionTypes';
 
 export const initalDashboard = (payload) => {
@@ -180,5 +181,77 @@ export const initalChannelPageAsync = (podcaster_id) => {
     const response = await fetch(request);
     const data = await response.json();
     dispatch(initalChannelPage(data));
+  };
+};
+
+// 送出評分
+export const submitRateScore = (formData) => {
+  return async function sendScore(dispatch) {
+    const url = `http://localhost:5566/explore/rate_score`;
+    const request = new Request(url, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    console.log(data);
+  };
+};
+
+export const updateRateScore = (formData) => {
+  return async function sendScore(dispatch) {
+    const url = `http://localhost:5566/explore/update_rate_score`;
+    const request = new Request(url, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    console.log(data);
+  };
+};
+
+// 整合評分
+export const calculateScore = () => {
+  return async function startCal(dispatch) {
+    const url = `http://localhost:5566/explore/update_all_channel_rating`;
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    // console.log(data);
+  };
+};
+
+export const initalRateModal = (payload) => {
+  return { type: INIT_RATE_MODAL, payload: payload };
+};
+
+export const initalRateModalAsync = (reviewer_id, podcaster_id) => {
+  return async function getChannelPageData(dispatch) {
+    const url = `http://localhost:5566/explore/compare_rate_score/${reviewer_id}/${podcaster_id}`;
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    console.log(data);
+    dispatch(initalRateModal(data));
   };
 };

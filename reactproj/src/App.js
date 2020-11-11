@@ -75,7 +75,7 @@ function App() {
                   setGlobalAudioArry={setGlobalAudioArry}
                 />
               </Route>
-              <Route path="/channel_page/:cate_term/:podcaster_id">
+              <Route exact path="/channel_page/:cate_term/:podcaster_id">
                 <ChannelPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
@@ -83,7 +83,10 @@ function App() {
                   setPlayingAudio={setPlayingAudio}
                 />
               </Route>
-              <Route path="/channel_page/:cate_term/:podcaster_id/:audio_sid">
+              <Route
+                exact
+                path="/channel_page/:cate_term/:podcaster_id/:audio_sid"
+              >
                 <ChannelAudioPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
