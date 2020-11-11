@@ -13,7 +13,7 @@ import OptionCard from '../ch_components/OptionCard'
 
 function ActivityMain(props) {
     const [activityData, setActivityData] = useState([])
-    const [newActivity, setNewActivity] = useState([])
+    const [newData, setNewData] = useState([])
   
     async function getActivityFromServer() {
       const url = 'http://localhost:5566/activity/option/1'
@@ -28,7 +28,7 @@ function ActivityMain(props) {
       const response = await fetch(request)
       const data = await response.json()
       console.log(data)
-      setNewActivity(data)
+      setNewData(data)
       let arr = []
       arr.push(data)
       console.log(arr)
@@ -113,7 +113,6 @@ function ActivityMain(props) {
       <>
         
         <div className="activity-main">
-        {/* <Breadcrumb/> */}
         {activityData.map((item)=>{
           return (
             <img key={item} src= {item[0].activity_img} className="activity-demo"/>
