@@ -15,6 +15,7 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
+import MsgBoard from './../../kenji/components/MsgBoard';
 
 // react icon
 import { RiMusic2Fill, RiPlayListAddLine } from 'react-icons/ri';
@@ -333,6 +334,9 @@ function ChannelAudioPage(props) {
                 }
               })}
               <hr className="jay-cate-hr" />
+              <div>
+                <MsgBoard />
+              </div>
             </div>
           </div>
         </div>

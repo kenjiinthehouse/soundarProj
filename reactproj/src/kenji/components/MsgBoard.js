@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Accordion } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
+import '../styles/MsgBoard.scss';
 //引入icon
 import {
   MdAddCircle,
@@ -15,7 +16,12 @@ import {
 } from 'react-icons/md';
 import { BsArrowReturnRight } from 'react-icons/bs';
 //引入留言 子留言
-import { getMsg, getMsgAsync, getReply, getReplyAsync } from '../actions/index';
+import {
+  getMsg,
+  getMsgAsync,
+  getReply,
+  getReplyAsync,
+} from '../../actions/index';
 //引入輸入留言組件
 import MsgInput from './MsgInput';
 import MsgReplyInput from './MsgReplyInput';
@@ -270,7 +276,7 @@ function MsgBoard(props) {
                 })}
               </ul>
             </Accordion>
-            <PaginationRounded />
+            {/* <PaginationRounded /> */}
           </div>
         </div>
       </div>
