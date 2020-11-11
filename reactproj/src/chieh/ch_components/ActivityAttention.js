@@ -1,13 +1,11 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { RiPushpinFill } from 'react-icons/ri'
-import OptionCard from './OptionCard'
 
 
 function ActivityAttention(props) {
   return (
     <>
-        <div className="container d-flex">
           <div className="activity-info">
             <h5 className="title"><RiPushpinFill style={{color: ' #fc774c'}}/> 為因應新型冠狀病毒，活動現場將全面升級防疫作業標準 </h5>
             <li className="mb-3">第一線工作人員將全面配戴口罩</li>
@@ -23,12 +21,8 @@ function ActivityAttention(props) {
             <h6>Q 課程發票我什麼時候可以收到？</h6>
             <p className="text-act">您付款完成後的兩週內，我們會將發票寄出。</p>   
             <h6>Q 付款後若臨時有行程更動，可以退費嗎？</h6>
-            <p className="text-act">若無法出席課程，請於課前來電或來信告知，可為您保留名額半年，半年內若對其他課程有興趣可轉移至該堂課，限轉移乙次；如需申請退款請於課程開始日前3個工作天告知，我們將收取課程的一成費用以及銀行轉帳之手續費，逾期恕不受理。</p>        
-          
+            <p className="text-act">若無法出席課程，請於課前來電或來信告知，可為您保留名額半年，半年內若對其他課程有興趣可轉移至該堂課，限轉移乙次；如需申請退款請於課程開始日前3個工作天告知，我們將收取課程的一成費用以及銀行轉帳之手續費，逾期恕不受理。</p>       
           </div>
-
-          <OptionCard />
-        </div>
     </>
   )
 }
