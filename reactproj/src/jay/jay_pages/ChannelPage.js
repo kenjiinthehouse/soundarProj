@@ -8,11 +8,6 @@ import {
   initalDashboardAsync,
   initalRateModalAsync,
   initMemberAudioCollectionAsync,
-  addCollection,
-  delCollection,
-  initMemberChannelCollectionAsync,
-  addChannelCollection,
-  delChannelCollection,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -100,6 +95,7 @@ function ChannelPage(props) {
       transTermToChinese();
       await props.initalDashboardAsync(podcaster_id);
       await props.initalChannelPageAsync(podcaster_id);
+      await props.initalRateModalAsync(props.member.sid, podcaster_id);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -109,7 +105,6 @@ function ChannelPage(props) {
 
   useEffect(() => {
     props.initMemberAudioCollectionAsync(props.member.sid);
-    props.initMemberChannelCollectionAsync(props.member.sid);
   }, [props.member]);
 
   const displayCatePage = (
@@ -395,28 +390,11 @@ function ChannelPage(props) {
                           .querySelector('.mh14')
                           .classList.remove('mh15');
                       }}
-                      onClick={async () => {
+                      onClick={() => {
                         if (props.member.sid) {
-                          //寫回資料庫
-                          if (props.audioCollection.indexOf(item.sid) === -1) {
-                            await props.addCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberAudioCollectionAsync(
-                              props.member.sid
-                            );
-                          } else {
-                            await props.delCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberAudioCollectionAsync(
-                              props.member.sid
-                            );
-                          }
+                          console.log('ok');
                         } else {
-                          setShowInformLoginModal(true);
+                          console.log('no');
                         }
                       }}
                     >
@@ -470,6 +448,7 @@ const mapStateToProps = (store) => {
     channel_audio_data: store.channelPageData,
     channel_data: store.podcasterDashboardInfoState,
     member: store.member,
+    audioCollection: store.memberAudioCollection,
   };
 };
 
@@ -479,10 +458,5 @@ export default withRouter(
     initalDashboardAsync,
     initalRateModalAsync,
     initMemberAudioCollectionAsync,
-    addCollection,
-    delCollection,
-    initMemberChannelCollectionAsync,
-    addChannelCollection,
-    delChannelCollection,
   })(ChannelPage)
 );

@@ -6,6 +6,7 @@ const pool = mysql2.createPool({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0534b02... 統整後調整畫面
   // host: "localhost",
@@ -102,17 +103,31 @@ const pool = mysql2.createPool({
 >>>>>>> 29142c5... 整合product 錄音室、活動分類
 
   //reckie
+=======
+>>>>>>> 84c7c5d... 完成節目收藏同步 (尚未有功能)
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "jl55661688",
+  password: "iouccc19931107",
   database: "mfee09_project",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4f4744f... 新增product 篩選搜尋分類 react
 =======
 >>>>>>> 29142c5... 整合product 錄音室、活動分類
+=======
+
+  //reckie
+  // host: "localhost",
+  // user: "root",
+  // password: "",
+  // database: "mfee09_project",
+  // waitForConnections: true,
+  // connectionLimit: 10,
+  // queueLimit: 0,
+>>>>>>> 84c7c5d... 完成節目收藏同步 (尚未有功能)
 });
 
 // const pool = mysql2.createPool({

@@ -5,6 +5,7 @@ import {
   INIT_EXPLORE_CATEPAGE,
   INIT_CHANNEL_PAGE_DATA,
   INIT_RATE_MODAL,
+  INIT_MEMBER_COLLECTION,
 } from './actionTypes';
 
 export const initalDashboard = (payload) => {
@@ -253,5 +254,28 @@ export const initalRateModalAsync = (reviewer_id, podcaster_id) => {
     const data = await response.json();
     console.log(data);
     dispatch(initalRateModal(data));
+  };
+};
+
+export const initMemberAudioCollection = (payload) => {
+  return { type: INIT_MEMBER_COLLECTION, payload: payload };
+};
+
+// INIT_COLLECTION
+export const initMemberAudioCollectionAsync = (sid) => {
+  return async function getAudioCollection(dispatch) {
+    const formData = new FormData();
+    formData.append('sid', sid);
+    const url = `http://localhost:5566/member_collection/collect`;
+    const request = new Request(url, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    console.log(['data', data]);
+    dispatch(initMemberAudioCollection(data.rs));
   };
 };
