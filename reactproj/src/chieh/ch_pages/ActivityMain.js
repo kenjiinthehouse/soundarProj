@@ -1,4 +1,3 @@
-import './../ch_styles/custom.scss';
 import React, { useState, useEffect } from 'react'
 import { FaRegCalendarAlt,FaMapMarkerAlt,FaTags } from 'react-icons/fa'
 import { withRouter } from 'react-router-dom'
@@ -9,12 +8,14 @@ import Breadcrumb from '../ch_components/Breadcrumb'
 import ActivityAttention from '../ch_components/ActivityAttention'
 import ActivityInfo from '../ch_components/ActivityInfo'
 import ActivityOption from '../ch_components/ActivityOption'
+import OptionCard from '../ch_components/OptionCard'
 
 function ActivityMain(props) {
     const [activityData, setActivityData] = useState([])
+    const [newData, setNewData] = useState([])
   
     async function getActivityFromServer() {
-      const url = 'http://localhost:5566/activity/api/1'
+      const url = 'http://localhost:5566/activity/option/1'
       const request = new Request(url, {
         method: 'GET',
         headers: new Headers({
@@ -25,10 +26,11 @@ function ActivityMain(props) {
   
       const response = await fetch(request)
       const data = await response.json()
+      console.log(data)
+      setNewData(data)
       let arr = []
       arr.push(data)
       console.log(arr)
-      // 設定資料
       setActivityData(arr)
     } 
    
@@ -36,22 +38,23 @@ function ActivityMain(props) {
     useEffect(() => {
         getActivityFromServer()
     }, [])
-   
+
+
 
     //活動資訊
     const introduction = (
       <>
       <div className="container d-flex">
-         {activityData.map((value) => {
+         {activityData.map((item) => {
             return (
-              <div className="introduction" key={value.sid}>
-                <h3>{value.activity_name}</h3>
+              <div className="introduction" key={item}>
+                <h3>{item[0].activity_name}</h3>
                 <div className="d-flex mt-4">
                   <div className="activity-wrap mr-4">
-                    <FaRegCalendarAlt className="mr-2"/>日期：{value.activity_date}
+                    <FaRegCalendarAlt className="mr-2"/>日期：{item[0].activity_date}
                   </div>
                   <div className="activity-wrap">
-                   <FaMapMarkerAlt className="mr-2"/>地點：{value.activity_location}
+                   <FaMapMarkerAlt className="mr-2"/>地點：{item[0].activity_location}
                   </div>
                 </div>
 
@@ -86,10 +89,17 @@ function ActivityMain(props) {
             <ActivityOption activityData={activityData} setActivityData={setActivityData}/>
           </Tab>
           <Tab eventKey="info" title="活動內容">
+          <div className="container d-flex">
             <ActivityInfo/>
+            <OptionCard activityData={activityData} setActivityData={setActivityData}/>
+          </div>
+            
           </Tab>
           <Tab eventKey="attention" title="注意事項">
-            <ActivityAttention/>
+            <div className="container d-flex">
+              <ActivityAttention/>
+              <OptionCard activityData={activityData} setActivityData={setActivityData}/>
+            </div>            
           </Tab>
         </Tabs>
       );
@@ -99,9 +109,9 @@ function ActivityMain(props) {
       <>
         <Breadcrumb/>
         <div className="activity-main">
-        {activityData.map((value)=>{
+        {activityData.map((item)=>{
           return (
-            <img key={value.sid} src= {value.activity_img} className="activity-demo"/>
+            <img key={item} src= {item[0].activity_img} className="activity-demo"/>
           )
         })}
           {introduction}          
