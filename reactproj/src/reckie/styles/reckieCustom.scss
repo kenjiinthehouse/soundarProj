@@ -36,6 +36,9 @@ a:hover {
 .dark {
   color: $Dark;
 }
+.light {
+  color: $Light;
+}
 
 // btn
 .re-btn-color {
@@ -46,8 +49,8 @@ a:hover {
   margin-right: 1.8rem;
 }
 .btn-vital {
-  background-color: $thirdColor;
-  color: #fff;
+  background-color: $thirdColor !important;
+  color: #fff !important;
 }
 .btn-vital:hover {
   background-color: darken($thirdColor, 10%);
@@ -280,6 +283,7 @@ a:hover {
   width: 100%;
   height: 3rem;
   // margin-top: 4rem;
+  z-index: 1;
 }
 .re-tabs {
   width: 32rem;
@@ -325,20 +329,7 @@ a:hover {
 
 .tabFixed {
   position: fixed;
-  top: 0;
-}
-
-.contentHeight1 {
-  height: 100vh;
-  padding-top: 4rem;
-}
-.contentHeight2 {
-  // height: 100vh;
-  padding-top: 4rem;
-}
-.contentHeight3 {
-  // height: 100vh;
-  padding-top: 4rem;
+  top: 4rem;
 }
 
 // -- ItemTabBar end --

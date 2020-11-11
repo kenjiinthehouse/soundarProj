@@ -55,9 +55,13 @@ const pool = mysql2.createPool({
   host: "localhost",
   user: "root",
   password: "",
+<<<<<<< HEAD
 >>>>>>> 0534b02... 統整後調整畫面
   database: "mfee09_project",
 >>>>>>> 9b50b81... chieh1112
+=======
+  database: "pd_test",
+>>>>>>> 9098e52... 統整調整2
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

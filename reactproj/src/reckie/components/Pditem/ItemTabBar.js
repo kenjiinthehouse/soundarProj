@@ -102,7 +102,7 @@ useEffect(()=>{},[pdDetail])
       <div className="d-flex pdIntroImgField">
         {SubImg.map((item,index)=>{
         if(index >1)return<></>
-        return <img src={item.indexOf('http')=== -1 ? `/reckie_img/${item}`:item}  key={index} className="contentPics col"/>
+        return <img src={item.indexOf('http')=== -1 ? `/img/${item}`:item}  key={index} className="contentPics col"/>
       })}
       </div>
       <p className="light pdIntroTextSpace">{pdDetail?pdDetail.pd_info:''}</p>
