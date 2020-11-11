@@ -272,7 +272,7 @@ function MsgBoard(props) {
                 })}
               </ul>
             </Accordion>
-            <PaginationRounded />
+            {/* <PaginationRounded /> */}
           </div>
         </div>
       </div>

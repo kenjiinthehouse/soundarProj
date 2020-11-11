@@ -23,9 +23,6 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 import MsgBoard from './../../kenji/components/MsgBoard';
-import InformLoginModal from './../jay_components/InformLoginModal';
-// bootstrap
-import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
 // react icon
 import { RiMusic2Fill, RiPlayListAddLine } from 'react-icons/ri';
