@@ -104,6 +104,35 @@ router.post("/download", async (req, res) => {
   res.json(output);
 });
 
+router.post("/collect", async (req, res) => {
+  const output = {
+    body: req.body,
+    success: false,
+    name: "",
+  };
+
+  const sid = req.body.sid;
+
+  const sql = "SELECT `audio_id` FROM `audio_collection` where `member_id` =?";
+
+  const [rs] = await db.query(sql, [sid]);
+
+  if (rs.length) {
+    output.success = true;
+  }
+  output.rs = [...rs];
+
+  const newrs = [];
+
+  output.rs.map((item, index) => {
+    newrs.push(item.audio_id);
+  });
+
+  output.rs = newrs;
+
+  res.json(output);
+});
+
 module.exports = router;
 
 // DELETE FROM `audio_collection` WHERE `member_id`=2 AND `audio_id`=2
