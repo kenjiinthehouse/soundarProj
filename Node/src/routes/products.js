@@ -92,7 +92,7 @@ async function getPdData(req){
             break;
         //原始狀態
         default:
-            sort_set = `ORDER BY storage DESC LIMIT ${(output.page-1)*output.perPage},${output.perPage}`;
+            sort_set = `ORDER BY pd_id DESC LIMIT ${(output.page-1)*output.perPage},${output.perPage}`;
     }
     item_sql+= sort_set;
 
