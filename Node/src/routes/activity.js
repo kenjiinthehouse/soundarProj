@@ -55,6 +55,18 @@ router.get('/api/:sid', async (req, res) => {
     res.json(results[0]);
 })
 
+
+//呈現同活動的不同方案
+router.get('/option/:activity_id', async (req, res) => {
+    const sql = "SELECT * FROM activity WHERE activity_id=?";
+    const [results] = await db.query(sql, [req.params.activity_id]);
+    if (!results.length) return res.redirect('/activity/api');
+    console.log(results);
+
+    res.json(results);
+})
+
+
 // add(C)
 router.post('/add', async (req, res) => {
     const data = { ...req.body };
