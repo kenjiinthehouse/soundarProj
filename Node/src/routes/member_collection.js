@@ -142,8 +142,7 @@ router.post("/download", async (req, res) => {
   res.json(output);
 });
 
-//用於節目收藏愛心顯示
-router.post("/collect", multer().none(), async (req, res) => {
+router.post("/collect", async (req, res) => {
   const output = {
     body: req.body,
     success: false,
@@ -165,37 +164,6 @@ router.post("/collect", multer().none(), async (req, res) => {
 
   output.rs.map((item, index) => {
     newrs.push(item.audio_id);
-  });
-
-  output.rs = newrs;
-
-  res.json(output);
-});
-
-//channel追蹤顯示array
-router.post("/channel_array", async (req, res) => {
-  const output = {
-    body: req.body,
-    success: false,
-    name: "",
-  };
-
-  const sid = req.body.sid;
-
-  const sql =
-    "SELECT `channel_id` FROM `channel_collection` WHERE `member_id`= ?";
-
-  const [rs] = await db.query(sql, [sid]);
-
-  if (rs.length) {
-    output.success = true;
-  }
-  output.rs = [...rs];
-
-  const newrs = [];
-
-  output.rs.map((item, index) => {
-    newrs.push(item.channel_id);
   });
 
   output.rs = newrs;
