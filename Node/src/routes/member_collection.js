@@ -5,6 +5,7 @@ const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
 const fs = require("fs");
+const multer = require("multer");
 // var request = require("request");
 // var progress = require("request-progress");
 
@@ -104,7 +105,7 @@ router.post("/download", async (req, res) => {
   res.json(output);
 });
 
-router.post("/collect", async (req, res) => {
+router.post("/collect",multer().none(), async (req, res) => {
   const output = {
     body: req.body,
     success: false,
