@@ -4,6 +4,10 @@ import { Modal, Button } from 'react-bootstrap';
 import { initMemberAsync, logOut } from '../../actions/index';
 import { connect } from 'react-redux';
 import '../styles/Audiocollection.scss';
+//react icon
+import { ImFolderDownload } from 'react-icons/im';
+import { RiDislikeFill } from 'react-icons/ri';
+import { BsPlayFill } from 'react-icons/bs';
 
 function Audiocollection(props) {
   function truncate(str, n) {
@@ -198,6 +202,7 @@ function Audiocollection(props) {
                     >
                       <div className="sa-collection-list-body-play">
                         <div className="sa-collection-list-body-play-photo">
+                          {/* 播放鍵 */}
                           <img
                             className="sa-collection-list-body-play-photo-img"
                             src="/sa_img/svgicon/play_arrow.svg"
@@ -231,7 +236,8 @@ function Audiocollection(props) {
                             delete_audio(item.audio_id);
                           }}
                         >
-                          取消收藏
+                          <RiDislikeFill />
+                          {/* 取消收藏 */}
                         </div>
                         <div
                           onClick={() => {
@@ -240,7 +246,9 @@ function Audiocollection(props) {
                           className="sa-collection-list-body-setting-download"
                         >
                           {downloadingid != item.audio_id ? (
-                            <span>下載</span>
+                            <span>
+                              <ImFolderDownload />
+                            </span>
                           ) : (
                             <div
                               class="spinner-border text-primary"
@@ -270,10 +278,10 @@ function Audiocollection(props) {
 const mapStateToProps = (store) => {
   return { member: store.member };
 };
-
 export default withRouter(
   connect(mapStateToProps, { initMemberAsync, logOut })(Audiocollection)
 );
+
 // <div className="sa-collection-list-body">
 // <div className="sa-collection-list-body-play">
 //   <div className="sa-collection-list-body-play-photo">
