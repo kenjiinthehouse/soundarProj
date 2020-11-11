@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './../ch_styles/custom.scss';
 import { Link, Switch, withRouter } from 'react-router-dom'
 import MyNavbar from '../ch_components/MyNavbar'
 import { Button, Collapse, Tabs, Tab } from 'react-bootstrap'

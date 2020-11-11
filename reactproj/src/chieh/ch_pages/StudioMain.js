@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import './../ch_styles/custom.scss';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import { withRouter } from 'react-router-dom'
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
-import Breadcrumb from '../ch_components/Breadcrumb'
+// import Breadcrumb from '../ch_components/Breadcrumb'
 import StudioInfo from '../ch_components/StudioInfo'
 import StudioOption from '../ch_components/StudioOption'
 import { FaMapMarkerAlt } from 'react-icons/fa'
@@ -122,7 +123,7 @@ function StudioMain(props){
 
     return(
         <>
-            <Breadcrumb />
+            {/* <Breadcrumb /> */}
             <div className="studio-main">
               <div className="container d-flex">
                 <MyCarousel />
