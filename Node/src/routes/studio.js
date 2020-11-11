@@ -46,6 +46,16 @@ router.get('/api', async(req,res)=>{
    res.json(await getListData(req));
 });
 
+//呈現錄音室的不同方案
+router.get('/option/:studio_id', async (req, res) => {
+    const sql = "SELECT * FROM studio WHERE studio_id=?";
+    const [results] = await db.query(sql, [req.params.studio_id]);
+    if (!results.length) return res.redirect('/studio/api');
+    console.log(results);
+
+    res.json(results);
+})
+
 
 // add(C)
 router.post('/add', async (req, res) => {
