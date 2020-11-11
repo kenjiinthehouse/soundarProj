@@ -86,7 +86,7 @@ function Passwordreset(props) {
       <Modal.Header>
         <Modal.Title>提醒</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{errormsg}</Modal.Body>
+      <Modal.Body style={{ height: '3rem' }}>{errormsg}</Modal.Body>
       <Modal.Footer>
         {success ? (
           <Button
