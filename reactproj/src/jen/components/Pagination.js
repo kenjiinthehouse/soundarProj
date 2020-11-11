@@ -1,13 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 //icons
-import { RiArrowLeftSFill, RiArrowRightSFill } from 'react-icons/ri'
+import { RiArrowLeftSFill, RiArrowRightSFill } from 'react-icons/ri';
 
 function Pagination(props) {
-  // const [activeOrNot, setActiveOrNot] = useState(false)
-
-  // useEffect(() => {
-  // }, [])
-  // useEffect(() => {}, [activeOrNot])
   return (
     <>
       <nav aria-label="article-pagination example">
@@ -15,8 +10,8 @@ function Pagination(props) {
           <li
             className=""
             onClick={(event) => {
-              event.preventDefault()
-              props.setPage(1)
+              event.preventDefault();
+              props.setPage(1);
             }}
           >
             <a className="" href="#" aria-label="Previous">
@@ -27,24 +22,27 @@ function Pagination(props) {
             if (item >= 1)
               return (
                 <li
-                  key={index}
-                  className=""
+                  key={item}
+                  className={
+                    item === props.articleTotalRows.page ? 'active' : ''
+                  }
                   onClick={(event) => {
-                    event.preventDefault()
-                    props.setPage(`${item}`)
+                    event.preventDefault();
+                    props.setPage(`${item}`);
+                    console.log('index', index);
                   }}
                 >
                   <a className="" href="#">
                     {item}
                   </a>
                 </li>
-              )
+              );
           })}
           <li
             className=""
             onClick={(event) => {
-              event.preventDefault()
-              props.setPage(props.articleTotalRows.totalPages)
+              event.preventDefault();
+              props.setPage(props.articleTotalRows.totalPages);
             }}
           >
             <a className="" href="#" aria-label="Next">
@@ -54,7 +52,7 @@ function Pagination(props) {
         </ul>
       </nav>
     </>
-  )
+  );
 }
 
-export default Pagination
+export default Pagination;

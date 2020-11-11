@@ -11,7 +11,7 @@
   .article-title {
     font-size: 2.5rem;
     font-weight: 500;
-    padding-bottom:2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .article-img {
@@ -26,19 +26,19 @@
 
   .article-font-change {
     margin: 2rem 0;
-    .title{
-      width:auto;
+    .title {
+      width: auto;
     }
     p {
-      margin: 0.5rem;
+      margin: 0.25rem;
       border-radius: 50%;
       text-align: center;
     }
-    p:hover{
-      cursor:pointer;
+    p:hover {
+      cursor: pointer;
     }
     p.active {
-      color:#707070;
+      color: #707070;
     }
   }
 
@@ -51,9 +51,6 @@
     text-align: justify;
     //使跳脫文字有作用
     white-space: pre-wrap;
-    p{
-      //  text-indent:2rem;
-    }
   }
 
   .article-page-category {
@@ -63,18 +60,29 @@
       font-size: 1.2rem;
       font-weight: 500;
     }
+    a {
+      color: #f8f8f8;
+    }
+    a:hover {
+      color: #707070;
+    }
   }
 
   .article-page-others {
     padding: 1.29rem 0 2rem 0;
     .article-page-previous,
-    .article-page-next{
-      cursor:pointer;
+    .article-page-next {
+      a {
+        color: #f8f8f8;
+        cursor: pointer;
+      }
+      a:hover {
+        color: #707070;
+      }
     }
-    .article-page-previous:hover,
-    .article-page-next:hover{
-      color:#707070;
-    }
-
+    // .article-page-previous:hover,
+    // .article-page-next:hover {
+    //   color: #707070;
+    // }
   }
 }

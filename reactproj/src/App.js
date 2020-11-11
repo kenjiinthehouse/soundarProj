@@ -43,6 +43,10 @@ function App() {
   const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
   const [playingAudio, setPlayingAudio] = useState(null);
 
+  //jen
+  const [category, setCategory] = useState('');
+  const [tags, setTags] = useState('');
+
   return (
     <Router>
       <Layout>
@@ -88,10 +92,20 @@ function App() {
                 />
               </Route>
               <Route path="/article">
-                <ArticleHome />
+                <ArticleHome
+                  tags={tags}
+                  setTags={setTags}
+                  category={category}
+                  setCategory={setCategory}
+                />
               </Route>
               <Route path="/articlepage/:sid">
-                <ArticlePage />
+                <ArticlePage
+                  tags={tags}
+                  setTags={setTags}
+                  category={category}
+                  setCategory={setCategory}
+                />
               </Route>
               <Route path="/cart">
                 <Cart />

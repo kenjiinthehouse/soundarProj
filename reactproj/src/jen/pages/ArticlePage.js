@@ -1,46 +1,46 @@
-import './../styles/article.scss'
-import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
+import './../styles/article.scss';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 //icons
-import { FaPencilAlt } from 'react-icons/fa'
-import { TiArrowSortedUp } from "react-icons/ti";
+import { FaPencilAlt, FaCaretRight } from 'react-icons/fa';
 //components
-import ArticleCarousel from './../components/ArticleCarousel'
-import ArticleComment from './../components/ArticleComment'
+import ArticleCarousel from './../components/ArticleCarousel';
+import ArticleComment from './../components/ArticleComment';
 // import ClickToTop from './../components/ClickToTop'
-import ArticlePagePreAndNext from './../components/ArticlePagePreAndNext'
-import ScrollToTop from 'react-scroll-to-top';
+import ArticlePagePreAndNext from './../components/ArticlePagePreAndNext';
 //actions
-import { getArticleDetail, getArticleDetailAsync,getArticleList,getArticleListAsync } from '../actions/index'
+import {
+  getArticleDetail,
+  getArticleDetailAsync,
+  getArticleList,
+  getArticleListAsync,
+} from '../actions/index';
 
 function ArticlePage(props) {
-  const [fontSize, setFontSize] = useState('1rem')
-  const [sid, setSid] = useState(props.match.params.sid)
+  const [fontSize, setFontSize] = useState('1rem');
+  const [sid, setSid] = useState(+props.match.params.sid);
   // 先字串化,再陣列化,才能map
-  const articleTagsArray = ('' + props.articleDetailData.article_tags).split(',')
+  const articleTagsArray = ('' + props.articleDetailData.article_tags).split(
+    ','
+  );
 
   //componentDidMount
   useEffect(() => {
-    props.getArticleDetailAsync(sid)
-  }, [])
-  // console.log(props)
+    props.getArticleDetailAsync(sid);
+  }, []);
   //componentDidUpdate
   useEffect(() => {
-    props.getArticleDetailAsync(sid)
-  }, [fontSize, sid])
+    props.getArticleDetailAsync(sid);
+  }, [fontSize, sid]);
   useEffect(() => {
     //每當更換新文章時自動滾至頁首
-      window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-  },[sid])
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  }, [sid]);
   return (
     <div className="article-body">
-      <ScrollToTop
-        smooth
-        style={{ bottom: '120px', right: '80px',borderRadius:'50%',outline:'none', opacity:'0.75' }}
-        component={<TiArrowSortedUp style={{ fontSize: '1.8rem',color:'#000000' }} />}
-      />
+      {' '}
       <ArticleCarousel />
       <div className="article-container mx-auto">
         <nav aria-label="breadcrumb" className="article-breadcrumb">
@@ -71,6 +71,8 @@ function ArticlePage(props) {
           </div>
           <div className="article-content-wrap">
             <div className="article-title">
+              <FaCaretRight />
+              <FaCaretRight />
               {props.articleDetailData.article_title}
             </div>
             <div className="article-img">
@@ -81,7 +83,7 @@ function ArticlePage(props) {
               <p
                 className={fontSize === '0.9rem' ? 'active' : ''}
                 onClick={() => {
-                  setFontSize('0.9rem')
+                  setFontSize('0.9rem');
                 }}
               >
                 小
@@ -89,7 +91,7 @@ function ArticlePage(props) {
               <p
                 className={fontSize === '1rem' ? 'active' : ''}
                 onClick={() => {
-                  setFontSize('1rem')
+                  setFontSize('1rem');
                 }}
               >
                 中
@@ -97,7 +99,7 @@ function ArticlePage(props) {
               <p
                 className={fontSize === '1.2rem' ? 'active' : ''}
                 onClick={() => {
-                  setFontSize('1.2rem')
+                  setFontSize('1.2rem');
                 }}
               >
                 大
@@ -111,47 +113,67 @@ function ArticlePage(props) {
             </div>
             <div className="article-page-category d-flex align-content-center">
               <span className="span-font mr-1">專欄分類：</span>
-              <span className="span-font mr-5">
-                {props.articleDetailData.article_category}
-              </span>
+              <Link to={{ pathname: '/article' }}>
+                <span
+                  className="span-font mr-5"
+                  onClick={() => {
+                    props.setCategory(
+                      `${props.articleDetailData.article_category}`
+                    );
+                  }}
+                >
+                  {props.articleDetailData.article_category}
+                </span>
+              </Link>
               <span className="span-font mr-1">標籤分類：</span>
               {/* tags經過處理後,字串化並變成陣列才map至各個span中 */}
               {articleTagsArray.map((tag, index) => {
                 return (
                   <span key={index} className="my-auto">
-                    {/* <Link to={'/'}> */}
-                    <button
-                      type="button"
-                      className="article-tags-btn"
-                      // onClick={() => {
-                      //   props.setTags(`${tag}`)
-                      // }}
+                    <Link
+                      to={{
+                        pathname: '/article',
+                      }}
                     >
-                      {tag}
-                    </button>
-                    {/* </Link> */}
+                      <button
+                        type="button"
+                        className="article-tags-btn"
+                        onClick={() => {
+                          props.setTags(`${tag}`);
+                        }}
+                      >
+                        {tag}
+                      </button>
+                    </Link>
                   </span>
-                )
+                );
               })}
             </div>
-            <ArticlePagePreAndNext sid={sid} setSid={setSid} />
+            <ArticlePagePreAndNext
+              sid={sid}
+              setSid={setSid}
+              articleDetailData
+              ={props.articleDetailData}/>
           </div>
         </div>
         <ArticleComment />
       </div>
       {/* <ClickToTop /> */}
     </div>
-  )
+  );
 }
 //取得redux中store的值
 const mapStateToProps = (store) => {
   return {
     articleDetailData: store.articleDetail,
     articleRows: store.articleList,
-  }
-}
+  };
+};
 export default withRouter(
-  connect(mapStateToProps, { getArticleDetail, getArticleDetailAsync,getArticleList,getArticleListAsync })(
-    ArticlePage
-  )
-)
+  connect(mapStateToProps, {
+    getArticleDetail,
+    getArticleDetailAsync,
+    getArticleList,
+    getArticleListAsync,
+  })(ArticlePage)
+);

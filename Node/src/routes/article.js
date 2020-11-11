@@ -67,7 +67,7 @@ async function getListData(req) {
         beginPage = 1;
         endPage = prevNum * 2 + 1;
       } else if (totalPages - page < prevNum) {
-        beginPage = totalPages - (prevNum * 2 + 1)+1;
+        beginPage = totalPages - (prevNum * 2 + 1) + 1;
         endPage = totalPages;
       } else {
         beginPage = page - prevNum;
@@ -121,7 +121,28 @@ router.get("/", async (req, res) => {
 router.get("/:sid?", async (req, res) => {
   const sql = "SELECT * FROM article WHERE sid=?";
   const [results] = await db.query(sql, [req.params.sid]);
+
+  const sql_pre = "SELECT * FROM article WHERE sid<? ORDER BY sid DESC LIMIT 1"; //default(ASEC)
+  const [pre] = await db.query(sql_pre, [req.params.sid]);
+  if (pre.length) {
+    results[0].pre_sid = pre[0].sid;
+    results[0].pre_title = pre[0].article_title;
+  } else {
+    results[0].pre_sid = 0;
+  }
+  // pre.length ? (results[0].pre_sid = pre[0].sid) : 0;
+  const sql_next = "SELECT * FROM article WHERE sid>? LIMIT 1";
+  const [next] = await db.query(sql_next, [req.params.sid]);
+
+  if (next.length) {
+    results[0].next_sid = next[0].sid;
+    results[0].next_title = next[0].article_title;
+  } else {
+    results[0].next_sid = 0;
+  }
+  // next.length ? (results[0].next_sid = next[0].sid) : 0;
   // res.json(results[0]);
+  // console.log(results);
   res.send(results);
 });
 

@@ -199,6 +199,9 @@
       a {
         color: #f8f8f8;
       }
+      a:hover{
+        color:#232d2f;
+      }
     }
       
   }
@@ -222,8 +225,7 @@
       font-size: 1rem;
     }
   }
-  li:hover,
-  li:active {
+  li:hover {
     background-color: #2690df;
   }
   li:first-child {
@@ -239,5 +241,9 @@
       // color: #f8f8f8;
       font-size: 1.25rem;
     }
+  }
+
+  .active{
+    background-color: #2690df;
   }
 }
