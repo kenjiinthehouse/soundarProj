@@ -95,7 +95,6 @@ function ChannelPage(props) {
       transTermToChinese();
       await props.initalDashboardAsync(podcaster_id);
       await props.initalChannelPageAsync(podcaster_id);
-      await props.initalRateModalAsync(props.member.sid, podcaster_id);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
