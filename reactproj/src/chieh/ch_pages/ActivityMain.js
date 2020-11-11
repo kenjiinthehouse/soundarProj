@@ -113,6 +113,7 @@ function ActivityMain(props) {
       <>
         
         <div className="activity-main">
+        {/* <Breadcrumb/> */}
         {activityData.map((item)=>{
           return (
             <img key={item} src= {item[0].activity_img} className="activity-demo"/>
