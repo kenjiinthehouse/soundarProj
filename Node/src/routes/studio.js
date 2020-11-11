@@ -47,14 +47,6 @@ router.get('/api', async(req,res)=>{
    res.json(await getListData(req));
 });
 
-//all-lsit
-router.get('/list', async(req,res)=>{
-    const sql = "SELECT * FROM studio ORDER BY sid ASC";
-    const [results] = await db.query(sql);
-    res.json(results);
-})
-
-
 //呈現錄音室的不同方案
 router.get('/option/:studio_id', async (req, res) => {
     const sql = "SELECT * FROM studio WHERE studio_id=?";
