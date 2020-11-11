@@ -142,7 +142,7 @@ router.post("/download", async (req, res) => {
   res.json(output);
 });
 
-router.post("/collect",multer().none(), async (req, res) => {
+router.post("/collect", multer().none(), async (req, res) => {
   const output = {
     body: req.body,
     success: false,
