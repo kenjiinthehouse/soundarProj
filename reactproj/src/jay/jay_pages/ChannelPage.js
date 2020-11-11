@@ -15,6 +15,8 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
+// bootstrap
+import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
 // react icon
 import {
@@ -51,6 +53,7 @@ function ChannelPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
+  const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
   const transTermToChinese = () => {
@@ -175,6 +178,9 @@ function ChannelPage(props) {
                     <button
                       type="button"
                       className=" btn btn-sm btn-secondary my-3"
+                      onClick={() => {
+                        setShowRatingModel(true);
+                      }}
                     >
                       評分
                     </button>
@@ -353,6 +359,11 @@ function ChannelPage(props) {
           </div>
         </div>
       </div>
+
+      <ChannelRatingModal
+        show={showRatingModel}
+        onHide={() => setShowRatingModel(false)}
+      />
     </StyleRoot>
   );
 
@@ -380,6 +391,7 @@ const mapStateToProps = (store) => {
   return {
     channel_audio_data: store.channelPageData,
     channel_data: store.podcasterDashboardInfoState,
+    member: store.member,
   };
 };
 

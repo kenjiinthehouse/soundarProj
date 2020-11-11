@@ -15,7 +15,7 @@ import ScrollToTop from 'react-scroll-to-top';
 
 // react icon
 import { RiMusic2Fill } from 'react-icons/ri';
-import { TiArrowSortedUp } from "react-icons/ti";
+import { TiArrowSortedUp } from 'react-icons/ti';
 
 function ExploreCateChannelPage(props) {
   const styles = {
@@ -116,7 +116,13 @@ function ExploreCateChannelPage(props) {
     <StyleRoot>
       <ScrollToTop
         smooth
-        style={{ bottom: '120px', right: '80px',borderRadius:'50%',outline:'none', opacity:'0.75' }}
+        style={{
+          bottom: '120px',
+          right: '80px',
+          borderRadius: '50%',
+          outline: 'none',
+          opacity: '0.75',
+        }}
         component={<TiArrowSortedUp style={{ fontSize: '1.8rem' }} />}
       />
       <div className="explorePageBody pt-4" style={{ paddingBottom: '100px' }}>

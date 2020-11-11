@@ -7,7 +7,7 @@ import {
   Button,
   NavDropdown,
 } from 'react-bootstrap';
-import { MdShoppingCart, MdSearch, } from 'react-icons/md';
+import { MdShoppingCart, MdSearch } from 'react-icons/md';
 //選單連結使用 NavLink 取代 Link，不然有CSS上的問題
 import { NavLink } from 'react-router-dom';
 import logo from '../img/logofordark.svg';
