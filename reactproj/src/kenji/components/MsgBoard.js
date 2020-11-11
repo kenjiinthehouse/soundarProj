@@ -34,14 +34,10 @@ function MsgBoard(props) {
   const [pageIndexTo, setPageIndexTo] = useState(10);
 
   useEffect(() => {
-    setIsLoading(true);
     async function msgList() {
       await props.getMsgAsync();
     }
     msgList();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
