@@ -43,7 +43,7 @@ useEffect(()=>{
         <p key="p1">主動式降噪功能</p>
         <p key="p2">可選擇更合適尺寸與密合程度</p>
         </div>
-        <Button className="px-4 ml-4">逛新品</Button>
+        <Button className="px-4 ml-4 re-btn-color">逛新品</Button>
         </div>
         
         </TweenOne>  
