@@ -6,6 +6,7 @@ import podcasterAudioListState from './podcasterAudioListState';
 import explorePopularChannel from './explorePopularChannel';
 import exploreCateChannel from './exploreCateChannel';
 import channelPageData from './channelPageData';
+import memberRatingState from './memberRatingState';
 
 //jen
 import articleList from './articleList';
@@ -32,4 +33,5 @@ export const rootReducer = combineReducers({
   articleDetailPre,
   articleDetailNext,
   member,
+  memberRatingState,
 });
