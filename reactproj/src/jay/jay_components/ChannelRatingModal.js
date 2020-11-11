@@ -26,7 +26,7 @@ function ChannelRatingModal(props) {
       await props.initalRateModalAsync(props.member.sid, podcaster_id);
     }
     initialGetData();
-  }, [props.member]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -72,9 +72,7 @@ function ChannelRatingModal(props) {
             {props.member && props.member.sid ? (
               <Rate
                 style={{ fontSize: '1.5rem', filter: 'brightness(0.95)' }}
-                defaultValue={
-                  props.rating_state[0] ? props.rating_state[0].score : 0
-                }
+                defaultValue={props.rating_state[0].score}
                 onChange={(value) => {
                   setRateValue(value);
                 }}

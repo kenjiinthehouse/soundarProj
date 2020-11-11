@@ -1,53 +1,16 @@
-import React, { useEffect, useState } from 'react';
-// 使用 ant-design布局及元件
-import { Layout } from 'antd';
-// 使用 material-ui 元件
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton'; // icon式btn
-import Badge from '@material-ui/core/Badge'; //購物車徽章
-import { withStyles } from '@material-ui/core/styles'; //購物車徽章
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
-// 使用 material-ui icon
-import SearchIcon from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PersonIcon from '@material-ui/icons/Person';
-import ReorderIcon from '@material-ui/icons/Reorder';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {RiLogoutCircleRLine} from 'react-icons/ri';
-//scss
-import '../styles/MyNavbar.scss';
-
-//samps改動
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { initMemberAsync, logOutAsync } from '../../actions/index';
-
-// ant-design Layout
-const { Header } = Layout;
-// 購物車徽章
-const StyledBadge = withStyles((theme) => ({
-  badge: {
-    right: -2,
-    top: 0,
-    // border: `1px none ${theme.palette.background.paper}`,
-    padding: '0px',
-  },
-}))(Badge);
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  paper: {
-    backgroundColor: 'black',
-  },
-}));
+import React, { useState, useEffect } from 'react';
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+  NavDropdown,
+} from 'react-bootstrap';
+import { MdShoppingCart, MdSearch } from 'react-icons/md';
+//選單連結使用 NavLink 取代 Link，不然有CSS上的問題
+import { NavLink } from 'react-router-dom';
+import logo from '../img/logofordark.svg';
 
 function MyNavbar(props) {
   const [logged, setLogged] = useState(false);

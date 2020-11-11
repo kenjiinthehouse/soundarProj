@@ -22,7 +22,6 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
-import InformLoginModal from './../jay_components/InformLoginModal';
 // bootstrap
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
@@ -57,7 +56,6 @@ function ChannelPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
-  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -438,11 +436,6 @@ function ChannelPage(props) {
         </div>
       </div>
 
-      <InformLoginModal
-        show={showInformLoginModal}
-        onHide={() => setShowInformLoginModal(false)}
-      />
-
       <ChannelRatingModal
         show={showRatingModel}
         onHide={() => setShowRatingModel(false)}
@@ -477,8 +470,6 @@ const mapStateToProps = (store) => {
     channel_audio_data: store.channelPageData,
     channel_data: store.podcasterDashboardInfoState,
     member: store.member,
-    audioCollection: store.memberAudioCollection,
-    subscribe_channels: store.memberChannelCollection,
   };
 };
 
