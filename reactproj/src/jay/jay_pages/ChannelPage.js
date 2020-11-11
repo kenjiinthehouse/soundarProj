@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import {
   initalChannelPageAsync,
   initalDashboardAsync,
+  initalRateModalAsync,
+  initMemberAudioCollectionAsync,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -19,11 +21,7 @@ import ScrollToTop from 'react-scroll-to-top';
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
 // react icon
-import {
-  RiMusic2Fill,
-  RiPlayListAddLine,
-  RiBroadcastLine,
-} from 'react-icons/ri';
+import { RiMusic2Fill, RiPlayListAddLine } from 'react-icons/ri';
 import { FaRss, FaHeart } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
@@ -97,12 +95,17 @@ function ChannelPage(props) {
       transTermToChinese();
       await props.initalDashboardAsync(podcaster_id);
       await props.initalChannelPageAsync(podcaster_id);
+      await props.initalRateModalAsync(props.member.sid, podcaster_id);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
     }
     initialGetData();
   }, []);
+
+  useEffect(() => {
+    props.initMemberAudioCollectionAsync(props.member.sid);
+  }, [props.member]);
 
   const displayCatePage = (
     <StyleRoot>
@@ -361,8 +364,21 @@ function ChannelPage(props) {
                           .querySelector('.mh14')
                           .classList.remove('mh15');
                       }}
+                      onClick={() => {
+                        if (props.member.sid) {
+                          console.log('ok');
+                        } else {
+                          console.log('no');
+                        }
+                      }}
                     >
-                      <FaHeart style={{ fontSize: '2rem' }} />
+                      {props.audioCollection.indexOf(item.sid) === -1 ? (
+                        <FaHeart style={{ fontSize: '2rem' }} />
+                      ) : (
+                        <FaHeart
+                          style={{ fontSize: '2rem', color: '#F780AE' }}
+                        />
+                      )}
                     </div>
                   </div>
                 );
@@ -404,11 +420,15 @@ const mapStateToProps = (store) => {
     channel_audio_data: store.channelPageData,
     channel_data: store.podcasterDashboardInfoState,
     member: store.member,
+    audioCollection: store.memberAudioCollection,
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { initalChannelPageAsync, initalDashboardAsync })(
-    ChannelPage
-  )
+  connect(mapStateToProps, {
+    initalChannelPageAsync,
+    initalDashboardAsync,
+    initalRateModalAsync,
+    initMemberAudioCollectionAsync,
+  })(ChannelPage)
 );
