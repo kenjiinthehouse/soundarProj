@@ -24,7 +24,7 @@ function StudioInfo(props) {
 
         <div className="container studio-info">
           <h3>我們的設備</h3>
-          <h5>不用調校，不用架，你人來就好。</h5>
+          <h5 style={{color: '#44494A'}}>不用調校，不用架，你人來就好。</h5>
           <div className="d-flex justify-content-between">
             <div className="card info-card">
               <img src={"http://localhost:3000/ch_img/audient.jpg"} className="card-img-top" alt="" />
@@ -98,7 +98,7 @@ function StudioInfo(props) {
           <Card.Img src="http://localhost:3000/ch_img/jumbotron06.jpg" alt="Card image" />
           <Card.ImgOverlay>
           <div className="container">
-            <Card.Title><h1>一起 LAZI ?</h1></Card.Title>
+            <Card.Title><h1 style={{color: '#f8f8f8'}}>一起 LAZI ?</h1></Card.Title>
             <Card.Text className="mt-5">
             <h5>想要成為podcast? 有錄音的需求?</h5>
             <h5>一起成為錄音夥伴</h5>

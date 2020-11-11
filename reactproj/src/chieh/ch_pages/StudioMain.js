@@ -16,7 +16,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 function StudioMain(props){
     const [studioData, setStudioData] = useState([])  
     async function getStudioFromServer() {
-      const url = 'http://localhost:5566/studio/api/1'  
+      const url = 'http://localhost:5566/studio/option/1'  
       const request = new Request(url, {
         method: 'GET',
         headers: new Headers({
@@ -38,16 +38,16 @@ function StudioMain(props){
   
   const introduction= (
     <>
-      { studioData.map((value=>{
+      { studioData.map((item=>{
         return (
-          <div className="studio-introduction" key={value.sid}>
-            <h2>{value.studio_name}</h2>
-            <h3>NT$ {value.studio_price} </h3>
+          <div className="studio-introduction" key={item}>
+            <h2>{item[0].studio_name}</h2>
+            <h3>NT$ {item[0].studio_price} </h3>
             <span>顧客評價
             <Rater rating={4.5} total={5} interactive={false}/>
-            {value.studio_review}(25)</span>
+            {item[0].studio_review}(25)</span>
             <div className="location-wrap mt-4">
-              <FaMapMarkerAlt className="mr-2"/>地點：{value.studio_location}
+              <FaMapMarkerAlt className="mr-2"/>地點：{item[0].studio_location}
             </div>
             <button className="btn btn-option btn-lg" onClick={()=>{props.history.push('/studiomain')}}>選擇方案</button>
           </div>
