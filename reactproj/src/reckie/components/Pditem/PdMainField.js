@@ -1,3 +1,4 @@
+import '../../styles/reckieCustom.scss';
 import React,{useEffect} from 'react';
 import { MdStar,MdStarBorder,MdStarHalf,MdShoppingCart,MdShoppingBasket } from "react-icons/md";
 
@@ -35,7 +36,7 @@ const {pdDetail}=props
     <h4>counter component</h4>
     </div>
     <div className="d-flex">
-    <button className="btn btn-primary btn-rounded re-btn"><div className="d-flex align-items-baseline justify-content-center"><div><MdShoppingCart className="mr-2 mb-1" style={{fontSize:'1.25rem'}} /></div>加入購物車</div></button>
+    <button className="btn btn-primary btn-rounded re-btn re-btn-color"><div className="d-flex align-items-baseline justify-content-center"><div><MdShoppingCart className="mr-2 mb-1" style={{fontSize:'1.25rem'}} /></div>加入購物車</div></button>
 
     <button className="btn   btn-rounded btn-vital re-btn"><div className="d-flex align-items-baseline justify-content-center"><div><MdShoppingBasket className="mr-2 mb-1" style={{fontSize:'1.25rem'}} /></div>立即購買</div></button>
     </div>
