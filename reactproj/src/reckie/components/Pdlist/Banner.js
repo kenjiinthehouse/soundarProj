@@ -28,7 +28,7 @@ useEffect(()=>{
       >
         <BgElement id="bg" key="bg" className="bg">
           <video loop autoPlay muted>
-            <source src="Videos/production1.mp4" type="video/mp4" />
+            <source src="reckie_Videos/production1.mp4" type="video/mp4" />
           </video>
           {/* <img src="img/bag02.jpg"></img> */}
         </BgElement>
@@ -57,7 +57,7 @@ useEffect(()=>{
           key="bg"
           className="bg"
           style={{
-            backgroundImage: 'url(img/bag02.jpg)',
+            backgroundImage: 'url(reckie_img/bag02.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -78,7 +78,7 @@ useEffect(()=>{
           key="bg"
           className="bg"
           style={{
-            backgroundImage: 'url(img/bag03.jpg)',
+            backgroundImage: 'url(reckie_img/bag03.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

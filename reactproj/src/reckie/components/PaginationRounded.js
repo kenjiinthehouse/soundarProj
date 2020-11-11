@@ -11,8 +11,8 @@ useEffect(()=>{
 const handleChange = (event, value) => {
   setPage(value);
 };
-let query = ''
-if (page) query += `&page=${page}`
+// let query = ''
+// if (page) query += `&page=${page}`
 
   return (
     <div className="d-flex rePagination">

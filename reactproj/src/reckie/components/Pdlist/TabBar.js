@@ -105,7 +105,7 @@ function TabBar(props) {
         <div className={classes.indicator}>
         <StyledTabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
           <StyledTab label="錄音設備" {...a11yProps(0)} onClick={()=>{setViewFilter(10)}}/>
-          <StyledTab label="播客周邊" {...a11yProps(1)} onClick={()=>setViewFilter(20)} />
+          <StyledTab label="播客周邊" {...a11yProps(1)} onClick={()=>{setViewFilter(20)}} />
           <StyledTab label="線下活動" {...a11yProps(2)} />
           <StyledTab label="錄音室租借" {...a11yProps(3)} />
         </StyledTabs>
