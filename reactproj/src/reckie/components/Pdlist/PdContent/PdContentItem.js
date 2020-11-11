@@ -71,7 +71,7 @@ const handleExpandEnter = () => {
            
             <Collapse in={isShown} timeout="auto" unmountOnExit>
                 
-                   <Button className="addCartBtn re-btn-color" onClick={(event)=>{
+                  <Button className="addCartBtn re-btn-color" onClick={()=>{
                     let cart = []
                     if(localStorage.getItem('cart'))
                       cart = JSON.parse(localStorage.getItem('cart'))

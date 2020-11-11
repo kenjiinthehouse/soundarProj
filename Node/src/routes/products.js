@@ -102,14 +102,6 @@ async function getPdData(req){
     const [r2]= await db.query(item_sql);
     output.rows = r2;
     //新增合併主圖附圖欄位
-    // if(results[0].pd_sub_imgs){
-    //     newSubImgs = results[0].pd_sub_imgs.split(',')
-    //     // console.log('newSubImgs',newSubImgs)
-    //     results[0].combine_img = [results[0].pd_main_img,...newSubImgs]
-    // }else{
-    //     results[0].combine_img = [results[0].pd_main_img]
-    // }
-
     output.rows.map((item)=>{
         if(item.pd_sub_imgs){
             const newSubImgs = item.pd_sub_imgs.split(',')

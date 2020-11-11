@@ -46,14 +46,9 @@ function SearchInput(props){
 
     return(<>
     <div className="row justify-content-center searchInput">
-    <div className="searchContainer d-flex">
-    <input type="text" placeholder="搜尋商品" className="reSearch" autoComplete="off" />
-    {isLoading ? displaySpinner : ''} 
-    <button 
-    type="button" 
-    className="btn re-btn-color searchBtn"
-    onClick={(e)=>searchSubmit(e)}
-     >搜尋</button>
+    <div className="position-relative">
+    <input type="search" placeholder="    搜尋商品" className="inputField" />
+    <button type="button" className="btn re-btn-color searchBtn">搜尋</button>
     </div>
     
     </div>

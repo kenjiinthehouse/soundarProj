@@ -5,6 +5,9 @@ const pool = mysql2.createPool({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0534b02... 統整後調整畫面
   // host: "localhost",
   // user: "jl55661688",
   // password: "iouccc19931107",
@@ -12,6 +15,7 @@ const pool = mysql2.createPool({
   // waitForConnections: true,
   // connectionLimit: 10,
   // queueLimit: 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -44,6 +48,13 @@ const pool = mysql2.createPool({
   user: "jl55661688",
   password: "iouccc19931107",
 >>>>>>> be0d526... 挑整loading位置
+=======
+
+  //reckie
+  host: "localhost",
+  user: "root",
+  password: "",
+>>>>>>> 0534b02... 統整後調整畫面
   database: "mfee09_project",
 >>>>>>> 9b50b81... chieh1112
   waitForConnections: true,
