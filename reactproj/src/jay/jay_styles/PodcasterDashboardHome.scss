@@ -28,11 +28,10 @@ hr.jay-dashboard-hr{
     min-width: 100%;     // 避免因寬度不足而字疊在一起（根據表格內容設定寬度）
   }
 
-.jay-table tbody th:nth-child(0) {
-  width: 10%;
+.jay-table a {
+  color: #2690DF !important;
 }
 
-
-.jay-table tbody td:nth-child(1) {
-  width: 10%;
+.jay-table a:hover {
+  color: #1972b6 !important;
 }

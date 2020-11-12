@@ -46,6 +46,7 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
+<<<<<<< HEAD
               <Route exact path="/channel_info/:podcaster_id?">
                 <PodcasterDashboardHome />
               </Route>
@@ -56,6 +57,9 @@ function App() {
                 />
               </Route>
               <Route exact path="/explore_home_page">
+=======
+              <Route path="/explore_home_page">
+>>>>>>> ce68bab... 結合會員與播客後台
                 <ExploreHomePage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
@@ -129,7 +133,10 @@ function App() {
                 <Applymembership />
               </Route>
               <Route path="/memberedit">
-                <Membersidebar />
+                <Membersidebar
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
               </Route>
               <Route path="/audiocollect">
                 <Audiocollection />
