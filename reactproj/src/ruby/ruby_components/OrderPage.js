@@ -121,10 +121,8 @@ function OrderPage(props){
     return(
         <>
             <div className="order-page">
-                <div className="container d-flex mx-auto justify-content-between">
-                    <div className="row flex-column ru-odPage-sidebar">
-                        {/* <Sidebar /> */}
-                    </div>
+                {/* <div className="container d-flex mx-auto justify-content-between"> */}
+
                     <div className="row ru-odPage-display d-flex flex-column align-item-center">
                         <div className="ru-odPage-title">
                             <h4>訂單查詢</h4>
@@ -409,7 +407,7 @@ function OrderPage(props){
                                 )})
                             }
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </>
     )

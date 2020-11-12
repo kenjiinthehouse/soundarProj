@@ -6,8 +6,8 @@ function CouponPage(){
     const [ couponState, setCouponState ] = useState(3)
     const [ allCouponDisplay, setAllCouponDisplay ] = useState([])
     const [ clientCouponDisplay, setClientCouponDisplay ] = useState([])
-    const [ couponUsed, setCouponUsed ] = useState([])
-    // const [ newCouponDisplay, setNewCouponDisplay ] = useState([])
+    // const [ couponUsed, setCouponUsed ] = useState([])
+    const [ newCouponDisplay, setNewCouponDisplay ] = useState([])
 
     
 
@@ -19,6 +19,7 @@ function CouponPage(){
             'Content-Type': 'application/json',
           })
             .then((result) => { 
+                console.log('getAll')
                 const newAllData = result.data.data
                 setAllCouponDisplay(newAllData)
                 // console.log('all',newAllData)
@@ -32,6 +33,7 @@ function CouponPage(){
             baseURL: 'http://localhost:5566',
             url: '/coupon/client/get?client_sid=1',
             'Content-Type': 'application/json',
+            // params: {client_sid:1}
           })
             .then((result) => { 
                 const newData = result.data.data
@@ -62,8 +64,10 @@ function CouponPage(){
             used : 0
         }
         axios.post('http://localhost:5566/coupon/client/insert',data)
-                .then((res) => { res.table() })
-                .catch((error) => { console.log(error) })
+             .then((res) => { 
+                    getClientCoupon()
+             })
+             .catch((error) => { console.log(error) })
     }
 
     useEffect(()=>{
@@ -75,12 +79,9 @@ function CouponPage(){
         let clientCouponSid = clientCouponDisplay.map(item=>{
             return item.coupon_sid
         })
-        setCouponUsed(clientCouponSid)
-        // let newAll = allCouponDisplay.filter(item=> couponUsed.indexOf(item.sid) === -1)
-        // setNewCouponDisplay(newAll)
-        // allCouponDisplay.filter(item=> couponUsed.indexOf(item.sid) === -1)
- 
-    },[clientCouponDisplay])
+        const newData = allCouponDisplay.filter(item=> clientCouponSid.indexOf(item.sid) === -1)
+        setNewCouponDisplay(newData)
+    },[clientCouponDisplay,allCouponDisplay])
 
     return(
         <>
@@ -95,12 +96,12 @@ function CouponPage(){
                             <div className={couponState === 0 ? "coupon-tab coupon-active" : "coupon-tab"} onClick={() => { setCouponState(0) }}>未使用</div>
                             <div className={couponState === 1 ? "coupon-tab coupon-active" : "coupon-tab"} onClick={() => { setCouponState(1) }}>已使用</div>
                         </div>
-                        <div className={ couponState === 3 ? "ru-coupon-container d-flex flex-wrap justify-content-between" : "ru-coupon-container px-2"}>
+                        <div className={ couponState === 3 ? "ru-coupon-container d-flex flex-wrap justify-content-start" : "ru-coupon-container px-2"}>
                         { couponState === 3 
                             ?
-                            allCouponDisplay.filter(item=> couponUsed.indexOf(item.sid) === -1).map(item =>{
+                            newCouponDisplay.map(item =>{
                                 return( 
-                                    <div className="ru-collect-coupon d-flex flex-column justify-content-start align-content-start">
+                                    <div className="ru-collect-coupon d-flex flex-column">
                                         <div className="collect-coupon-topic">
                                             <div>
                                                 <h4>{item.name}</h4>
@@ -113,9 +114,7 @@ function CouponPage(){
                                             <h2>{item.discount}</h2>
                                         </div>
                                         <div className="collect-coupon-btn p-2" onClick={()=>{
-                                            insertNewCoupon(item)
-                                            getAllCoupon()
-                                            // setAllCouponDisplay()
+                                           insertNewCoupon(item)
                                         }}>領取優惠券</div>
                                     </div>
                                 )

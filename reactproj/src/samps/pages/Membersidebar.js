@@ -4,6 +4,10 @@ import { Link, Router, Switch, withRouter } from 'react-router-dom';
 import '../styles/Sidebar.scss';
 import Memberedit from '../components/Memberedit';
 
+
+// 訂單查詢 page2
+import Order from './../../ruby/ruby_components/OrderPage'
+
 // 優惠券 page6
 import Coupon from './../../ruby/ruby_components/CouponPage'
 
@@ -165,7 +169,7 @@ function Membersidebar(props) {
 
               <div className="sa-sidebar-mainarea col-9">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
-                {activenumber == 2 ? <div>2</div> : <></>}
+                {activenumber == 2 ? <div><Order /></div> : <></>}
                 {activenumber == 3 ? (
                   <div>
                     <ActivityOrder />
@@ -177,7 +181,7 @@ function Membersidebar(props) {
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div><Coupon /></div> : <></>}
                 {activenumber == 7 ? <div><PodcasterDashboardHome /></div> : <></>}
-                {activenumber == 8 ? <div>8</div> : <></>}
+                {activenumber == 8 ? <div><PodcasterAudioList /></div> : <></>}
               </div>
             </div>
           </div>

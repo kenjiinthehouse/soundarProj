@@ -1,24 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .order-page {
+  width: 100%;
   font-size: 1rem;
-  font-family: "Noto Sans TC", sans-serif;
-  .container {
-    width: 1356px;
-    margin-top: 100px;
-    padding: 0;
-    .row {
-      margin: 0;
-    }
-  }
-  .ru-odPage-sidebar {
-    width: 316.5px;
-    border-right: 1px solid #707070;
-    padding-right: 2rem;
-  }
+  font-family: 'Noto Sans TC', sans-serif;
+  // .container {
+  //   width: 1356px;
+  //   margin-top: 100px;
+  //   padding: 0;
+  //   .row {
+  //     margin: 0;
+  //   }
+  // }
+  // .ru-odPage-sidebar {
+  //   width: 316.5px;
+  //   border-right: 1px solid #707070;
+  //   padding-right: 2rem;
+  // }
 
   .ru-odPage-display {
-    width: 66.66%;
+    // width: 66.66%;
     user-select: none;
     cursor: pointer;
     .ru-odPage-option-btn {
@@ -48,10 +49,10 @@
       }
     }
     .ru-odPage-ship {
-      background-color: #2690DF;
+      background-color: #2690df;
     }
     .ru-odPage-finish {
-      background-color: #DC2621;
+      background-color: #dc2621;
     }
     .ru-odPage-cancel {
       background-color: #909393;
