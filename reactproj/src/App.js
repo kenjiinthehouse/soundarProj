@@ -130,7 +130,10 @@ function App() {
                 />
               </Route>
               <Route path="/audiocollect">
-                <Audiocollection />
+                <Audiocollection
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
               </Route>
               <Route path="/channelcollect">
                 <Channelcollection />
