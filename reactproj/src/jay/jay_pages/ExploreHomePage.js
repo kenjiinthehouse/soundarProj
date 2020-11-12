@@ -137,7 +137,7 @@ function ExploreHomePage(props) {
 
   const displayExploreHomePage = (
     <StyleRoot>
-      <div className="explorePageBody pt-4" style={{ paddingBottom: '100px' }}>
+      <div className="explorePageBody" style={{ paddingBottom: '100px' }}>
         <div className="container">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent">
