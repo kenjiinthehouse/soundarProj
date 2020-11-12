@@ -10,6 +10,9 @@ import {
   initMemberAudioCollectionAsync,
   addCollection,
   delCollection,
+  initMemberChannelCollectionAsync,
+  addChannelCollection,
+  delChannelCollection,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -19,6 +22,7 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
+import InformLoginModal from './../jay_components/InformLoginModal';
 // bootstrap
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
@@ -53,6 +57,7 @@ function ChannelPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -106,6 +111,7 @@ function ChannelPage(props) {
 
   useEffect(() => {
     props.initMemberAudioCollectionAsync(props.member.sid);
+    props.initMemberChannelCollectionAsync(props.member.sid);
   }, [props.member]);
 
   const displayCatePage = (
@@ -121,7 +127,7 @@ function ChannelPage(props) {
         }}
         component={<TiArrowSortedUp style={{ fontSize: '1.8rem' }} />}
       />
-      <div className="explorePageBody pt-4" style={{ paddingBottom: '100px' }}>
+      <div className="explorePageBody" style={{ paddingBottom: '100px' }}>
         <div className="container">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent">
@@ -167,12 +173,50 @@ function ChannelPage(props) {
                     <span>{breadcrumbCateTerm}</span>
                   </div>
                   <div>
-                    <button
-                      type="button"
-                      className=" btn btn-sm btn-info my-3 mr-3"
-                    >
-                      訂閱
-                    </button>
+                    {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-info my-3 mr-3"
+                        style={styles.fadeInLeft01}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            await props.addChannelCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberChannelCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        訂閱
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                        style={styles.fadeInLeft01}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            await props.delChannelCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberChannelCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        訂閱中
+                      </button>
+                    )}
+
                     <button
                       type="button"
                       className=" btn btn-sm btn-secondary my-3 mr-3"
@@ -199,13 +243,13 @@ function ChannelPage(props) {
                   </div>
                   <div>
                     <span>
-                      網友評比： &nbsp;&nbsp;{item.channel_rating} &nbsp;/&nbsp;
-                      5
+                      網友評比： &nbsp;&nbsp;{(+item.channel_rating).toFixed(1)}
+                      &nbsp;&nbsp; 5
                     </span>
                   </div>
                   <div className="pt-4">
                     <a target="_blank" href={item.channel_rss_link}>
-                      <FaRss style={{ fontSize: '1.25rem' }} />{' '}
+                      <FaRss style={{ fontSize: '1.25rem' }} />
                       <span className="px-2">RSS訂閱</span>
                     </a>
                   </div>
@@ -386,7 +430,7 @@ function ChannelPage(props) {
                             );
                           }
                         } else {
-                          console.log('no');
+                          setShowInformLoginModal(true);
                         }
                       }}
                     >
@@ -405,6 +449,11 @@ function ChannelPage(props) {
           </div>
         </div>
       </div>
+
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+      />
 
       <ChannelRatingModal
         show={showRatingModel}
@@ -439,6 +488,7 @@ const mapStateToProps = (store) => {
     channel_data: store.podcasterDashboardInfoState,
     member: store.member,
     audioCollection: store.memberAudioCollection,
+    subscribe_channels: store.memberChannelCollection,
   };
 };
 
@@ -450,5 +500,8 @@ export default withRouter(
     initMemberAudioCollectionAsync,
     addCollection,
     delCollection,
+    initMemberChannelCollectionAsync,
+    addChannelCollection,
+    delChannelCollection,
   })(ChannelPage)
 );

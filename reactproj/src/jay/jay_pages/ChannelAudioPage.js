@@ -6,6 +6,12 @@ import { connect } from 'react-redux';
 import {
   initalChannelPageAsync,
   initalDashboardAsync,
+  initMemberChannelCollectionAsync,
+  initMemberAudioCollectionAsync,
+  addCollection,
+  delCollection,
+  addChannelCollection,
+  delChannelCollection,
 } from '../../jay_actions/index';
 import { getMsgAsync } from '../../actions/index';
 import { withRouter, useParams } from 'react-router-dom';
@@ -17,6 +23,7 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 import MsgBoard from './../../kenji/components/MsgBoard';
+import InformLoginModal from './../jay_components/InformLoginModal';
 // bootstrap
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
@@ -51,6 +58,7 @@ function ChannelAudioPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id, audio_sid } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -103,6 +111,11 @@ function ChannelAudioPage(props) {
     initialGetData();
   }, []);
 
+  useEffect(() => {
+    props.initMemberAudioCollectionAsync(props.member.sid);
+    props.initMemberChannelCollectionAsync(props.member.sid);
+  }, [props.member]);
+
   const displayCatePage = (
     <StyleRoot>
       <ScrollToTop
@@ -116,7 +129,7 @@ function ChannelAudioPage(props) {
         }}
         component={<TiArrowSortedUp style={{ fontSize: '1.8rem' }} />}
       />
-      <div className="explorePageBody pt-4" style={{ paddingBottom: '100px' }}>
+      <div className="explorePageBody" style={{ paddingBottom: '100px' }}>
         <div className="container">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent">
@@ -177,12 +190,49 @@ function ChannelAudioPage(props) {
                     <span>{breadcrumbCateTerm}</span>
                   </div>
                   <div>
-                    <button
-                      type="button"
-                      className=" btn btn-sm btn-info my-3 mr-3"
-                    >
-                      訂閱
-                    </button>
+                    {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-info my-3 mr-3"
+                        style={styles.fadeInLeft01}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            await props.addChannelCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberChannelCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        訂閱
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                        style={styles.fadeInLeft01}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            await props.delChannelCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberChannelCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        訂閱中
+                      </button>
+                    )}
                     <button
                       type="button"
                       className=" btn btn-sm btn-secondary my-3 mr-3"
@@ -320,18 +370,73 @@ function ChannelAudioPage(props) {
                                     name: playTargetAudio.audio_title,
                                     singer: playTargetAudio.channel_title,
                                   };
-                                  setGlobalAudioArry([
-                                    ...globalAudioArry,
-                                    payload,
-                                  ]);
+                                  if (globalAudioArry[0]) {
+                                    let alreadyInArry = false;
+                                    globalAudioArry.forEach((item) => {
+                                      if (item.name === payload.name) {
+                                        alreadyInArry = true;
+                                      }
+                                    });
+                                    if (alreadyInArry !== true) {
+                                      setGlobalAudioArry([
+                                        ...globalAudioArry,
+                                        payload,
+                                      ]);
+                                    }
+                                  } else {
+                                    setGlobalAudioArry([
+                                      ...globalAudioArry,
+                                      payload,
+                                    ]);
+                                  }
                                 }}
                               >
                                 <RiPlayListAddLine
                                   style={{ fontSize: '2rem' }}
                                 />
                               </div>
-                              <div className="audio-info-icon">
-                                <FaHeart style={{ fontSize: '2rem' }} />
+                              <div
+                                className="audio-info-icon"
+                                onClick={async () => {
+                                  if (props.member.sid) {
+                                    //寫回資料庫
+                                    if (
+                                      props.audioCollection.indexOf(
+                                        item.sid
+                                      ) === -1
+                                    ) {
+                                      await props.addCollection(
+                                        props.member.sid,
+                                        item.sid
+                                      );
+                                      await props.initMemberAudioCollectionAsync(
+                                        props.member.sid
+                                      );
+                                    } else {
+                                      await props.delCollection(
+                                        props.member.sid,
+                                        item.sid
+                                      );
+                                      await props.initMemberAudioCollectionAsync(
+                                        props.member.sid
+                                      );
+                                    }
+                                  } else {
+                                    setShowInformLoginModal(true);
+                                  }
+                                }}
+                              >
+                                {props.audioCollection.indexOf(item.sid) ===
+                                -1 ? (
+                                  <FaHeart style={{ fontSize: '2rem' }} />
+                                ) : (
+                                  <FaHeart
+                                    style={{
+                                      fontSize: '2rem',
+                                      color: '#F780AE',
+                                    }}
+                                  />
+                                )}
                               </div>
                             </div>
                           </div>
@@ -352,6 +457,10 @@ function ChannelAudioPage(props) {
       <ChannelRatingModal
         show={showRatingModel}
         onHide={() => setShowRatingModel(false)}
+      />
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
       />
     </StyleRoot>
   );
@@ -380,6 +489,9 @@ const mapStateToProps = (store) => {
   return {
     channel_audio_data: store.channelPageData,
     channel_data: store.podcasterDashboardInfoState,
+    subscribe_channels: store.memberChannelCollection,
+    member: store.member,
+    audioCollection: store.memberAudioCollection,
   };
 };
 
@@ -388,5 +500,11 @@ export default withRouter(
     initalChannelPageAsync,
     initalDashboardAsync,
     getMsgAsync,
+    initMemberChannelCollectionAsync,
+    initMemberAudioCollectionAsync,
+    addCollection,
+    delCollection,
+    addChannelCollection,
+    delChannelCollection,
   })(ChannelAudioPage)
 );

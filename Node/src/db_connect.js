@@ -2,16 +2,8 @@ require("dotenv").config();
 const mysql2 = require("mysql2");
 
 const pool = mysql2.createPool({
-  // host: "localhost",
-  // user: "jl55661688",
-  // password: "iouccc19931107",
-  // database: "mfee09_project",
-  // waitForConnections: true,
-  // connectionLimit: 10,
-  // queueLimit: 0,
-
-  // kenji
   host: "localhost",
+<<<<<<< HEAD
 <<<<<<< HEAD
   user: "chieh",
   password: "chieh",
@@ -22,10 +14,23 @@ const pool = mysql2.createPool({
 >>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 =======
 >>>>>>> reckie
+=======
+  user: "jl55661688",
+  password: "iouccc19931107",
+>>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
   database: "mfee09_project",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+
+  // kenji
+  // host: "localhost",
+  // user: "root",
+  // password: "",
+  // database: "mfee09_project",
+  // waitForConnections: true,
+  // connectionLimit: 10,
+  // queueLimit: 0,
 
   //reckie
   // host: "localhost",

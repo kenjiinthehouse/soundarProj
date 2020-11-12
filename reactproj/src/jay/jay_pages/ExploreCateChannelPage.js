@@ -3,7 +3,12 @@ import 'animate.css/animate.min.css';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { initalExploreCatePageAsync } from '../../jay_actions/index';
+import {
+  initalExploreCatePageAsync,
+  initMemberChannelCollectionAsync,
+  addChannelCollection,
+  delChannelCollection,
+} from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
 //components
@@ -12,6 +17,7 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
+import InformLoginModal from './../jay_components/InformLoginModal';
 
 // react icon
 import { RiMusic2Fill } from 'react-icons/ri';
@@ -43,6 +49,7 @@ function ExploreCateChannelPage(props) {
     },
   };
 
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { cate_term } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -112,6 +119,13 @@ function ExploreCateChannelPage(props) {
     preLoadImgs();
   }, [props.cate_channels]);
 
+  useEffect(() => {
+    async function initialGetData() {
+      await props.initMemberChannelCollectionAsync(props.member.sid);
+    }
+    initialGetData();
+  }, [props.member]);
+
   const displayCatePage = (
     <StyleRoot>
       <ScrollToTop
@@ -125,7 +139,7 @@ function ExploreCateChannelPage(props) {
         }}
         component={<TiArrowSortedUp style={{ fontSize: '1.8rem' }} />}
       />
-      <div className="explorePageBody pt-4" style={{ paddingBottom: '100px' }}>
+      <div className="explorePageBody" style={{ paddingBottom: '100px' }}>
         <div className="container">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent">
@@ -209,7 +223,9 @@ function ExploreCateChannelPage(props) {
                           </div>
                           <div className="jay-hot-list-cate-channel-info">
                             <h6>{item.channel_title}</h6>
-                            <span>評分：{item.channel_rating}</span>
+                            <span>
+                              評分：{(+item.channel_rating).toFixed(1)}
+                            </span>
                           </div>
                         </div>
                       </a>
@@ -256,7 +272,7 @@ function ExploreCateChannelPage(props) {
                           </g>
                         </svg>
                       </div>
-                      <div style={{ overflow: 'hidden' }}>
+                      <div style={{ overflow: 'hidden' }} className=" pl-3">
                         <h4
                           style={styles.fadeIn03}
                           className="jay-ani-channel-title"
@@ -266,13 +282,50 @@ function ExploreCateChannelPage(props) {
                         <p style={styles.fadeInLeft01} className="pt-3">
                           {truncate(item.podcaster_description, 150)}
                         </p>
-                        <button
-                          type="button"
-                          className=" btn btn-sm btn-info my-3 mr-3"
-                          style={styles.fadeInLeft01}
-                        >
-                          訂閱
-                        </button>
+                        {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                          <button
+                            type="button"
+                            className=" btn btn-sm btn-info my-3 mr-3"
+                            style={styles.fadeInLeft01}
+                            onClick={async () => {
+                              if (props.member.sid) {
+                                await props.addChannelCollection(
+                                  props.member.sid,
+                                  item.sid
+                                );
+                                await props.initMemberChannelCollectionAsync(
+                                  props.member.sid
+                                );
+                              } else {
+                                setShowInformLoginModal(true);
+                              }
+                            }}
+                          >
+                            訂閱
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                            style={styles.fadeInLeft01}
+                            onClick={async () => {
+                              if (props.member.sid) {
+                                await props.delChannelCollection(
+                                  props.member.sid,
+                                  item.sid
+                                );
+                                await props.initMemberChannelCollectionAsync(
+                                  props.member.sid
+                                );
+                              } else {
+                                setShowInformLoginModal(true);
+                              }
+                            }}
+                          >
+                            訂閱中
+                          </button>
+                        )}
+
                         <button
                           type="button"
                           className=" btn btn-sm btn-secondary my-3 mr-3"
@@ -332,6 +385,10 @@ function ExploreCateChannelPage(props) {
           </div>
         </div>
       </div>
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+      />
     </StyleRoot>
   );
 
@@ -356,11 +413,18 @@ function ExploreCateChannelPage(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { cate_channels: store.exploreCateChannel };
+  return {
+    cate_channels: store.exploreCateChannel,
+    member: store.member,
+    subscribe_channels: store.memberChannelCollection,
+  };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { initalExploreCatePageAsync })(
-    ExploreCateChannelPage
-  )
+  connect(mapStateToProps, {
+    initalExploreCatePageAsync,
+    initMemberChannelCollectionAsync,
+    addChannelCollection,
+    delChannelCollection,
+  })(ExploreCateChannelPage)
 );
