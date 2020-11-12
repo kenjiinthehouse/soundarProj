@@ -3,9 +3,15 @@ const mysql2 = require("mysql2");
 
 const pool = mysql2.createPool({
   host: "localhost",
+<<<<<<< HEAD
   user: "root",
   password: "",
   database: "pd_test",
+=======
+  user: "chieh",
+  password: "chieh",
+  database: "mfee09_project",
+>>>>>>> 9b50b81... chieh1112
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -19,6 +25,16 @@ const pool = mysql2.createPool({
   // connectionLimit: 10,
   // queueLimit: 0,
 });
+
+// const pool = mysql2.createPool({
+//   host: "localhost",
+//   user: "jl55661688",
+//   password: "iouccc19931107",
+//   database: "mfee09_project",
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+// });
 
 // const pool = mysql2.createPool({
 //   host: "localhost",
