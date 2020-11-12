@@ -9,9 +9,15 @@
 [1109/100634.479:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
 [1110/112648.182:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
 <<<<<<< HEAD
+<<<<<<< HEAD
 [1112/114304.248:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
 =======
 [1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
 [1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
 [1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
 >>>>>>> 9b50b81... chieh1112
+=======
+[1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
+[1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
+[1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: ╰参тぃ﹚隔畖 (0x3)
+>>>>>>> a18b9f4... db甯宠櫉
