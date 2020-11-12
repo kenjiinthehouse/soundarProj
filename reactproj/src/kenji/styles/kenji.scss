@@ -1,0 +1,744 @@
+// Import Bootstrap and its default variables
+// 預設變數覆蓋需要在導入Bootstrap之前
+$primary: #232d2f;
+$secondary: #434343;
+$myBtm: #405b55;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+// 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
+html body {
+  // background-color: $primary !important;
+  // color: #ffffff;
+  cursor: default;
+}
+.ant-layout {
+  background: #ffffff;
+}
+//Nav
+.ant-layout-header {
+  color: #fff;
+  background: rgba($color: #232d2f, $alpha: 0.95);
+  min-width: 100%;
+  min-height: 3rem;
+  // padding: 0px;
+  border-bottom: 1px solid rgba($color: #f8f8f8, $alpha: 0.1);
+  position: fixed;
+  z-index: 10;
+}
+.ant-layout-footer {
+  line-height: 1.5;
+}
+.ant-layout-content {
+  color: #ffffff;
+  background: $secondary;
+}
+//垂直分隔線
+.diverVertical {
+  display: inline-block;
+  height: 2.5rem;
+  vertical-align: middle;
+  border-left: 1px solid #ffffff;
+  padding: 0px;
+}
+header .MuiButton-label,
+header .MuiIconButton-label {
+  color: #ffffff;
+}
+ul,
+li {
+  list-style: none;
+}
+
+a,
+a:active,
+a:focus,
+a:hover {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+@media (min-width: 1000px) {
+  .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
+    display: none !important;
+  }
+  Header .navBarLogInBtn {
+    display: none !important;
+  }
+}
+@media (max-width: 1000px) {
+  Header .navBarBtn {
+    display: none !important;
+  }
+}
+.MuiList-padding {
+  background-color: $primary;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+  padding: 0px;
+}
+
+.logo {
+  float: left;
+  width: 7.875rem;
+  height: 2.125rem;
+  margin: 1rem 0 1rem 0;
+  background-image: url(../img/logofordark.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+////////////////////////////////////FOOTER START//////////////////////////////////////
+// footer
+.ant-layout-footer {
+  color: #fff;
+  background-color: $primary;
+  width: 100%;
+  height: 47.625rem;
+  padding: 0px;
+  position: relative;
+  // position: absolute;
+  // bottom: 0;
+}
+.subscribeArea {
+  width: 100%;
+  height: 33%;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 25%,
+      rgba(35, 24, 21, 1) 100%
+    ),
+    url(../img/drew-perales-EdFfvBmAgJs-unsplash.jpg);
+  background-size: 100%; //RWD
+  background-position: center;
+  background-repeat: no-repeat;
+  // opacity: 0.5;
+}
+
+.subscribeArea .emailTitle {
+  padding-top: 4.388rem;
+}
+
+.subscribeArea .emailTitle .emailSvg {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.subscribeArea .emailTitle .emailSvg svg {
+  margin: 0 auto;
+  display: block;
+}
+
+.subscribeArea .emailTitle div {
+  // width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+  align-items: center;
+}
+.subscribeArea .emailInput {
+  max-width: 31.25rem;
+}
+.subscribeArea .emailInput .emailInputGroup {
+  width: 100%;
+}
+
+.footerBar {
+  // width: 100%;
+  height: 67%;
+}
+.footerBar ul {
+  padding: 0px;
+}
+.footerBar li {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.footerBar .soundarInfo {
+  margin-top: 3rem;
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+.footerBar .footerLogo {
+  width: 18rem;
+  height: 4rem;
+  margin: 1rem 0 1rem 0;
+  background-image: url(../img/logofordark.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.footerBar .footerExpo,
+.footerBar .footerSupPodcaster,
+.footerBar .footerBePodcaster,
+.footerBar .footerPolicy,
+.footerBar .footerAbout {
+  margin-top: 3rem;
+}
+.footerBar .footerExpo ul :first-child,
+.footerBar .footerSupPodcaster ul :first-child,
+.footerBar .footerBePodcaster ul :first-child,
+.footerBar .footerPolicy ul :first-child,
+.footerBar .footerAbout ul :first-child {
+  font-size: 1.5rem;
+  margin-bottom: 2.56rem;
+}
+
+.footerBottom {
+  width: 100%;
+  height: 1.625rem;
+  position: absolute;
+  bottom: 0;
+}
+////////////////////////////////////FOOTER END//////////////////////////////////////
+.ghost {
+  overflow: hidden;
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  font-size: 1px;
+  color: transparent;
+  line-height: 1px;
+}
+// main-content-box
+main {
+  margin-top: 4rem;
+  background-color: #232d2f;
+}
+
+.container-fluid {
+  padding: 0 !important;
+}
+////////////////////////////////////Carosel START//////////////////////////////////////
+// Index Carousel content
+
+.indexCarousel {
+  width: 101rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+.indexColorCard {
+  width: 100%;
+  height: 50rem;
+  background-color: #0e4065;
+  position: absolute;
+  left: 0;
+  top: 15%;
+  z-index: 0;
+  transform: skewY(5deg);
+  background-attachment: fixed;
+}
+
+// Carousel card
+.indexCarousel .CarouselItem {
+  width: 101rem;
+  height: 56.813rem;
+}
+// img of Carousel card content
+.indexCarousel .CarouselItem .MuiPaper-root {
+  width: 101rem;
+  height: 56.813rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+// img 實體
+.indexCarousel .CarouselItem .MuiPaper-root img {
+  width: 100%;
+  // height: 100%; //設了會容易爆版蓋掉 carousel dot
+}
+
+// Carousel info p
+.indexCarousel .CarouselItem .MuiPaper-root p::before {
+  content: '';
+  position: absolute;
+  width: 53rem;
+  height: 13rem;
+  border-radius: 0 10px 10px 0;
+  background-color: rgba($color: #232d2f, $alpha: 0.1);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  z-index: -1;
+}
+.indexCarousel .CarouselItem .MuiPaper-root p {
+  width: 53rem;
+  height: 13rem;
+  background-color: rgba($color: #232d2f, $alpha: 0.2);
+  border-radius: 0 10px 10px 0;
+  position: absolute;
+  top: 70%;
+  z-index: 1;
+  color: #f8f8f8;
+  font-size: 3.5rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+// Carousel Btn
+.indexCarousel .CarouselItem .MuiPaper-root button {
+  width: 32.938rem;
+  height: 7.188rem;
+  border-radius: 58px;
+  background-color: #f8f8f8;
+  position: absolute;
+  bottom: 3rem;
+  right: 8rem;
+  z-index: 10;
+}
+
+// .indexCarousel .CarouselItem .MuiPaper-root button::after {
+//   content: '';
+//   position: absolute;
+//   z-index: -1;
+//   width: 32.938rem;
+//   height: 7.188rem;
+//   border-radius: 58px;
+//   background-color: red;
+//   left: -2%;
+//   bottom: -5%;
+// }
+.indexCarousel
+  .CarouselItem
+  .MuiPaper-root
+  .MuiButtonBase-root
+  .MuiButton-label {
+  font-size: 3rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.indexCarousel .CarouselItem .MuiPaper-root .MuiButtonBase-root .clickLabel {
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.9;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #2690df;
+  position: absolute;
+  right: 10%;
+  top: 75%;
+}
+////////////////////////////////////Carosel END//////////////////////////////////////
+////////////////////////////////////InfoPage START//////////////////////////////////////
+.indexInfoPage {
+  width: 100%;
+  height: 92.875rem;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  position: relative;
+}
+.indexInfoPage .infoPagePic1 {
+  width: 41.25rem;
+  height: 36.25rem;
+  position: absolute;
+  left: 15%;
+  top: 0;
+  z-index: 0;
+}
+.indexInfoPage .infoPagePic1::after {
+  content: '';
+  width: 41.5rem;
+  height: 36.188rem;
+  border-radius: 5px;
+  border: solid 1px #f8f8f8;
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  z-index: 1;
+}
+// size 660*580
+.indexInfoPage .infoPagePic1 img {
+  border-radius: 5px;
+}
+.indexInfoPage .infoPagePic2 {
+  widows: 48.75rem;
+  height: 32.5rem;
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  z-index: 0;
+}
+.indexInfoPage .infoPagePic2::after {
+  content: '';
+  width: 48.75rem;
+  height: 32.75rem;
+  border-radius: 5px;
+  border: solid 1px #f8f8f8;
+  position: absolute;
+  right: 5%;
+  bottom: -7%;
+  z-index: -1;
+}
+
+// size 780*520
+.indexInfoPage .infoPagePic2 img {
+  border-radius: 5px;
+}
+.indexInfoPage .infoPageText1 {
+  width: 34.25rem;
+  height: 34.125rem;
+  border-radius: 5px;
+  border: solid 1px #1cace7;
+  background-color: rgba(28, 172, 231, 0.2);
+  position: absolute;
+  right: 10%;
+  top: 13%;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox {
+  padding: 20% 10% 10% 10%;
+}
+
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoSubTitle {
+  font-size: 2.063rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 1.65px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoTitle {
+  font-size: 3.125rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 2.5px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoParagraph {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.22;
+  letter-spacing: 0.45px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.indexInfoPage .infoPageText2 {
+  width: 29.063rem;
+  height: 35.938rem;
+  border-radius: 5px;
+  border: solid 1px #ab4fed;
+  background-color: rgba(171, 79, 237, 0.2);
+  position: absolute;
+  left: 15%;
+  bottom: 12%;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox {
+  padding: 30% 10% 10% 10%;
+}
+
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoSubTitle {
+  font-size: 2.063rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 1.65px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoTitle {
+  font-size: 3.125rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 2.5px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoParagraph {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.22;
+  letter-spacing: 0.45px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+////////////////////////////////////InfoPage END//////////////////////////////////////
+////////////////////////////////////MSG BOARD START//////////////////////////////////////
+//msg Board
+// .cmtArea {
+//   /* border: 1px solid black; */
+//   margin: 0px;
+//   padding: 0px;
+//   width: 35rem;
+// }
+
+// .cmtArea.container {
+//   background-color: $secondary;
+// }
+
+// .cmtArea .cmtBoxArea {
+//   width: 100%;
+//   /* min-height: 8.125rem; */
+//   border-bottom: 1px solid #909393;
+// }
+
+// .cmtModule,
+// .cmtModuleHead {
+//   margin: 0px;
+//   padding: 0px;
+//   width: 100%;
+//   /* border: 1px solid black; */
+// }
+// .cmtModuleHead {
+//   margin: 0px 0px 1.875rem 0px;
+//   padding: 0px;
+//   width: 100%;
+//   height: 2.5rem;
+// }
+// .cmtModuleHead h5 {
+//   margin: 0px;
+//   padding: 0px;
+//   font-size: 1.75rem;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.46;
+//   letter-spacing: normal;
+//   text-align: left;
+// }
+// .cmtModuleHead span {
+//   font-size: 1.125rem;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.11;
+//   letter-spacing: normal;
+//   opacity: 0.5;
+// }
+
+// .writeBox {
+//   position: relative;
+// }
+
+// .writeCmt {
+//   position: relative;
+// }
+
+// .writeCmt textarea {
+//   width: 33rem;
+//   height: 5.875rem;
+//   border-radius: 5px;
+//   background-color: #909393;
+//   resize: none;
+//   outline: none;
+//   border: none;
+//   position: relative;
+// }
+
+// .cmtSendBox {
+//   position: absolute;
+//   left: 31.69rem;
+//   top: 1.7rem;
+// }
+
+// .cmtSendBtn {
+//   margin: 0px;
+//   padding: 0px;
+//   width: 2.5rem;
+//   height: 2.5rem;
+//   border: 0px;
+//   background-color: #ffffff;
+//   border-radius: 50%;
+// }
+
+// .writeCmt label {
+//   position: absolute;
+//   top: 2rem;
+//   left: 1.75rem;
+// }
+
+// .cmtSortOption {
+//   width: 100%;
+//   height: 4.5rem;
+//   border-bottom: 1px solid #909393;
+// }
+
+// .cmtSortOption ul,
+// .cmtContainer ul {
+//   margin-block-start: 0px;
+//   margin-block-end: 0px;
+//   margin-inline-start: 0px;
+//   margin-inline-end: 0px;
+//   padding-inline-start: 0px;
+// }
+
+// .cmtSortOption ul li {
+//   display: inline-block;
+//   font-size: 1.125rem;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+// }
+
+// .cmtBoxArea .cmtInfo {
+//   width: 100%;
+//   /* height: 1.688rem; */
+//   padding-top: 1.375rem;
+//   padding-bottom: 0.938rem;
+// }
+
+// /* .cmtBoxArea .cmtTextWrap {
+//   margin-bottom: 0.938rem;
+// } */
+
+// .cmtBoxArea .cmtTools {
+//   padding-top: 0.938rem;
+//   padding-bottom: 0.2rem;
+// }
+
+// .userHeadIcon {
+//   width: 1.5rem;
+//   height: 1.5rem;
+//   top: 50%;
+//   left: 50%;
+//   background-size: contain;
+//   border-radius: 50%;
+//   background-image: url(http://0.gravatar.com/avatar/fa4df8540bab3cb38f7dfa60c6e0522c?size=2000);
+//   /* background-image: url(/img/1-2.png); */
+// }
+
+// .cmtNickname {
+//   font-size: 1.125rem;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.11;
+//   letter-spacing: normal;
+//   /* padding-right: 1rem; */
+// }
+
+// .cmtInfoDate {
+//   font-size: 0.75rem;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.67;
+//   letter-spacing: normal;
+//   text-align: left;
+//   color: rgba(255, 255, 255, 0.5);
+//   /* color: rgba(0, 0, 0, 0.87); */
+// }
+
+// .cmtBoxContent {
+//   font-size: 1rem;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.25;
+//   letter-spacing: normal;
+//   text-align: left;
+// }
+
+// .cmtTools span {
+//   font-size: 0.75rem;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.67;
+//   letter-spacing: normal;
+//   text-align: left;
+// }
+
+// .cmtReplyIco {
+//   padding-top: 1.2rem;
+// }
+
+// .cmtReplyIco img {
+//   width: 1.187rem;
+//   height: 0.938rem;
+// }
+
+// .cmtReply {
+//   width: 100%;
+// }
+
+// .cmtBoxReplyArea {
+//   /* height: 7.438rem; */
+//   border-bottom: 1px solid #909393;
+// }
+
+// .cmtBoxReplyArea .cmtInfo {
+//   padding-top: 0.938rem;
+//   padding-bottom: 0.938rem;
+// }
+
+// .cmtBoxReplyArea .cmtTools {
+//   padding-top: 0.938rem;
+// }
+
+// /* 回應按鈕 */
+
+// // .replyBtn {
+// //   padding-right: 1.25rem;
+// //   background-image: url(/img/arrow_drop_down-24px.svg);
+// //   background-position: right bottom;
+// //   background-repeat: no-repeat;
+// // }
+
+// // .replyBtnOn {
+// //   padding-right: 1.25rem;
+// //   background-image: url(/img/arrow_drop_up-24px.svg);
+// //   background-position: right bottom;
+// //   background-repeat: no-repeat;
+// // }
+
+// .replyAccording {
+//   cursor: pointer;
+// }
+
+// .pointAccording {
+//   cursor: pointer;
+// }
+// // icon
+
+// .addBtn {
+//   font-size: 2.5rem;
+//   color: #5b5b5b;
+// }
+
+// .hotBtn,
+// .sortBtn {
+//   font-size: 1.5rem;
+//   color: #ffffff;
+// }
+
+// .cmtToolsBtn {
+//   font-size: 1rem;
+//   color: #ffffff;
+// }
+
+// .replyArrow {
+//   font-size: 1rem;
+//   color: #ffffff;
+// }
+
+// .emptyReplyBox {
+//   margin-bottom: 3em;
+// }
+// ////////////////////////////////////MSG END//////////////////////////////////////
