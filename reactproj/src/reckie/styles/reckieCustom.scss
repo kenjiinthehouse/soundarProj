@@ -182,6 +182,12 @@ input.reSearch:focus {
 }
 
 // -- card start --
+.reHidden {
+  display: none !important;
+}
+.pdContent.demo-content.d-flex.flex-wrap.reHidden {
+  display: none !important;
+}
 
 .pdCard {
   max-width: 20rem;
