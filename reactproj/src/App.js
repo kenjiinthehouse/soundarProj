@@ -54,15 +54,6 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
-              <Route path="/channel_info/:podcaster_id?">
-                <PodcasterDashboardHome />
-              </Route>
-              <Route path="/channel_audio_list/:podcaster_id?">
-                <PodcasterAudioList
-                  globalAudioArry={globalAudioArry}
-                  setGlobalAudioArry={setGlobalAudioArry}
-                />
-              </Route>
               <Route path="/explore_home_page">
                 <ExploreHomePage
                   globalAudioArry={globalAudioArry}
@@ -147,7 +138,10 @@ function App() {
                 <Applymembership />
               </Route>
               <Route path="/memberedit">
-                <Membersidebar />
+                <Membersidebar
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
               </Route>
               <Route path="/audiocollect">
                 <Audiocollection />
