@@ -14,18 +14,26 @@ function InformLoginModal(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Body>
-          <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">請先登入！</h4>
+        <Modal.Body
+          style={{ height: 'auto', padding: '0px' }}
+          className=" text-center"
+        >
+          <div
+            class="alert alert-success"
+            role="alert"
+            style={{ margin: '0px' }}
+          >
+            <h5 class="alert-heading pt-2">請先登入</h5>
             <hr />
-            <p
-              class="my-3"
+            <h5
+              class="alert-heading"
               onClick={() => {
-                props.history.push(`/memberedit`);
+                props.history.push(`/login`);
               }}
+              style={{ cursor: 'pointer' }}
             >
-              前往登入頁面
-            </p>
+              點我前往登入頁面
+            </h5>
           </div>
         </Modal.Body>
       </Modal>

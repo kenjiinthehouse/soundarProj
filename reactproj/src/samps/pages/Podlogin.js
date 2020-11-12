@@ -88,7 +88,7 @@ function Podlogin(props) {
           // console.log('data2', data2)
 
           props.initMember(data2);
-        } catch (error) { }
+        } catch (error) {}
 
         // props.initMember(data.token)
       } else {
@@ -217,19 +217,19 @@ function Podlogin(props) {
                       ></img>
                     </div>
                   ) : (
-                      <div
-                        className="sa-Podlogin-eyes"
-                        onClick={() => {
-                          setEyes(1);
-                        }}
-                      >
-                        <img
-                          className="sa-Podlogin-eyes-img"
-                          src="sa_img/password/invisible.svg"
-                          alt=""
-                        ></img>
-                      </div>
-                    )}
+                    <div
+                      className="sa-Podlogin-eyes"
+                      onClick={() => {
+                        setEyes(1);
+                      }}
+                    >
+                      <img
+                        className="sa-Podlogin-eyes-img"
+                        src="sa_img/password/invisible.svg"
+                        alt=""
+                      ></img>
+                    </div>
+                  )}
                 </div>
                 <div className="sa-Podlogin-forget-password">
                   <Link to="/verify" className="sa-Podlogin-registered-word">
@@ -269,8 +269,6 @@ function Podlogin(props) {
                   <Link
                     to="/applymember"
                     className="sa-Podlogin-registered-word"
-
-
                   >
                     註冊
                   </Link>

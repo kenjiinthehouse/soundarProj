@@ -25,10 +25,10 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .subtitle1 {
   font-size: font(1.375);
 }
-a,
-a:hover {
-  color: #232d2f;
-}
+// a,
+// a:hover {
+//   color: #232d2f;
+// }
 .caption {
   font-size: font(0.75);
 }
@@ -103,19 +103,42 @@ a:hover {
 // -- banner end --
 
 // -- search input start--
-.inputField {
-  min-width: 70rem;
-  height: 4rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.searchContainer {
+  width: 60rem;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
 }
+.searchContainer input.reSearch {
+  width: 60rem;
+  height: 4rem;
+  background: #f8f8f8;
+  border: none;
+  font-size: 1rem;
+  color: #232d2f;
+  padding-left: 45px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+input.reSearch:focus {
+  outline: none;
+  box-shadow: 0 0 1px 1px #707070;
+}
+// .inputField {
+//   min-width: 70rem;
+//   height: 4rem;
+//   border-radius: 5px;
+//   border: 1px solid #ccc;
+//   padding-left: 1rem;
+// }
 
 .searchInput {
   padding-top: 6rem;
 }
 
 .searchBtn {
-  width: 15rem;
+  width: 10rem;
   height: 4rem;
   border-radius: 5px;
   position: absolute;
@@ -188,6 +211,13 @@ a:hover {
   position: relative;
   padding: 0rem;
 }
+
+.cardBody-activity {
+  // text-align: center;
+  height: 9rem;
+  position: relative;
+  padding: 16px 0;
+}
 .pdPrice {
   position: absolute;
   bottom: 0rem;
@@ -208,6 +238,8 @@ a:hover {
 }
 
 // -- card end --
+
+// *** product item ***
 // -- pagination --
 .rePagination {
   margin-bottom: 5.5rem;
