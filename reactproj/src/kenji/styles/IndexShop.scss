@@ -1,0 +1,170 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+.IndexShopPage {
+  width: 100%;
+  height: 110rem;
+  // background-color: #ccc;
+}
+
+.IndexShopPageTitleBox {
+  width: 24rem;
+  height: 4rem;
+  border-radius: 5px;
+  background-color: #2690df;
+  position: relative;
+  margin-left: 13.375rem;
+  margin-bottom: 4rem;
+  z-index: 2;
+}
+.IndexShopPageTitleBox .IndexShopPageTitle {
+  padding: 0px;
+  margin: 0px;
+  width: 9.75rem;
+  // height: 3.563rem;
+  font-size: 2rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2rem;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.IndexShopPage .IndexShopPageInfoBox {
+  width: 100%;
+  height: 26%;
+  background-image: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 10%,
+      rgba(35, 24, 21, 0.4) 100%
+    ),
+    url(../img/IndexShopOrigin.jpg);
+  background-size: 100%; //RWD
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  // opacity: 0.5;
+}
+.IndexShopPage .IndexShopPageInfoBox .InfoContent {
+  width: 26rem;
+  height: 26em;
+  // background-color: rgba($color: #232d2f, $alpha: 0.4);
+}
+
+.IndexShopPage .IndexShopPageInfoBox .InfoContent .InfoContentTitle {
+  width: 25rem;
+  height: 4rem;
+  font-size: 2rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2rem;
+  letter-spacing: normal;
+  text-align: center;
+  color: #f8f8f8;
+}
+
+.IndexShopPage .IndexShopPageInfoBox .InfoContent .InfoContentText1,
+.IndexShopPage .IndexShopPageInfoBox .InfoContent .InfoContentText2 {
+  width: 100%;
+  // height: 8rem;
+  margin: 0;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.IndexShopPage .IndexShopPageInfoBox .InfoContent button {
+  width: 12.5rem;
+  height: 3rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: solid 1px #f8f8f8;
+  background-color: #2690df;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.IndexShopPage .StoreTitlePodcaster .StoreTitleTag,
+.IndexShopPage .StoreTitleProduct .StoreTitleTag {
+  margin: 0;
+  width: 12rem;
+  height: 4rem;
+  font-size: 2rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 4rem;
+  letter-spacing: normal;
+  text-align: center;
+  color: #f8f8f8;
+  margin: 2rem 0rem 2rem 8rem;
+  // margin-left: 8rem;
+  // margin-bottom: 2rem;
+  // margin-top: 2rem;
+}
+.IndexShopPage .StoreTitlePodcaster .StoreTitleTag::before,
+.IndexShopPage .StoreTitleProduct .StoreTitleTag::before {
+  content: '\00A0\00A0';
+  width: 2rem;
+  height: 4rem;
+  margin-right: 1rem;
+  background-color: #2690df;
+}
+
+.IndexShopPage .StoreTitlePodcaster .StoreMoreTag,
+.IndexShopPage .StoreTitleProduct .StoreMoreTag {
+  width: 12rem;
+  height: 4rem;
+  margin: 2rem 8rem 2rem 0rem;
+  // margin-right: 8rem;
+}
+
+.IndexShopPage .StoreTitlePodcaster button,
+.IndexShopPage .StoreTitleProduct button {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #f8f8f8;
+}
+.IndexShopPage .StoreTitlePodcaster button span,
+.IndexShopPage .StoreTitleProduct button span {
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+.IndexShopPage .StoreTitlePodcaster button svg,
+.IndexShopPage .StoreTitleProduct button svg {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.IndexShopPage .StorePodcasterCardGroup,
+.IndexShopPage .StoreProductCardGroup {
+  justify-content: space-evenly;
+  margin: 0rem 8rem 0 8rem;
+}

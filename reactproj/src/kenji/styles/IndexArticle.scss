@@ -1,0 +1,166 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+.IndexArticlePage {
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+
+.IndexArticleTitleBox {
+  width: 24rem;
+  height: 4rem;
+  border-radius: 5px;
+  background-color: #2690df;
+  position: relative;
+  margin-left: 13.375rem;
+  margin-bottom: 4rem;
+  z-index: 2;
+}
+.IndexArticleTitleBox .IndexArticleTitle {
+  padding: 0px;
+  margin: 0px;
+  width: 15rem;
+  // height: 3.563rem;
+  font-size: 2rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2rem;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+// Carousel content
+.ArticleCarousel {
+  width: 75rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  z-index: 1;
+}
+// .indexColorCard {
+//   width: 100%;
+//   height: 50rem;
+//   background-color: #0e4065;
+//   position: absolute;
+//   left: 0;
+//   top: 15%;
+//   z-index: 0;
+//   transform: skewY(5deg);
+//   background-attachment: fixed;
+// }
+
+// Carousel card
+.ArticleCarousel .CarouselItem {
+  width: 100%;
+  // height: 56.813rem;
+}
+// img of Carousel card content
+.ArticleCarousel .CarouselItem .MuiPaper-root {
+  width: 100%;
+  // height: 56.813rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+// img 實體
+.ArticleCarousel .CarouselItem .MuiPaper-root img {
+  width: 100%;
+  // height: 100%; //設了會容易爆版蓋掉 carousel dot
+}
+
+// Carousel info p
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleInfoBox {
+  width: 25rem;
+  height: 21rem;
+  // background-color: rgba($color: #232d2f, $alpha: 1);
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  z-index: 1;
+  color: #f8f8f8;
+  text-overflow: ellipsis;
+}
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleInfoBox .articleDiver {
+  border-top: #f8f8f8 1px solid;
+  margin: 1rem;
+}
+
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleTitle {
+  color: #f8f8f8;
+}
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleSubtitle {
+  color: #f8f8f8;
+}
+
+.ArticleCarousel .CarouselItem .MuiPaper-root p {
+  width: 85%;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 2px;
+  text-align: left;
+  color: #f8f8f8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
+
+// Carousel Btn
+.ArticleCarousel .CarouselItem .MuiPaper-root button {
+  // // width: 32.938rem;
+  // // height: 7.188rem;
+  // // border-radius: 58px;
+  // background-color: #f8f8f8;
+  position: absolute;
+  right: 15%;
+  bottom: 0%;
+
+  z-index: 10;
+}
+
+.ArticleCarousel
+  .CarouselItem
+  .MuiPaper-root
+  .MuiButtonBase-root
+  .MuiButton-label {
+  color: #f8f8f8;
+  // font-size: 3rem;
+  // font-weight: 500;
+  // font-stretch: normal;
+  // font-style: normal;
+  // line-height: 1.5;
+  // letter-spacing: normal;
+}
+.ArticleCarousel .CarouselItem .MuiPaper-root .MuiButtonBase-root .clickLabel {
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.9;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #2690df;
+  position: absolute;
+  right: 10%;
+  top: 75%;
+}
+.MuiPaper-root .ArticlePaperColorCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.MuiPaper-root .ArticlePaperColorCard .slide__overlay {
+  // position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50%;
+  min-height: 43.75rem;
+}

@@ -1,0 +1,81 @@
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+// 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
+html body {
+  // background-color: #232d2f !important;
+  // color: #ffffff;
+  cursor: default;
+}
+
+//Nav
+.ant-layout-header {
+  color: #fff;
+  background: rgba($color: #232d2f, $alpha: 0.95);
+  min-width: 100%;
+  min-height: 3rem;
+  // padding: 0px;
+  border-bottom: 1px solid rgba($color: #f8f8f8, $alpha: 0.1);
+  position: fixed;
+  z-index: 10;
+}
+.ant-layout-footer {
+  line-height: 1.5;
+}
+.ant-layout-content {
+  color: #ffffff;
+  background: #434343;
+}
+//垂直分隔線
+.diverVertical {
+  display: inline-block;
+  height: 2.5rem;
+  vertical-align: middle;
+  border-left: 1px solid #ffffff;
+  padding: 0px;
+}
+header .MuiButton-label,
+header .MuiIconButton-label {
+  color: #ffffff;
+}
+ul,
+li {
+  list-style: none;
+}
+
+a,
+a:active,
+a:focus,
+a:hover {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+@media (min-width: 1000px) {
+  .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
+    display: none !important;
+  }
+  Header .navBarLogInBtn {
+    display: none !important;
+  }
+}
+@media (max-width: 1000px) {
+  Header .navBarBtn {
+    display: none !important;
+  }
+}
+.MuiList-padding {
+  background-color: #232d2f;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+  padding: 0px;
+}
+
+.logo {
+  float: left;
+  width: 7.875rem;
+  height: 2.125rem;
+  margin: 1rem 0 1rem 0;
+  background-image: url(../img/logofordark.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
