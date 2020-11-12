@@ -7,14 +7,20 @@ import Memberedit from '../components/Memberedit'
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 05bd14d... 首頁搬移完成
 //活動訂單
 <<<<<<< HEAD
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
+<<<<<<< HEAD
 =======
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder';
 >>>>>>> d89c774... 完成未登入提示
 =======
 >>>>>>> ce68bab... 結合會員與播客後台
+=======
+>>>>>>> 05bd14d... 首頁搬移完成
 //page7
 import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome';
 //page8

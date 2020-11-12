@@ -115,7 +115,7 @@ function App() {
 >>>>>>> ce68bab... 結合會員與播客後台
 =======
               <Route exact path="/">
-                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%' }}>
+                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%',paddingBottom:'4rem'}}>
                   <IndexCarousel />
                   <IndexInfo />
                   <IndexChannel />
