@@ -12,13 +12,8 @@ const pool = mysql2.createPool({
 
   // kenji
   host: "localhost",
-<<<<<<< HEAD
-  user: "chieh",
-  password: "chieh",
-=======
   user: "root",
   password: "",
->>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
   database: "mfee09_project",
   waitForConnections: true,
   connectionLimit: 10,
