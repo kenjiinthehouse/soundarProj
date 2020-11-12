@@ -1,11 +1,6 @@
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
-html body {
-  // background-color: #232d2f !important;
-  // color: #ffffff;
-  cursor: default;
-}
 
 //Nav
 .ant-layout-header {
@@ -77,4 +72,9 @@ a:hover {
   background-image: url(http://localhost:3000/k_img/logofordark.svg);
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.ant-layout-header .navBarBtn button {
+  outline: none;
 }
