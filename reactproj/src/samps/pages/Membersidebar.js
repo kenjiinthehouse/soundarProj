@@ -23,7 +23,7 @@ function Membersidebar(props) {
         <div className="container">
           <div className="row">
             <div className="sa-Memberedit-area d-flex">     
-              <div className="side-bar-container col-3">
+              <div className="side-bar-container col-3 pr-4">
                 <div className="side-bar-member-area">
                   <div className="side-bar-member-title">
                     <img
