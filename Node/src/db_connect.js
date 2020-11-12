@@ -2,22 +2,14 @@ require("dotenv").config();
 const mysql2 = require("mysql2");
 
 const pool = mysql2.createPool({
-  host: "localhost",
-  user: "jl55661688",
-  password: "iouccc19931107",
-  database: "mfee09_project",
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-
-  //reckie
   // host: "localhost",
-  // user: "root",
-  // password: "",
+  // user: "jl55661688",
+  // password: "iouccc19931107",
   // database: "mfee09_project",
   // waitForConnections: true,
   // connectionLimit: 10,
   // queueLimit: 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   // kenji
@@ -55,6 +47,17 @@ const pool = mysql2.createPool({
   // queueLimit: 0,
 =======
 >>>>>>> 8cedc1b... 新增product api 搜尋、排序、篩選、分類
+=======
+
+  //reckie
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "mfee09_project",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+>>>>>>> 4f4744f... 新增product 篩選搜尋分類 react
 });
 
 // const pool = mysql2.createPool({
