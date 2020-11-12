@@ -24,10 +24,10 @@ import Cart from './ruby/ruby_pages/CartPage.js';
 import Checkout from './ruby/ruby_pages/CheckoutPage.js';
 import Orderlist from './ruby/ruby_pages/OrderPage.js';
 import ActivityMain from './chieh/ch_pages/ActivityMain';
-import ActivityCart from './chieh/ch_pages/ActivityCart';
+// import ActivityCart from './chieh/ch_pages/ActivityCart';
 import ActivityOrder from './chieh/ch_pages/ActivityOrder';
 import StudioMain from './chieh/ch_pages/StudioMain';
-import Payment from './chieh/ch_pages/Payment';
+// import Payment from './chieh/ch_pages/Payment';
 import Applymembership from './samps/pages/Applymembership';
 import Audiocollection from './samps/pages/Audiocollection';
 import Channelcollection from './samps/pages/Channelcollection';
@@ -113,18 +113,18 @@ function App() {
               <Route path="/activitymain">
                 <ActivityMain />
               </Route>
-              <Route path="/activitycart">
+              {/* <Route path="/activitycart">
                 <ActivityCart />
-              </Route>
+              </Route> */}
               <Route path="/activityorder">
                 <ActivityOrder />
               </Route>
               <Route path="/studiomain">
                 <StudioMain />
               </Route>
-              <Route path="/payment">
+              {/* <Route path="/payment">
                 <Payment />
-              </Route>
+              </Route> */}
               <Route path="/login">
                 <Podlogin />
               </Route>
