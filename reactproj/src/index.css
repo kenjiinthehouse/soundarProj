@@ -3,17 +3,18 @@
 //引入字型
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-//定義字形 & rem
-* {
-  font-size: 16px;
-  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+html body {
+  //更改全域滑鼠箭頭指標
+  cursor: default;
 }
-
+//  1rem=16px
+html {
+  font-size: 16px;
+}
+// font-size
 body {
   margin: 0;
-  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  //   sans-serif;
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,4 +26,9 @@ main {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+// 除去點擊 button 時的外框
+button {
+  outline: none !important;
 }
