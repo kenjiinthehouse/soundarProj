@@ -20,7 +20,7 @@ router.post("/audio_collection", async (req, res) => {
   const sid = req.body.sid;
 
   const sql =
-    "SELECT a.`member_id` AS sid ,a.`audio_id` ,a.`created_at`,b.audio_file AS musicSrc,b.audio_title AS name,b.podcaster_id,c.channel_title AS singer,c.podcaster_img AS cover ,c.channel_catagory FROM `audio_collection` AS a LEFT JOIN podcast_audio AS b ON a.`audio_id`=b.sid LEFT JOIN podcast_channel_info AS c ON b.podcaster_id=c.podcaster_id WHERE a.`member_id`=? ORDER BY `created_at` DESC";
+    "SELECT a.`member_id` AS sid ,a.`audio_id` ,a.`created_at`,b.audio_file AS musicSrc,b.audio_title AS name,c.channel_title AS singer,c.podcaster_img AS cover FROM `audio_collection` AS a LEFT JOIN podcast_audio AS b ON a.`audio_id`=b.sid LEFT JOIN podcast_channel_info AS c ON b.podcaster_id=c.podcaster_id WHERE a.`member_id`=? ORDER BY `created_at` DESC";
   const [rs] = await db.query(sql, [sid]);
 
   output.rs = [...rs];
@@ -65,8 +65,7 @@ router.post("/channel_collection", async (req, res) => {
     success: false,
     message: "",
   };
-  // const sql =
-  //   "SELECT a.`member_id`,a.`channel_id`,b.channel_title,b.podcaster_img as channel_img FROM `channel_collection` as a LEFT JOIN podcast_channel_info as b on a.`channel_id`=b.sid WHERE `member_id`=?";
+
   const sql =
     "SELECT a.`member_id`,a.`channel_id`,b.channel_title,b.podcaster_img as channel_img ,b.channel_catagory FROM `channel_collection` as a LEFT JOIN podcast_channel_info as b on a.`channel_id`=b.sid WHERE `member_id`=?";
 
@@ -142,6 +141,7 @@ router.post("/download", async (req, res) => {
   res.json(output);
 });
 
+//用於節目收藏愛心顯示
 router.post("/collect", multer().none(), async (req, res) => {
   const output = {
     body: req.body,
@@ -164,6 +164,37 @@ router.post("/collect", multer().none(), async (req, res) => {
 
   output.rs.map((item, index) => {
     newrs.push(item.audio_id);
+  });
+
+  output.rs = newrs;
+
+  res.json(output);
+});
+
+//channel追蹤顯示array
+router.post("/channel_array", async (req, res) => {
+  const output = {
+    body: req.body,
+    success: false,
+    name: "",
+  };
+
+  const sid = req.body.sid;
+
+  const sql =
+    "SELECT `channel_id` FROM `channel_collection` WHERE `member_id`= ?";
+
+  const [rs] = await db.query(sql, [sid]);
+
+  if (rs.length) {
+    output.success = true;
+  }
+  output.rs = [...rs];
+
+  const newrs = [];
+
+  output.rs.map((item, index) => {
+    newrs.push(item.channel_id);
   });
 
   output.rs = newrs;
