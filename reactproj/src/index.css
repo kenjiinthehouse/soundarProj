@@ -10,7 +10,7 @@ html {
 // font-size
 body {
   margin: 0;
-  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
