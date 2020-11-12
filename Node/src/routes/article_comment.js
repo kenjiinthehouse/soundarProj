@@ -1,33 +1,32 @@
-const express = require('express');
+// const express = require('express');
 // const db = require(__dirname + '/../db_connect');
-const db = require(__dirname + '/../db_connect2');
-const moment = require('moment-timezone');
-const jwt = require('jsonwebtoken');
-const router = express.Router();
+// const moment = require('moment-timezone');
+// const jwt = require('jsonwebtoken');
+// const router = express.Router();
 
-//article-comment list 
-// router.get('/', (req, res) => {
-//     res.redirect('/comment');
-// });
+// //article-comment list 
+// // router.get('/', (req, res) => {
+// //     res.redirect('/comment');
+// // });
 
-//article-comment api
-async function getCommentListData(req) {
-    const output = {
-        page: 0,
-        perPage: 5,
-        totalRows:0,
-        totalPages:0,
-        rows: [],
-        pages:[]
-    }
+// //article-comment api
+// async function getCommentListData(req) {
+//     const output = {
+//         page: 0,
+//         perPage: 5,
+//         totalRows:0,
+//         totalPages:0,
+//         rows: [],
+//         pages:[]
+//     }
 
-    //first-deal with rows/pages
-    const article_sid = req.params.a_sid;
-    const parent_sid = req.params.p_sid;
-    // console.log(article_sid);
-    // 對應文章的留言(totoalRows) 留言+回覆總數量
-    let t_totalRows = `SELECT COUNT(1) totalRows FROM article_comment WHERE (article_sid = ${article_sid}) `;
-    // parent_sid ? (t_totalRows += ` AND (parentId = ${parent_sid})`): t_totalRows;
+//     //first-deal with rows/pages
+//     const article_sid = req.params.a_sid;
+//     const parent_sid = req.params.p_sid;
+//     // console.log(article_sid);
+//     // 對應文章的留言(totoalRows) 留言+回覆總數量
+//     let t_totalRows = `SELECT COUNT(1) totalRows FROM article_comment WHERE (article_sid = ${article_sid}) `;
+//     // parent_sid ? (t_totalRows += ` AND (parentId = ${parent_sid})`): t_totalRows;
     
 //     const [[{ totalRows }]] = await db.query(t_totalRows);
 //     // console.log(totalRows);
