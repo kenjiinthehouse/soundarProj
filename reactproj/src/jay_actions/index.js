@@ -279,3 +279,38 @@ export const initMemberAudioCollectionAsync = (sid) => {
     dispatch(initMemberAudioCollection(data.rs));
   };
 };
+
+//update collection
+export const addCollection = (member_sid, audio_sid) => {
+  return async function sendData(dispatch) {
+    const url = `http://localhost:5566/member_collection/add_audio`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ sid: member_sid, audio_id: audio_sid }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+  };
+};
+
+export const delCollection = (member_sid, audio_sid) => {
+  return async function sendData(dispatch) {
+    const url = `http://localhost:5566/member_collection/delete_audio`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ sid: member_sid, audio_id: audio_sid }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+  };
+};

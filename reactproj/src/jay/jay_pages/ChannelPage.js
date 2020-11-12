@@ -8,6 +8,8 @@ import {
   initalDashboardAsync,
   initalRateModalAsync,
   initMemberAudioCollectionAsync,
+  addCollection,
+  delCollection,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -389,9 +391,26 @@ function ChannelPage(props) {
                           .querySelector('.mh14')
                           .classList.remove('mh15');
                       }}
-                      onClick={() => {
+                      onClick={async () => {
                         if (props.member.sid) {
-                          console.log('ok');
+                          //寫回資料庫
+                          if (props.audioCollection.indexOf(item.sid) === -1) {
+                            await props.addCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberAudioCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            await props.delCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberAudioCollectionAsync(
+                              props.member.sid
+                            );
+                          }
                         } else {
                           console.log('no');
                         }
@@ -457,5 +476,7 @@ export default withRouter(
     initalDashboardAsync,
     initalRateModalAsync,
     initMemberAudioCollectionAsync,
+    addCollection,
+    delCollection,
   })(ChannelPage)
 );
