@@ -123,10 +123,8 @@ function ActivityOrder(props){
             <Tab eventKey="unfinished" title="未完成">               
             </Tab>
             <Tab eventKey="cancel" title="已取消">
-                <OpenOrder />
             </Tab>
             <Tab eventKey="refund" title="退票紀錄">
-                <OpenOrder />
             </Tab>
           </Tabs>
         );
