@@ -8,6 +8,10 @@ import PdSideBar2 from './PdSideBar2'
 import PdContent from './PdContent/PdContent'
 import Breadcrumb from '../Breadcrumb'
 
+//活動、錄音室
+import AcContent from './PdContent/AcContent';
+import StudioContent from './PdContent/StudioContent';
+
 
 
 
@@ -150,10 +154,19 @@ function TabBar(props) {
           viewFilter={viewFilter}
           setViewFilter={setViewFilter}
           />
-          <PdContent 
+          {/* <PdContent 
           {...props}
           viewFilter={viewFilter}
-          />
+          /> */}
+
+          {/* 活動 */}
+          {/* <AcContent 
+            viewFilter={viewFilter}
+          /> */}
+
+          {/* 錄音室 */}
+          <StudioContent viewFilter={viewFilter}/>
+
         </div>
         
       </TabPanel>
