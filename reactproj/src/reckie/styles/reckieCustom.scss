@@ -36,11 +36,6 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .dark {
   color: $Dark;
 }
-<<<<<<< HEAD
-
-// btn
-=======
->>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
 .light {
   color: $Light;
 }
@@ -216,7 +211,6 @@ input.reSearch:focus {
   position: relative;
   padding: 0rem;
 }
-<<<<<<< HEAD
 
 .cardBody-activity {
   // text-align: center;
@@ -224,15 +218,9 @@ input.reSearch:focus {
   position: relative;
   padding: 16px 0;
 }
-
-.pdPrice {
-  position: absolute;
-  bottom: -0.5rem;
-=======
 .pdPrice {
   position: absolute;
   bottom: 0rem;
->>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
   left: 50%;
   transform: translateX(-50%);
 }
@@ -245,26 +233,17 @@ input.reSearch:focus {
 }
 .addCartBtn {
   width: 100%;
-<<<<<<< HEAD
-  border-radius: 40px;
-=======
   border-radius: 40px !important;
->>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
   margin: 0.75rem auto 0rem;
 }
 
 // -- card end --
-<<<<<<< HEAD
-
-// *** product item ***
-=======
 // -- pagination --
 .rePagination {
   margin-bottom: 5.5rem;
 }
 
 // *** product Detail ***
->>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
 // -- product top start--
 .re-spinnerArea {
   position: relative;
@@ -304,11 +283,7 @@ input.reSearch:focus {
   outline: none;
 }
 .rec.rec-arrow:hover {
-<<<<<<< HEAD
-  background-color: $primary;
-=======
   background-color: #2690df;
->>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
 }
 .rec.rec-arrow:disabled {
   visibility: hidden;
@@ -338,10 +313,7 @@ input.reSearch:focus {
   width: 100%;
   height: 3rem;
   // margin-top: 4rem;
-<<<<<<< HEAD
-=======
   z-index: 1;
->>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
 }
 .re-tabs {
   width: 32rem;
@@ -368,11 +340,7 @@ input.reSearch:focus {
   width: 10rem;
   animation: tabExpend 0.2s ease-out;
   height: 4px;
-<<<<<<< HEAD
-  background-color: $primary;
-=======
   background-color: #2690df;
->>>>>>> b33d3d261c945749dc6a8e3a9e1707b772614626
   position: absolute;
   bottom: -1px;
   left: 50%;
