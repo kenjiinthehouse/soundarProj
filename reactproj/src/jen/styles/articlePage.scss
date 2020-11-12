@@ -54,9 +54,12 @@
   }
 
   .article-page-category {
-    padding-bottom: 2.531rem;
+    padding-bottom: 1rem;
     border-bottom: solid 1px #707070;
-    .span-font {
+    display: flex;
+    align-items: baseline;
+
+    .span-category {
       font-size: 1.2rem;
       font-weight: 500;
     }
@@ -65,6 +68,9 @@
     }
     a:hover {
       color: #707070;
+    }
+    .span-clicks {
+      font-size: 0.8rem;
     }
   }
 

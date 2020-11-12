@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 //icons
 import { FaTags, FaHotjar, FaCaretRight, FaPencilAlt } from 'react-icons/fa';
 import { MdAutorenew } from 'react-icons/md';
+import { TiArrowSortedUp } from 'react-icons/ti';
 //components
 import ArticleCarousel from './../components/ArticleCarousel';
 import Searchbar from './../components/Searchbar';
 // import ClickToTop from './../components/ClickToTop'
+import ScrollToTop from 'react-scroll-to-top';
 import Pagination from './../components/Pagination';
 //actions
 import { getArticleList, getArticleListAsync } from '../actions/index';
@@ -46,6 +48,19 @@ function ArticleHome(props) {
   return (
     <div className="article-body">
       {/* <ClickToTop /> */}
+      <ScrollToTop
+        smooth
+        style={{
+          bottom: '120px',
+          right: '80px',
+          borderRadius: '50%',
+          outline: 'none',
+          opacity: '0.75',
+        }}
+        component={
+          <TiArrowSortedUp style={{ fontSize: '1.8rem', color: '#000000' }} />
+        }
+      />
       <ArticleCarousel />
       <div className="article-container mx-auto">
         <nav aria-label="breadcrumb" className="article-breadcrumb">
@@ -308,11 +323,15 @@ function ArticleHome(props) {
                     </h4>
                   </div>
                   <div className="article-card-img">
-                    <img
+                    <Link to={'/articlePage/' + item.sid} setTags={setTags}>
+                   
+                      <img
                       // src="http://localhost:3000/img/article02.jpg"
                       src={item.article_img_url}
                       alt="..."
                     />
+                    </Link>
+                   
                   </div>
                   <div className="article-card-body card-body">
                     <h5 className="article-card-title">
@@ -328,8 +347,8 @@ function ArticleHome(props) {
                         onClick={() => {
                           setCategory(`${item.article_category}`);
                         }}
-                      >
-                        {item.article_category}
+                      ><a>
+                        {item.article_category}</a>
                       </span>
                       {/* tags原為字串,需變成陣列才map至各個span中 */}
                       {item.article_tags.split(',').map((tag, index) => {

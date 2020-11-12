@@ -9,13 +9,13 @@ function ArticleCarousel(props) {
           <div className="carousel-img">
             <img
               className="d-block"
-              src="http://localhost:3000/img/article08.jpg"
+              src="http://localhost:3000/img/article13.jpg"
               alt="Third slide"
             />
             <div className="carousel-hearder-bg"></div>
           </div>
           <Carousel.Caption>
-            <h1>為何唱片公司要投入 Podcast？Sony 的內容策略？</h1>
+            <h1>Podcast 產業的成長期 — 平台與創作者策略</h1>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={2000} fade="true" slide="true">
@@ -35,13 +35,13 @@ function ArticleCarousel(props) {
           <div className="carousel-img">
             <img
               className="d-block"
-              src="http://localhost:3000/img/article02.jpg"
+              src="http://localhost:3000/img/article08.jpg"
               alt="First slide"
             />
             <div className="carousel-hearder-bg"></div>
           </div>
           <Carousel.Caption>
-            <h1>Podcast新手入門：為什麼要聽、用什麼聽，以及有哪些好節目</h1>
+            <h1>為何唱片公司要投入 Podcast？Sony 的內容策略⁣</h1>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

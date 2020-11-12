@@ -5,10 +5,12 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 //icons
 import { FaPencilAlt, FaCaretRight } from 'react-icons/fa';
+import { TiArrowSortedUp } from 'react-icons/ti';
 //components
 import ArticleCarousel from './../components/ArticleCarousel';
 import ArticleComment from './../components/ArticleComment';
 // import ClickToTop from './../components/ClickToTop'
+import ScrollToTop from 'react-scroll-to-top';
 import ArticlePagePreAndNext from './../components/ArticlePagePreAndNext';
 //actions
 import {
@@ -40,7 +42,19 @@ function ArticlePage(props) {
   }, [sid]);
   return (
     <div className="article-body">
-      {' '}
+      <ScrollToTop
+        smooth
+        style={{
+          bottom: '120px',
+          right: '80px',
+          borderRadius: '50%',
+          outline: 'none',
+          opacity: '0.75',
+        }}
+        component={
+          <TiArrowSortedUp style={{ fontSize: '1.8rem', color: '#000000' }} />
+        }
+      />
       <ArticleCarousel />
       <div className="article-container mx-auto">
         <nav aria-label="breadcrumb" className="article-breadcrumb">
@@ -111,11 +125,11 @@ function ArticlePage(props) {
             >
               <p>{props.articleDetailData.article_content}</p>
             </div>
-            <div className="article-page-category d-flex align-content-center">
-              <span className="span-font mr-1">專欄分類：</span>
+            <div className="article-page-category">
+              <span className="span-category mr-1">專欄分類：</span>
               <Link to={{ pathname: '/article' }}>
                 <span
-                  className="span-font mr-5"
+                  className="span-category mr-5"
                   onClick={() => {
                     props.setCategory(
                       `${props.articleDetailData.article_category}`
@@ -125,7 +139,7 @@ function ArticlePage(props) {
                   {props.articleDetailData.article_category}
                 </span>
               </Link>
-              <span className="span-font mr-1">標籤分類：</span>
+              <span className="span-category mr-1">標籤分類：</span>
               {/* tags經過處理後,字串化並變成陣列才map至各個span中 */}
               {articleTagsArray.map((tag, index) => {
                 return (
@@ -148,12 +162,18 @@ function ArticlePage(props) {
                   </span>
                 );
               })}
+              <span
+                className="span-clicks ml-auto"
+              >
+                瀏覽次數：
+                {props.articleDetailData.article_clicks}
+              </span>
             </div>
             <ArticlePagePreAndNext
               sid={sid}
               setSid={setSid}
-              articleDetailData
-              ={props.articleDetailData}/>
+              articleDetailData={props.articleDetailData}
+            />
           </div>
         </div>
         <ArticleComment />

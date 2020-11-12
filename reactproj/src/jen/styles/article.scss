@@ -23,7 +23,9 @@
   }
   .carousel {
     padding-top: 1rem; //留Navbar空隙
-
+    ol {
+      justify-content: flex-start;
+    }
     li {
       width: 10px;
       height: 10px;
@@ -39,7 +41,7 @@
         position: absolute;
         height: 200%;
         object-fit: cover;
-        filter:blur(1px);
+        filter: blur(1px);
       }
     }
 
@@ -47,8 +49,8 @@
       position: absolute;
       width: 38rem;
       height: 14rem;
-      left: 0%;
-      bottom: 2.3rem;
+      left: 0;
+      bottom: 3rem;
       background-color: #232d2f;
       opacity: 0.3;
       border-radius: 5px;
@@ -56,9 +58,9 @@
     .carousel-caption {
       width: 38rem;
       height: 12rem;
-      left: 0%;
-      bottom: 2.3rem;
-      z-index:1;
+      left: 0;
+      bottom: 3rem;
+      z-index: 1;
     }
   }
 
