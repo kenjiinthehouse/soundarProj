@@ -59,10 +59,10 @@ function ArticlePage(props) {
   }
   //componentDidMount
   useEffect(() => {
-   props.getArticleDetailAsync(sid);
-  //  window.onload = function (){
-  //     setClicks(props.articleDetailData.article_clicks);
-  //     }
+    props.getArticleDetailAsync(sid);
+    //  window.onload = function (){
+    //     setClicks(props.articleDetailData.article_clicks);
+    //     }
     setClicks(props.articleDetailData.article_clicks);
   }, []);
   //componentDidUpdate
@@ -75,7 +75,7 @@ function ArticlePage(props) {
     } else {
       updateTotalToServer(sid, 1);
     }
-  },[clicks])
+  }, [clicks]);
   useEffect(() => {
     //每當更換新文章時自動滾至頁首
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
@@ -202,9 +202,7 @@ function ArticlePage(props) {
                   </span>
                 );
               })}
-              <span
-                className="span-clicks ml-auto"
-              >
+              <span className="span-clicks ml-auto">
                 瀏覽次數：
                 {props.articleDetailData.article_clicks}
               </span>

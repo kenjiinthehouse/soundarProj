@@ -4,15 +4,26 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 //icons
+
 import { FaTags, FaHotjar, FaCaretRight, FaPencilAlt } from 'react-icons/fa';
 import { MdAutorenew } from 'react-icons/md';
 import { TiArrowSortedUp } from 'react-icons/ti';
+
+import { FaTags, FaHotjar, FaCaretRight, FaPencilAlt } from 'react-icons/fa';
+import { MdAutorenew } from 'react-icons/md';
+import { TiArrowSortedUp } from 'react-icons/ti';
+
 //components
 import ArticleCarousel from './../components/ArticleCarousel';
 import Searchbar from './../components/Searchbar';
 // import ClickToTop from './../components/ClickToTop'
+
 import ScrollToTop from 'react-scroll-to-top';
 import Pagination from './../components/Pagination';
+
+import ScrollToTop from 'react-scroll-to-top';
+import Pagination from './../components/Pagination';
+
 //actions
 import { getArticleList, getArticleListAsync } from '../actions/index';
 
