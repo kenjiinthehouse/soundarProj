@@ -127,17 +127,19 @@ function TabBar(props) {
           <PdSideBar2 value={value} pdIndex={1} {...props} />
           <PdSideBar2 value={value} pdIndex={2} {...props} />
           <PdSideBar2 value={value} pdIndex={3} {...props} />
-          {/* <PdContent 
+          <PdContent
+          value={value}
           {...props}
-          viewFilter={viewFilter}
-          /> */}
+          />
           {/* 活動 */}
-          {/* <AcContent 
-            viewFilter={viewFilter}
-          /> */}
+          <AcContent 
+          value={value} pdIndex={2}
+          />
           {/* 錄音室 */}
-          {/* <StudioContent viewFilter={viewFilter} />
-          ======= /> >>>>>>> reckie */}
+          <StudioContent
+          value={value} pdIndex={3}
+            />
+         
         </div>
       </TabPanel>
     </div>
