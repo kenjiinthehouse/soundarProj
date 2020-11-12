@@ -53,7 +53,7 @@ function ProductMainPage(props) {
       }
     };
     getDataFromServer();
-  }, [page]);
+  }, [page,mainCate,detailCate,search]);
   //查看後端抓回來的資料
 // useEffect(()=>{
 //   // console.log('productList',productList)

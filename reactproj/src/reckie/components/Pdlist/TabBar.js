@@ -81,9 +81,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabBar(props) {
-  const { mainCate, setMainCate, setDetailCate, sort, setSort } = props;
+  const {mainCate,setMainCate,setDetailCate,sort,setSort}=props
   const classes = useStyles();
   // const [viewFilter, setViewFilter] = useState(10)
+  
 
   const [value, setValue] = React.useState(0);
 
@@ -91,20 +92,19 @@ function TabBar(props) {
     setValue(newValue);
   };
 
-  useEffect(() => {
+  useEffect(()=>{
     // console.log('value',value)
-  }, [value]);
+  },[value])
 
-  //篩選products分類資料
-  {
-    /* detailCate: 1:耳塞式耳機_有線 2:耳塞式耳機_無線 3:耳罩式耳機_有線 4:耳罩式耳機_無線 5:專業麥克風_有線 6:shirt 7:帆布包 8:馬克杯 */
-  }
+
+//篩選products分類資料
+{/* detailCate: 1:耳塞式耳機_有線 2:耳塞式耳機_無線 3:耳罩式耳機_有線 4:耳罩式耳機_無線 5:專業麥克風_有線 6:shirt 7:帆布包 8:馬克杯 */}
   return (
     <div className={classes.root}>
         <div className={classes.indicator}>
         <StyledTabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-          <StyledTab label="錄音設備" {...a11yProps(0)} onClick={()=>{setViewFilter(10)}}/>
-          <StyledTab label="播客周邊" {...a11yProps(1)} onClick={()=>{setViewFilter(20)}} />
+          <StyledTab label="錄音設備" {...a11yProps(0)} onClick={()=>{setMainCate(1);setDetailCate('');}}/>
+          <StyledTab label="播客周邊" {...a11yProps(1)} onClick={()=>{setMainCate(2);setDetailCate('');}} />
           <StyledTab label="線下活動" {...a11yProps(2)} />
           <StyledTab label="錄音室租借" {...a11yProps(3)} />
         </StyledTabs>
@@ -114,55 +114,30 @@ function TabBar(props) {
         <Breadcrumb value={value} setValue={setValue} />
         <div className={classes.panel}>
           {/* <SideBar/> */}
-          <PdSideBar2 value={value} pdIndex={0} {...props} />
-          <PdSideBar2 value={value} pdIndex={1} {...props} />
-          <PdSideBar2 value={value} pdIndex={2} {...props} />
-          <PdSideBar2 value={value} pdIndex={3} {...props} />
-          <Form>
-                <Form.Group controlId="exampleForm.SelectCustom">
-                    <Form.Control as="select" custom>
-                    <option>評價由高到低</option>
-                    <option>評價由低到高</option>
-                    </Form.Control>
-                </Form.Group>
-            </Form>
-          <PdContent
+          <PdSideBar2 
+          value={value}
+          pdIndex={0}
+          {...props}
+          />
+          <PdSideBar2 
           value={value}
           pdIndex={1}
-          title='錄音設備'
-          pds={pds}
-          viewFilter={viewFilter}
-          setViewFilter={setViewFilter}
+          {...props}
           />
            <PdSideBar2 
           value={value}
           pdIndex={2}
-          title='錄音設備'
-          pds={pds}
-          viewFilter={viewFilter}
-          setViewFilter={setViewFilter}
+          {...props}
           />
            <PdSideBar2 
           value={value}
           pdIndex={3}
-          title='錄音設備'
-          pds={pds}
-          viewFilter={viewFilter}
-          setViewFilter={setViewFilter}
+          {...props}
           />
           {/* <PdContent 
           {...props}
-          viewFilter={viewFilter}
-          /> */}
-
-          {/* 活動 */}
-          {/* <AcContent 
-            viewFilter={viewFilter}
-          /> */}
-
-          {/* 錄音室 */}
-          <StudioContent viewFilter={viewFilter}/>
-
+          
+          />
         </div>
       </TabPanel>
     </div>
