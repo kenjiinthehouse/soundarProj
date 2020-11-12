@@ -5,7 +5,11 @@ import '../styles/Sidebar.scss'
 import Memberedit from '../components/Memberedit'
 
 //活動訂單
+<<<<<<< HEAD
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
+=======
+import ActivityOrder from '../../chieh/ch_pages/ActivityOrder';
+>>>>>>> d89c774... 完成未登入提示
 //page7
 import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome';
 //page8
@@ -163,7 +167,13 @@ function Membersidebar(props) {
               <div className="sa-sidebar-mainarea col-9">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
-                {activenumber == 3 ? <div><ActivityOrder/></div> : <></>}
+                {activenumber == 3 ? (
+                  <div>
+                    <ActivityOrder />
+                  </div>
+                ) : (
+                  <></>
+                )}
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div>6</div> : <></>}
