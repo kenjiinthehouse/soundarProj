@@ -13,7 +13,6 @@ function CheckoutPage(props){
     const {mycartDisplay,setMycartDisplay}= props;
     const [isActive,setIsActive] = useState([false,false,false])
     const [status, setStatus] = useState(0)
-    const [myOrder, setMyOrder] = useState([])
     const [cardInput1, setCardInput1] = useState('')
     const [cardInput2, setCardInput2] = useState('')
     const [cardInput3, setCardInput3] = useState('')

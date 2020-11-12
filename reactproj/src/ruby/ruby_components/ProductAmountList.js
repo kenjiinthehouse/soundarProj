@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './../ruby_styles/ProductAmountList.scss'
 // import { MdNavigateNext, MdStayCurrentLandscape } from 'react-icons/md'
 import { Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
@@ -117,7 +118,8 @@ function ProductAmountList(props){
 
     return(
         <>
-            <Modal show={show} onHide={handleClose} className="">
+        <div className="amount-list">
+            <Modal show={show} onHide={handleClose} className="ru-amountlist-modal">
                 <Modal.Header closeButton style={{ backgroundColor: '#44494A',color: '#F8F8F8' }}>
                 <Modal.Title>我的優惠券</Modal.Title>
                 </Modal.Header>
@@ -142,8 +144,10 @@ function ProductAmountList(props){
                                 <div className={value.isActive ? "ru-cart-coupon-info ru-cart-coupon-active" : "ru-cart-coupon-info"}>
                                     <div className="ru-cart-coupon-id ml-auto">{value.sid}</div>
                                     <div className="ru-cart-coupon-exp">使用期限</div>
-                                    <div className="ru-cart-coupon-date">{setTimeFormat(value.start_date)}～{value.end_date}</div>
-                                    <div className="ru-cart-coupon-rule">*此禮券限使用一次</div>
+                                    <span className="ru-cart-coupon-date mr-2">{setTimeFormat(value.start_date)}</span>
+                                    <span>到</span>
+                                    <span className="ru-cart-coupon-date ml-2">{value.end_date  ? setTimeFormat(value.end_date) : '無期限'}</span>
+                                    <div className="ru-cart-coupon-rule mt-2">*此禮券限使用一次</div>
                                     <div className="ru-cart-coupon-rule">消費需滿${value.minimum_amount}方可使用</div>
                                 </div>
                             </div>)})}
@@ -207,6 +211,7 @@ function ProductAmountList(props){
                     <MdNavigateNext size={32} style={{ color: '#2690DF', backgroundColor: '#F8F8F8', borderRadius: '50%'}} />
                 </div> */}
             </aside>
+            </div>
         </>
     )
 }

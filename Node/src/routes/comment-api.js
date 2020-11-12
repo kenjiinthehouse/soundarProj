@@ -1,5 +1,5 @@
 require('dotenv').config()
-const db = require(__dirname + '/../db_connect')
+const db = require(__dirname + '/../db_connect2')
 const express = require('express')
 const router = express.Router()
 
@@ -15,18 +15,17 @@ router.post('/insert',async(req,res) => {
     }
     let obj = req.body
     let pd_sid = obj.pd_sid
-    let client_sid = obj.client_sid
-    let stars = obj.c_stars
+    let client_sid = obj.cl_sid
+    let stars = obj.stars
     let content = obj.content
-    let pic_url = obj.pic_url.join(',')
     let avg_stars = null
 
-    let sqlNewComment = "INSERT INTO `comment`(`create_time`, `pd_sid`, `client_sid`, `c_stars`, `content`, `pic_url`) VALUES (NOW(),?,?,?,?,?)"
+    let sqlNewComment = "INSERT INTO `comment`(`create_time`, `pd_sid`, `client_sid`, `c_stars`, `content`) VALUES (NOW(),?,?,?,?)"
     let sqlStarsConbine = "SELECT `c_stars` FROM `comment` WHERE pd_sid = ?"
     let sqlProductStarAVG = "UPDATE products_equip SET stars = ? WHERE pd_id = ?"
 
     // 新增評論
-    await db.query(sqlNewComment,[pd_sid,client_sid,stars,content,pic_url])
+    await db.query(sqlNewComment,[pd_sid,client_sid,stars,content])
     // 找到商品評論的筆數
     let result = await db.query(sqlStarsConbine,[pd_sid])
     let order_amount = result[0].length

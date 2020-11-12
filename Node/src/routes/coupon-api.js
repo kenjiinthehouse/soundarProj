@@ -1,5 +1,5 @@
 require('dotenv').config()
-const db = require(__dirname + '/../db_connect')
+const db = require(__dirname + '/../db_connect2')
 // const app = express()
 const express = require('express')
 const router = express.Router()
@@ -40,8 +40,6 @@ async function updateCoupon(req,res) {
 
 // 優惠券API
 router.get('/get', async(req, res) => {
-    let demo = await db.query('SELECT * FROM coupon')
-    console.log(demo[0])
     db.query('SELECT * FROM coupon')
         .then(([results]) => {
             let arr = []
@@ -134,7 +132,6 @@ router.patch('/update',(req,res) => {
     }
     if(!req.body.amount || req.body.amount <= 0 || !isNum(req.body.amount)){
         returnData.code = 2
-        console.log(typeof(req.body.amount))
         return res.status(400).json(returnData)
     }
     if(!req.body.discount || req.body.discount <= 0 || !isNum(req.body.discount)){
@@ -246,7 +243,7 @@ router.post('/client/insert-all',async(req,res) => {
                 let add = i + 1
                 let numStr = (parseInt(last_sid) + add ).toString()
                 let coupon_num = numStr.padStart(4,"0")
-                console.log(sql,[sid, 'CL' + coupon_num , arr[i], 0])
+                // console.log(sql,[sid, 'CL' + coupon_num , arr[i], 0])
             }
     })
     
