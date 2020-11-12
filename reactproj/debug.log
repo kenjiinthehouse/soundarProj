@@ -12,6 +12,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [1112/114304.248:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
 =======
 [1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
@@ -29,3 +30,8 @@
 =======
 [1112/114304.248:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
 >>>>>>> ce68bab... çµåˆæœƒå“¡èˆ‡æ’­å®¢å¾Œå°
+=======
+[1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
+[1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
+[1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
+>>>>>>> 9b50b81... chieh1112

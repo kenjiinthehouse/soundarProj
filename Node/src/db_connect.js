@@ -110,8 +110,8 @@ const pool = mysql2.createPool({
 =======
 >>>>>>> 84c7c5d... 完成節目收藏同步 (尚未有功能)
   host: "localhost",
-  user: "jl55661688",
-  password: "iouccc19931107",
+  user: "chieh",
+  password: "chieh",
   database: "mfee09_project",
   waitForConnections: true,
   connectionLimit: 10,
