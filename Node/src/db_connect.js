@@ -3,6 +3,7 @@ const mysql2 = require("mysql2");
 
 const pool = mysql2.createPool({
 <<<<<<< HEAD
+<<<<<<< HEAD
   // host: "localhost",
   // user: "jl55661688",
   // password: "iouccc19931107",
@@ -49,15 +50,17 @@ const pool = mysql2.createPool({
   queueLimit: 0,
 
   // kenji
+=======
+>>>>>>> 29142c5... 整合product 錄音室、活動分類
   // host: "localhost",
-  // user: "root",
-  // password: "",
+  // user: "jl55661688",
+  // password: "iouccc19931107",
   // database: "mfee09_project",
   // waitForConnections: true,
   // connectionLimit: 10,
   // queueLimit: 0,
 
-  //reckie
+  // kenji
   // host: "localhost",
   // user: "root",
   // password: "",
@@ -65,9 +68,12 @@ const pool = mysql2.createPool({
   // waitForConnections: true,
   // connectionLimit: 10,
   // queueLimit: 0,
+<<<<<<< HEAD
 =======
 >>>>>>> 8cedc1b... 新增product api 搜尋、排序、篩選、分類
 =======
+=======
+>>>>>>> 29142c5... 整合product 錄音室、活動分類
 
   //reckie
   host: "localhost",
@@ -77,7 +83,10 @@ const pool = mysql2.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+<<<<<<< HEAD
 >>>>>>> 4f4744f... 新增product 篩選搜尋分類 react
+=======
+>>>>>>> 29142c5... 整合product 錄音室、活動分類
 });
 
 // const pool = mysql2.createPool({
