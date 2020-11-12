@@ -20,7 +20,7 @@ function Membersidebar(props) {
         <div className="sa-Memberedit-area">
           <div className="container">
             <div className="row">
-              <div className="side-bar-container col-3">
+              <div className="side-bar-container">
                 <div className="side-bar-member-area">
                   <div className="side-bar-member-title">
                     <img
@@ -160,7 +160,7 @@ function Membersidebar(props) {
                 </div>
               </div>
 
-              <div className="sa-sidebar-mainarea col-9">
+              <div className="sa-sidebar-mainarea">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
                 {activenumber == 3 ? (
@@ -173,12 +173,8 @@ function Membersidebar(props) {
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div>6</div> : <></>}
-                {activenumber == 7 ? (
-                  <PodcasterDashboardHome {...props} />
-                ) : (
-                  <></>
-                )}
-                {activenumber == 8 ? <PodcasterAudioList {...props} /> : <></>}
+                {activenumber == 7 ? <div>7</div> : <></>}
+                {activenumber == 8 ? <div>8</div> : <></>}
               </div>
             </div>
           </div>
