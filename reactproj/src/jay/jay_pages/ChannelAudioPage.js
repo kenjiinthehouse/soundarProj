@@ -23,6 +23,7 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 import MsgBoard from './../../kenji/components/MsgBoard';
+import InformLoginModal from './../jay_components/InformLoginModal';
 // bootstrap
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
@@ -57,6 +58,7 @@ function ChannelAudioPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id, audio_sid } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -202,6 +204,8 @@ function ChannelAudioPage(props) {
                             await props.initMemberChannelCollectionAsync(
                               props.member.sid
                             );
+                          } else {
+                            setShowInformLoginModal(true);
                           }
                         }}
                       >
@@ -221,6 +225,8 @@ function ChannelAudioPage(props) {
                             await props.initMemberChannelCollectionAsync(
                               props.member.sid
                             );
+                          } else {
+                            setShowInformLoginModal(true);
                           }
                         }}
                       >
@@ -416,7 +422,7 @@ function ChannelAudioPage(props) {
                                       );
                                     }
                                   } else {
-                                    console.log('no');
+                                    setShowInformLoginModal(true);
                                   }
                                 }}
                               >
@@ -451,6 +457,10 @@ function ChannelAudioPage(props) {
       <ChannelRatingModal
         show={showRatingModel}
         onHide={() => setShowRatingModel(false)}
+      />
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
       />
     </StyleRoot>
   );
