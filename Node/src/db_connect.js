@@ -14,6 +14,7 @@ const pool = mysql2.createPool({
   host: "localhost",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   user: "root",
   password: "",
   database: "pd_test",
@@ -24,6 +25,10 @@ const pool = mysql2.createPool({
   user: "root",
   password: "",
 >>>>>>> 67393c7... 搬運工/kenji
+=======
+  user: "root",
+  password: "",
+>>>>>>> fb78227... Navbar 施工/kenji
   database: "mfee09_project",
 >>>>>>> 9b50b81... chieh1112
   waitForConnections: true,
