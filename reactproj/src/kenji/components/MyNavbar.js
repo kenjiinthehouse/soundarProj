@@ -19,6 +19,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {RiLogoutCircleRLine} from 'react-icons/ri';
 //scss
 import '../styles/MyNavbar.scss';
 
@@ -52,6 +53,8 @@ function MyNavbar(props) {
   const [logged, setLogged] = useState(false);
   const classes = useStyles();
   const anchorRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+  const [placement, setPlacement] = React.useState();
   //samps
 
   useEffect(() => {
@@ -93,6 +96,7 @@ function MyNavbar(props) {
     prevOpen.current = open;
   }, [open]);
 
+
   const loggedNav = (
     <Header className="d-flex row no-gutters">
       <div
@@ -101,7 +105,7 @@ function MyNavbar(props) {
           props.history.push('/');
         }}
       ></div>
-      <div className="navBarBtn">
+      <div>
         <Button
           href="#"
           key="1"
@@ -247,33 +251,27 @@ function MyNavbar(props) {
                           props.history.push(`/memberedit`);
                         }}
                       >
-                        會員資料
+                        加入播客
                       </Button>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Button
-                        onClick={() => {
-                          props.history.push(`/audiocollect`);
+                        href="javascript"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          props.history.push(`/explore_home_page`);
                         }}
                         style={{ outline: 'none' }}
                       >
-                        節目收藏
+                        探索
                       </Button>
                     </MenuItem>
-                    {/* /channelcollect */}
                     <MenuItem onClick={handleClose}>
-                      <Button
-                        onClick={() => {
-                          props.history.push(`/channelcollect`);
-                        }}
-                        style={{ outline: 'none' }}
-                      >
-                        頻道追蹤
-                      </Button>
+                      <Button href="#">商城</Button>
                     </MenuItem>
-                    {/* <MenuItem onClick={handleClose}>
+                    <MenuItem onClick={handleClose}>
                       <Button href="#">專欄</Button>
-                    </MenuItem> */}
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -287,24 +285,12 @@ function MyNavbar(props) {
         <IconButton
           onClick={() => {
             props.logOutAsync();
-            props.history.push('/');
           }}
         >
           <RiLogoutCircleRLine />
         </IconButton>
       </div>
-
-      {/* samps登出 */}
-      <div
-        onClick={() => {
-          props.logOutAsync();
-        }}
-      >
-        <IconButton>
-          <PersonIcon />
-        </IconButton>
-      </div>
-      <div>
+      <div className="navBarBtn">
         <IconButton>
           <StyledBadge badgeContent={4} color="secondary">
             <ShoppingCartIcon />
@@ -316,7 +302,7 @@ function MyNavbar(props) {
 
   const notLoggedNav = (
     <Header className="d-flex row no-gutters">
-      <div
+      <div        
         className="logo col-3 mr-auto"
         onClick={() => {
           props.history.push('/');

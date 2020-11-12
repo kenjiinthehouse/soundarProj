@@ -30,6 +30,7 @@ const pool = mysql2.createPool({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   user: "root",
   password: "",
   database: "pd_test",
@@ -61,6 +62,10 @@ const pool = mysql2.createPool({
   password: "",
 <<<<<<< HEAD
 >>>>>>> 0534b02... 統整後調整畫面
+=======
+  user: "root",
+  password: "",
+>>>>>>> fb78227... Navbar 施工/kenji
   database: "mfee09_project",
 >>>>>>> 9b50b81... chieh1112
 =======
