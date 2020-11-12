@@ -72,7 +72,11 @@ function PodcasterDashboardHome(props) {
       {props.channel_data.map((item, index) => {
         return (
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div className="container" key={index}>
+=======
+          <div key={index}>
+>>>>>>> ce68bab... 結合會員與播客後台
 =======
           <div key={index}>
 >>>>>>> ce68bab... 結合會員與播客後台

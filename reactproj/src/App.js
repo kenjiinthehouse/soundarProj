@@ -75,6 +75,7 @@ function App() {
             <Switch>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <Route exact path="/channel_info/:podcaster_id?">
                 <PodcasterDashboardHome />
               </Route>
@@ -98,6 +99,8 @@ function App() {
                 </div>
               </Route>
 >>>>>>> 67393c7... 搬運工/kenji
+=======
+>>>>>>> ce68bab... 結合會員與播客後台
               <Route path="/explore_home_page">
 >>>>>>> ce68bab... 結合會員與播客後台
                 <ExploreHomePage
@@ -200,7 +203,10 @@ function App() {
                 <Applymembership />
               </Route>
               <Route path="/memberedit">
-                <Membersidebar />
+                <Membersidebar
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
               </Route>
               <Route path="/audiocollect">
                 <Audiocollection />
