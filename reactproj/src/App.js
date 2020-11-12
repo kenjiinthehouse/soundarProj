@@ -4,10 +4,21 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //components
-import MyNavbar from './jay/jay_components/MyNavbar.js';
+
 import ScrollToTop from './jay/jay_components/ScrollToTop.js';
 import MainContent from './jay/jay_components/MainContent.js';
 import { Layout } from 'antd';
+
+//index page
+import MyNavbar from './kenji/components/MyNavbar';
+import IndexCarousel from './kenji/components/IndexCarousel';
+import IndexCarousel from './kenji/components/IndexInfo';
+import IndexChannel from './kenji/components/IndexChannel';
+import IndexPodcastEp from './kenji/components/IndexPodcastEp';
+import IndexPodcastEp from './kenji/components/IndexShop';
+import ArticleCarousel from './kenji/components/ArticleCarousel';
+import MyFooter from './kenji/components/MyFooter';
+
 
 //pages
 import PodcasterDashboardHome from './jay/jay_pages/PodcasterDashboardHome';
@@ -33,6 +44,13 @@ import Membersidebar from './samps/pages/Membersidebar';
 import Passwordreset from './samps/pages/Passwordreset';
 import Podlogin from './samps/pages/Podlogin';
 import Verification from './samps/pages/Verification';
+<<<<<<< HEAD
+=======
+import ProductMainPage from './reckie/pages/ProductMainPage';
+import ProductItemPage from './reckie/pages/ProductItemPage';
+import IndexInfo from './kenji/components/IndexInfo';
+import IndexShop from './kenji/components/IndexShop';
+>>>>>>> 67393c7... 搬運工/kenji
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -47,6 +65,7 @@ function App() {
           <ScrollToTop>
             <Switch>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <Route exact path="/channel_info/:podcaster_id?">
                 <PodcasterDashboardHome />
               </Route>
@@ -58,6 +77,16 @@ function App() {
               </Route>
               <Route exact path="/explore_home_page">
 =======
+=======
+              <Route exact path="/">
+               <IndexCarousel/>
+               <IndexInfo/>
+               <IndexChannel/>
+               <IndexPodcastEp/>
+               <IndexShop/>
+               <ArticleCarousel/>
+              </Route>
+>>>>>>> 67393c7... 搬運工/kenji
               <Route path="/explore_home_page">
 >>>>>>> ce68bab... 結合會員與播客後台
                 <ExploreHomePage
@@ -159,6 +188,7 @@ function App() {
             setPlayingAudio={setPlayingAudio}
           />
         </MainContent>
+        <MyFooter/>
       </Layout>
     </Router>
   );
