@@ -296,6 +296,8 @@ function ExploreCateChannelPage(props) {
                                 await props.initMemberChannelCollectionAsync(
                                   props.member.sid
                                 );
+                              } else {
+                                setShowInformLoginModal(true);
                               }
                             }}
                           >
@@ -315,6 +317,8 @@ function ExploreCateChannelPage(props) {
                                 await props.initMemberChannelCollectionAsync(
                                   props.member.sid
                                 );
+                              } else {
+                                setShowInformLoginModal(true);
                               }
                             }}
                           >
