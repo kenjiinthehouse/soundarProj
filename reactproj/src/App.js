@@ -12,10 +12,10 @@ import { Layout } from 'antd';
 //index page
 import MyNavbar from './kenji/components/MyNavbar';
 import IndexCarousel from './kenji/components/IndexCarousel';
-import IndexCarousel from './kenji/components/IndexInfo';
+import IndexInfo from './kenji/components/IndexInfo';
 import IndexChannel from './kenji/components/IndexChannel';
 import IndexPodcastEp from './kenji/components/IndexPodcastEp';
-import IndexPodcastEp from './kenji/components/IndexShop';
+import IndexShop from './kenji/components/IndexShop';
 import ArticleCarousel from './kenji/components/ArticleCarousel';
 import MyFooter from './kenji/components/MyFooter';
 
@@ -51,6 +51,7 @@ import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import IndexInfo from './kenji/components/IndexInfo';
 import IndexShop from './kenji/components/IndexShop';
 >>>>>>> 67393c7... 搬運工/kenji
@@ -65,6 +66,11 @@ import { Height } from '@material-ui/icons';
 import IndexInfo from './kenji/components/IndexInfo';
 import IndexShop from './kenji/components/IndexShop';
 >>>>>>> 67393c7... 搬運工/kenji
+=======
+import { colors } from '@material-ui/core';
+import { Height } from '@material-ui/icons';
+
+>>>>>>> 17c6fbd... 調整scss和import img/kenji
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -109,12 +115,14 @@ function App() {
 >>>>>>> ce68bab... 結合會員與播客後台
 =======
               <Route exact path="/">
-               <IndexCarousel/>
-               <IndexInfo/>
-               <IndexChannel/>
-               <IndexPodcastEp/>
-               <IndexShop/>
-               <ArticleCarousel/>
+                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%' }}>
+                  <IndexCarousel />
+                  <IndexInfo />
+                  <IndexChannel />
+                  <IndexPodcastEp />
+                  <IndexShop />
+                  <ArticleCarousel />
+                </div>
               </Route>
 >>>>>>> 67393c7... 搬運工/kenji
               <Route path="/explore_home_page">
@@ -243,10 +251,14 @@ function App() {
           />
         </MainContent>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <MyFooter />
 =======
         <MyFooter/>
 >>>>>>> 67393c7... 搬運工/kenji
+=======
+        <MyFooter />
+>>>>>>> 17c6fbd... 調整scss和import img/kenji
       </Layout>
     </Router>
   );

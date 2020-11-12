@@ -61,7 +61,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct1.jpg"
+                image="./k_img/IndexProduct1.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -85,7 +85,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct2.jpg"
+                image="./k_img/IndexProduct2.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -109,7 +109,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct3.jpg"
+                image="./k_img/IndexProduct3.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -133,7 +133,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct4.jpg"
+                image="./k_img/IndexProduct4.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -168,7 +168,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct8.jpg"
+                image="./k_img/IndexProduct8.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -192,7 +192,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct7.jpg"
+                image="./k_img/IndexProduct7.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -216,7 +216,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct6.jpg"
+                image="./k_img/IndexProduct6.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -240,7 +240,7 @@ const classes = useStyles();
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="/img/IndexProduct5.jpg"
+                image="./k_img/IndexProduct5.jpg"
                 title="Contemplative Reptile"
               />
               <CardContent>
