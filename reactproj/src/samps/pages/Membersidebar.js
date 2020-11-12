@@ -6,6 +6,7 @@ import Memberedit from '../components/Memberedit'
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //活動訂單
 <<<<<<< HEAD
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
@@ -24,6 +25,11 @@ import PodcasterAudioList from './../../jay/jay_pages/PodcasterAudioList.js';
 >>>>>>> 938527f... samps member
 =======
 >>>>>>> ce68bab... 結合會員與播客後台
+=======
+//活動訂單
+import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
+
+>>>>>>> 196eb70... 活動列表和會員活動訂單
 function Membersidebar(props) {
   const [activenumber, setActivenumber] = useState(1)
 
@@ -212,7 +218,7 @@ function Membersidebar(props) {
 >>>>>>> ce68bab... 結合會員與播客後台
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
-                {activenumber == 3 ? <div>3</div> : <></>}
+                {activenumber == 3 ? <div><ActivityOrder/></div> : <></>}
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div>6</div> : <></>}

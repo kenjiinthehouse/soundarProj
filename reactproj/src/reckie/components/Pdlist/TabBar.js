@@ -2,7 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TabPanel from './TabPanel';
+import TabPanel from './TabPanel'
+
+import PdSideBar2 from './PdSideBar2'
+import PdContent from './PdContent/PdContent'
+import Breadcrumb from '../Breadcrumb'
+
+//活動、錄音室
+import AcContent from './PdContent/AcContent';
+import StudioContent from './PdContent/StudioContent';
+
 
 import PdSideBar2 from './PdSideBar2';
 import PdContent from './PdContent/PdContent';
@@ -119,17 +128,41 @@ function TabBar(props) {
             </Form>
           <PdContent
           value={value}
+          pdIndex={1}
+          title='錄音設備'
+          pds={pds}
+          viewFilter={viewFilter}
+          setViewFilter={setViewFilter}
+          />
+           <PdSideBar2 
+          value={value}
+          pdIndex={2}
+          title='錄音設備'
+          pds={pds}
+          viewFilter={viewFilter}
+          setViewFilter={setViewFilter}
+          />
+           <PdSideBar2 
+          value={value}
+          pdIndex={3}
+          title='錄音設備'
+          pds={pds}
+          viewFilter={viewFilter}
+          setViewFilter={setViewFilter}
+          />
+          {/* <PdContent 
           {...props}
-          />
+          viewFilter={viewFilter}
+          /> */}
+
           {/* 活動 */}
-          <AcContent 
-          value={value} pdIndex={2}
-          />
+          {/* <AcContent 
+            viewFilter={viewFilter}
+          /> */}
+
           {/* 錄音室 */}
-          <StudioContent
-          value={value} pdIndex={3}
-            />
-         
+          <StudioContent viewFilter={viewFilter}/>
+
         </div>
       </TabPanel>
     </div>
