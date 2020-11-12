@@ -7,6 +7,7 @@ import {
   initalChannelPageAsync,
   initalDashboardAsync,
 } from '../../jay_actions/index';
+import { getMsgAsync } from '../../actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
 //components
@@ -15,6 +16,9 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
+import MsgBoard from './../../kenji/components/MsgBoard';
+// bootstrap
+import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
 // react icon
 import { RiMusic2Fill, RiPlayListAddLine } from 'react-icons/ri';
@@ -47,6 +51,7 @@ function ChannelAudioPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
+  const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id, audio_sid } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
   const transTermToChinese = () => {
@@ -90,9 +95,10 @@ function ChannelAudioPage(props) {
       transTermToChinese();
       await props.initalDashboardAsync(podcaster_id);
       await props.initalChannelPageAsync(podcaster_id);
+      await props.getMsgAsync();
       setTimeout(() => {
         setIsLoading(false);
-      }, 500);
+      }, 1000);
     }
     initialGetData();
   }, []);
@@ -186,6 +192,9 @@ function ChannelAudioPage(props) {
                     <button
                       type="button"
                       className=" btn btn-sm btn-secondary my-3"
+                      onClick={() => {
+                        setShowRatingModel(true);
+                      }}
                     >
                       評分
                     </button>
@@ -333,10 +342,17 @@ function ChannelAudioPage(props) {
                 }
               })}
               <hr className="jay-cate-hr" />
+              <div>
+                <MsgBoard />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <ChannelRatingModal
+        show={showRatingModel}
+        onHide={() => setShowRatingModel(false)}
+      />
     </StyleRoot>
   );
 
@@ -368,7 +384,9 @@ const mapStateToProps = (store) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { initalChannelPageAsync, initalDashboardAsync })(
-    ChannelAudioPage
-  )
+  connect(mapStateToProps, {
+    initalChannelPageAsync,
+    initalDashboardAsync,
+    getMsgAsync,
+  })(ChannelAudioPage)
 );

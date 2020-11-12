@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/MyFooter.scss';
 // 使用 ant-design布局及元件
 import { Layout } from 'antd';
 //react-bootstrap input

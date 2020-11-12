@@ -28,7 +28,7 @@ useEffect(()=>{
       >
         <BgElement id="bg" key="bg" className="bg">
           <video loop autoPlay muted>
-            <source src="Videos/production1.mp4" type="video/mp4" />
+            <source src="reckie_Videos/production1.mp4" type="video/mp4" />
           </video>
           {/* <img src="img/bag02.jpg"></img> */}
         </BgElement>
@@ -43,7 +43,7 @@ useEffect(()=>{
         <p key="p1">主動式降噪功能</p>
         <p key="p2">可選擇更合適尺寸與密合程度</p>
         </div>
-        <Button className="px-4 ml-4">逛新品</Button>
+        <Button className="px-4 ml-4 re-btn-color">逛新品</Button>
         </div>
         
         </TweenOne>  
@@ -57,7 +57,7 @@ useEffect(()=>{
           key="bg"
           className="bg"
           style={{
-            backgroundImage: 'url(img/bag02.jpg)',
+            backgroundImage: 'url(reckie_img/bag02.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -78,7 +78,7 @@ useEffect(()=>{
           key="bg"
           className="bg"
           style={{
-            backgroundImage: 'url(img/bag03.jpg)',
+            backgroundImage: 'url(reckie_img/bag03.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

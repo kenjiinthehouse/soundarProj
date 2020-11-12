@@ -6,6 +6,8 @@ import podcasterAudioListState from './podcasterAudioListState';
 import explorePopularChannel from './explorePopularChannel';
 import exploreCateChannel from './exploreCateChannel';
 import channelPageData from './channelPageData';
+import memberRatingState from './memberRatingState';
+import memberAudioCollection from './memberAudioCollection';
 
 //jen
 import articleList from './articleList';
@@ -17,6 +19,10 @@ import articleDetailNext from './articleDetailNext';
 
 //samps
 import member from './member';
+
+//kenji
+import msgBoardReducer from './msgBoardReducer';
+import replyReducer from './replyReducer';
 
 // 合併所有的reducers成一個大的reducer
 export const rootReducer = combineReducers({
@@ -32,4 +38,8 @@ export const rootReducer = combineReducers({
   articleDetailPre,
   articleDetailNext,
   member,
+  memberRatingState,
+  memberAudioCollection,
+  msgBoardReducer,
+  replyReducer,
 });

@@ -4,6 +4,8 @@ import {
   INIT_EXPLORE_HOMEPAGE,
   INIT_EXPLORE_CATEPAGE,
   INIT_CHANNEL_PAGE_DATA,
+  INIT_RATE_MODAL,
+  INIT_MEMBER_COLLECTION,
 } from './actionTypes';
 
 export const initalDashboard = (payload) => {
@@ -180,5 +182,135 @@ export const initalChannelPageAsync = (podcaster_id) => {
     const response = await fetch(request);
     const data = await response.json();
     dispatch(initalChannelPage(data));
+  };
+};
+
+// 送出評分
+export const submitRateScore = (formData) => {
+  return async function sendScore(dispatch) {
+    const url = `http://localhost:5566/explore/rate_score`;
+    const request = new Request(url, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    console.log(data);
+  };
+};
+
+export const updateRateScore = (formData) => {
+  return async function sendScore(dispatch) {
+    const url = `http://localhost:5566/explore/update_rate_score`;
+    const request = new Request(url, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    console.log(data);
+  };
+};
+
+// 整合評分
+export const calculateScore = () => {
+  return async function startCal(dispatch) {
+    const url = `http://localhost:5566/explore/update_all_channel_rating`;
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    // console.log(data);
+  };
+};
+
+export const initalRateModal = (payload) => {
+  return { type: INIT_RATE_MODAL, payload: payload };
+};
+
+export const initalRateModalAsync = (reviewer_id, podcaster_id) => {
+  return async function getChannelPageData(dispatch) {
+    const url = `http://localhost:5566/explore/compare_rate_score/${reviewer_id}/${podcaster_id}`;
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    console.log(data);
+    dispatch(initalRateModal(data));
+  };
+};
+
+export const initMemberAudioCollection = (payload) => {
+  return { type: INIT_MEMBER_COLLECTION, payload: payload };
+};
+
+// INIT_COLLECTION
+export const initMemberAudioCollectionAsync = (sid) => {
+  return async function getAudioCollection(dispatch) {
+    const formData = new FormData();
+    formData.append('sid', sid);
+    const url = `http://localhost:5566/member_collection/collect`;
+    const request = new Request(url, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    // data會是一個物件值
+    console.log(['data', data]);
+    dispatch(initMemberAudioCollection(data.rs));
+  };
+};
+
+//update collection
+export const addCollection = (member_sid, audio_sid) => {
+  return async function sendData(dispatch) {
+    const url = `http://localhost:5566/member_collection/add_audio`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ sid: member_sid, audio_id: audio_sid }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+  };
+};
+
+export const delCollection = (member_sid, audio_sid) => {
+  return async function sendData(dispatch) {
+    const url = `http://localhost:5566/member_collection/delete_audio`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ sid: member_sid, audio_id: audio_sid }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
   };
 };

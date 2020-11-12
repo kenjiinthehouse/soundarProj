@@ -36,7 +36,7 @@ return (
    <>
    
     <div className="pdPicfield">
-    <img src={MainImg.indexOf('http')=== -1 ? `/img/${MainImg}`:MainImg} className="pdMainImg"/>
+    <img src={MainImg.indexOf('http')=== -1 ? `/reckie_img/${MainImg}`:MainImg} className="pdMainImg"/>
     
    
     </div>
@@ -44,7 +44,7 @@ return (
   
     { SubImg.map((item, index) => {
         
-          return <><img src={item.indexOf('http')=== -1 ? `/img/${item}`:item} key={index} className="pdSubImgs" onClick={()=>setMainImg(item)}/></>
+          return <><img src={item.indexOf('http')=== -1 ? `/reckie_img/${item}`:item} key={index} className="pdSubImgs" onClick={()=>setMainImg(item)}/></>
         })}  
        
     </Carousel>

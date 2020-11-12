@@ -1,3 +1,4 @@
+import '../styles/reckieCustom.scss';
 import React, { useEffect, useState } from 'react';
 import Banner from '../components/Pdlist/Banner';
 import SearchInput from '../components/Pdlist/SearchInput';
@@ -27,7 +28,7 @@ function ProductMainPage(props) {
         console.log('data', data.rows);
         const newPds = data.rows;
 
-        setProducts([...products, ...newPds]);
+        setProducts([...newPds]);
         setProductList(data);
       } catch (error) {
         console.log(error);
@@ -35,6 +36,10 @@ function ProductMainPage(props) {
     };
     getDataFromServer();
   }, [page]);
+  //查看後端抓回來的資料
+// useEffect(()=>{
+//   // console.log('productList',productList)
+// }, [productList])
 
   useEffect(() => {
     setIsLoading(true);

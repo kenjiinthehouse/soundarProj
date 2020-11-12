@@ -133,7 +133,14 @@ function MyNavbar(props) {
                   onKeyDown={handleListKeyDown}
                 >
                   <MenuItem onClick={handleClose}>
-                    <Button href="#" key="1">
+                    <Button
+                      href="#"
+                      key="1"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        props.history.push(`/memberedit`);
+                      }}
+                    >
                       加入播客
                     </Button>
                   </MenuItem>
@@ -144,6 +151,7 @@ function MyNavbar(props) {
                         event.preventDefault();
                         props.history.push(`/explore_home_page`);
                       }}
+                      style={{ outline: 'none' }}
                     >
                       探索
                     </Button>
@@ -161,7 +169,14 @@ function MyNavbar(props) {
         )}
       </Popper>
       <div className="navBarBtn">
-        <Button href="#" key="1">
+        <Button
+          href="#"
+          key="1"
+          onClick={(event) => {
+            event.preventDefault();
+            props.history.push(`/memberedit`);
+          }}
+        >
           加入播客
         </Button>
       </div>
@@ -170,6 +185,7 @@ function MyNavbar(props) {
           onClick={() => {
             props.history.push(`/explore_home_page`);
           }}
+          style={{ outline: 'none' }}
         >
           探索
         </Button>
@@ -251,7 +267,14 @@ function MyNavbar(props) {
                   onKeyDown={handleListKeyDown}
                 >
                   <MenuItem onClick={handleClose}>
-                    <Button href="#" key="1">
+                    <Button
+                      href="#"
+                      key="1"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        props.history.push(`/memberedit`);
+                      }}
+                    >
                       加入播客
                     </Button>
                   </MenuItem>
@@ -260,6 +283,7 @@ function MyNavbar(props) {
                       onClick={() => {
                         props.history.push(`/explore_home_page`);
                       }}
+                      style={{ outline: 'none' }}
                     >
                       探索
                     </Button>
@@ -277,13 +301,22 @@ function MyNavbar(props) {
         )}
       </Popper>
       <div className="navBarBtn">
-        <Button href="#">加入播客</Button>
+        <Button
+          href="#"
+          onClick={(event) => {
+            event.preventDefault();
+            props.history.push(`/memberedit`);
+          }}
+        >
+          加入播客
+        </Button>
       </div>
       <div className="navBarBtn">
         <Button
           onClick={() => {
             props.history.push(`/explore_home_page`);
           }}
+          style={{ outline: 'none' }}
         >
           探索
         </Button>

@@ -1,0 +1,399 @@
+$primary: #2690df;
+$thirdColor: #fc774c;
+$thirdColorBrighter: brighten($thirdColor, 85%);
+$baseSize: 16px;
+$Light: #f8f8f8;
+$Dark: #232d2f;
+$DarkGray: #44494a;
+$DarkLightGray: #707070;
+$DarkOpacity60: rgba($Dark, 0.6);
+@function font($level: 1) {
+  @return $baseSize * $level;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+// body {
+//   height: 300vh;
+//   box-sizing: border-box;
+// }
+
+.ProductAPP-reckie {
+  //fonts-size
+  .head2 {
+    font-size: font(2);
+  }
+  .head5 {
+    font-size: font(1.5);
+  }
+  .body3 {
+    font-size: font(1);
+  }
+  .subtitle1 {
+    font-size: font(1.375);
+  }
+  a,
+  a:hover {
+    color: #232d2f;
+  }
+  .caption {
+    font-size: font(0.75);
+  }
+  //font-color
+  .dark {
+    color: $Dark;
+  }
+  .light {
+    color: $Light;
+  }
+
+  // btn
+  .btn-rounded {
+    border-radius: 40px;
+    margin-right: 1.8rem;
+  }
+  .btn-vital {
+    background-color: $thirdColor;
+    color: #fff;
+  }
+  .btn-vital:hover {
+    background-color: darken($thirdColor, 10%);
+    // filter: brightness(85%);
+    color: #fff;
+  }
+  .re-btn {
+    width: 12.5rem;
+    height: 3.75rem;
+    font-size: font(1.25);
+  }
+
+  .wrap {
+    width: 100%;
+    height: 44rem;
+    overflow: hidden;
+    position: relative;
+    // background-color: darksalmon;
+  }
+
+  .container.pd-container {
+    max-width: 1440px;
+  }
+  .breadcrumb {
+    margin-top: 5rem;
+  }
+
+  // -- banner start --
+  .banner {
+    height: 50vh;
+  }
+
+  .banner-slogan-title {
+    color: #f8f8f8;
+    padding: 20rem 0 2rem 0rem;
+  }
+  .banner-slogan-span {
+    color: #f8f8f8;
+  }
+
+  .banner-anim-elem .bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+  // -- banner end --
+
+  // -- search input start--
+  .inputField {
+    min-width: 70rem;
+    height: 4rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .searchInput {
+    padding-top: 6rem;
+  }
+
+  .searchBtn {
+    width: 15rem;
+    height: 4rem;
+    border-radius: 5px;
+    position: absolute;
+    right: 0px;
+  }
+  // -- banner end --
+  // --tab start --
+  .pt-5rem {
+    padding-top: 5rem;
+  }
+  .MuiTabs-flexContainer {
+    background-color: #fff;
+  }
+  .MuiBox-root {
+    background-color: #fff;
+    padding: 0rem !important;
+  }
+
+  // -- tab end --
+  // -- side bar start --
+  .sidebar {
+    min-width: 15rem;
+  }
+  .test-box1 {
+    width: 15rem;
+    height: 500px;
+    background-color: darkseagreen;
+  }
+  .sidebar h2 {
+    color: $Dark;
+    font-weight: normal;
+  }
+  .sidebar h5 {
+    color: $Dark;
+    font-weight: bold;
+  }
+  .bg-test {
+    background-color: #fff;
+    border: none;
+  }
+
+  // -- card start --
+
+  .pdCard {
+    max-width: 20rem;
+  }
+  .pdCard:hover {
+    text-decoration: none;
+  }
+  .col-lg-4.pdCard {
+    // padding: 1rem;
+  }
+  .cardWrap {
+    // min-height: 25rem;
+    box-shadow: 0px 1px 5px 2px #ddd;
+    border-radius: 5px;
+    margin: 0rem 0rem 3rem;
+    padding: 1rem;
+    transition: all 0.3s ease-out;
+  }
+  .cardWrap:hover {
+    transform: translate(0.5px, 0.5px);
+    box-shadow: 1px 1px 5px 6px #eee;
+  }
+
+  .cardBody {
+    text-align: center;
+    height: 6rem;
+    position: relative;
+    padding: 0rem;
+  }
+  .pdPrice {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .testTrans {
+    transition: all 2s ease-in;
+  }
+
+  .pdContent {
+    width: 100%;
+  }
+  .addCartBtn {
+    width: 100%;
+    border-radius: 40px;
+    margin: 0.75rem auto 0rem;
+  }
+
+  // -- card end --
+
+  // *** product item ***
+  // -- product top start--
+  .re-spinnerArea {
+    position: relative;
+    height: 100vh;
+  }
+  .pdItemPage {
+    margin-bottom: 5rem;
+  }
+  .pdPicfield {
+    // background-color: turquoise;
+    width: 100%;
+    // height: 50vh;
+  }
+  .pdMainfield {
+    // background-color: $primary;
+    width: 100%;
+    // height: 50vh;
+  }
+
+  .pdMainImg {
+    width: 100%;
+    height: 30rem;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  .pdSubImgs {
+    width: 5rem !important;
+    height: 5rem;
+    overflow: hidden;
+    object-fit: contain;
+  }
+
+  .rec.rec-arrow {
+    background-color: #fff;
+    border: none;
+    outline: none;
+  }
+  .rec.rec-arrow:hover {
+    background-color: $primary;
+  }
+  .rec.rec-arrow:disabled {
+    visibility: hidden;
+  }
+
+  .pdMainFieldPrice {
+    color: $Dark;
+    padding-top: 1rem;
+  }
+  .commentStarPart {
+    width: 15rem;
+  }
+  .pdMainFieldStars {
+    color: $DarkOpacity60;
+  }
+
+  .pdMainFieldLB {
+    height: 9rem;
+  }
+  .pdMainFieldLT {
+    padding-top: 3rem;
+  }
+  // -- product top end --
+  // -- ItemTabBar start --
+  .ItemTabBar {
+    background-color: $DarkGray;
+    width: 100%;
+    height: 3rem;
+    // margin-top: 4rem;
+    z-index: 1;
+  }
+  .re-tabs {
+    width: 32rem;
+    height: 3rem;
+    text-align: center;
+    font-size: font(1.2);
+    line-height: 3rem;
+    color: rgba($Light, 0.3);
+    // background-color: turquoise;
+  }
+  .separator {
+    width: 2px;
+    height: 2rem;
+    background-color: $DarkLightGray;
+  }
+  .tabsAct {
+    box-sizing: border-box;
+    color: $Light;
+    position: relative;
+    // border-bottom: 5px solid $primary;s
+  }
+  .tabsAct::after {
+    content: '';
+    width: 10rem;
+    animation: tabExpend 0.2s ease-out;
+    height: 4px;
+    background-color: $primary;
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+  }
+
+  @keyframes tabExpend {
+    from {
+      width: 0;
+    }
+    to {
+      width: 10rem;
+    }
+  }
+
+  .tabFixed {
+    position: fixed;
+    top: 0;
+  }
+  .contentHeight1 {
+    // height: 100vh;
+    padding-top: 4rem;
+  }
+
+  .contentHeight2 {
+    // height: 100vh;
+    // padding-top: 4rem;
+  }
+  .contentHeight3 {
+    // height: 100vh;
+    // padding-top: 4rem;
+  }
+}
+// -- ItemTabBar end --
+// -- Product Intro --
+.pdIntroPart {
+  padding: 4rem 0rem;
+  background: url('/img/bg-pdintro.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+}
+.pdIntroImgField {
+  // width: 100%;
+  max-height: 30rem;
+  overflow: hidden;
+}
+.contentPics {
+  // width: 100%;
+  background-color: #f8f8f8f5;
+  z-index: 0;
+  object-fit: contain;
+  object-position: center center;
+}
+.pdIntroTextSpace {
+  margin: 2rem 0;
+  padding: 0 10rem;
+}
+// -- Comment start --
+.PdComment {
+  border-bottom: 1px solid #ccc;
+}
+.separateLine {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #ccc;
+  // margin: 1rem 0;
+}
+.commentAvatarPart {
+  padding: 3rem;
+}
+.commentAvatar {
+  width: 8rem;
+  height: 8rem;
+  border: 1px solid #ccc;
+  border-radius: 5rem;
+}
+.commentPdPic {
+  width: 6rem;
+  height: 6rem;
+  // border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px 1px #ddd;
+  object-fit: contain;
+  object-position: center center;
+  overflow: hidden;
+}
