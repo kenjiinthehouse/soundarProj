@@ -34,9 +34,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StudioContent(props) {
-  const{value,pdIndex}=props
 
- 
+  //Reckie原本的
+  // const {pds,viewFilter,products} =props
+  // const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandEnter = () => {
     setExpanded(!expanded);
@@ -72,7 +73,7 @@ function StudioContent(props) {
 
   return (
     <>
-    <QueueAnim className={`pdContent demo-content d-flex flex-wrap mx-auto ${(value===pdIndex)?'':'reHidden'}`}>    
+    <QueueAnim className="pdContent demo-content d-flex flex-wrap mx-auto">    
         {studioData.map((item, index) => {          
           return <StudioContentItem key={item.id} studioData={item}/>       
         })}

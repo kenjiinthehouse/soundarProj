@@ -89,3 +89,25 @@ function AcContentItem(props){
 }
 
 export default AcContentItem
+
+{/* <CardMedia
+              className={classes.media}
+              // image={`http://localhost:3000/ch_img/activity_demo9.jpg`}
+              image={item[0].activity_img}
+              title="Paella dish"
+            />          
+              <div className="cardBody-activity" key={item}>
+                <div variant="body2">
+                  <h6>{item[0].activity_date.slice(0,11)}</h6>
+                  <h4>{item[0].activity_name}</h4>
+                </div>
+                <div variant="body2">
+                  <h4 className="pdPrice">{item[0].ticket_price}</h4>
+                </div>
+              </div> */}
+
+{/* <Collapse in={isShown} timeout="auto" unmountOnExit>                
+<Button className="addCartBtn" onClick={()=>{props.history.push('/activitymain')}}>立即購票</Button>                              
+</Collapse> */}
+
+// to={`/activitymain`}

@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AcContent(props) {
-  const {value,pdIndex}=props
 
   //Reckie原本的
   // const {pds,viewFilter,products} =props
@@ -73,13 +72,14 @@ function AcContent(props) {
 
   return (
     <>
-    <QueueAnim className={`pdContent demo-content d-flex flex-wrap mx-auto ${(value===pdIndex)?'':'reHidden'}`} >    
+    <QueueAnim className="pdContent demo-content d-flex flex-wrap mx-auto">    
         {activityData.map((item, index) => {          
           return <AcContentItem key={item.id} activityData={item}/>       
         })}
      </QueueAnim>
     </>
   );
-  }
+  
+}
 
 export default AcContent
