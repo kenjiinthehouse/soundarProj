@@ -3,4 +3,11 @@ reactproj/node_modules
 reactproj/public/audios
 reactproj/public/img
 reactproj/public/music
+<<<<<<< HEAD
+Node/src/db_connect.js
+Node/yarn.lock
+reactproj/debug.log
+
+=======
 reactproj/public/reckie_Videos
+>>>>>>> 67393c737cbbb903631b70bb9bd047032781123f

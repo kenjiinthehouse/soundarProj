@@ -4,10 +4,15 @@ import { Link, Router, Switch, withRouter } from 'react-router-dom';
 import '../styles/Sidebar.scss';
 import Memberedit from '../components/Memberedit';
 
+<<<<<<< HEAD
+//活動訂單
+import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
+=======
 //page7
 import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome';
 //page8
 import PodcasterAudioList from './../../jay/jay_pages/PodcasterAudioList.js';
+>>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 
 function Membersidebar(props) {
   const [activenumber, setActivenumber] = useState(1);
@@ -161,7 +166,7 @@ function Membersidebar(props) {
               <div className="sa-sidebar-mainarea col-9">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
-                {activenumber == 3 ? <div>3</div> : <></>}
+                {activenumber == 3 ? <div><ActivityOrder/></div> : <></>}
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div>6</div> : <></>}

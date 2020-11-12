@@ -41,10 +41,18 @@ async function getListData (req){
     return output;
 };
 
-//list(R)
+//list分頁限筆數(R)
 router.get('/api', async(req,res)=>{
    res.json(await getListData(req));
 });
+
+//all-lsit
+router.get('/list', async(req,res)=>{
+    const sql = "SELECT * FROM activity ORDER BY sid ASC";
+    const [results] = await db.query(sql);
+    res.json(results);
+})
+
 
 //呈現單筆
 router.get('/api/:sid', async (req, res) => {
@@ -54,6 +62,18 @@ router.get('/api/:sid', async (req, res) => {
 
     res.json(results[0]);
 })
+
+
+//呈現同活動的不同方案
+router.get('/option/:activity_id', async (req, res) => {
+    const sql = "SELECT * FROM activity WHERE activity_id=?";
+    const [results] = await db.query(sql, [req.params.activity_id]);
+    if (!results.length) return res.redirect('/activity/api');
+    console.log(results);
+
+    res.json(results);
+})
+
 
 // add(C)
 router.post('/add', async (req, res) => {

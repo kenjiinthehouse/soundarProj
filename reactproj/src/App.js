@@ -5,10 +5,21 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //components
-import MyNavbar from './jay/jay_components/MyNavbar.js';
+
 import ScrollToTop from './jay/jay_components/ScrollToTop.js';
 import MainContent from './jay/jay_components/MainContent.js';
 import { Layout } from 'antd';
+
+//index page
+import MyNavbar from './kenji/components/MyNavbar';
+import IndexCarousel from './kenji/components/IndexCarousel';
+import IndexInfo from './kenji/components/IndexInfo';
+import IndexChannel from './kenji/components/IndexChannel';
+import IndexPodcastEp from './kenji/components/IndexPodcastEp';
+import IndexShop from './kenji/components/IndexShop';
+import ArticleCarousel from './kenji/components/ArticleCarousel';
+import MyFooter from './kenji/components/MyFooter';
+
 
 //pages
 import PodcasterDashboardHome from './jay/jay_pages/PodcasterDashboardHome';
@@ -24,10 +35,10 @@ import Cart from './ruby/ruby_pages/CartPage.js';
 import Checkout from './ruby/ruby_pages/CheckoutPage.js';
 import Orderlist from './ruby/ruby_pages/OrderPage.js';
 import ActivityMain from './chieh/ch_pages/ActivityMain';
-import ActivityCart from './chieh/ch_pages/ActivityCart';
+// import ActivityCart from './chieh/ch_pages/ActivityCart';
 import ActivityOrder from './chieh/ch_pages/ActivityOrder';
 import StudioMain from './chieh/ch_pages/StudioMain';
-import Payment from './chieh/ch_pages/Payment';
+// import Payment from './chieh/ch_pages/Payment';
 import Applymembership from './samps/pages/Applymembership';
 import Audiocollection from './samps/pages/Audiocollection';
 import Channelcollection from './samps/pages/Channelcollection';
@@ -37,6 +48,9 @@ import Podlogin from './samps/pages/Podlogin';
 import Verification from './samps/pages/Verification';
 import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
+import { colors } from '@material-ui/core';
+import { Height } from '@material-ui/icons';
+
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -50,6 +64,16 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
+              <Route exact path="/">
+                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%' }}>
+                  <IndexCarousel />
+                  <IndexInfo />
+                  <IndexChannel />
+                  <IndexPodcastEp />
+                  <IndexShop />
+                  <ArticleCarousel />
+                </div>
+              </Route>
               <Route path="/explore_home_page">
                 <ExploreHomePage
                   globalAudioArry={globalAudioArry}
@@ -99,18 +123,18 @@ function App() {
               <Route path="/activitymain">
                 <ActivityMain />
               </Route>
-              <Route path="/activitycart">
+              {/* <Route path="/activitycart">
                 <ActivityCart />
-              </Route>
+              </Route> */}
               <Route path="/activityorder">
                 <ActivityOrder />
               </Route>
               <Route path="/studiomain">
                 <StudioMain />
               </Route>
-              <Route path="/payment">
+              {/* <Route path="/payment">
                 <Payment />
-              </Route>
+              </Route> */}
               <Route path="/login">
                 <Podlogin />
               </Route>
@@ -157,6 +181,7 @@ function App() {
             setPlayingAudio={setPlayingAudio}
           />
         </MainContent>
+        <MyFooter />
       </Layout>
     </Router>
   );

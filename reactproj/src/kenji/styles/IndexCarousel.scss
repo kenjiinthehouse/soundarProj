@@ -1,0 +1,120 @@
+@import '~bootstrap/scss/bootstrap.scss';
+////////////////////////////////////Carosel START//////////////////////////////////////
+// Index Carousel content
+
+.indexCarousel {
+  width: 101rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+.indexColorCard {
+  width: 100%;
+  height: 50rem;
+  background-color: #0e4065;
+  position: absolute;
+  left: 0;
+  top: 15%;
+  z-index: 0;
+  transform: skewY(5deg);
+  background-attachment: fixed;
+}
+
+// Carousel card
+.indexCarousel .CarouselItem {
+  width: 101rem;
+  height: 56.813rem;
+}
+// img of Carousel card content
+.indexCarousel .CarouselItem .MuiPaper-root {
+  width: 101rem;
+  height: 56.813rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+// img 實體
+.indexCarousel .CarouselItem .MuiPaper-root img {
+  width: 100%;
+  // height: 100%; //設了會容易爆版蓋掉 carousel dot
+}
+
+// Carousel info p
+.indexCarousel .CarouselItem .MuiPaper-root p::before {
+  content: '';
+  position: absolute;
+  width: 53rem;
+  height: 13rem;
+  border-radius: 0 10px 10px 0;
+  background-color: rgba($color: #232d2f, $alpha: 0.1);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  z-index: -1;
+}
+.indexCarousel .CarouselItem .MuiPaper-root p {
+  width: 53rem;
+  height: 13rem;
+  background-color: rgba($color: #232d2f, $alpha: 0.2);
+  border-radius: 0 10px 10px 0;
+  position: absolute;
+  top: 70%;
+  z-index: 1;
+  color: #f8f8f8;
+  font-size: 3.5rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+// Carousel Btn
+.indexCarousel .CarouselItem .MuiPaper-root button {
+  width: 32.938rem;
+  height: 7.188rem;
+  border-radius: 58px;
+  background-color: #f8f8f8;
+  position: absolute;
+  bottom: 3rem;
+  right: 8rem;
+  z-index: 10;
+}
+
+// .indexCarousel .CarouselItem .MuiPaper-root button::after {
+//   content: '';
+//   position: absolute;
+//   z-index: -1;
+//   width: 32.938rem;
+//   height: 7.188rem;
+//   border-radius: 58px;
+//   background-color: red;
+//   left: -2%;
+//   bottom: -5%;
+// }
+.indexCarousel
+  .CarouselItem
+  .MuiPaper-root
+  .MuiButtonBase-root
+  .MuiButton-label {
+  font-size: 3rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.indexCarousel .CarouselItem .MuiPaper-root .MuiButtonBase-root .clickLabel {
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.9;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #2690df;
+  position: absolute;
+  right: 10%;
+  top: 75%;
+}
+////////////////////////////////////Carosel END//////////////////////////////////////

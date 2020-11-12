@@ -1,64 +1,73 @@
-import React from 'react'
-import { Carousel,Radio,RadioGroup,Divider } from 'rsuite';
-import 'rsuite/dist/styles/rsuite-default.css';
+import React from 'react';
+import '../styles/IndexCarousel.scss';
+import Carousel from 'react-material-ui-carousel';
+import { Paper, Button } from '@material-ui/core';
 
 
 
-
-const styles = {
-  radioGroupLabel: {
-    padding: '8px 12px',
-    display: 'inline-block',
-    verticalAlign: 'middle',
-  },
-};
-function IndexCarousel() {
-  const [placement, setPlacement] = React.useState('right');
-  const [shape, setShape] = React.useState('dot');
-
-  function updatePlacement(value) {
-    setPlacement(value);
-  }
-
-  function updateShape(value) {
-    setShape(value);
-  }
+function IndexCarousel(props) {
+  let items = [
+    {
+      name: '百靈果NEWS',
+      description: `“重新定義你對的自由的想像華語最自由的PODCAST頻道”`,
+      img: './k_img/IndexBailingguoNews.jpg',
+      click: '>>去聽聽',
+    },
+    {
+      name: 'Random Name #2',
+      description: 'Hello World!',
+      img: './k_img/IndexC2.jpg',
+      click: '>>去聽聽',
+    },
+    {
+      name: 'Random Name #3',
+      description: 'Hello World!',
+      img: './k_img/IndexC3.jpg',
+      click: '>>去聽聽',
+    },
+    {
+      name: 'Random Name #4',
+      description: 'Hello World!',
+      img: './k_img/IndexC4.jpg',
+      click: '>>去聽聽',
+    },
+    {
+      name: 'Random Name #5',
+      description: 'Hello World!',
+      img: './k_img/IndexC5.jpg',
+      click: '>>去聽聽',
+    },
+  ];
 
   return (
     <>
       <Carousel
-        key={`${placement}.${shape}`}
-        placement={placement}
-        shape={shape}
-        className="indexCarousel"
+        className="indexCarousel mx-auto"
+        autoPlay={false}
+        timeout={300}
+        indicators={true}
+        navButtonsAlwaysVisible={true}
       >
-        <img
-          src="https://pbs.twimg.com/media/CEE3gV1WoAA-A2R.jpg"
-          height="250"
-        />
-        <img
-          src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=2"
-          height="250"
-        />
-        <img
-          src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=3"
-          height="250"
-        />
-        <img
-          src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=4"
-          height="250"
-        />
-        <img
-          src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=5"
-          height="250"
-        />
+        {items.map((item, i) => (
+          <Item key={i} item={item} />
+        ))}
       </Carousel>
-      <button className="carouselButton">百靈果NEWS</button>
-      <div className="carouselButtonBack"></div>
-      <div className="carouselBanner">
-        百靈果NEWS百靈果NEWS百靈果NEWS百靈果NEWS 百靈果NEWS
-      </div>
+      <div className="indexColorCard"></div>
     </>
+  );
+}
+
+function Item(props) {
+  return (
+    <Paper>
+      {/* <h2>{props.item.name}</h2> */}
+      <p>{props.item.description}</p>
+      <img src={props.item.img} />
+      <Button className="CheckButton">
+        <label className="clickLabel">{props.item.click}</label>
+        {props.item.name}
+      </Button>
+    </Paper>
   );
 }
 export default IndexCarousel;
