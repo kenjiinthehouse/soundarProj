@@ -25,6 +25,7 @@ function Breadcrumb(props) {
 
   return (
     <>
+    <div className="chieh-breadcrumb">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb bg-white">
           <li className="breadcrumb-item">
@@ -35,6 +36,8 @@ function Breadcrumb(props) {
           </li>
         </ol>
       </nav>
+    </div>
+      
     </>
   )
 }
