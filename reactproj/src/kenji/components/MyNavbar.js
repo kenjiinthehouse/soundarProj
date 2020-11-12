@@ -104,80 +104,7 @@ function MyNavbar(props) {
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>
-      <div>
-        <Button
-          href="#"
-          key="1"
-          onClick={(event) => {
-            event.preventDefault();
-            props.history.push(`/memberedit`);
-          }}
-        >
-          <ReorderIcon />
-        </Button>
-      </div>
-
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        className="popper"
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-            className="popper"
-          >
-            <Paper className="popper">
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      href="#"
-                      key="1"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        props.history.push(`/memberedit`);
-                      }}
-                    >
-                      加入播客
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      href="javascript"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        props.history.push(`/explore_home_page`);
-                      }}
-                      style={{ outline: 'none' }}
-                    >
-                      探索
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">商城</Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">專欄</Button>
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      ></div>      
       <div className="navBarBtn">
         <Button
           href="#"
@@ -251,7 +178,7 @@ function MyNavbar(props) {
                           props.history.push(`/memberedit`);
                         }}
                       >
-                        加入播客
+                        會員資料
                       </Button>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
@@ -263,15 +190,15 @@ function MyNavbar(props) {
                         }}
                         style={{ outline: 'none' }}
                       >
-                        探索
+                        節目收藏
                       </Button>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
-                      <Button href="#">商城</Button>
+                      <Button href="#">頻道追蹤</Button>
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>
+                    {/* <MenuItem onClick={handleClose}>
                       <Button href="#">專欄</Button>
-                    </MenuItem>
+                    </MenuItem> */}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -307,77 +234,7 @@ function MyNavbar(props) {
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>
-      <div className="navBarBtn">
-        <Button
-          href="#"
-          onClick={(event) => {
-            event.preventDefault();
-            props.history.push(`/memberedit`);
-          }}
-        >
-          加入播客
-        </Button>
-      </div>
-
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        className="popper"
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-            className="popper"
-          >
-            <Paper className="popper">
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      href="#"
-                      key="1"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        props.history.push(`/memberedit`);
-                      }}
-                    >
-                      加入播客
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      onClick={() => {
-                        props.history.push(`/explore_home_page`);
-                      }}
-                      style={{ outline: 'none' }}
-                    >
-                      探索
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">商城</Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">專欄</Button>
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      ></div>     
       <div className="navBarBtn">
         <Button
           href="#"
