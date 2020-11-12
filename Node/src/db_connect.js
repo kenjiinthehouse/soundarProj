@@ -4,6 +4,7 @@ const mysql2 = require("mysql2");
 const pool = mysql2.createPool({
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   // host: "localhost",
   // user: "jl55661688",
   // password: "iouccc19931107",
@@ -52,6 +53,8 @@ const pool = mysql2.createPool({
   // kenji
 =======
 >>>>>>> 29142c5... 整合product 錄音室、活動分類
+=======
+>>>>>>> cfc7970... ripple css/navbar member collapese
   // host: "localhost",
   // user: "jl55661688",
   // password: "iouccc19931107",
@@ -61,6 +64,18 @@ const pool = mysql2.createPool({
   // queueLimit: 0,
 
   // kenji
+<<<<<<< HEAD
+=======
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "mfee09_project",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+
+  //reckie
+>>>>>>> cfc7970... ripple css/navbar member collapese
   // host: "localhost",
   // user: "root",
   // password: "",

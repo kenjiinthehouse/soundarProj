@@ -5,7 +5,7 @@
 //Nav
 .ant-layout-header {
   color: #fff;
-  background: rgba($color: #232d2f, $alpha: 0.95);
+  background-color: rgba($color: #232d2f, $alpha: 0.95);
   min-width: 100%;
   min-height: 3rem;
   // padding: 0px;
@@ -42,25 +42,30 @@ a,
 a:active,
 a:focus,
 a:hover {
-  color: #ffffff !important;
-  text-decoration: none !important;
+  color: #ffffff;
+  text-decoration: none;
 }
-@media (min-width: 1000px) {
-  .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
-    display: none !important;
-  }
-  Header .navBarLogInBtn {
-    display: none !important;
-  }
-}
-@media (max-width: 1000px) {
-  Header .navBarBtn {
-    display: none !important;
-  }
-}
+// @media (min-width: 1000px) {
+//   .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
+//     display: none !important;
+//   }
+//   Header .navBarLogInBtn {
+//     display: none !important;
+//   }
+// }
+// @media (max-width: 1000px) {
+//   Header .navBarBtn {
+//     display: none !important;
+//   }
+// }
 .MuiList-padding {
   background-color: #232d2f;
 }
+
+.MuiTouchRipple-root {
+  color: #909393;
+}
+
 .MuiButtonBase-root.MuiButton-root.MuiButton-text {
   padding: 0px;
 }
