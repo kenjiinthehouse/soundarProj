@@ -4,13 +4,12 @@ import { Link, Router, Switch, withRouter } from 'react-router-dom'
 import '../styles/Sidebar.scss'
 import Memberedit from '../components/Memberedit'
 
+//活動訂單
+import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
 //page7
 import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome';
 //page8
 import PodcasterAudioList from './../../jay/jay_pages/PodcasterAudioList.js';
-
-//活動訂單
-import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
 
 function Membersidebar(props) {
   const [activenumber, setActivenumber] = useState(1)
