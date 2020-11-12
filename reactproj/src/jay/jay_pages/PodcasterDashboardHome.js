@@ -10,7 +10,6 @@ import ChannelEdditImgModal from '../jay_components/ChannelEdditImgModal.js';
 
 function PodcasterDashboardHome(props) {
   const { channel_data } = props;
-  const { podcaster_id } = useParams();
   const [editTargrt, setEditTargrt] = useState('');
   const [editInputData, setEditInputData] = useState({});
   const [editImgModalShow, setEditImgModalShow] = useState(false);
@@ -61,12 +60,12 @@ function PodcasterDashboardHome(props) {
     formData.append('owner_email', editInputData.owner_email);
     formData.append('podcaster_img', editInputData.podcaster_img);
     await props.editChannelAsync(formData);
-    await props.initalDashboardAsync(podcaster_id);
+    await props.initalDashboardAsync(props.member.sid);
   };
 
   useEffect(() => {
-    props.initalDashboardAsync(podcaster_id);
-  }, []);
+    props.initalDashboardAsync(props.member.sid);
+  }, [props.member]);
   useEffect(() => {
     setEditInputData(...channel_data);
   }, [channel_data]);
@@ -75,7 +74,7 @@ function PodcasterDashboardHome(props) {
     <>
       {props.channel_data.map((item, index) => {
         return (
-          <div className="container w-100" key={index}>
+          <div key={index}>
             <div className="row justify-content-center">
               <div className="jay-podcastImgArea my-3">
                 <img
@@ -684,7 +683,10 @@ function PodcasterDashboardHome(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { channel_data: store.podcasterDashboardInfoState };
+  return {
+    channel_data: store.podcasterDashboardInfoState,
+    member: store.member,
+  };
 };
 
 // 綁定部份action creators
