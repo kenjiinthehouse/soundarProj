@@ -136,8 +136,17 @@ function TabBar(props) {
           />
           {/* <PdContent 
           {...props}
-          
-          />
+          viewFilter={viewFilter}
+          /> */}
+
+          {/* 活動 */}
+          {/* <AcContent 
+            viewFilter={viewFilter}
+          /> */}
+
+          {/* 錄音室 */}
+          <StudioContent />
+
         </div>
       </TabPanel>
     </div>
