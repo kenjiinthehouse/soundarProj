@@ -17,6 +17,7 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
+import InformLoginModal from './../jay_components/InformLoginModal';
 
 // react icon
 import { RiMusic2Fill } from 'react-icons/ri';
@@ -48,6 +49,7 @@ function ExploreCateChannelPage(props) {
     },
   };
 
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { cate_term } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -294,6 +296,8 @@ function ExploreCateChannelPage(props) {
                                 await props.initMemberChannelCollectionAsync(
                                   props.member.sid
                                 );
+                              } else {
+                                setShowInformLoginModal(true);
                               }
                             }}
                           >
@@ -313,6 +317,8 @@ function ExploreCateChannelPage(props) {
                                 await props.initMemberChannelCollectionAsync(
                                   props.member.sid
                                 );
+                              } else {
+                                setShowInformLoginModal(true);
                               }
                             }}
                           >
@@ -379,6 +385,10 @@ function ExploreCateChannelPage(props) {
           </div>
         </div>
       </div>
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+      />
     </StyleRoot>
   );
 
