@@ -141,7 +141,6 @@ function TabBar(props) {
           />
           {/* <PdContent 
           {...props}
-<<<<<<< HEAD
           viewFilter={viewFilter}
           /> */}
 
@@ -151,12 +150,8 @@ function TabBar(props) {
           /> */}
 
           {/* 錄音室 */}
-          <StudioContent viewFilter={viewFilter}/>
+          <StudioContent />
 
-=======
-          
-          />
->>>>>>> reckie
         </div>
         
       </TabPanel>
