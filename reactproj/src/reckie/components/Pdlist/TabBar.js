@@ -136,13 +136,8 @@ function TabBar(props) {
             viewFilter={viewFilter}
           /> */}
           {/* 錄音室 */}
-<<<<<<< HEAD
-          <StudioContent />
-
-=======
           {/* <StudioContent viewFilter={viewFilter} />
           ======= /> >>>>>>> reckie */}
->>>>>>> 508f95689735df303658679860e68de83356cbd2
         </div>
       </TabPanel>
     </div>
