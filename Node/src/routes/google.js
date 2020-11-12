@@ -149,7 +149,7 @@ router.get(
     console.log("req", req.user);
     // req.session.gooleid = req.user.googleid;
     // req.session.admin = req.user;
-    const go_back_react = "http://localhost:3000/login?jwt=";
+    const go_back_react = "http://localhost:3000?jwt=";
 
     const token = jwt.sign(req.user, process.env.TOKEN_SECRET);
 
