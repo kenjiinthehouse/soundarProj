@@ -27,15 +27,55 @@ function ArticlePage(props) {
   const articleTagsArray = ('' + props.articleDetailData.article_tags).split(
     ','
   );
+  const [clicks, setClicks] = useState(0);
+  console.log('clicks', clicks);
 
+  //clicks POST
+  async function updateTotalToServer(sid, value) {
+    const newClicks = { article_clicks: clicks + value };
+
+    const url = `http://localhost:5566/article/edit/${sid}`;
+
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify(newClicks),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    });
+
+    try {
+      const response = await fetch(request);
+      const data = await response.json();
+      // data會是一個物件值
+      console.log('try-data', data);
+
+      // 驗証成功後再設定…
+      // setClicks(clicks + value);
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
   //componentDidMount
   useEffect(() => {
-    props.getArticleDetailAsync(sid);
+   props.getArticleDetailAsync(sid);
+  //  window.onload = function (){
+  //     setClicks(props.articleDetailData.article_clicks);
+  //     }
+    setClicks(props.articleDetailData.article_clicks);
   }, []);
   //componentDidUpdate
   useEffect(() => {
     props.getArticleDetailAsync(sid);
   }, [fontSize, sid]);
+  useEffect(() => {
+    if (!clicks) {
+      setClicks(props.articleDetailData.article_clicks);
+    } else {
+      updateTotalToServer(sid, 1);
+    }
+  },[clicks])
   useEffect(() => {
     //每當更換新文章時自動滾至頁首
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
