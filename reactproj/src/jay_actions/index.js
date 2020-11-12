@@ -6,6 +6,7 @@ import {
   INIT_CHANNEL_PAGE_DATA,
   INIT_RATE_MODAL,
   INIT_MEMBER_COLLECTION,
+  INIT_MEMBER_CHANNEL_COLLECTION,
 } from './actionTypes';
 
 export const initalDashboard = (payload) => {
@@ -308,6 +309,64 @@ export const delCollection = (member_sid, audio_sid) => {
         'Content-Type': 'application/json',
       }),
       body: JSON.stringify({ sid: member_sid, audio_id: audio_sid }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+  };
+};
+
+export const initMemberChannelCollection = (payload) => {
+  return { type: INIT_MEMBER_CHANNEL_COLLECTION, payload: payload };
+};
+
+// INIT_CHANNEL_COLLECTION
+export const initMemberChannelCollectionAsync = (sid) => {
+  return async function getChannelCollection(dispatch) {
+    const url = `http://localhost:5566/member_collection/channel_array`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ sid: sid }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    dispatch(initMemberChannelCollection(data.rs));
+  };
+};
+
+//subscribe channel
+export const addChannelCollection = (member_sid, channel_sid) => {
+  return async function sendData(dispatch) {
+    const url = `http://localhost:5566/member_collection/add_channel`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ sid: member_sid, channel_id: channel_sid }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+  };
+};
+
+export const delChannelCollection = (member_sid, channel_sid) => {
+  return async function sendData(dispatch) {
+    const url = `http://localhost:5566/member_collection/delete_channel`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ sid: member_sid, channel_id: channel_sid }),
     });
 
     const response = await fetch(request);
