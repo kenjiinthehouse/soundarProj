@@ -17,7 +17,7 @@ a:hover {
 
 ////////////////////////////////////FOOTER START//////////////////////////////////////
 // footer
-.ant-layout-footer {
+.ant-layout-footer.myFooter {
   color: #fff;
   background-color: #232d2f;
   width: 100%;
@@ -36,7 +36,7 @@ a:hover {
       rgba(255, 255, 255, 0) 25%,
       rgba(35, 24, 21, 1) 100%
     ),
-    url(../img/drew-perales-EdFfvBmAgJs-unsplash.jpg);
+    url(http://localhost:3000/k_img/drew-perales-EdFfvBmAgJs-unsplash.jpg);
   background-size: 100%; //RWD
   background-position: center;
   background-repeat: no-repeat;
@@ -96,7 +96,7 @@ a:hover {
   width: 18rem;
   height: 4rem;
   margin: 1rem 0 1rem 0;
-  background-image: url(../img/logofordark.svg);
+  background-image: url(http://localhost:3000/k_img/logofordark.svg);
   background-position: center;
   background-repeat: no-repeat;
 }

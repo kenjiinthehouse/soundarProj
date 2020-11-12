@@ -1,8 +1,7 @@
 import React from 'react';
 import '../styles/IndexChannel.scss';
 import Button from '@material-ui/core/Button';
-import News from '../img/News.jpg'
-import Cover from '../img/cover1.jpg';
+
 //icons
 import {
   GiNewspaper,
@@ -97,7 +96,7 @@ function IndexChannel(props) {
             </Button>
           </div>
           <div className="IndexChannelPageBoxContent d-flex">
-            <img src={News} />
+            <img src="./k_img/News.jpg" />
             <QueueAnim
               delay={500}
               type={['right', 'left']}
@@ -130,7 +129,10 @@ function IndexChannel(props) {
                           </Typography>
                         </CardContent>
                       </div>
-                      <CardMedia className={classes.cover} image={Cover} />
+                      <CardMedia
+                        className={classes.cover}
+                        image="./k_img/cover1.jpg"
+                      />
                     </Card>
                     <Card key="3" className={classes.root} data-cardId="2">
                       <div className={classes.details}>
@@ -151,7 +153,10 @@ function IndexChannel(props) {
                           </Typography>
                         </CardContent>
                       </div>
-                      <CardMedia className={classes.cover} image={Cover} />
+                      <CardMedia
+                        className={classes.cover}
+                        image="./k_img/cover1.jpg"
+                      />
                     </Card>
                     <Card key="4" className={classes.root} data-cardId="3">
                       <div className={classes.details}>
@@ -172,7 +177,10 @@ function IndexChannel(props) {
                           </Typography>
                         </CardContent>
                       </div>
-                      <CardMedia className={classes.cover} image={Cover} />
+                      <CardMedia
+                        className={classes.cover}
+                        image="./k_img/cover1.jpg"
+                      />
                     </Card>
                     <Card key="5" className={classes.root} data-cardId="4">
                       <div className={classes.details}>
@@ -193,7 +201,10 @@ function IndexChannel(props) {
                           </Typography>
                         </CardContent>
                       </div>
-                      <CardMedia className={classes.cover} image={Cover} />
+                      <CardMedia
+                        className={classes.cover}
+                        image="./k_img/cover1.jpg"
+                      />
                     </Card>
                     <Button key="6" className=" d-flex mt-2 mx-auto">
                       更多優質頻道

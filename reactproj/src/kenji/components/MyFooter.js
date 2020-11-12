@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      color: "#FFFFFF"
+      color: "#f8f8f8"
     },
   },
 }));
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 function MyFooter(props) {
   const classes = useStyles();
   return (
-    <Footer>
+    <Footer className="myFooter">
       <div className="subscribeArea">
         <div className="emailTitle d-flex row no-gutters justify-content-center">
           <div className="emailTitleText">訂閱 Soundar 電子報</div>
