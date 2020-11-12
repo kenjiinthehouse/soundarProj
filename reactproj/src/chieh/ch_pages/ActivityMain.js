@@ -13,7 +13,7 @@ import OptionCard from '../ch_components/OptionCard'
 
 function ActivityMain(props) {
     const [activityData, setActivityData] = useState([])
-    const [newData, setNewData] = useState([])
+    const [newActivity, setNewActivity] = useState([])
   
     async function getActivityFromServer() {
       const url = 'http://localhost:5566/activity/option/1'
@@ -28,7 +28,7 @@ function ActivityMain(props) {
       const response = await fetch(request)
       const data = await response.json()
       console.log(data)
-      setNewData(data)
+      setNewActivity(data)
       let arr = []
       arr.push(data)
       console.log(arr)
@@ -87,7 +87,10 @@ function ActivityMain(props) {
           className="nav-pills d-flex justify-content-around"
         >
           <Tab eventKey="option" title="方案票價">
-            <ActivityOption activityData={activityData} setActivityData={setActivityData}/>
+            <ActivityOption 
+            activityData={activityData} setActivityData={setActivityData}
+            newActivity={newActivity} setNewActivity={setNewActivity} 
+            />
           </Tab>
           <Tab eventKey="info" title="活動內容">
           <div className="container d-flex">

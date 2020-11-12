@@ -4,30 +4,46 @@ import { MdAddCircleOutline,MdRemoveCircleOutline } from 'react-icons/md'
 import { Button, Accordion, Card, Modal, Form, Row, Col } from 'react-bootstrap'
 
 function ActivityOption(props) {
-  const [quantity, setQuantity] = useState(1)
-  const [quantity2, setQuantity2] = useState(1)
-  const [quantity3, setQuantity3] = useState(1)
+  const [quantity, setQuantity] = useState(0)
+  const [quantity0, setQuantity0] = useState(0)
+  const [quantity1, setQuantity1] = useState(0)
+  const [quantity2, setQuantity2] = useState(0)
 
   //立即報名Modal  
   const [show, setShow] = useState(false);  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);  
 
+  // function addQuantity(){
+  //   switch(quantity){
+  //     case 1 :
+  //       quantity0 === 1 ? alert('數量不可低於一張') : setQuantity0(quantity0 - 1);
+  //       break;
+  //     case 2 :
+  //       quantity1 === 1 ? alert('數量不可低於一張') : setQuantity1(quantity1 - 1);
+  //       break;
+  //     case 3 :
+  //       quantity2 === 1 ? alert('數量不可低於一張') : setQuantity2(quantity2 - 1);
+  //       break;
+  //     default:
+  //   }
+  // }
+
   return (
     <>
-       {props.activityData.map((item)=>{
+       {props.newActivity.map((item,index)=>{
           return (
-            <div className="container" key={item[0]}>
+            <div className="container" key={item}>
               <div className="option-item d-flex justify-content-between" >
                 <div className="option-content">
-                  <h4 key={item}>{item[0].ticket_option}</h4>
+                  <h4>{item.ticket_option}</h4>
                   <li>11/30前報名享早鳥優惠價</li>
                   <li>課程附贈教材、午餐、午茶</li>
                   <li>每堂贈送《數位時代》三期 (課程隔月號起算)</li>            
                 </div>
                 <Accordion>                
                     <Card.Header className="d-flex flex-wrap justify-content-between">
-                      <span style={{fontSize : '2rem', fontWeight:'bold', fontFamily:'Roboto'}}>NT$ {item[0].ticket_price} / 每人</span>
+                      <span style={{fontSize : '2rem', fontWeight:'bold', fontFamily:'Roboto'}}>NT$ {item.ticket_price} / 每人</span>
                       <Accordion.Toggle as={Button} eventKey="0" className="btn-select">
                         選擇
                       </Accordion.Toggle>
@@ -39,20 +55,49 @@ function ActivityOption(props) {
                         <div className="d-flex justify-content-between counter align-items-center">
                           <span>人數</span>
                           <div className="d-flex justify-content-between align-items-center">
-                            <MdRemoveCircleOutline style={{ fontSize: '2rem', color: quantity ===1 ? '#909393' : '#232d2f' }} 
-                            onClick={() => { quantity === 1 ? alert('數量不可低於一張') : setQuantity(quantity - 1)}}/>
+                            <MdRemoveCircleOutline key={index} style={{ fontSize: '2rem', color:'#232d2f' }} 
+                            onClick={()=>{
+                              if(index==0){
+                                quantity0 === 0 ? alert('數量不可低於一張'): setQuantity0(quantity0 - 1);
+                              }else { 
+                                if(index==1){
+                                  quantity1 === 0 ? alert('數量不可低於一張'): setQuantity1(quantity1 - 1);
+                                }else {
+                                  if(index==2){
+                                  quantity2 === 0 ? alert('數量不可低於一張'): setQuantity2(quantity2 - 1);
+                                }else {}
+                                }
+                              }
+                            }}/>
 
-                            <span style={{ fontSize: '2rem' }}>{quantity}</span>
+                            <span style={{ fontSize: '2rem' }} key={index} id={index}>{index==0 ? quantity0 : index==1 ? quantity1 : index==2 ? quantity2 :''}</span>
 
-                            <MdAddCircleOutline style={{ fontSize: '2rem', color: quantity ===3 ? '#909393' : '#232d2f' }} 
-                            onClick={() => {quantity === 3 ? alert('每人限購三張') : setQuantity(quantity + 1)}}/>
+                            <MdAddCircleOutline key={index} style={{ fontSize: '2rem', color:'#232d2f' }} 
+                            onClick={() => {
+                              if(index==0){
+                                quantity0 === 3 ? alert('每人限購三張') : setQuantity0(quantity0 + 1)
+                              } else {
+                                if(index==1){
+                                  quantity1 === 3 ? alert('每人限購三張') : setQuantity1(quantity1 + 1)
+                                }else {
+                                  if(index==2){
+                                    quantity2 === 3 ? alert('每人限購三張') : setQuantity2(quantity2 + 1)
+                                  }else {}                                  
+                                }
+                              }
+                              
+                              }}/>
                           </div>              
                       </div>                      
                       <hr/>
                       <div className="d-flex align-items-center justify-content-end mb-3">
                         <div className="mr-4">總金額</div>
-                          <div style={{color:'#2690df', fontWeight:'bold', fontSize:'1.5rem', fontFamily:'Roboto'}}>
-                            NT$ {`${quantity}`*`${item[0].ticket_price}`}</div>
+                          <div key={index} style={{color:'#2690df', fontWeight:'bold', fontSize:'1.5rem', fontFamily:'Roboto'}}>
+                            NT$ {
+                              index==0 ? `${quantity0}`*`${item.ticket_price}` : 
+                              index==1 ? `${quantity1}`*`${item.ticket_price}` :
+                              index==2 ? `${quantity2}`*`${item.ticket_price}` : ''
+                              }</div>
                         </div>
                         <div className="d-flex justify-content-end">
                         <button type="button" className="btn btn-option" onClick={handleShow}>立即報名</button>
@@ -73,28 +118,28 @@ function ActivityOption(props) {
                               <Form.Group as={Row} controlId="formPlaintextEmail">
                                 <Form.Label column sm="2">活動名稱</Form.Label>
                                 <Col sm="10">
-                                  <Form.Control plaintext readOnly defaultValue={item[0].activity_name} />
+                                  <Form.Control plaintext readOnly defaultValue={item.activity_name} />
                                 </Col>
                               </Form.Group>
 
                               <Form.Group as={Row} controlId="formPlaintextPassword">
                                 <Form.Label column sm="2">活動日期</Form.Label>
                                 <Col sm="10">
-                                  <Form.Control plaintext readOnly defaultValue={item[0].activity_date} />
+                                  <Form.Control plaintext readOnly defaultValue={item.activity_date} />
                                 </Col>
                               </Form.Group> 
 
                               <Form.Group as={Row} controlId="formPlaintextPassword">
                                 <Form.Label column sm="2">方案</Form.Label>
                                 <Col sm="10">
-                                  <Form.Control plaintext readOnly defaultValue={item[0].ticket_option} />
+                                  <Form.Control plaintext readOnly defaultValue={item.ticket_option} />
                                 </Col>
                               </Form.Group>
 
                               <Form.Group as={Row} controlId="formPlaintextPassword">
                                 <Form.Label column sm="2">費用</Form.Label>
                                 <Col sm="10">
-                                  <Form.Control plaintext readOnly defaultValue={item[0].ticket_price} />
+                                  <Form.Control plaintext readOnly defaultValue={item.ticket_price} />
                                 </Col>
                               </Form.Group> 
 
@@ -108,7 +153,7 @@ function ActivityOption(props) {
                               <Form.Group as={Row} controlId="formPlaintextPassword">
                                 <Form.Label column sm="2">小計</Form.Label>
                                 <Col sm="10">
-                                  <Form.Control plaintext readOnly defaultValue={`${quantity}`*`${item[0].ticket_price}`} />
+                                  <Form.Control plaintext readOnly defaultValue={`${quantity}`*`${item.ticket_price}`} />
                                 </Col>
                               </Form.Group>  
                               <hr />
@@ -150,94 +195,7 @@ function ActivityOption(props) {
               </div>  
 
              
-              <div className="option-item d-flex justify-content-between" >
-                <div className="option-content">
-                  <h4 key={item}>{item[1].ticket_option}</h4>
-                  <li>課程附贈教材、午餐、午茶</li>
-                  <li>每堂贈送《數位時代》三期 (課程隔月號起算)</li>            
-                </div>
-                <Accordion>                
-                    <Card.Header className="d-flex flex-wrap justify-content-between">
-                      <span style={{fontSize : '2rem', fontWeight:'bold', fontFamily:'Roboto'}}>NT$ {item[1].ticket_price} / 每人</span>
-                      <Accordion.Toggle as={Button} eventKey="0" className="btn-select">
-                        選擇
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                      <div>
-                        <p style={{fontSize: '1.25rem'}} className="mt-4">選擇數量</p>
-                        <div className="d-flex justify-content-between counter align-items-center">
-                          <span>人數</span>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <MdRemoveCircleOutline style={{ fontSize: '2rem', color: quantity2 ===1 ? '#909393' : '#232d2f' }} 
-                            onClick={() => { quantity2 === 1 ? alert('數量不可低於一張') : setQuantity2(quantity2 - 1)}}/>
 
-                            <span style={{ fontSize: '2rem' }}>{quantity2}</span>
-
-                            <MdAddCircleOutline style={{ fontSize: '2rem', color: quantity2 ===3 ? '#909393' : '#232d2f' }} 
-                            onClick={() => {quantity2 === 3 ? alert('每人限購三張') : setQuantity2(quantity2 + 1)}}/>
-                          </div>              
-                      </div>                      
-                      <hr/>
-                      <div className="d-flex align-items-center justify-content-end mb-3">
-                        <div className="mr-4">總金額</div>
-                          <div style={{color:'#2690df', fontWeight:'bold', fontSize:'1.5rem', fontFamily:'Roboto'}}>
-                            NT$ {`${quantity2}`*`${item[1].ticket_price}`}</div>
-                        </div>
-                        <div className="d-flex justify-content-end">
-                          <button type="button" className="btn btn-option">立即報名</button>                        
-                        </div>
-                      </div>
-                      </Card.Body>
-                    </Accordion.Collapse>              
-                </Accordion>
-              </div> 
-
-              <div className="option-item d-flex justify-content-between" >
-                <div className="option-content">
-                  <h4 key={item}>{item[2].ticket_option}</h4>
-                  <li>三人團體報名享優惠價</li>
-                  <li>課程附贈教材、午餐、午茶</li>
-                  <li>每堂贈送《數位時代》三期 (課程隔月號起算)</li>            
-                </div>
-                <Accordion>                
-                    <Card.Header className="d-flex flex-wrap justify-content-between">
-                      <span style={{fontSize : '2rem', fontWeight:'bold', fontFamily:'Roboto'}}>NT$ {item[2].ticket_price} / 每人</span>
-                      <Accordion.Toggle as={Button} eventKey="0" className="btn-select">
-                        選擇
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                      <div>
-                        <p style={{fontSize: '1.25rem'}} className="mt-4">選擇數量</p>
-                        <div className="d-flex justify-content-between counter align-items-center">
-                          <span>人數</span>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <MdRemoveCircleOutline style={{ fontSize: '2rem', color: quantity3 ===1 ? '#909393' : '#232d2f' }} 
-                            onClick={() => { quantity3 === 1 ? alert('數量不可低於一張') : setQuantity3(quantity3 - 1)}}/>
-
-                            <span style={{ fontSize: '2rem' }}>{quantity3}</span>
-
-                            <MdAddCircleOutline style={{ fontSize: '2rem', color: quantity3 ===3 ? '#909393' : '#232d2f' }} 
-                            onClick={() => {quantity3 === 3 ? alert('每人限購三張') : setQuantity3(quantity3 + 1)}}/>
-                          </div>              
-                      </div>                      
-                      <hr/>
-                      <div className="d-flex align-items-center justify-content-end mb-3">
-                        <div className="mr-4">總金額</div>
-                          <div style={{color:'#2690df', fontWeight:'bold', fontSize:'1.5rem', fontFamily:'Roboto'}}>
-                            NT$ {`${quantity3}`*`${item[2].ticket_price}`}</div>
-                        </div>
-                        <div className="d-flex justify-content-end">
-                          <button type="button" className="btn btn-option" >立即報名</button>                        
-                        </div>
-                      </div>
-                      </Card.Body>
-                    </Accordion.Collapse>              
-                </Accordion>
-              </div>               
          </div>         
            )
          })}
