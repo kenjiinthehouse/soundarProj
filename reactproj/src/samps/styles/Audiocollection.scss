@@ -142,6 +142,7 @@
   align-items: center;
 }
 .sa-collection-list-body-play-photo {
+  cursor: pointer;
 }
 .sa-collection-list-body-play-photo-img {
   height: 2rem;
@@ -158,14 +159,23 @@
   width: 4.5rem;
   height: 4.5rem;
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 .sa-collection-list-body-channel-picture-img {
   height: 100%;
 }
+.sa-collection-list-body-channel-name:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
 .sa-collection-list-body-audioname {
   width: 30%;
   font-size: 1.5rem;
+}
+.sa-collection-list-body-audioname:hover {
+  color: #ffffff;
+  cursor: pointer;
 }
 .sa-collection-list-body-date {
   width: 30%;

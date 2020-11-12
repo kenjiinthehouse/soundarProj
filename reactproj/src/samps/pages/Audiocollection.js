@@ -10,6 +10,9 @@ import { RiDislikeFill } from 'react-icons/ri';
 import { BsPlayFill } from 'react-icons/bs';
 
 function Audiocollection(props) {
+  //取得播放state
+  const { globalAudioArry, setGlobalAudioArry } = props;
+
   function truncate(str, n) {
     return str.length > n ? str.substr(0, n - 1) + '...' : str;
   }
@@ -77,17 +80,29 @@ function Audiocollection(props) {
     console.log('data', data);
     getaudio_collect();
   };
-  // useEffect(() => {
-  //   // props.logOut()
-  //   props.initMemberAsync()
-  //   // console.log("hi")
-  // }, [])
-  // useEffect(() => {
-  //   props.initMemberAsync()
-  // }, [])
+
+  // 播放音檔
+  const audio_play = function (musicSrc, cover, name, singer) {
+    let payload = {
+      musicSrc:
+        musicSrc.indexOf('http') !== -1
+          ? musicSrc
+          : `http://localhost:3000/audios/${musicSrc}`,
+
+      cover: cover,
+      name: name,
+      singer: singer,
+    };
+
+    if (globalAudioArry[0] && globalAudioArry[0].name === name) {
+      return null;
+    } else {
+      setGlobalAudioArry([payload, ...globalAudioArry]);
+    }
+  };
+
   useEffect(() => {
     getaudio_collect();
-    // setbox()
   }, [props.member]);
 
   useEffect(() => {
@@ -95,7 +110,6 @@ function Audiocollection(props) {
   }, [audio_collect]);
 
   const downloadfile = async function (link, audio_id) {
-    // console.log('link', link)
     setDownloadingid(audio_id);
     const url = 'http://localhost:5566/member_collection/download';
     const request = new Request(url, {
@@ -201,7 +215,17 @@ function Audiocollection(props) {
                       className="sa-collection-list-body"
                     >
                       <div className="sa-collection-list-body-play">
-                        <div className="sa-collection-list-body-play-photo">
+                        <div
+                          className="sa-collection-list-body-play-photo"
+                          onClick={() => {
+                            audio_play(
+                              item.musicSrc,
+                              item.cover,
+                              item.name,
+                              item.singer
+                            );
+                          }}
+                        >
                           {/* 播放鍵 */}
                           <img
                             className="sa-collection-list-body-play-photo-img"
@@ -211,18 +235,45 @@ function Audiocollection(props) {
                         </div>
                       </div>
                       <div className="sa-collection-list-body-channelname">
-                        <div className="sa-collection-list-body-channel-picture">
+                        <div
+                          className="sa-collection-list-body-channel-picture"
+                          onClick={() => {
+                            props.history.push(
+                              `/channel_page/${item.channel_catagory.toLowerCase()}/${
+                                item.podcaster_id
+                              }`
+                            );
+                          }}
+                        >
                           <img
                             className="sa-collection-list-body-channel-picture-img"
                             src={item.cover}
                             alt=""
                           ></img>
                         </div>
-                        <div className="sa-collection-list-body-channel-name">
+                        <div
+                          className="sa-collection-list-body-channel-name"
+                          onClick={() => {
+                            props.history.push(
+                              `/channel_page/${item.channel_catagory.toLowerCase()}/${
+                                item.podcaster_id
+                              }`
+                            );
+                          }}
+                        >
                           {item.singer}
                         </div>
                       </div>
-                      <div className="sa-collection-list-body-audioname">
+                      <div
+                        className="sa-collection-list-body-audioname"
+                        onClick={() => {
+                          props.history.push(
+                            `/channel_page/${item.channel_catagory.toLowerCase()}/${
+                              item.podcaster_id
+                            }/${item.audio_id}`
+                          );
+                        }}
+                      >
                         {/* {item.name} */}
                         <span>{truncate(item.name, 12)} </span>
                       </div>
