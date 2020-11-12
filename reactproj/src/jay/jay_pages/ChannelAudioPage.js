@@ -470,15 +470,17 @@ function ChannelAudioPage(props) {
   `;
 
   const displaySpinner = (
-    <div className="jay-spinnerArea explorePageBody">
-      <ScaleLoader
-        css={loader_css}
-        color={'#4A90E2'}
-        height={80}
-        width={10}
-        margin={6}
-        radius={20}
-      />
+    <div className="explorePageBody">
+      <div className="jay-spinnerArea">
+        <ScaleLoader
+          css={loader_css}
+          color={'#4A90E2'}
+          height={80}
+          width={10}
+          margin={6}
+          radius={20}
+        />
+      </div>
     </div>
   );
 
