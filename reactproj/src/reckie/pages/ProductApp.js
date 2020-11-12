@@ -73,15 +73,18 @@ function ProductApp() {
 
         setProducts([...products, ...newPds]);
         setProductList(data);
+    
       } catch (error) {
         console.log(error);
       }
     };
     getDataFromServer();
   }, [page]);
-  //查看後端抓回來的資料
+
+  
+  // 查看後端抓回來的資料
   // useEffect(()=>{
-  //   // console.log('productList',productList)
+  //   console.log('productList',productList)
   // }, [productList])
 
   return (

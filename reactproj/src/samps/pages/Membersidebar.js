@@ -4,6 +4,9 @@ import { Link, Router, Switch, withRouter } from 'react-router-dom';
 import '../styles/Sidebar.scss';
 import Memberedit from '../components/Memberedit';
 
+//活動訂單
+import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
+
 function Membersidebar(props) {
   const [activenumber, setActivenumber] = useState(1);
 
@@ -156,7 +159,7 @@ function Membersidebar(props) {
               <div className="sa-sidebar-mainarea">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
-                {activenumber == 3 ? <div>3</div> : <></>}
+                {activenumber == 3 ? <div><ActivityOrder/></div> : <></>}
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div>6</div> : <></>}
