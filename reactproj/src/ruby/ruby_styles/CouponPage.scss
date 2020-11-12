@@ -2,13 +2,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 .coupon-page {
   font-family: "Noto Sans TC", sans-serif;
+  width: 100%;
   // width: calc(100% - 20rem);
   // width: 1356px;
   // padding-left: 33.33%;
   user-select: none;
   margin-top: 50px;
   .ru-coupon-page-wrap {
-    width: calc(100%-316px);
+    // width: calc(100%-316px);
     .ru-coupon-title {
       width: 100%;
       padding: 0 25%;
