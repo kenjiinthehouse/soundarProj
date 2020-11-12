@@ -18,6 +18,7 @@ const pool = mysql2.createPool({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   user: "root",
   password: "",
   database: "pd_test",
@@ -37,6 +38,10 @@ const pool = mysql2.createPool({
   user: "jl55661688",
   password: "iouccc19931107",
 >>>>>>> d89c774... 完成未登入提示
+=======
+  user: "jl55661688",
+  password: "iouccc19931107",
+>>>>>>> be0d526... 挑整loading位置
   database: "mfee09_project",
 >>>>>>> 9b50b81... chieh1112
   waitForConnections: true,
