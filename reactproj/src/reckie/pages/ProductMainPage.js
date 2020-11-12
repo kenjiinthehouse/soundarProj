@@ -10,19 +10,37 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 
 function ProductMainPage(props) {
-  console.log('props', props);
   const [isLoading, setIsLoading] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [productList, setProductList] = useState([]);
+  //分頁
   const [page, setPage] = useState(1);
+  //大項分類
+  const [mainCate,setMainCate]= useState(1);
+  //細項分類
+  const [detailCate,setDetailCate]= useState('');
+  //搜尋
+  const [search,setSearch] = useState('');
+  //價格範圍
+  const [frontPrice,setFrontPrice]= useState ('');
+  const [backPrice,setBackPrice]= useState ('');
+  //排序
+  const [sort,setSort]= useState ('');
+
 
   useEffect(() => {
     const getDataFromServer = async () => {
-      try {
+      try { 
+        let query = ''
+        if(page) query += `&page=${page}`
+        if(mainCate) query += `&mainCate=${mainCate}`
+        if(detailCate) query += `&detailCate=${detailCate}`
+        if(search) query += `&search=${search}`
+        const url = `http://localhost:5566/products/get-api/?${query}`
+        console.log("url",url)
         const response = await fetch(
-          `http://localhost:5566/products/get-api?page=${page}`,
-          { method: 'GET' }
+          url,{ method: 'GET' }
         );
         const data = await response.json();
         console.log('data', data.rows);
@@ -35,7 +53,7 @@ function ProductMainPage(props) {
       }
     };
     getDataFromServer();
-  }, [page]);
+  }, [page,mainCate,detailCate,search]);
   //查看後端抓回來的資料
 // useEffect(()=>{
 //   // console.log('productList',productList)
@@ -52,16 +70,21 @@ function ProductMainPage(props) {
     <>
       <Banner />
       <div className="container pd-container">
-        <SearchInput />
+        <SearchInput
+          search={search}
+          setSearch={setSearch}
+        />
         <TabBar
-          {...props}
           products={products}
           productList={productList}
           page={page}
           setPage={setPage}
+          mainCate={mainCate}
+          setMainCate={setMainCate}
+          detailCate={detailCate}
+          setDetailCate={setDetailCate}
         />
         <PaginationRounded
-          {...props}
           products={products}
           productList={productList}
           page={page}
