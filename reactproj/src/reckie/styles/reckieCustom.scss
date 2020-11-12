@@ -25,10 +25,10 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .subtitle1 {
   font-size: font(1.375);
 }
-a,
-a:hover {
-  color: #232d2f;
-}
+// a,
+// a:hover {
+//   color: #232d2f;
+// }
 .caption {
   font-size: font(0.75);
 }
@@ -36,10 +36,8 @@ a:hover {
 .dark {
   color: $Dark;
 }
-<<<<<<< HEAD
 
 // btn
-=======
 .light {
   color: $Light;
 }
@@ -48,19 +46,13 @@ a:hover {
 .re-btn-color {
   background-color: #2690df !important;
 }
->>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 .btn-rounded {
   border-radius: 40px;
   margin-right: 1.8rem;
 }
 .btn-vital {
-<<<<<<< HEAD
-  background-color: $thirdColor;
-  color: #fff;
-=======
   background-color: $thirdColor !important;
   color: #fff !important;
->>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 }
 .btn-vital:hover {
   background-color: darken($thirdColor, 10%);
@@ -113,27 +105,47 @@ a:hover {
 // -- banner end --
 
 // -- search input start--
-.inputField {
-  min-width: 70rem;
-  height: 4rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.searchContainer {
+  width: 60rem;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
 }
+.searchContainer input.reSearch {
+  width: 60rem;
+  height: 4rem;
+  background: #f8f8f8;
+  border: none;
+  font-size: 1rem;
+  color: #232d2f;
+  padding-left: 45px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+input.reSearch:focus {
+  outline: none;
+  box-shadow: 0 0 1px 1px #707070;
+}
+// .inputField {
+//   min-width: 70rem;
+//   height: 4rem;
+//   border-radius: 5px;
+//   border: 1px solid #ccc;
+//   padding-left: 1rem;
+// }
 
 .searchInput {
   padding-top: 6rem;
 }
 
 .searchBtn {
-  width: 15rem;
+  width: 10rem;
   height: 4rem;
   border-radius: 5px;
   position: absolute;
   right: 0px;
-<<<<<<< HEAD
-=======
   color: #f8f8f8 !important;
->>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 }
 // -- banner end --
 // --tab start --
@@ -184,17 +196,6 @@ a:hover {
 }
 .cardWrap {
   // min-height: 25rem;
-<<<<<<< HEAD
-  box-shadow: 0px 1px 5px 2px #ddd;
-  border-radius: 5px;
-  margin: 0rem 0rem 3rem;
-  padding: 1rem;
-  transition: all 0.3s ease-out;
-}
-.cardWrap:hover {
-  transform: translate(0.5px, 0.5px);
-  box-shadow: 1px 1px 5px 6px #eee;
-=======
   box-shadow: 0px 1px 5px 2px #eee;
   border-radius: 5px;
   margin: 0rem 0rem 3rem;
@@ -204,7 +205,6 @@ a:hover {
 .cardWrap:hover {
   transform: translate(0.5px, 1px);
   box-shadow: 1px 1px 8px 6px #eee;
->>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 }
 
 .cardBody {
@@ -213,7 +213,6 @@ a:hover {
   position: relative;
   padding: 0rem;
 }
-<<<<<<< HEAD
 
 .cardBody-activity {
   // text-align: center;
@@ -347,138 +346,6 @@ a:hover {
   border-radius: 5px;
 }
 
-=======
-.pdPrice {
-  position: absolute;
-  bottom: 0rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.testTrans {
-  transition: all 2s ease-in;
-}
-
-.pdContent {
-  width: 100%;
-}
-.addCartBtn {
-  width: 100%;
-  border-radius: 40px !important;
-  margin: 0.75rem auto 0rem;
-}
-
-// -- card end --
-// -- pagination --
-.rePagination {
-  margin-bottom: 5.5rem;
-}
-
-// *** product Detail ***
-// -- product top start--
-.re-spinnerArea {
-  position: relative;
-  height: 100vh;
-}
-.pdItemPage {
-  margin-bottom: 5rem;
-}
-.pdPicfield {
-  // background-color: turquoise;
-  width: 100%;
-  // height: 50vh;
-}
-.pdMainfield {
-  // background-color: $primary;
-  width: 100%;
-  // height: 50vh;
-}
-
-.pdMainImg {
-  width: 100%;
-  height: 30rem;
-  overflow: hidden;
-  object-fit: cover;
-  border-radius: 5px;
-}
-.pdSubImgs {
-  width: 5rem !important;
-  height: 5rem;
-  overflow: hidden;
-  object-fit: contain;
-}
-
-.rec.rec-arrow {
-  background-color: #fff;
-  border: none;
-  outline: none;
-}
-.rec.rec-arrow:hover {
-  background-color: #2690df;
-}
-.rec.rec-arrow:disabled {
-  visibility: hidden;
-}
-
-.pdMainFieldPrice {
-  color: $Dark;
-  padding-top: 1rem;
-}
-.commentStarPart {
-  width: 15rem;
-}
-.pdMainFieldStars {
-  color: $DarkOpacity60;
-}
-
-.pdMainFieldLB {
-  height: 9rem;
-}
-.pdMainFieldLT {
-  padding-top: 3rem;
-}
-// -- product top end --
-// -- ItemTabBar start --
-.ItemTabBar {
-  background-color: $DarkGray;
-  width: 100%;
-  height: 3rem;
-  // margin-top: 4rem;
-  z-index: 1;
-}
-.re-tabs {
-  width: 32rem;
-  height: 3rem;
-  text-align: center;
-  font-size: font(1.2);
-  line-height: 3rem;
-  color: rgba($Light, 0.3);
-  // background-color: turquoise;
-}
-.separator {
-  width: 2px;
-  height: 2rem;
-  background-color: $DarkLightGray;
-}
-.tabsAct {
-  box-sizing: border-box;
-  color: $Light;
-  position: relative;
-  // border-bottom: 5px solid $primary;s
-}
-.tabsAct::after {
-  content: '';
-  width: 10rem;
-  animation: tabExpend 0.2s ease-out;
-  height: 4px;
-  background-color: #2690df;
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 5px;
-}
-
->>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 @keyframes tabExpend {
   from {
     width: 0;
@@ -487,30 +354,10 @@ a:hover {
     width: 10rem;
   }
 }
-<<<<<<< HEAD
-
-.tabFixed {
-  position: fixed;
-  top: 0;
-}
-
-.contentHeight1 {
-  height: 100vh;
-  padding-top: 4rem;
-}
-.contentHeight2 {
-  // height: 100vh;
-  padding-top: 4rem;
-}
-.contentHeight3 {
-  // height: 100vh;
-  padding-top: 4rem;
-=======
 
 .tabFixed {
   position: fixed;
   top: 4rem;
->>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 }
 
 // -- ItemTabBar end --

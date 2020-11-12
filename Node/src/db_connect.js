@@ -18,7 +18,10 @@ const pool = mysql2.createPool({
 =======
   user: "root",
   password: "",
+<<<<<<< HEAD
 >>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
+=======
+>>>>>>> reckie
   database: "mfee09_project",
   waitForConnections: true,
   connectionLimit: 10,
