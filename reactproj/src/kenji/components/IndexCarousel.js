@@ -2,11 +2,7 @@ import React from 'react';
 import '../styles/IndexCarousel.scss';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@material-ui/core';
-import IndexBailingguoNews from '../img/IndexBailingguoNews.jpg';
-import IndexC2 from '../img/IndexC2.jpg';
-import IndexC3 from '../img/IndexC3.jpg';
-import IndexC4 from '../img/IndexC4.jpg';
-import IndexC5 from '../img/IndexC5.jpg';
+
 
 
 function IndexCarousel(props) {
@@ -14,31 +10,31 @@ function IndexCarousel(props) {
     {
       name: '百靈果NEWS',
       description: `“重新定義你對的自由的想像華語最自由的PODCAST頻道”`,
-      img: IndexBailingguoNews,
+      img: './k_img/IndexBailingguoNews.jpg',
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #2',
       description: 'Hello World!',
-      img: IndexC2,
+      img: './k_img/IndexC2.jpg',
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #3',
       description: 'Hello World!',
-      img: IndexC3,
+      img: './k_img/IndexC3.jpg',
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #4',
       description: 'Hello World!',
-      img: IndexC4,
+      img: './k_img/IndexC4.jpg',
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #5',
       description: 'Hello World!',
-      img: IndexC5,
+      img: './k_img/IndexC5.jpg',
       click: '>>去聽聽',
     },
   ];

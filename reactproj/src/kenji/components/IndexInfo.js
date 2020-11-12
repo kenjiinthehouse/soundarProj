@@ -1,16 +1,16 @@
 import React from 'react';
-import InfoPic1 from '../img/InfoPic1.jpg';
-import InfoPic2 from '../img/InfoPic2.jpg';
+import '../styles/IndexInfo.scss';
+
 
 function IndexInfo(props) {
   return (
     <>
       <div className="indexInfoPage">
         <div className="infoPagePic1">
-          <img src={InfoPic1} />
+          <img src="/k_img/InfoPic1.jpg" />
         </div>
         <div className="infoPagePic2">
-          <img src={InfoPic2} />
+          <img src="/k_img/InfoPic2.jpg" />
         </div>
         <div className="infoPageText1">
           <div className="infoPageTextBox">
