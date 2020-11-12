@@ -14,7 +14,7 @@ function ArticleCarousel(props) {
       subtitle: '這波耳機裡的新浪潮，大家都在聽什麼？',
       description:
         '\t台灣podcast市場崛起中從Google Trend上可以觀察到「podcast」一字從2020年2月之後，在台灣的搜尋熱度暴增。其他「podcast製作」、「podcast推薦」等搜尋率也不斷竄升。\n\t而台灣目前除了各種podcast頻道逐漸投入市場之外，也有了台灣本土網路聲音節目（podcast）製作公司──鬼島之音（Ghost Island Media），旗下目前有「Waste Not Why Not」、「大麻煩不煩」、「Metalhead Politics（政治重金屬）」等節目，討論各種議題。',
-      img: './k_img/IndexArticle205.jpg',
+      img: '/img/IndexArticle205.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(35,45,47,0.5)',
     },
@@ -24,7 +24,11 @@ function ArticleCarousel(props) {
       subtitle: '為什麼要聽、用什麼聽，以及有哪些好節目',
       description:
         '  如果你不瞭解什麼是podcast，但是很想要瞭解最近在台灣網路世界很火紅的說故事方式的話，這篇文章會告訴你什麼是podcast，想要聽的話又該怎麼入門......',
+<<<<<<< HEAD
       img: './k_img/IndexArticle208.jpg',
+=======
+      img: '/img/IndexArticle208.jpg',
+>>>>>>> 67393c7... 搬運工/kenji
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(204,97,75,0.5)',
     },
@@ -34,7 +38,7 @@ function ArticleCarousel(props) {
       subtitle: '為什麼要聽、用什麼聽，以及有哪些好節目',
       description:
         '  如果你不瞭解什麼是podcast，但是很想要瞭解最近在台灣網路世界很火紅的說故事方式的話，這篇文章會告訴你什麼是podcast，想要聽的話又該怎麼入門......',
-      img: './k_img/IndexArticle210.jpg',
+      img: '/img/IndexArticle210.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(204,75,183,0.5)',
     },
@@ -44,7 +48,7 @@ function ArticleCarousel(props) {
       subtitle: '為什麼要聽、用什麼聽，以及有哪些好節目',
       description:
         '  如果你不瞭解什麼是podcast，但是很想要瞭解最近在台灣網路世界很火紅的說故事方式的話，這篇文章會告訴你什麼是podcast，想要聽的話又該怎麼入門......',
-      img: './k_img/IndexArticle215.jpg',
+      img: '/img/IndexArticle215.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(75,183,204,0.5)',
     },

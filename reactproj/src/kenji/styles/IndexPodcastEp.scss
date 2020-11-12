@@ -1,4 +1,14 @@
+$color-white: #fff;
+$color-black: #000;
 
+$transition-time: 250ms;
+$transition-method: ease-in-out;
+
+$card-height: 440px;
+$card-width: 840px;
+$card-hover-offset-x: 40px;
+$card-hover-offset-y: 60px;
+@import '~bootstrap/scss/bootstrap.scss';
 .card-movie-container {
   width: 100%;
   height: 36.5rem;
@@ -65,19 +75,19 @@
 }
 
 .card-movie-container .card-movie-wrapper {
-  box-shadow: 0px 0px 100px 25px rgba(#000, 0.2);
-  height: 27.5rem;
+  box-shadow: 0px 0px 100px 25px rgba($color-black, 0.2);
+  height: $card-height;
   position: relative;
-  width: 52.5rem;
+  width: $card-width;
   margin-top: 4rem;
 
   &:hover {
     .card-movie-carousel {
-      -webkit-transition: all 250ms ease-in-out;
-      -moz-transition: all 250ms ease-in-out;
-      transition: all 250ms ease-in-out;
-      bottom: 3.75rem;
-      right: 2.5rem;
+      -webkit-transition: all $transition-time $transition-method;
+      -moz-transition: all $transition-time $transition-method;
+      transition: all $transition-time $transition-method;
+      bottom: $card-hover-offset-y;
+      right: $card-hover-offset-x;
     }
     // .card-movie-carousel
   }
@@ -99,11 +109,11 @@
 // .card-movie-wrapper--centered
 
 .card-movie-carousel {
-  -webkit-transition: all 250ms ease-in-out 250ms;
-  -moz-transition: all 250ms ease-in-out 250ms;
-  transition: all 250ms ease-in-out 250ms;
-  height: 27.5rem;
-  width: 52.5rem;
+  -webkit-transition: all $transition-time $transition-method 250ms;
+  -moz-transition: all $transition-time $transition-method 250ms;
+  transition: all $transition-time $transition-method 250ms;
+  height: $card-height;
+  width: $card-width;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -111,7 +121,7 @@
 }
 
 .card-movie-navigation {
-  background-color: #fff;
+  background-color: $color-white;
   bottom: 0;
   height: 100%;
   overflow: hidden;
@@ -129,15 +139,15 @@
     -o-transform: translateY(-50%);
     // transform: translateY(-50%);
     position: absolute;
-    // right: (2.5rem - $item-size) / 2;
+    // right: ($card-hover-offset-x - $item-size) / 2;
     right: 1%;
     top: 50%;
     // width: $item-size-active;
 
     li {
-      -webkit-transition: all 250ms ease-in-out;
-      -moz-transition: all 250ms ease-in-out;
-      transition: all 250ms ease-in-out;
+      -webkit-transition: all $transition-time $transition-method;
+      -moz-transition: all $transition-time $transition-method;
+      transition: all $transition-time $transition-method;
       background-color: #ccc;
       border-radius: 100%;
       cursor: pointer;
@@ -176,12 +186,12 @@
     color: #aac8ca;
     cursor: pointer;
     font-size: 14px;
-    line-height: 3.75rem;
+    line-height: $card-hover-offset-y;
     margin: 0;
     outline: none;
     padding: 0;
     position: absolute;
-    right: 2.5rem;
+    right: $card-hover-offset-x;
 
     // &:before {
     //   content: 'Watch Trailer';
@@ -230,9 +240,9 @@
 // .card-movie-navigation
 
 .card-movie {
-  -webkit-transition: all (250ms * 2) ease-in-out;
-  -moz-transition: all (250ms * 2) ease-in-out;
-  transition: all (250ms * 2) ease-in-out;
+  -webkit-transition: all ($transition-time * 2) $transition-method;
+  -moz-transition: all ($transition-time * 2) $transition-method;
+  transition: all ($transition-time * 2) $transition-method;
   background-size: cover;
   bottom: 0;
   height: 100%;
@@ -335,9 +345,9 @@
   // &__rating
 
   &__player {
-    -webkit-transition: all (250ms * 2) ease-in-out;
-    -moz-transition: all (250ms * 2) ease-in-out;
-    transition: all (250ms * 2) ease-in-out;
+    -webkit-transition: all ($transition-time * 2) $transition-method;
+    -moz-transition: all ($transition-time * 2) $transition-method;
+    transition: all ($transition-time * 2) $transition-method;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -351,8 +361,8 @@
     z-index: 20;
 
     .card-movie--playing & {
-      height: 27.5rem;
-      width: 52.5rem;
+      height: $card-height;
+      width: $card-width;
     }
     // .card-movie--playing &
 
@@ -376,14 +386,14 @@
   background-color: #effdfd;
 
   [class*='__title'] {
-    color: #000;
+    color: $color-black;
   }
   // [class*='__title']
 }
 // .card-movie--light
 
 .card-movie--dark {
-  background-color: #000;
+  background-color: $color-black;
   color: #fff;
 
   [class*='__title'] {

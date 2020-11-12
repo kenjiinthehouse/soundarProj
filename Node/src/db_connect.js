@@ -7,8 +7,11 @@ const pool = mysql2.createPool({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0534b02... 統整後調整畫面
+=======
+>>>>>>> 67393c7... 搬運工/kenji
   // host: "localhost",
   // user: "jl55661688",
   // password: "iouccc19931107",
@@ -16,6 +19,7 @@ const pool = mysql2.createPool({
   // waitForConnections: true,
   // connectionLimit: 10,
   // queueLimit: 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -83,6 +87,11 @@ const pool = mysql2.createPool({
 <<<<<<< HEAD
 =======
   host: "localhost",
+=======
+
+  // kenji
+  host: "localhost",
+>>>>>>> 67393c7... 搬運工/kenji
   user: "root",
   password: "",
   database: "mfee09_project",

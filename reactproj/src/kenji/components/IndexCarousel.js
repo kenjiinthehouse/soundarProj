@@ -2,6 +2,11 @@ import React from 'react';
 import '../styles/IndexCarousel.scss';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@material-ui/core';
+import IndexBailingguoNews from '../img/IndexBailingguoNews.jpg';
+import IndexC2 from '../img/IndexC2.jpg';
+import IndexC3 from '../img/IndexC3.jpg';
+import IndexC4 from '../img/IndexC4.jpg';
+import IndexC5 from '../img/IndexC5.jpg';
 
 //samps引入會員登入
 import { useEffect, useState } from 'react';
@@ -10,46 +15,35 @@ import { initMember, initMemberAsync } from '../../actions/index';
 import { withRouter } from 'react-router-dom';
 
 function IndexCarousel(props) {
-  useEffect(() => {
-    // console.log(uu.get('jwt'))
-    if (!localStorage.getItem('jwt')) {
-      const uu = new URLSearchParams(window.location.search);
-      if (uu.get('jwt')) {
-        localStorage.setItem('jwt', JSON.stringify(uu.get('jwt')));
-        props.initMemberAsync();
-      }
-    }
-  }, []);
-
   let items = [
     {
       name: '百靈果NEWS',
       description: `“重新定義你對的自由的想像華語最自由的PODCAST頻道”`,
-      img: './k_img/IndexBailingguoNews.jpg',
+      img: IndexBailingguoNews,
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #2',
       description: 'Hello World!',
-      img: './k_img/IndexC2.jpg',
+      img: IndexC2,
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #3',
       description: 'Hello World!',
-      img: './k_img/IndexC3.jpg',
+      img: IndexC3,
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #4',
       description: 'Hello World!',
-      img: './k_img/IndexC4.jpg',
+      img: IndexC4,
       click: '>>去聽聽',
     },
     {
       name: 'Random Name #5',
       description: 'Hello World!',
-      img: './k_img/IndexC5.jpg',
+      img: IndexC5,
       click: '>>去聽聽',
     },
   ];
@@ -85,10 +79,4 @@ function Item(props) {
     </Paper>
   );
 }
-//samps引入會員登入
-const mapStateToProps = (store) => {
-  return { member: store.member };
-};
-export default withRouter(
-  connect(mapStateToProps, { initMember, initMemberAsync })(IndexCarousel)
-);
+export default IndexCarousel;

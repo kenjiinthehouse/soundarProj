@@ -12,10 +12,10 @@ import { Layout } from 'antd';
 //index page
 import MyNavbar from './kenji/components/MyNavbar';
 import IndexCarousel from './kenji/components/IndexCarousel';
-import IndexInfo from './kenji/components/IndexInfo';
+import IndexCarousel from './kenji/components/IndexInfo';
 import IndexChannel from './kenji/components/IndexChannel';
 import IndexPodcastEp from './kenji/components/IndexPodcastEp';
-import IndexShop from './kenji/components/IndexShop';
+import IndexPodcastEp from './kenji/components/IndexShop';
 import ArticleCarousel from './kenji/components/ArticleCarousel';
 import MyFooter from './kenji/components/MyFooter';
 
@@ -50,6 +50,7 @@ import Verification from './samps/pages/Verification';
 import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import IndexInfo from './kenji/components/IndexInfo';
 import IndexShop from './kenji/components/IndexShop';
 >>>>>>> 67393c7... 搬運工/kenji
@@ -60,6 +61,10 @@ import { Height } from '@material-ui/icons';
 >>>>>>> 17c6fbd... 調整scss和import img/kenji
 =======
 >>>>>>> 938527f... samps member
+=======
+import IndexInfo from './kenji/components/IndexInfo';
+import IndexShop from './kenji/components/IndexShop';
+>>>>>>> 67393c7... 搬運工/kenji
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -73,6 +78,7 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -101,6 +107,16 @@ function App() {
 >>>>>>> 67393c7... 搬運工/kenji
 =======
 >>>>>>> ce68bab... 結合會員與播客後台
+=======
+              <Route exact path="/">
+               <IndexCarousel/>
+               <IndexInfo/>
+               <IndexChannel/>
+               <IndexPodcastEp/>
+               <IndexShop/>
+               <ArticleCarousel/>
+              </Route>
+>>>>>>> 67393c7... 搬運工/kenji
               <Route path="/explore_home_page">
 >>>>>>> ce68bab... 結合會員與播客後台
                 <ExploreHomePage
@@ -226,7 +242,11 @@ function App() {
             setPlayingAudio={setPlayingAudio}
           />
         </MainContent>
+<<<<<<< HEAD
         <MyFooter />
+=======
+        <MyFooter/>
+>>>>>>> 67393c7... 搬運工/kenji
       </Layout>
     </Router>
   );
