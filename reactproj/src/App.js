@@ -36,12 +36,12 @@ import ActivityOrder from './chieh/ch_pages/ActivityOrder';
 import StudioMain from './chieh/ch_pages/StudioMain';
 // import Payment from './chieh/ch_pages/Payment';
 import Applymembership from './samps/pages/Applymembership';
-import Audiocollection from './samps/pages/Audiocollection';
+import Audiocollection from './sampas/pages/Audiocollection';
 import Channelcollection from './samps/pages/Channelcollection';
 import Membersidebar from './samps/pages/Membersidebar';
 import Passwordreset from './samps/pages/Passwordreset';
 import Podlogin from './samps/pages/Podlogin';
-import Verification from './samps/pages/Verification';
+import Verification from './samps/pges/Verification';
 import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
 import IndexInfo from './kenji/components/IndexInfo';
@@ -49,10 +49,10 @@ import IndexShop from './kenji/components/IndexShop';
 import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 
-import IndexInfo from './kenji/components/IndexInfo';
-import IndexShop from './kenji/components/IndexShop';
-import { colors } from '@material-ui/core';
-import { Height } from '@material-ui/icons';
+// import IndexInfo from './kenji/components/IndexInfo';
+// import IndexShop from './kenji/components/IndexShop';
+// import { colors } from '@material-ui/core';
+// import { Height } from '@material-ui/icons';
 
 import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
@@ -244,9 +244,6 @@ function App() {
             setPlayingAudio={setPlayingAudio}
           />
         </MainContent>
-        <MyFooter />
-        <MyFooter/>
-        <MyFooter />
         <MyFooter />
       </Layout>
     </Router>
