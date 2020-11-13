@@ -6,15 +6,20 @@ import { withRouter } from 'react-router-dom'
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
 // import Breadcrumb from '../ch_components/Breadcrumb'
-import StudioInfo from '../ch_components/StudioInfo'
-import StudioOption from '../ch_components/StudioOption'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 import { Tabs, Tab } from 'react-bootstrap';
 
+//錄音室介紹、方案
+import StudioInfo from '../ch_components/studio/StudioInfo'
+import StudioOption from '../ch_components/studio/StudioOption'
+
 
 function StudioMain(props){
-    const [studioData, setStudioData] = useState([])  
+    const [studioData, setStudioData] = useState([])
+    const [newStudio, setNewStudio] = useState([]) 
+    const [key, setKey] = useState('option') 
+
     async function getStudioFromServer() {
       const url = 'http://localhost:5566/studio/option/1'  
       const request = new Request(url, {
@@ -26,6 +31,8 @@ function StudioMain(props){
       })  
       const response = await fetch(request)
       const data = await response.json()
+      console.log(data)
+      setNewStudio(data)
       let arr = []
       arr.push(data)
       console.log(arr)
@@ -98,29 +105,6 @@ function StudioMain(props){
     }
   }
 
-    //方案,介紹,評價分頁切換
-    function ControlledTabs() {
-        const [key, setKey] = useState('option');      
-        return (
-          <Tabs
-            id="controlled-tab-studio"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className="nav-pills-studio d-flex justify-content-between"
-          >
-            <Tab eventKey="option" title="方案">
-                <StudioOption studioData={studioData} setStudioData={setStudioData}/>              
-            </Tab>
-            <Tab eventKey="info" title="介紹">
-                <StudioInfo />              
-            </Tab>
-            <Tab eventKey="evaluation" title="評價">
-            <div><h1>評價</h1></div>
-            </Tab>
-          </Tabs>
-        );
-      }
-
     return(
         <>
             {/* <Breadcrumb /> */}
@@ -129,7 +113,22 @@ function StudioMain(props){
                 <MyCarousel />
                 {introduction}
               </div>
-              <ControlledTabs/>    
+              <Tabs
+            id="controlled-tab-studio"
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
+            className="nav-pills-studio d-flex justify-content-between"
+          >
+            <Tab eventKey="option" title="方案">
+                <StudioOption newStudio={newStudio} setNewStudio={setNewStudio}/>              
+            </Tab>
+            <Tab eventKey="info" title="介紹">
+                <StudioInfo />              
+            </Tab>
+            <Tab eventKey="evaluation" title="評價">
+            <div><h1>評價</h1></div>
+            </Tab>
+          </Tabs>    
             </div>             
         </>
     )

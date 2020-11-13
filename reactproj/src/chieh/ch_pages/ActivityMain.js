@@ -5,10 +5,10 @@ import { Tabs, Tab } from 'react-bootstrap';
 import './../ch_styles/custom.scss';
 
 //方案票價、活動內容、注意事項
-import ActivityAttention from '../ch_components/ActivityAttention'
-import ActivityInfo from '../ch_components/ActivityInfo'
-import ActivityOption from '../ch_components/ActivityOption'
-import OptionCard from '../ch_components/OptionCard'
+import ActivityAttention from '../ch_components/activity/ActivityAttention'
+import ActivityInfo from '../ch_components/activity/ActivityInfo'
+import ActivityOption from '../ch_components/activity/ActivityOption'
+import OptionCard from '../ch_components/activity/OptionCard'
 
 function ActivityMain(props) {
     const [activityData, setActivityData] = useState([])
