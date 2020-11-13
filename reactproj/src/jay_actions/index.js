@@ -31,6 +31,22 @@ export const initalDashboardAsync = (podcaster_id) => {
   };
 };
 
+// 新增頻道
+export const createChannelAsync = (member_sid) => {
+  return async function sendCreateChannelData(dispatch) {
+    const url = `http://localhost:5566/podcaster_dashboard/create_channel/api`;
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({ podcaster_id: member_sid }),
+    });
+    const response = await fetch(request);
+  };
+};
+
 // 修改頻道
 export const editChannelAsync = (formData) => {
   return async function editChannelSubmit(dispatch) {

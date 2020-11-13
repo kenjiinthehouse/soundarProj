@@ -19,7 +19,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {RiLogoutCircleRLine} from 'react-icons/ri';
+import { RiLogoutCircleRLine } from 'react-icons/ri';
 //scss
 import '../styles/MyNavbar.scss';
 
@@ -27,6 +27,9 @@ import '../styles/MyNavbar.scss';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { initMemberAsync, logOutAsync } from '../../actions/index';
+
+//jay改動
+import InformLoginModal from './../../jay/jay_components/InformLoginModal';
 
 // ant-design Layout
 const { Header } = Layout;
@@ -55,6 +58,10 @@ function MyNavbar(props) {
   const anchorRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+
+  //jay
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
+
   //samps
 
   useEffect(() => {
@@ -95,7 +102,6 @@ function MyNavbar(props) {
     }
     prevOpen.current = open;
   }, [open]);
-
 
   const loggedNav = (
     <Header className="d-flex row no-gutters">
@@ -145,7 +151,11 @@ function MyNavbar(props) {
                       key="1"
                       onClick={(event) => {
                         event.preventDefault();
-                        props.history.push(`/memberedit`);
+                        if (props.member.sid) {
+                          props.history.push(`/memberedit`);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
                       }}
                     >
                       加入播客
@@ -181,7 +191,11 @@ function MyNavbar(props) {
           key="1"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -245,7 +259,11 @@ function MyNavbar(props) {
                         key="1"
                         onClick={(event) => {
                           event.preventDefault();
-                          props.history.push(`/memberedit`);
+                          if (props.member.sid) {
+                            props.history.push(`/memberedit`);
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
                         }}
                       >
                         加入播客
@@ -299,7 +317,7 @@ function MyNavbar(props) {
 
   const notLoggedNav = (
     <Header className="d-flex row no-gutters">
-      <div        
+      <div
         className="logo col-3 mr-auto"
         onClick={() => {
           props.history.push('/');
@@ -345,7 +363,11 @@ function MyNavbar(props) {
                       key="1"
                       onClick={(event) => {
                         event.preventDefault();
-                        props.history.push(`/memberedit`);
+                        if (props.member.sid) {
+                          props.history.push(`/memberedit`);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
                       }}
                     >
                       加入播客
@@ -378,7 +400,11 @@ function MyNavbar(props) {
           href="#"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -441,6 +467,11 @@ function MyNavbar(props) {
           </StyledBadge>
         </IconButton>
       </div>
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
+      />
     </Header>
   );
 

@@ -69,19 +69,15 @@ function ChannelRatingModal(props) {
         </Modal.Header>
         <Modal.Body style={{ height: '5rem' }}>
           <div className=" text-center">
-            {props.member && props.member.sid ? (
-              <Rate
-                style={{ fontSize: '1.5rem', filter: 'brightness(0.95)' }}
-                defaultValue={
-                  props.rating_state[0] ? props.rating_state[0].score : 0
-                }
-                onChange={(value) => {
-                  setRateValue(value);
-                }}
-              />
-            ) : (
-              <h5>請先登入會員！</h5>
-            )}
+            <Rate
+              style={{ fontSize: '1.5rem', filter: 'brightness(0.95)' }}
+              defaultValue={
+                props.rating_state[0] ? props.rating_state[0].score : 0
+              }
+              onChange={(value) => {
+                setRateValue(value);
+              }}
+            />
           </div>
         </Modal.Body>
         <Modal.Footer>
