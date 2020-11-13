@@ -1,0 +1,146 @@
+////////////////////////////////////InfoPage START//////////////////////////////////////
+.indexInfoPage {
+  width: 100%;
+  height: 92.875rem;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  position: relative;
+}
+.indexInfoPage .infoPagePic1 {
+  width: 41.25rem;
+  height: 36.25rem;
+  position: absolute;
+  left: 15%;
+  top: 0;
+  z-index: 0;
+}
+.indexInfoPage .infoPagePic1::after {
+  content: '';
+  width: 41.5rem;
+  height: 36.188rem;
+  border-radius: 5px;
+  border: solid 1px #f8f8f8;
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  z-index: 1;
+}
+// size 660*580
+.indexInfoPage .infoPagePic1 img {
+  border-radius: 5px;
+}
+.indexInfoPage .infoPagePic2 {
+  widows: 48.75rem;
+  height: 32.5rem;
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  z-index: 0;
+}
+.indexInfoPage .infoPagePic2::after {
+  content: '';
+  width: 48.75rem;
+  height: 32.75rem;
+  border-radius: 5px;
+  border: solid 1px #f8f8f8;
+  position: absolute;
+  right: 5%;
+  bottom: -7%;
+  z-index: -1;
+}
+
+// size 780*520
+.indexInfoPage .infoPagePic2 img {
+  border-radius: 5px;
+}
+.indexInfoPage .infoPageText1 {
+  width: 34.25rem;
+  height: 34.125rem;
+  border-radius: 5px;
+  border: solid 1px #1cace7;
+  background-color: rgba(28, 172, 231, 0.2);
+  position: absolute;
+  right: 10%;
+  top: 13%;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox {
+  padding: 20% 10% 10% 10%;
+}
+
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoSubTitle {
+  font-size: 2.063rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 1.65px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoTitle {
+  font-size: 3.125rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 2.5px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoParagraph {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.22;
+  letter-spacing: 0.45px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.indexInfoPage .infoPageText2 {
+  width: 29.063rem;
+  height: 35.938rem;
+  border-radius: 5px;
+  border: solid 1px #ab4fed;
+  background-color: rgba(171, 79, 237, 0.2);
+  position: absolute;
+  left: 15%;
+  bottom: 12%;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox {
+  padding: 30% 10% 10% 10%;
+}
+
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoSubTitle {
+  font-size: 2.063rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 1.65px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoTitle {
+  font-size: 3.125rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 2.5px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoParagraph {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.22;
+  letter-spacing: 0.45px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+////////////////////////////////////InfoPage END///////////////////////////////////

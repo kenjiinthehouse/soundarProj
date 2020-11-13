@@ -8,7 +8,8 @@ const getPostData = multer();
 const uploadAudio = require('./../jay_modules/upload_audio_module');
 
 const { v4: uuidv4 } = require('uuid');
-const db = require(__dirname + '/../db_connect');
+// const db = require(__dirname + '/../db_connect');
+const db = require(__dirname + '/../db_connect2');
 
 const router = express.Router();
 const cors = require('cors');
@@ -65,7 +66,7 @@ router.get('/update_all_channel_rating', async (req, res) => {
     res.send(resultArray);
 });
 
-// 更新整合所有頻道評分
+
 router.get('/popular_channels', async (req, res) => {
 
     const sql = "SELECT * FROM `podcast_channel_info` ORDER BY `podcast_channel_info`.`channel_rating` DESC LIMIT 10";
@@ -91,5 +92,35 @@ router.get('/channel_page_data/:podcaster_id', async (req, res) => {
     const [results] = await db.query(sql, [req.params.podcaster_id]);
     res.send(results);
 });
+
+//對頻道評分
+router.post('/rate_score', multer().none(), async (req, res) => {
+
+    const sql = "INSERT INTO `channel_rating`( `reviewer_id`, `podcaster_id`, `score`) VALUES (?,?,?)";
+    const { reviewer_id, podcaster_id, score } = { ...req.body };
+    const [results] = await db.query(sql, [reviewer_id, podcaster_id, score]);
+    res.send(results);
+});
+
+//更新對頻道評分
+router.post('/update_rate_score', multer().none(), async (req, res) => {
+
+    const sql = "UPDATE `channel_rating` SET `score`=? WHERE `reviewer_id`=? AND `podcaster_id`=?";
+    const { reviewer_id, podcaster_id, score } = { ...req.body };
+    const [results] = await db.query(sql, [ score, reviewer_id, podcaster_id]);
+    res.send(results);
+});
+
+//比對評分
+router.get('/compare_rate_score/:reviewer_id/:podcaster_id', async (req, res) => {
+
+    const sql = "SELECT * FROM `channel_rating` WHERE `reviewer_id`=? AND `podcaster_id`=? ";
+    const [results] = await db.query(sql, [req.params.reviewer_id, req.params.podcaster_id]);
+    if (results.length === 0) {
+        results.push('尚未評分！');
+    }
+    res.send(results);
+});
+
 
 module.exports = router;

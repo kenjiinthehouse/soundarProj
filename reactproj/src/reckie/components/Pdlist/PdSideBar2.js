@@ -11,7 +11,7 @@ import TabPanel from './TabPanel'
 
 function PdSideBar2(props){
   // console.log('v',props.value)
-  const { value, pdIndex, pds , viewFilter, setViewFilter}= props
+  const { value, pdIndex,setDetailCate,setMainCate}= props
   const [activeKey, setActiveKey] = useState('0')
   
 
@@ -31,22 +31,6 @@ function PdSideBar2(props){
     }
   },[value,activeKey])
 
-  //sidebar展開內容 = Tab 所在頁面
-  // let activeKey = "0"
-  // switch (value){
-  //   case 1:
-  //     activeKey = "1";
-  //     break;
-  //   case 2:
-  //     activeKey = "2";
-  //     break;
-  //   case 3:
-  //     activeKey = "3";
-  //     break;
-  // }
-
-  
-  
     return(
         <>
       <Accordion className="sidebar" hidden={(value===pdIndex)?false:true} defaultActiveKey={pdIndex+''}>
@@ -57,22 +41,23 @@ function PdSideBar2(props){
         </Accordion.Toggle>
       </div>
   <Accordion.Collapse eventKey="0">
-  {/* 10:錄音設備 11:耳機 12:麥克風 20:播客周邊 1:耳塞式 2:耳罩式 3:t-shirt 4:杯 */}
-  {/* 條件未完成 */}
+  {/* detailCate: 1:耳塞式耳機_有線 2:耳塞式耳機_無線 3:耳罩式耳機_有線 4:耳罩式耳機_無線 5:專業麥克風_有線 6:shirt 7:帆布包 8:馬克杯 */}
   <ListGroup variant="flush" className="bg-test">
-      <ListGroup.Item onClick={()=> setViewFilter(10)}>all</ListGroup.Item>
-      <ListGroup.Item onClick={()=> setViewFilter(12)}>麥克風</ListGroup.Item>
+      <ListGroup.Item onClick={()=> {setMainCate(1);setDetailCate('');}}>all</ListGroup.Item>
+      <ListGroup.Item onClick={()=> setDetailCate(5)}>麥克風</ListGroup.Item>
       <Accordion className="sidebar" hidden={(value===pdIndex)?false:true}>
         <div>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-          <p>耳機</p>
+          <p className="body3 dark">耳機</p>
           </Accordion.Toggle>
         </div>
 
         <Accordion.Collapse eventKey="0">
         <ListGroup variant="flush" className="bg-test">
-            <ListGroup.Item onClick={()=> setViewFilter(1)}>耳塞式</ListGroup.Item>
-            <ListGroup.Item onClick={()=> setViewFilter(2)}>耳罩式</ListGroup.Item> 
+          <ListGroup.Item onClick={()=> setDetailCate(4)}>耳罩式無線</ListGroup.Item> 
+          <ListGroup.Item onClick={()=> setDetailCate(3)}>耳罩式有線</ListGroup.Item> 
+          <ListGroup.Item onClick={()=> setDetailCate(2)}>耳塞式無線</ListGroup.Item>
+          <ListGroup.Item onClick={()=> setDetailCate(1)}>耳塞式有線</ListGroup.Item>
         </ListGroup>  
         </Accordion.Collapse>
       </Accordion>
@@ -86,9 +71,10 @@ function PdSideBar2(props){
   <Accordion.Collapse eventKey="1">
  
   <ListGroup variant="flush" className="bg-test">
-      <ListGroup.Item onClick={()=> setViewFilter(20)}>all</ListGroup.Item>
-      <ListGroup.Item onClick={()=> setViewFilter(3)}>T-shirt</ListGroup.Item>
-      <ListGroup.Item onClick={()=> setViewFilter(4)}>馬克杯</ListGroup.Item>
+      <ListGroup.Item onClick={()=>{setMainCate(2);setDetailCate('');}}>all</ListGroup.Item>
+      <ListGroup.Item onClick={()=> setDetailCate(6)}>T-shirt</ListGroup.Item>
+      <ListGroup.Item onClick={()=> setDetailCate(7)}>帆布包</ListGroup.Item>
+      <ListGroup.Item onClick={()=> setDetailCate(8)}>馬克杯</ListGroup.Item>
   </ListGroup>  
   </Accordion.Collapse>
   <div>

@@ -5,7 +5,11 @@ import '../styles/Sidebar.scss';
 import Memberedit from '../components/Memberedit';
 
 //活動訂單
-import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
+import ActivityOrder from '../../chieh/ch_pages/ActivityOrder';
+//page7
+import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome';
+//page8
+import PodcasterAudioList from './../../jay/jay_pages/PodcasterAudioList.js';
 
 function Membersidebar(props) {
   const [activenumber, setActivenumber] = useState(1);
@@ -13,10 +17,10 @@ function Membersidebar(props) {
   return (
     <>
       <div className="sa-Memberedit-wrap">
-        <div className="sa-Memberedit-area">
-          <div className="container">
-            <div className="row">
-              <div className="side-bar-container">
+        <div className="container">
+          <div className="row">
+            <div className="sa-Memberedit-area d-flex">
+              <div className="side-bar-container col-3 pr-4">
                 <div className="side-bar-member-area">
                   <div className="side-bar-member-title">
                     <img
@@ -156,15 +160,25 @@ function Membersidebar(props) {
                 </div>
               </div>
 
-              <div className="sa-sidebar-mainarea">
+              <div className="sa-sidebar-mainarea col-9">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
-                {activenumber == 3 ? <div><ActivityOrder/></div> : <></>}
+                {activenumber == 3 ? (
+                  <div>
+                    <ActivityOrder />
+                  </div>
+                ) : (
+                  <></>
+                )}
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
-                {activenumber == 6 ? <div>6</div> : <></>}
-                {activenumber == 7 ? <div>7</div> : <></>}
-                {activenumber == 8 ? <div>8</div> : <></>}
+                {activenumber == 6 ? <div>6</div> : null}
+                {activenumber == 7 ? (
+                  <PodcasterDashboardHome {...props} />
+                ) : (
+                  <></>
+                )}
+                {activenumber == 8 ? <PodcasterAudioList {...props} /> : <></>}
               </div>
             </div>
           </div>

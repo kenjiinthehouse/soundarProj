@@ -40,21 +40,15 @@
     background-color: rgba($color: #F8F8F8, $alpha: 0.1);
 }
 .jay-hot-list-cate-channel-rank{
-    max-width: 10%;
     color:  #F8F8F8;
     font-weight: bold;
 }
 .jay-hot-list-cate-channel-pic{
-    max-width: 40%;
-    width: 4rem;
-    height: 4rem;
     overflow: hidden;
     border-radius: 5px;
     filter: brightness(0.9);
 }
-.jay-hot-list-cate-channel-info{
-    max-width: 50%;
-}
+
 .jay-hot-list-cate-channel-info h6{
     white-space: nowrap;
     overflow: hidden;
@@ -115,7 +109,7 @@ $circleW: 60px;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    z-index: 100;
+    z-index: 9;
     opacity:0;
     filter: brightness(0.95);
     animation: top-channel-img  $totalAnim $delay;

@@ -6,6 +6,13 @@ import { connect } from 'react-redux';
 import {
   initalChannelPageAsync,
   initalDashboardAsync,
+  initalRateModalAsync,
+  initMemberAudioCollectionAsync,
+  addCollection,
+  delCollection,
+  initMemberChannelCollectionAsync,
+  addChannelCollection,
+  delChannelCollection,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -15,13 +22,12 @@ import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
+import InformLoginModal from './../jay_components/InformLoginModal';
+// bootstrap
+import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
 // react icon
-import {
-  RiMusic2Fill,
-  RiPlayListAddLine,
-  RiBroadcastLine,
-} from 'react-icons/ri';
+import { RiMusic2Fill, RiPlayListAddLine } from 'react-icons/ri';
 import { FaRss, FaHeart } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
@@ -51,6 +57,8 @@ function ChannelPage(props) {
   } = props;
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
+  const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
   const transTermToChinese = () => {
@@ -101,6 +109,11 @@ function ChannelPage(props) {
     initialGetData();
   }, []);
 
+  useEffect(() => {
+    props.initMemberAudioCollectionAsync(props.member.sid);
+    props.initMemberChannelCollectionAsync(props.member.sid);
+  }, [props.member]);
+
   const displayCatePage = (
     <StyleRoot>
       <ScrollToTop
@@ -114,7 +127,7 @@ function ChannelPage(props) {
         }}
         component={<TiArrowSortedUp style={{ fontSize: '1.8rem' }} />}
       />
-      <div className="explorePageBody pt-4" style={{ paddingBottom: '100px' }}>
+      <div className="explorePageBody" style={{ paddingBottom: '100px' }}>
         <div className="container">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent">
@@ -160,12 +173,50 @@ function ChannelPage(props) {
                     <span>{breadcrumbCateTerm}</span>
                   </div>
                   <div>
-                    <button
-                      type="button"
-                      className=" btn btn-sm btn-info my-3 mr-3"
-                    >
-                      訂閱
-                    </button>
+                    {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-info my-3 mr-3"
+                        style={styles.fadeInLeft01}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            await props.addChannelCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberChannelCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        訂閱
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                        style={styles.fadeInLeft01}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            await props.delChannelCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberChannelCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        訂閱中
+                      </button>
+                    )}
+
                     <button
                       type="button"
                       className=" btn btn-sm btn-secondary my-3 mr-3"
@@ -175,6 +226,13 @@ function ChannelPage(props) {
                     <button
                       type="button"
                       className=" btn btn-sm btn-secondary my-3"
+                      onClick={() => {
+                        if (props.member && props.member.sid) {
+                          setShowRatingModel(true);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
+                      }}
                     >
                       評分
                     </button>
@@ -189,13 +247,13 @@ function ChannelPage(props) {
                   </div>
                   <div>
                     <span>
-                      網友評比： &nbsp;&nbsp;{item.channel_rating} &nbsp;/&nbsp;
-                      5
+                      網友評比： &nbsp;&nbsp;{(+item.channel_rating).toFixed(1)}
+                      &nbsp;&nbsp; 5
                     </span>
                   </div>
                   <div className="pt-4">
                     <a target="_blank" href={item.channel_rss_link}>
-                      <FaRss style={{ fontSize: '1.25rem' }} />{' '}
+                      <FaRss style={{ fontSize: '1.25rem' }} />
                       <span className="px-2">RSS訂閱</span>
                     </a>
                   </div>
@@ -355,8 +413,38 @@ function ChannelPage(props) {
                           .querySelector('.mh14')
                           .classList.remove('mh15');
                       }}
+                      onClick={async () => {
+                        if (props.member.sid) {
+                          //寫回資料庫
+                          if (props.audioCollection.indexOf(item.sid) === -1) {
+                            await props.addCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberAudioCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            await props.delCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberAudioCollectionAsync(
+                              props.member.sid
+                            );
+                          }
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
+                      }}
                     >
-                      <FaHeart style={{ fontSize: '2rem' }} />
+                      {props.audioCollection.indexOf(item.sid) === -1 ? (
+                        <FaHeart style={{ fontSize: '2rem' }} />
+                      ) : (
+                        <FaHeart
+                          style={{ fontSize: '2rem', color: '#F780AE' }}
+                        />
+                      )}
                     </div>
                   </div>
                 );
@@ -365,6 +453,17 @@ function ChannelPage(props) {
           </div>
         </div>
       </div>
+
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
+      />
+
+      <ChannelRatingModal
+        show={showRatingModel}
+        onHide={() => setShowRatingModel(false)}
+      />
     </StyleRoot>
   );
 
@@ -373,15 +472,17 @@ function ChannelPage(props) {
   `;
 
   const displaySpinner = (
-    <div className="jay-spinnerArea explorePageBody">
-      <ScaleLoader
-        css={loader_css}
-        color={'#4A90E2'}
-        height={80}
-        width={10}
-        margin={6}
-        radius={20}
-      />
+    <div className="explorePageBody">
+      <div className="jay-spinnerArea">
+        <ScaleLoader
+          css={loader_css}
+          color={'#4A90E2'}
+          height={80}
+          width={10}
+          margin={6}
+          radius={20}
+        />
+      </div>
     </div>
   );
 
@@ -392,11 +493,22 @@ const mapStateToProps = (store) => {
   return {
     channel_audio_data: store.channelPageData,
     channel_data: store.podcasterDashboardInfoState,
+    member: store.member,
+    audioCollection: store.memberAudioCollection,
+    subscribe_channels: store.memberChannelCollection,
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { initalChannelPageAsync, initalDashboardAsync })(
-    ChannelPage
-  )
+  connect(mapStateToProps, {
+    initalChannelPageAsync,
+    initalDashboardAsync,
+    initalRateModalAsync,
+    initMemberAudioCollectionAsync,
+    addCollection,
+    delCollection,
+    initMemberChannelCollectionAsync,
+    addChannelCollection,
+    delChannelCollection,
+  })(ChannelPage)
 );

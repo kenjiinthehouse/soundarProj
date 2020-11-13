@@ -137,7 +137,7 @@ function ExploreHomePage(props) {
 
   const displayExploreHomePage = (
     <StyleRoot>
-      <div className="explorePageBody pt-4" style={{ paddingBottom: '100px' }}>
+      <div className="explorePageBody" style={{ paddingBottom: '100px' }}>
         <div className="container">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent">
@@ -147,7 +147,7 @@ function ExploreHomePage(props) {
               </li>
             </ol>
           </nav>
-          <div className="jay-section-title-area py-2 px-3 col-2">
+          <div className="jay-section-title-area py-2 px-3 col-md-2 col-6">
             <h5>探索分類</h5>
           </div>
           <div className="row d-flex mb-5">
@@ -320,7 +320,7 @@ function ExploreHomePage(props) {
               </a>
             </div>
           </div>
-          <div className="jay-section-title-area py-2 px-3 col-2 mb-5">
+          <div className="jay-section-title-area py-2 px-3 col-md-2 col-6 mb-5">
             <h5>熱門頻道排行</h5>
           </div>
           <div className="row d-flex">
@@ -330,7 +330,7 @@ function ExploreHomePage(props) {
               }
               return (
                 <div
-                  className="col-12 col-lg d-flex position-relative jay-channel-rating-section1"
+                  className="col-6 col-lg d-flex position-relative jay-channel-rating-section1"
                   style={styles.fadeIn01}
                   key={index}
                 >
@@ -368,14 +368,14 @@ function ExploreHomePage(props) {
               );
             })}
           </div>
-          <div className="row d-flex">
+          <div className="row d-flex mt-3 no-gutters">
             {props.popular_channel.map((item, index) => {
               if (index < 5) {
                 return null;
               }
               return (
                 <a
-                  className="jay-rank-6-10-btn"
+                  className="jay-rank-6-10-btn col-6 col-lg d-block"
                   key={index}
                   href="javascript"
                   onClick={(event) => {
@@ -389,10 +389,9 @@ function ExploreHomePage(props) {
                   style={{
                     display: 'block',
                     zIndex: '100',
-                    width: '20%',
                   }}
                 >
-                  <div className="col-6 col-lg d-flex jay-channel-rating-section2 py-3 px-3 mh14">
+                  <div className="d-flex jay-channel-rating-section2 py-3 px-3 mh14 w-100">
                     <div className="jay-section2-part1">
                       <div className="jay-number-circle-area position-relative">
                         <h6 className=" position-absolute">{index + 1}</h6>
@@ -429,15 +428,17 @@ function ExploreHomePage(props) {
   `;
 
   const displaySpinner = (
-    <div className="jay-spinnerArea explorePageBody">
-      <ScaleLoader
-        css={loader_css}
-        color={'#4A90E2'}
-        height={80}
-        width={10}
-        margin={6}
-        radius={20}
-      />
+    <div className="explorePageBody">
+      <div className="jay-spinnerArea">
+        <ScaleLoader
+          css={loader_css}
+          color={'#4A90E2'}
+          height={80}
+          width={10}
+          margin={6}
+          radius={20}
+        />
+      </div>
     </div>
   );
 

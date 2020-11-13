@@ -20,12 +20,11 @@ hr.dashboard-hr{
 
 .jay-table thead th:first-child,
 .jay-table tbody th:first-child {
-    width: 10%;
+    width: 18%;
 }
  
-.jay-table thead th:nth-child(2),
-.jay-table tbody td:nth-child(0) {
-    width: 40%;
+td {
+    word-wrap: break-word;
 }
 
 .jay-table thead th:nth-child(4),

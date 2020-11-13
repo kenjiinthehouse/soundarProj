@@ -11,11 +11,11 @@ useEffect(()=>{
 const handleChange = (event, value) => {
   setPage(value);
 };
-let query = ''
-if (page) query += `&page=${page}`
+// let query = ''
+// if (page) query += `&page=${page}`
 
   return (
-    <div className="d-flex">
+    <div className="d-flex rePagination">
       <Pagination count={productList.totalPage?productList.totalPage:''} shape="rounded" page={page} color="primary" className="mt-2 mb-2 mx-auto"
         onChange={handleChange}
       />      

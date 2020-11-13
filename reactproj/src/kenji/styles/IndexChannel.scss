@@ -1,0 +1,118 @@
+
+.IndexChannelContainer {
+  width: 100%;
+  height: 56rem;
+  margin-top: 2rem;
+  // background-color: #ccc;
+  // position: relative;
+}
+
+.IndexChannelPageTitleBox {
+  width: 24rem;
+  height: 4rem;
+  border-radius: 5px;
+  background-color: #2690df;
+  // position: absolute;
+  margin-left: 13.375rem;
+}
+.IndexChannelPageTitleBox .IndexChannelPageTitle {
+  padding: 0px;
+  margin: 0px;
+  width: 9.75rem;
+  // height: 3.563rem;
+  font-size: 2rem;
+  vertical-align: inherit;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2rem;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.IndexChannelPageBox .IndexChannelPageBoxCate {
+  width: 10rem;
+  margin-left: 20rem;
+  margin-top: 3rem;
+}
+.active {
+  border-bottom: steelblue 3px solid;
+  transition: left 250ms ease-in-out, right 250ms ease-in-out;
+}
+.IndexChannelPageBox .IndexChannelPageBoxCate button {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #f8f8f8;
+}
+.IndexChannelPageBox .IndexChannelPageBoxCate button span {
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+.IndexChannelPageBox .IndexChannelPageBoxCate button svg {
+  margin-left: 2.75rem;
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.IndexChannelPageBox .IndexChannelPageBoxContent {
+  //尺寸抓16:9
+  width: 64rem;
+  height: 36rem;
+  border-radius: 5px;
+  background-color: #faa;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  border-radius: 5px;
+  position: relative;
+}
+.IndexChannelPageBox .IndexChannelPageBoxContent img {
+  border-radius: 5px;
+  z-index: 0;
+}
+.IndexChannelPageBox .IndexChannelPageBoxContent .ChannelDrawer {
+  width: 30rem;
+  height: 100%;
+  border-radius: 0px 5px 5px 0;
+  background-color: rgba($color: #232d2f, $alpha: 0.2);
+  backdrop-filter: blur(8px);
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+.IndexChannelPageBox .IndexChannelPageBoxContent .ChannelDrawer .ChannelCard {
+  width: 24rem;
+  height: 90%;
+  margin-top: 2rem;
+  // border: #ff359a 1px solid;
+}
+
+.IndexChannelPageBox
+  .IndexChannelPageBoxContent
+  .ChannelDrawer
+  .ChannelCard
+  button {
+  width: 80%;
+  height: 2rem;
+  border-radius: 5px;
+  background-color: rgba($color: #232d2f, $alpha: 0.5);
+}
+.IndexChannelPageBox
+  .IndexChannelPageBoxContent
+  .ChannelDrawer
+  .ChannelCard
+  button
+  svg {
+  margin-left: 0.5rem;
+}

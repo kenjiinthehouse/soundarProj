@@ -8,6 +8,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import '../styles/reckieCustom.scss';
 
 function ProductApp() {
+<<<<<<< HEAD
   //product假資料
   const [pds, setPds] = useState([
     {
@@ -86,6 +87,9 @@ function ProductApp() {
   // useEffect(()=>{
   //   console.log('productList',productList)
   // }, [productList])
+=======
+  
+>>>>>>> 67393c737cbbb903631b70bb9bd047032781123f
 
   return (
     <Router>
@@ -93,12 +97,7 @@ function ProductApp() {
         <div className="ProductAPP-reckie">
           <Switch>
             <Route exact path="/productlist/:page?">
-              <ProductMainPage
-                products={products}
-                productList={productList}
-                page={page}
-                setPage={setPage}
-              />
+              <ProductMainPage/>
             </Route>
             <Route path="/product/:pd_id?">
               <ProductItemPage />

@@ -5,15 +5,23 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //components
-import MyNavbar from './jay/jay_components/MyNavbar.js';
+
 import ScrollToTop from './jay/jay_components/ScrollToTop.js';
 import MainContent from './jay/jay_components/MainContent.js';
 import { Layout } from 'antd';
 
+//index page
+import MyNavbar from './kenji/components/MyNavbar';
+import IndexCarousel from './kenji/components/IndexCarousel';
+import IndexInfo from './kenji/components/IndexInfo';
+import IndexChannel from './kenji/components/IndexChannel';
+import IndexPodcastEp from './kenji/components/IndexPodcastEp';
+import IndexShop from './kenji/components/IndexShop';
+import ArticleCarousel from './kenji/components/ArticleCarousel';
+import MyFooter from './kenji/components/MyFooter';
+
 //pages
-import PodcasterDashboardHome from './jay/jay_pages/PodcasterDashboardHome';
 import AudioPlayer from './jay/jay_components/AudioPlayer.js';
-import PodcasterAudioList from './jay/jay_pages/PodcasterAudioList.js';
 import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
 import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
 import ChannelPage from './jay/jay_pages/ChannelPage.js';
@@ -37,6 +45,8 @@ import Podlogin from './samps/pages/Podlogin';
 import Verification from './samps/pages/Verification';
 import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
+import { colors } from '@material-ui/core';
+import { Height } from '@material-ui/icons';
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -50,14 +60,23 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
-              <Route path="/channel_info/:podcaster_id?">
-                <PodcasterDashboardHome />
-              </Route>
-              <Route path="/channel_audio_list/:podcaster_id?">
-                <PodcasterAudioList
-                  globalAudioArry={globalAudioArry}
-                  setGlobalAudioArry={setGlobalAudioArry}
-                />
+              <Route exact path="/">
+                <div
+                  className="indexDiv"
+                  style={{
+                    backgroundColor: '#232d2f',
+                    width: '100%',
+                    height: '100%',
+                    paddingBottom: '4rem',
+                  }}
+                >
+                  <IndexCarousel />
+                  <IndexInfo />
+                  <IndexChannel />
+                  <IndexPodcastEp />
+                  <IndexShop />
+                  <ArticleCarousel />
+                </div>
               </Route>
               <Route path="/explore_home_page">
                 <ExploreHomePage
@@ -71,7 +90,7 @@ function App() {
                   setGlobalAudioArry={setGlobalAudioArry}
                 />
               </Route>
-              <Route path="/channel_page/:cate_term/:podcaster_id">
+              <Route exact path="/channel_page/:cate_term/:podcaster_id">
                 <ChannelPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
@@ -79,7 +98,10 @@ function App() {
                   setPlayingAudio={setPlayingAudio}
                 />
               </Route>
-              <Route path="/channel_page/:cate_term/:podcaster_id/:audio_sid">
+              <Route
+                exact
+                path="/channel_page/:cate_term/:podcaster_id/:audio_sid"
+              >
                 <ChannelAudioPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
@@ -130,10 +152,18 @@ function App() {
                 <Applymembership />
               </Route>
               <Route path="/memberedit">
-                <Membersidebar />
+                <Membersidebar
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                  playingAudio={playingAudio}
+                  setPlayingAudio={setPlayingAudio}
+                />
               </Route>
               <Route path="/audiocollect">
-                <Audiocollection />
+                <Audiocollection
+                  globalAudioArry={globalAudioArry}
+                  setGlobalAudioArry={setGlobalAudioArry}
+                />
               </Route>
               <Route path="/channelcollect">
                 <Channelcollection />
@@ -157,6 +187,7 @@ function App() {
             setPlayingAudio={setPlayingAudio}
           />
         </MainContent>
+        <MyFooter />
       </Layout>
     </Router>
   );

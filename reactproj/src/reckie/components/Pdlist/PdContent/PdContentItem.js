@@ -47,28 +47,22 @@ const classes = useStyles();
 const handleExpandEnter = () => {
   setIsShown(!isShown);
 };
-
-
-
-
     return(
-           
-            <Link
-            to={`/product/${products.pd_id}`}
-            className="col-lg-4 pdCard"
-            onMouseEnter={handleExpandEnter}
-            onMouseLeave={handleExpandEnter}
-            
-            >
-            <div className="cardWrap">
-            <CardMedia
-              className={classes.media}
-              image={products.pd_main_img}
-              title="Paella dish"
-            />
+      <Link
+        to={`/product/${products.pd_id}`}
+        className="col-lg-4 pdCard"
+        onMouseEnter={handleExpandEnter}
+        onMouseLeave={handleExpandEnter}
+      >
+      <div className="cardWrap">
+      <CardMedia
+      className={classes.media}
+      image={products.pd_main_img.indexOf('http')=== -1 ?`/reckie_img/${products.pd_main_img}`:products.pd_main_img}
+      title="Paella dish"
+      />
             <div className="cardBody">
             <div variant="body2">
-                <h4>{products.pd_title}</h4>
+                <h4 className="head5">{products.pd_title}</h4>
               </div>
             <div variant="body2">
                 <h4 className="pdPrice">${products.pd_price}</h4>
@@ -77,7 +71,7 @@ const handleExpandEnter = () => {
            
             <Collapse in={isShown} timeout="auto" unmountOnExit>
                 
-                  <Button className="addCartBtn" onClick={()=>{
+                   <Button className="addCartBtn re-btn-color" onClick={(event)=>{
                     let cart = []
                     if(localStorage.getItem('cart'))
                       cart = JSON.parse(localStorage.getItem('cart'))
@@ -99,6 +93,8 @@ const handleExpandEnter = () => {
                       cart.push(obj)
                     }
                     localStorage.setItem('cart',JSON.stringify(cart))
+                    event.stopPropagation();
+                    event.preventDefault();
                   }}>加入購物車車車車</Button>
                 
                 

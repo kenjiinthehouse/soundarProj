@@ -6,6 +6,8 @@ import {
   GET_ARTICLE_DETAIL_NEXT,
   INIT_MEMBER,
   LOG_OUT,
+  GET_MSG,
+  GET_REPLY,
 } from './actionTypes';
 
 //aciotn creator-get list
@@ -113,8 +115,6 @@ export const getArticleDetailNextAsync = (sid) => {
   };
 };
 
-
-
 //samps
 
 export const logOut = () => {
@@ -183,5 +183,46 @@ export const Member_nick_photo = (sid) => {
       } // console.log('data', member)
       dispatch(initMember(member.source));
     } catch (error) {}
+  };
+};
+
+//kenji
+export const getMsg = (payload) => {
+  return { type: GET_MSG, payload: payload };
+};
+export const getMsgAsync = () => {
+  return async function getMsgFunc(dispatch) {
+    const url = 'http://localhost:5566/msg';
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      }),
+    });
+    const response = await fetch(request);
+    const msgList = await response.json();
+    // console.log(msgList)
+    dispatch(getMsg(msgList));
+  };
+};
+
+export const getReply = (payload) => {
+  return { type: GET_REPLY, payload: payload };
+};
+export const getReplyAsync = (sid) => {
+  return async function getReplyFunc(dispatch) {
+    const url = `http://localhost:5566/msg/reply/${sid}`;
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      }),
+    });
+    const response = await fetch(request);
+    const replyList = await response.json();
+    console.log('parentId給多少:', replyList);
+    dispatch(getReply(replyList));
   };
 };
