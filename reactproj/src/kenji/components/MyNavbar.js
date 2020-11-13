@@ -456,11 +456,11 @@ function MyNavbar(props) {
           登入
         </Button>
       </div>
-      <div className="navBarLogInBtn navBarBtn">
+      {/* <div className="navBarLogInBtn navBarBtn">
         <Button href="#">
           <ExitToAppIcon />
         </Button>
-      </div>
+      </div> */}
       <div className="diverVertical my-auto ml-2 mr-2"></div>
       <div className="navBarBtn">
         <IconButton>
