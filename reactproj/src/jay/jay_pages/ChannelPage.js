@@ -286,7 +286,7 @@ function ChannelPage(props) {
               })}
               <hr className="jay-cate-hr" />
               {props.channel_audio_data.map((item, index) => {
-                if (item.sid === null ) {
+                if (item.sid === null) {
                   return null;
                 } else {
                   return (
@@ -469,6 +469,7 @@ function ChannelPage(props) {
       <ChannelRatingModal
         show={showRatingModel}
         onHide={() => setShowRatingModel(false)}
+        setIsLoading={setIsLoading}
       />
     </StyleRoot>
   );
