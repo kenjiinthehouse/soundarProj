@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require(__dirname + '/../db_connect')
+// const db = require(__dirname + '/../db_connect')
+const db = require(__dirname + '/../db_connect2')
 
 router.get('/',(req,res)=>{
     res.send('products')

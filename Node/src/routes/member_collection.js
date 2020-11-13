@@ -20,7 +20,7 @@ router.post("/audio_collection", async (req, res) => {
   const sid = req.body.sid;
 
   const sql =
-    "SELECT a.`member_id` AS sid ,a.`audio_id` ,a.`created_at`,b.audio_file AS musicSrc,b.audio_title AS name,c.channel_title AS singer,c.podcaster_img AS cover FROM `audio_collection` AS a LEFT JOIN podcast_audio AS b ON a.`audio_id`=b.sid LEFT JOIN podcast_channel_info AS c ON b.podcaster_id=c.podcaster_id WHERE a.`member_id`=? ORDER BY `created_at` DESC";
+    "SELECT a.`member_id` AS sid ,a.`audio_id` ,a.`created_at`,b.audio_file AS musicSrc,b.audio_title AS name,b.podcaster_id,c.channel_title AS singer,c.podcaster_img AS cover ,c.channel_catagory FROM `audio_collection` AS a LEFT JOIN podcast_audio AS b ON a.`audio_id`=b.sid LEFT JOIN podcast_channel_info AS c ON b.podcaster_id=c.podcaster_id WHERE a.`member_id`=? ORDER BY `created_at` DESC";
   const [rs] = await db.query(sql, [sid]);
 
   output.rs = [...rs];

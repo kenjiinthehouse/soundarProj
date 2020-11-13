@@ -4,4 +4,8 @@ reactproj/public/audios
 reactproj/public/img
 reactproj/public/music
 Node/src/db_connect.js
+Node/yarn.lock
+reactproj/debug.log
+reactproj/public/reckie_Videos
+reactproj/debug.log
 

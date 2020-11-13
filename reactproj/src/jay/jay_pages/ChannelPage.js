@@ -227,7 +227,11 @@ function ChannelPage(props) {
                       type="button"
                       className=" btn btn-sm btn-secondary my-3"
                       onClick={() => {
-                        setShowRatingModel(true);
+                        if (props.member && props.member.sid) {
+                          setShowRatingModel(true);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
                       }}
                     >
                       評分
@@ -453,6 +457,7 @@ function ChannelPage(props) {
       <InformLoginModal
         show={showInformLoginModal}
         onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
       />
 
       <ChannelRatingModal

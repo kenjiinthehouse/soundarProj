@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 
 function InformLoginModal(props) {
+  const { setShowInformLoginModal } = props;
   return (
     <>
       <Modal
@@ -29,6 +30,7 @@ function InformLoginModal(props) {
               class="alert-heading"
               onClick={() => {
                 props.history.push(`/login`);
+                setShowInformLoginModal(false);
               }}
               style={{ cursor: 'pointer' }}
             >

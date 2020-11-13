@@ -28,6 +28,7 @@ passport.use(
       const sql =
         "SELECT `sid`, `account`, `nickname`,`profile_picture` FROM `members` WHERE google_id=?";
       const [rs] = await db.query(sql, [profile.id]);
+      console.log("q1");
 
       const sql_account =
         "SELECT `sid`, `account`, `nickname`,`profile_picture` FROM `members` WHERE `account`=?";
@@ -36,6 +37,7 @@ passport.use(
         profile.emails[0].value,
       ]);
       console.log("rs:", rs);
+      console.log("q2");
 
       // obj = {
       //   googleid: profile.id,
@@ -147,12 +149,9 @@ router.get(
     console.log("req", req.user);
     // req.session.gooleid = req.user.googleid;
     // req.session.admin = req.user;
-    const go_back_react = "http://localhost:3000/login?jwt=";
+    const go_back_react = "http://localhost:3000?jwt=";
 
-    const token = jwt.sign(
-      req.user,
-      process.env.TOKEN_SECRET
-    );
+    const token = jwt.sign(req.user, process.env.TOKEN_SECRET);
 
     const url = go_back_react + token;
 

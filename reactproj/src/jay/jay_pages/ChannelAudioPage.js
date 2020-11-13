@@ -243,7 +243,11 @@ function ChannelAudioPage(props) {
                       type="button"
                       className=" btn btn-sm btn-secondary my-3"
                       onClick={() => {
-                        setShowRatingModel(true);
+                        if (props.member && props.member.sid) {
+                          setShowRatingModel(true);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
                       }}
                     >
                       評分
@@ -284,7 +288,7 @@ function ChannelAudioPage(props) {
                   return (
                     <div key={index}>
                       <div className=" d-flex py-3 px-5 mb-3 audio-info">
-                        <div>
+                        <div className="w-100">
                           <h5 className=" mb-3">
                             單集名稱：
                             <br />
@@ -461,6 +465,7 @@ function ChannelAudioPage(props) {
       <InformLoginModal
         show={showInformLoginModal}
         onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
       />
     </StyleRoot>
   );

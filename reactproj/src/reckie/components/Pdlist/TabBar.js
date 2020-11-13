@@ -7,6 +7,7 @@ import TabPanel from './TabPanel';
 import PdSideBar2 from './PdSideBar2';
 import PdContent from './PdContent/PdContent';
 import Breadcrumb from '../Breadcrumb';
+import {Form} from 'react-bootstrap'
 
 //活動、錄音室
 import AcContent from './PdContent/AcContent';
@@ -127,17 +128,27 @@ function TabBar(props) {
           <PdSideBar2 value={value} pdIndex={1} {...props} />
           <PdSideBar2 value={value} pdIndex={2} {...props} />
           <PdSideBar2 value={value} pdIndex={3} {...props} />
-          {/* <PdContent 
+          <Form>
+                <Form.Group controlId="exampleForm.SelectCustom">
+                    <Form.Control as="select" custom>
+                    <option>評價由高到低</option>
+                    <option>評價由低到高</option>
+                    </Form.Control>
+                </Form.Group>
+            </Form>
+          <PdContent
+          value={value}
           {...props}
-          viewFilter={viewFilter}
-          /> */}
+          />
           {/* 活動 */}
-          {/* <AcContent 
-            viewFilter={viewFilter}
-          /> */}
+          <AcContent 
+          value={value} pdIndex={2}
+          />
           {/* 錄音室 */}
-          {/* <StudioContent viewFilter={viewFilter} />
-          ======= /> >>>>>>> reckie */}
+          <StudioContent
+          value={value} pdIndex={3}
+            />
+         
         </div>
       </TabPanel>
     </div>
