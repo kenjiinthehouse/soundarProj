@@ -1,23 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .order-page {
+  width: 100%;
   font-size: 1rem;
-  font-family: "Noto Sans TC", sans-serif;
-  .container {
-    width: 1356px;
-    margin-top: 100px;
-    padding: 0;
-    .row {
-      margin: 0;
-    }
-  }
-  .ru-odPage-sidebar {
-    width: 316.5px;
-    border-right: 1px solid #707070;
-    padding-right: 2rem;
-  }
+  font-family: 'Noto Sans TC', sans-serif;
+  // .container {
+  //   width: 1356px;
+  //   margin-top: 100px;
+  //   padding: 0;
+  //   .row {
+  //     margin: 0;
+  //   }
+  // }
+  // .ru-odPage-sidebar {
+  //   width: 316.5px;
+  //   border-right: 1px solid #707070;
+  //   padding-right: 2rem;
+  // }
 
   .ru-odPage-display {
-    width: 66.66%;
+    // width: 100%;
     user-select: none;
     cursor: pointer;
     .ru-odPage-option-btn {
@@ -45,6 +47,15 @@
         text-align: center;
         margin: 0;
       }
+    }
+    .ru-odPage-ship {
+      background-color: #2690df;
+    }
+    .ru-odPage-finish {
+      background-color: #dc2621;
+    }
+    .ru-odPage-cancel {
+      background-color: #909393;
     }
   }
   .ru-odPage-title {
@@ -77,6 +88,7 @@
     padding: 0.8rem;
   }
   .ru-odPage-order-detail {
+    background-color: #fff;
     padding: 30px;
     .ru-odPage-order-left {
       width: 40%;
@@ -120,11 +132,22 @@
     }
   }
 
-  .card-header {
+  .ru-orderPage-card {
+    border: 0;
+    height: auto;
+    .ru-orderPage-card-body {
+      padding: 0.8rem 0;
+    }
+  }
+
+  .ru-odPage-check-detail-btn {
     padding: 5px;
     background-color: transparent;
     border: 0;
-    button {
+    width: 14.5rem;
+    border-radius: 30px;
+    text-align: center;
+    .ru-odPage-button {
       width: 100%;
       height: 3.125rem;
       border: 2px solid #44494a;
@@ -135,19 +158,17 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
-  }
-
-  .card {
-    border: 0;
-    .card-body {
-      padding: 0.8rem 0;
+    .check-btn-active {
+      width: 100%;
+      height: 3.125rem;
+      border: 2px transparent;
+      background-color: #44494a;
+      color: #fff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
-  }
-
-  .ru-odPage-check-detail-btn {
-    width: 14.5rem;
-    border-radius: 30px;
-    text-align: center;
   }
 
   .ru-odPage-detail-topic {

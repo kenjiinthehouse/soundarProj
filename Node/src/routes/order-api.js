@@ -97,7 +97,7 @@ router.post('/insert',async(req,res) => {
     let sqlInsertOrderList = "INSERT INTO `order_list`(`create_date`, `client_sid`, `receiver`, `receiver_address`, `receiver_mobile`,`delivery`, `payment`,`delivery_payment`, `coupon_sid`, `discount`, `total_amount`, `remark`) VALUES (NOW(),?,?,?,?,?,?,?,?,?,?,?)"
     await db.query(sqlInsertOrderList,[sid,receiver,address,mobile,delivery,payment,d_fee,coupon,discount,amount,remark])
         .then(([results]) => {
-            console.log([results])
+            // console.log([results])
         })
     if(coupon) {
         let reqObj = {
