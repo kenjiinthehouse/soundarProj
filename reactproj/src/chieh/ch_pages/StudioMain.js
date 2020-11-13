@@ -42,9 +42,9 @@ function StudioMain(props){
         return (
           <div className="studio-introduction" key={item}>
             <h2>{item[0].studio_name}</h2>
-            <h3>NT$ {item[0].studio_price} </h3>
+            <h3>NT$ {item[0].studio_price}</h3>
             <span>顧客評價
-            <Rater rating={4.5} total={5} interactive={false}/>
+            <Rater rating={item[0].studio_review} total={5} interactive={false}/>
             {item[0].studio_review}(25)</span>
             <div className="location-wrap mt-4">
               <FaMapMarkerAlt className="mr-2"/>地點：{item[0].studio_location}

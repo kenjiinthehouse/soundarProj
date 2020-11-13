@@ -14,21 +14,6 @@ function ActivityOption(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);  
 
-  // function addQuantity(){
-  //   switch(quantity){
-  //     case 1 :
-  //       quantity0 === 1 ? alert('數量不可低於一張') : setQuantity0(quantity0 - 1);
-  //       break;
-  //     case 2 :
-  //       quantity1 === 1 ? alert('數量不可低於一張') : setQuantity1(quantity1 - 1);
-  //       break;
-  //     case 3 :
-  //       quantity2 === 1 ? alert('數量不可低於一張') : setQuantity2(quantity2 - 1);
-  //       break;
-  //     default:
-  //   }
-  // }
-
   return (
     <>
        {props.newActivity.map((item,index)=>{
