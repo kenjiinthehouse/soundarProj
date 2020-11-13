@@ -4,6 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from './TabPanel';
 
+
 import PdSideBar2 from './PdSideBar2';
 import PdContent from './PdContent/PdContent';
 import Breadcrumb from '../Breadcrumb';
@@ -11,6 +12,7 @@ import Breadcrumb from '../Breadcrumb';
 //活動、錄音室
 import AcContent from './PdContent/AcContent';
 import StudioContent from './PdContent/StudioContent';
+
 
 const StyledTab = withStyles((theme) => ({
   root: {
@@ -71,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabBar(props) {
-  const { mainCate, setMainCate, setDetailCate, sort, setSort } = props;
+  const { mainCate, setMainCate, setDetailCate} = props;
   const classes = useStyles();
   // const [viewFilter, setViewFilter] = useState(10)
 
@@ -120,13 +122,15 @@ function TabBar(props) {
       </div>
 
       <TabPanel component="div">
-        <Breadcrumb value={value} setValue={setValue} />
+        
         <div className={classes.panel}>
           {/* <SideBar/> */}
           <PdSideBar2 value={value} pdIndex={0} {...props} />
           <PdSideBar2 value={value} pdIndex={1} {...props} />
           <PdSideBar2 value={value} pdIndex={2} {...props} />
           <PdSideBar2 value={value} pdIndex={3} {...props} />
+          <div>
+            <Breadcrumb value={value} setValue={setValue} />
           <PdContent
           value={value}
           {...props}
@@ -141,6 +145,8 @@ function TabBar(props) {
             />
          
         </div>
+          </div>
+          
       </TabPanel>
     </div>
   );

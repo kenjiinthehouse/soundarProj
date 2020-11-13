@@ -19,7 +19,7 @@ function PdComment(props){
     let newPdItem1=[]
     if(SubImg){
         newPdItem1=[...SubImg]
-        newPdItem1 = newPdItem1.slice(0,Math.floor(Math.random()*3)+1);           
+        newPdItem1 = newPdItem1.slice(0,Math.floor(Math.random()*2)+1);           
     }else{
         newPdItem1=[]
     }
