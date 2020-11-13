@@ -31,8 +31,6 @@ import { initMemberAsync, logOutAsync } from '../../actions/index';
 //jay改動
 import InformLoginModal from './../../jay/jay_components/InformLoginModal';
 
-//ruby改動
-import CartPage from './../../ruby/ruby_pages/CartPage'
 
 // ant-design Layout
 const { Header } = Layout;
@@ -243,6 +241,7 @@ function MyNavbar(props) {
       </div>
       <div className="navBarBtn">
         <IconButton onClick={() => { props.history.push('/cart') }}>
+          {/* 這邊需要接購物車props過來的length */}
           <StyledBadge badgeContent={4} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>

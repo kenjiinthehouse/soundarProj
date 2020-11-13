@@ -195,9 +195,14 @@ function OrderPage(props){
                                                 </div>
                                                 <div className="ru-odPage-pic-display">
                                                     <img alt="pic" src={`${value.pic_url[1]}`} />
-                                                    <div className="ru-odPage-pic-mask">
+                                                    { (value.pic_url.length-2) !== 0 
+                                                        ?
+                                                        <div className="ru-odPage-pic-mask">
                                                         <div className="ru-odPage-pic-num">+{value.pic_url.length-2}</div>
-                                                    </div>
+                                                        </div>
+                                                        :
+                                                        ''
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
