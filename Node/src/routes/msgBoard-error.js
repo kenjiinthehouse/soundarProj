@@ -1,7 +1,9 @@
 
 const express = require('express');
 const moment = require('moment-timezone');
-const db = require('./../db_connect');
+// const db = require('./../db_connect');
+const db = require('./../db_connect2');
+
 const router = express.Router();
 
 //取得資料庫裡全部主留言

@@ -9,7 +9,8 @@ const uploadAudio = require('./../jay_modules/upload_audio_module');
 const upload_audio_img = require('./../jay_modules/upload_audio_img');
 
 const { v4: uuidv4 } = require('uuid');
-const db = require(__dirname + '/../db_connect');
+// const db = require(__dirname + '/../db_connect');
+const db = require(__dirname + '/../db_connect2')
 
 const router = express.Router();
 const cors = require('cors');
