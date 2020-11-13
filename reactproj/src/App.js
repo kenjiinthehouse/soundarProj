@@ -56,8 +56,6 @@ function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
   const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
   const [playingAudio, setPlayingAudio] = useState(null);
-  const [category, setCategory] = useState('')
-  const [tags, setTags] = useState('')
 
   //jen
   const [category, setCategory] = useState('');
