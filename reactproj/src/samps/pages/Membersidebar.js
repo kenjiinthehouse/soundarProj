@@ -17,10 +17,10 @@ function Membersidebar(props) {
   return (
     <>
       <div className="sa-Memberedit-wrap">
-        <div className="sa-Memberedit-area">
-          <div className="container">
-            <div className="row">
-              <div className="side-bar-container col-3">
+        <div className="container">
+          <div className="row">
+            <div className="sa-Memberedit-area d-flex">
+              <div className="side-bar-container col-3 pr-4">
                 <div className="side-bar-member-area">
                   <div className="side-bar-member-title">
                     <img
@@ -172,7 +172,7 @@ function Membersidebar(props) {
                 )}
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
-                {activenumber == 6 ? <div>6</div> : <></>}
+                {activenumber == 6 ? <div>6</div> : null}
                 {activenumber == 7 ? (
                   <PodcasterDashboardHome {...props} />
                 ) : (

@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const app = express()
-const db = require(__dirname + '/../db_connect');
+// const db = require(__dirname + '/../db_connect');
+const db = require(__dirname + '/../db_connect2')
 const router = express.Router();
 
 
