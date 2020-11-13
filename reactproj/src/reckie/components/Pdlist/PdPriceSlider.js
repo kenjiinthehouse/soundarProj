@@ -36,15 +36,15 @@ const iOSBoxShadow =
 const marks = [
     {
       value: 0,
-      label: 'NT$1000'
+      label: '$1000'
     },
     {
       value: 5000,
-      label: 'NT$5000'
+      label: '$5000'
     },
     {
       value:10000,
-      label: 'NT$10000'
+      label: '$10000'
     },
   ];
 const IOSSlider = withStyles({
@@ -96,6 +96,7 @@ const IOSSlider = withStyles({
     height: 8,
     width: 1,
     marginTop: -3,
+    '& span':{color:'red'}
   },
   markActive: {
     opacity: 1,
