@@ -56,6 +56,8 @@ function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
   const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
   const [playingAudio, setPlayingAudio] = useState(null);
+  const [category, setCategory] = useState('')
+  const [tags, setTags] = useState('')
 
   //jen
   const [category, setCategory] = useState('');
@@ -69,7 +71,15 @@ function App() {
           <ScrollToTop>
             <Switch>
               <Route exact path="/">
-                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%',paddingBottom:'4rem'}}>
+                <div
+                  className="indexDiv"
+                  style={{
+                    backgroundColor: '#232d2f',
+                    width: '100%',
+                    height: '100%',
+                    paddingBottom: '4rem',
+                  }}
+                >
                   <IndexCarousel />
                   <IndexInfo />
                   <IndexChannel />
@@ -111,18 +121,18 @@ function App() {
               </Route>
               <Route path="/article">
                 <ArticleHome
-                  tags={tags}
-                  setTags={setTags}
                   category={category}
                   setCategory={setCategory}
+                  tags={tags}
+                  setTags={setTags}
                 />
               </Route>
               <Route path="/articlepage/:sid">
                 <ArticlePage
-                  tags={tags}
-                  setTags={setTags}
                   category={category}
                   setCategory={setCategory}
+                  tags={tags}
+                  setTags={setTags}
                 />
               </Route>
               <Route path="/cart">

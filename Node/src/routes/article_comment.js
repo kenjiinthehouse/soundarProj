@@ -243,12 +243,12 @@ LEFT JOIN members ON article_comment.memberId = members.sid WHERE parentId = ?`;
 async function getCount(req) {}
 
 // TODO: FOR REACT
-router.get("/", async (req, res) => {
+router.get("/index", async (req, res) => {
   res.send(await getMsgList(req));
   // res.json(sqlResult);
 });
 
-// http://localhost:7788/address-book/edit/139
+// http://localhost:5566/article/comment/
 router.get("/reply/:sid", async (req, res) => {
   res.send(await getReplyList(req));
 });

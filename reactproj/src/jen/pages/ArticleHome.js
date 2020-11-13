@@ -4,26 +4,15 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 //icons
-
 import { FaTags, FaHotjar, FaCaretRight, FaPencilAlt } from 'react-icons/fa';
 import { MdAutorenew } from 'react-icons/md';
 import { TiArrowSortedUp } from 'react-icons/ti';
-
-import { FaTags, FaHotjar, FaCaretRight, FaPencilAlt } from 'react-icons/fa';
-import { MdAutorenew } from 'react-icons/md';
-import { TiArrowSortedUp } from 'react-icons/ti';
-
 //components
 import ArticleCarousel from './../components/ArticleCarousel';
 import Searchbar from './../components/Searchbar';
 // import ClickToTop from './../components/ClickToTop'
-
 import ScrollToTop from 'react-scroll-to-top';
 import Pagination from './../components/Pagination';
-
-import ScrollToTop from 'react-scroll-to-top';
-import Pagination from './../components/Pagination';
-
 //actions
 import { getArticleList, getArticleListAsync } from '../actions/index';
 
@@ -48,11 +37,11 @@ function ArticleHome(props) {
     props.getArticleListAsync(page, category, tags, sort, search);
   }, [page, category, tags, search, sort]);
   useEffect(() => {
-    
     if (props.articleTotalRows.totalRows) {
       setFirstTimeLoad(0); //當資料完全載入後,就更改狀態(false)
     }
-    if (!firstTimeLoad) { //當非首次載入(false)則每設定新條件時，自動將頁面滾至頁首(需先判斷是否為頁面剛載入狀況)
+    if (!firstTimeLoad) {
+      //當非首次載入(false)則每設定新條件時，自動將頁面滾至頁首(需先判斷是否為頁面剛載入狀況)
       window.scroll({ top: 700, left: 0, behavior: 'smooth' });
     }
   }, [page, category, tags, sort, firstTimeLoad]);
@@ -335,14 +324,12 @@ function ArticleHome(props) {
                   </div>
                   <div className="article-card-img">
                     <Link to={'/articlePage/' + item.sid} setTags={setTags}>
-                   
                       <img
-                      // src="http://localhost:3000/img/article02.jpg"
-                      src={item.article_img_url}
-                      alt="..."
-                    />
+                        // src="http://localhost:3000/img/article02.jpg"
+                        src={item.article_img_url}
+                        alt="..."
+                      />
                     </Link>
-                   
                   </div>
                   <div className="article-card-body card-body">
                     <h5 className="article-card-title">
@@ -358,8 +345,8 @@ function ArticleHome(props) {
                         onClick={() => {
                           setCategory(`${item.article_category}`);
                         }}
-                      ><a>
-                        {item.article_category}</a>
+                      >
+                        <a>{item.article_category}</a>
                       </span>
                       {/* tags原為字串,需變成陣列才map至各個span中 */}
                       {item.article_tags.split(',').map((tag, index) => {

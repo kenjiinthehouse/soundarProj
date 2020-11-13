@@ -12,6 +12,8 @@ import ArticleComment from './../components/ArticleComment';
 // import ClickToTop from './../components/ClickToTop'
 import ScrollToTop from 'react-scroll-to-top';
 import ArticlePagePreAndNext from './../components/ArticlePagePreAndNext';
+import ArticleMsgBoard from './../components/ArticleMsgBoard'; //MsgBorad for ArticlePage
+// import MsgBoard from './../../kenji/components/MsgBoard'; //MsgBorad
 //actions
 import {
   getArticleDetail,
@@ -24,28 +26,17 @@ function ArticlePage(props) {
   const [fontSize, setFontSize] = useState('1rem');
   const [sid, setSid] = useState(+props.match.params.sid);
   // 先字串化,再陣列化,才能map
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  const articleTagsArray = ('' + props.articleDetailData.article_tags).split(',')
-=======
->>>>>>> dcf6c89... articlepage conflict
   const articleTagsArray = ('' + props.articleDetailData.article_tags).split(
     ','
   );
   const [clicks, setClicks] = useState(0);
   console.log('clicks', clicks);
-<<<<<<< HEAD
-=======
->>>>>>> 9e58aee... before rebase
->>>>>>> dcf6c89... articlepage conflict
 
   //clicks POST
   async function updateTotalToServer(sid, value) {
     const newClicks = { article_clicks: clicks + value };
 
     const url = `http://localhost:5566/article/edit/${sid}`;
-<<<<<<< HEAD
 
     const request = new Request(url, {
       method: 'POST',
@@ -56,18 +47,6 @@ function ArticlePage(props) {
       }),
     });
 
-=======
-
-    const request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(newClicks),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    });
-
->>>>>>> dcf6c89... articlepage conflict
     try {
       const response = await fetch(request);
       const data = await response.json();
@@ -82,27 +61,14 @@ function ArticlePage(props) {
   }
   //componentDidMount
   useEffect(() => {
-<<<<<<< HEAD
     props.getArticleDetailAsync(sid);
     //  window.onload = function (){
     //     setClicks(props.articleDetailData.article_clicks);
     //     }
+
     setClicks(props.articleDetailData.article_clicks);
   }, []);
-=======
-<<<<<<< HEAD
-    props.getArticleDetailAsync(sid)
-  }, [])
-  // console.log(props)
-=======
-   props.getArticleDetailAsync(sid);
-  //  window.onload = function (){
-  //     setClicks(props.articleDetailData.article_clicks);
-  //     }
-    setClicks(props.articleDetailData.article_clicks);
-  }, []);
->>>>>>> 9e58aee... before rebase
->>>>>>> dcf6c89... articlepage conflict
+
   //componentDidUpdate
   useEffect(() => {
     props.getArticleDetailAsync(sid);
@@ -114,13 +80,6 @@ function ArticlePage(props) {
       updateTotalToServer(sid, 1);
     }
   }, [clicks]);
-  useEffect(() => {
-    if (!clicks) {
-      setClicks(props.articleDetailData.article_clicks);
-    } else {
-      updateTotalToServer(sid, 1);
-    }
-  },[clicks])
   useEffect(() => {
     //每當更換新文章時自動滾至頁首
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
@@ -257,9 +216,13 @@ function ArticlePage(props) {
               setSid={setSid}
               articleDetailData={props.articleDetailData}
             />
+  {/* <ArticleComment /> */}
+        <ArticleMsgBoard />
+        {/* <MsgBoard /> */}
+
           </div>
         </div>
-        <ArticleComment />
+      
       </div>
       {/* <ClickToTop /> */}
     </div>
