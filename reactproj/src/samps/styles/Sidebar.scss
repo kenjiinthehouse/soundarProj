@@ -1,0 +1,129 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
+// #232d2f
+// #909393
+
+.side-bar-container {
+  //   background-color: #909393;
+  // width: 316px;
+  // background-color: #dde4e4fa;
+  font-size: 1.25rem;
+  // border-right: 2px solid red;
+
+  line-height: 2.25rem;
+
+  // border-right: 1px solid #707070;
+
+  font-family: 'Noto Sans TC', sans-serif;
+
+  width: 20rem;
+
+  padding-right: 5rem;
+}
+.side-bar-member-area {
+  // width: 16.25rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  border-bottom: 1px solid #707070;
+}
+
+.side-bar-member-title {
+  font-weight: bold;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.sa-member-icon {
+  position: absolute;
+  height: 1.5rem;
+  width: auto;
+  left: -2rem;
+  top: 0.3rem;
+}
+
+.side-bar-order-area {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  // width: 16.25rem;
+  border-bottom: 1px solid #707070;
+}
+
+.side-bar-order-title {
+  position: relative;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.sa-order-icon {
+  position: absolute;
+  height: 1.5rem;
+  width: auto;
+  left: -2rem;
+  top: 0.3rem;
+}
+
+.side-bar-podcaster-area {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  // width: 16.25rem;
+  border-bottom: 1px solid #707070;
+}
+
+.side-bar-podcaster-title {
+  position: relative;
+  font-weight: bold;
+}
+
+.sa-podcaster-icon {
+  position: absolute;
+  height: 1.5rem;
+  width: auto;
+  left: -2rem;
+  top: 0.3rem;
+}
+
+.side-bar-setting-area {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  // width: 16.25rem;
+}
+
+.side-bar-setting-title {
+  position: relative;
+  font-weight: bold;
+}
+
+.sa-setting-icon {
+  position: absolute;
+  height: 1.5rem;
+  width: auto;
+  left: -2rem;
+  top: 0.3rem;
+}
+
+.side-bar-option {
+  margin-top: 1.5rem;
+  color: #909393;
+}
+.side-bar-option:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+// .side-bar-option-link,
+// .side-bar-option-link:hover {
+//   color: #909393;
+// }
+
+.side-bar-option-active {
+  margin-top: 1.5rem;
+  color: #2690df;
+}
+
+.sa-sidebar-mainarea {
+  width: calc(100%-20rem);
+}

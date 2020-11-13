@@ -1,0 +1,171 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+// body {
+//   background-color: #232d2f;
+//   position: relative;
+// }
+
+// body::before {
+//   content: '';
+//   opacity: 0.62;
+//   z-index: -1;
+//   position: absolute;
+//   display: block;
+//   height: 100%;
+//   width: 100%;
+//   background-image: url('../img/bcc1.png');
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
+
+.sa-Podlogin-wrap {
+  width: 100%;
+
+  height: 100vh;
+  background-color: #232d2f;
+  // background-image: url('../img/bcc1.png');
+  position: relative;
+}
+
+.sa-Podlogin-wrap::before {
+  content: '';
+  opacity: 0.62;
+  z-index: 0;
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+  // background-image: url('../img/bcc1.png');
+  background-image: url('http://localhost:3000/sa_img/bcc1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sa-Podlogin-box-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sa-Podlogin-box {
+  position: absolute;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+  // margin: auto;
+  width: 30rem;
+  // height: 35rem;
+  background-color: #00000086;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f8f8f8;
+}
+
+// input[type='email']i,
+// input[type='password'] {
+//   background-color: #3f4141;
+//   color: #f8f8f8;
+//   border-width: 0;
+// }
+
+.sa-Podlogin-password,
+.sa-Podlogin-account {
+  background-color: #3f4141;
+  color: #f8f8f8;
+  border-width: 0;
+}
+.sa-Podlogin-box .sa-Podlogin-title {
+  padding-top: 2rem;
+  color: #f8f8f8;
+  font-size: 3rem;
+}
+
+.sa-Podlogin-forget-password {
+  display: flex;
+}
+
+.sa-Podlogin-forget-password a {
+  color: #73e1b4;
+
+  margin-left: auto;
+}
+
+.sa-Podlogin-forget-password a:hover {
+  color: #73e1b4;
+
+  // margin-left: auto;
+}
+
+.sa-Podlogin-login-area {
+  text-align: center;
+  background-color: #2690df;
+  height: 3.3rem;
+  font-size: 1.5rem;
+  line-height: 3.3rem;
+  width: 23rem;
+  border-radius: 2.5rem;
+
+  margin-bottom: 2rem;
+
+  cursor: pointer;
+}
+.sa-Podlogin-google-login-area-a:hover {
+  text-decoration: none;
+}
+.sa-Podlogin-google-login-area {
+  text-align: center;
+  background-color: #f8f8f8;
+  height: 3.3rem;
+  font-size: 1.5rem;
+  line-height: 3.3rem;
+  width: 23rem;
+  border-radius: 2.5rem;
+  position: relative;
+  color: #909393;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sa-Podlogin-google-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 0.4rem;
+  left: 1.8rem;
+  position: absolute;
+
+  background-image: url('http://localhost:3000/sa_img/google-icon.png');
+
+  background-size: contain;
+}
+
+.sa-Podlogin-registered-area {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.sa-Podlogin-registered-word {
+  color: #73e1b4;
+}
+
+.sa-Podlogin-registered-word:hover {
+  color: #73e1b4;
+}
+
+.sa-Podlogin-password-area {
+  position: relative;
+}
+
+.sa-Podlogin-eyes {
+  width: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 2.2rem;
+}
+// .sa-Podlogin-eyes-img {
+
+// }

@@ -1,0 +1,242 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
+
+.sa-Memberedit-wrap {
+  width: 100%;
+
+  height: 100%;
+}
+
+.sa-Memberedit-area {
+  margin-top: 10.25rem;
+
+  margin-bottom: 10.25rem;
+}
+
+.sa-Memberedit-picture-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48rem;
+  border-bottom: 1px solid #707070;
+}
+
+.sa-Memberedit-picture {
+  width: 6.75rem;
+  height: 6.75rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.sa-Memberedit-picture-img {
+  height: 100%;
+
+  // border-radius: 50%;
+}
+
+.sa-Memberedit-picture-button {
+  text-align: center;
+  background-color: #2690df;
+  height: 2.125rem;
+  width: 9rem;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  border-radius: 2.5rem;
+  margin-bottom: 2rem;
+  color: #f8f8f8;
+  cursor: pointer;
+}
+
+.sa-Memberedit-edit-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.125rem;
+}
+
+// .sa-Memberedit-edit-account {
+//   display: flex;
+//   // padding-top: 2.2rem;
+//   width: 63.25rem;
+// }
+
+.sa-Memberedit-hr {
+  width: 44.875rem;
+
+  height: 1px;
+}
+
+.sa-Memberedit-edit-account-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 2.2rem;
+}
+.sa-Memberedit-option {
+  width: 40%;
+}
+.sa-Memberedit-bottom {
+  width: 20%;
+  text-align: right;
+  color: #2690df;
+  cursor: pointer;
+}
+
+.sa-Memberedit-edit-account-title {
+  font-weight: 800;
+  width: 40%;
+}
+
+.sa-Memberedit-edit-password-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+.sa-Memberedit-edit-password-title {
+  font-weight: 800;
+  width: 40%;
+}
+.sa-Memberedit-edit-password-edit-bottom {
+  width: 20%;
+  text-align: right;
+}
+
+.sa-Memberedit-edit-nickname-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+.sa-Memberedit-edit-nickname-title {
+  width: 40%;
+  font-weight: 800;
+}
+.sa-Memberedit-edit-nickname-edit-bottom {
+  width: 20%;
+  text-align: right;
+}
+.sa-Memberedit-edit-realname-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+.sa-Memberedit-edit-realname-title {
+  width: 40%;
+  font-weight: 800;
+}
+.sa-Memberedit-edit-phonenumber-title {
+  width: 40%;
+  font-weight: 800;
+}
+.sa-Memberedit-edit-phonenumber-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+.sa-Memberedit-edit-birthday-title {
+  width: 40%;
+  font-weight: 800;
+}
+.sa-Memberedit-edit-birthday-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+.sa-Memberedit-edit-addrress-title {
+  width: 40%;
+  font-weight: 800;
+}
+.sa-Memberedit-edit-addrress-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+.sa-Memberedit-edit-gender-title {
+  width: 40%;
+  font-weight: 800;
+}
+.sa-Memberedit-edit-gender-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+.gender-radio {
+  padding-right: 2rem;
+}
+.sa-Memberedit-edit-payingmember-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+
+.sa-Memberedit-edit-payingmember-title {
+  width: 40%;
+  font-weight: 800;
+}
+
+.sa-Memberedit-edit-podcaster-area {
+  display: flex;
+  // justify-content: space-between;
+  width: 40.18rem;
+  padding-top: 1.5rem;
+}
+
+.sa-Memberedit-edit-podcaster-title {
+  width: 40%;
+  font-weight: 800;
+}
+.sa-subscription {
+  color: #73e1b4;
+}
+
+.sa-open {
+  color: #73e1b4;
+}
+
+.sa-member-picture-select-button {
+  text-align: center;
+  background-color: #2690df;
+  height: 2.125rem;
+  width: 7rem;
+  font-size: 1.5rem;
+  line-height: 2.125rem;
+  // border-radius: 1rem;
+  margin-bottom: 2rem;
+  color: #f8f8f8;
+  cursor: pointer;
+}
+
+.sa-upload-button {
+  text-align: center;
+  background-color: #2690df;
+
+  color: #f8f8f8;
+  height: 2.125rem;
+  width: 7rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  border-width: 0;
+}
+
+// .sa-Memberedit-picture-upload {
+//   width: 6.75rem;
+//   height: 6.75rem;
+//   overflow: hidden;
+//   border-radius: 50%;
+// }
+// .sa-Memberedit-picture-img-upload {
+//   height: 100%;
+// }
+// .sa-Memberedit-edit-option {
+
+// }
+// sa-Memberedit-edit-password-title
+// sa-Memberedit-edit-password-option
+// sa-Memberedit-edit-password-edit-bottom

@@ -1,0 +1,84 @@
+.sa-Applymembership-wrap {
+  width: 100%;
+
+  height: 100vh;
+  background-color: #232d2f;
+  // background-image: url('../img/bcc1.png');
+  position: relative;
+}
+
+.sa-Applymembership-wrap::before {
+  content: '';
+  opacity: 0.4;
+  z-index: 0;
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-image: url('http://localhost:3000/sa_img/bcc1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sa-Applymembership-box-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sa-Applymembership-box {
+  position: absolute;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+  // margin: auto;
+  width: 30rem;
+  // height: 35rem;
+  background-color: #232d2fc9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f8f8f8;
+}
+
+.sa-Applymembership-title {
+  font-size: 3rem;
+}
+.sa-Applymembership-account {
+  background-color: #3f4141;
+  color: #f8f8f8;
+  border-width: 0;
+}
+
+.sa-Applymembership-password {
+  background-color: #3f4141;
+  color: #f8f8f8;
+  border-width: 0;
+}
+.sa-Applymembership-password-check {
+  background-color: #3f4141;
+  color: #f8f8f8;
+  border-width: 0;
+}
+.sa-Applymembership-nickname {
+    background-color: #3f4141;
+    color: #f8f8f8;
+    border-width: 0;
+  }
+
+.sa-Applymembership-check-button {
+  text-align: center;
+  background-color: #2690df;
+  height: 3.3rem;
+  font-size: 1.5rem;
+  line-height: 3.3rem;
+  width: 23rem;
+  border-radius: 2.5rem;
+
+  margin-bottom: 2rem;
+
+  cursor: pointer;
+}

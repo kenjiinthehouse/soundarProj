@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // 使用 ant-design布局及元件
 import { Layout } from 'antd';
 // 使用 material-ui 元件
@@ -21,6 +21,11 @@ import ReorderIcon from '@material-ui/icons/Reorder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 //scss
 import navbar from './../jay_styles/navbar.scss';
+
+//samps改動
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { initMemberAsync, logOutAsync } from '../../actions/index';
 
 // ant-design Layout
 const { Header } = Layout;
@@ -48,6 +53,24 @@ function MyNavbar(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+
+  //samps
+
+  useEffect(() => {
+    props.initMemberAsync();
+    // console.log("hi")
+  }, []);
+
+  useEffect(() => {
+    if (props.member.nickname) {
+      setLogged(true);
+    } else {
+      setLogged(false);
+    }
+  }, [props.member]);
+
+  //
+
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -155,6 +178,17 @@ function MyNavbar(props) {
           <PersonIcon />
         </IconButton>
       </div>
+
+      {/* samps登出 */}
+      <div
+        onClick={() => {
+          props.logOutAsync();
+        }}
+      >
+        <IconButton>
+          <PersonIcon />
+        </IconButton>
+      </div>
       <div>
         <IconButton>
           <StyledBadge badgeContent={4} color="secondary">
@@ -236,10 +270,26 @@ function MyNavbar(props) {
       </div>
       <div className="diverVertical my-auto ml-2 mr-2"></div>
       <div className="navBarBtn">
-        <Button href="#">註冊</Button>
+        {/* samps */}
+        {/* <Button href="#">註冊</Button> */}
+        <Button
+          onClick={() => {
+            props.history.push('/applymember');
+          }}
+        >
+          註冊
+        </Button>
       </div>
       <div className="navBarBtn">
-        <Button href="#">登入</Button>
+        {/* samps */}
+        {/* <Button href="#">登入</Button> */}
+        <Button
+          onClick={() => {
+            props.history.push('/login');
+          }}
+        >
+          登入
+        </Button>
       </div>
       <div className="navBarLogInBtn">
         <Button href="#">
@@ -265,4 +315,10 @@ function MyNavbar(props) {
   return logged ? loggedNav : notLoggedNav;
 }
 
-export default MyNavbar;
+const mapStateToProps = (store) => {
+  return { member: store.member };
+};
+
+export default withRouter(
+  connect(mapStateToProps, { initMemberAsync, logOutAsync })(MyNavbar)
+);
