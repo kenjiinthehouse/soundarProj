@@ -2,16 +2,18 @@
 .activity-order {
   margin-top: -100px;
   padding-bottom: 100px;
+  width: 820px;
   .btn-order {
-    width: 11.875rem;
-    height: 3.75rem;
+    width: 231px;
+    height: 50px;
     font-size: 1.5rem;
-    font-weight: bold;
+    // font-weight: bold;
     line-height: 1.5;
     color: #232d2f;
     border-radius: 30px;
     border-color: #232d2f;
     background-color: transparent;
+    outline: none;
   }
 
   .btn-order:hover {
@@ -101,5 +103,31 @@
     display: flex;
     align-items: center;
     padding-left: 20px;
+  }
+  .order-detail {
+    height: 50px;
+    background-color: #909393;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin-top: 20px;
+  }
+
+  .detail-title {
+    width: 100px;
+  }
+
+  .detail-content {
+    width: 400px;
+    padding-right: 16px;
+  }
+
+  .order-info-title {
+    width: 100px;
+  }
+
+  .order-info-content {
+    width: 385px;
+    padding-right: 16px;
   }
 }
