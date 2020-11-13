@@ -3,13 +3,13 @@
 //Nav
 .ant-layout-header {
   color: #fff;
-  background-color: rgba($color: #232d2f, $alpha: 0.95);
+  background-color: rgba($color: #232d2f, $alpha: 0.95) !important;
   min-width: 100%;
   min-height: 3rem;
   // padding: 0px;
   border-bottom: 1px solid rgba($color: #f8f8f8, $alpha: 0.1);
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
 }
 .ant-layout-footer {
   line-height: 1.5;
