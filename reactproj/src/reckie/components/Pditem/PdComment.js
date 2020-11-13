@@ -48,7 +48,7 @@ function PdComment(props){
         <div className="commentPdPicPart d-flex">
         {newPdItem1.map((item)=>{
               return <div className="commentPdPic mx-1">
-                <img src={item} style={{width:"100px",height:"100px"}}/>
+                <img src={item.indexOf('http')=== -1 ? `/reckie_img/${item}`:item} style={{width:"100px",height:"100px"}}/>
             </div>
         })}
             {/* <div className="commentPdPic"></div>
