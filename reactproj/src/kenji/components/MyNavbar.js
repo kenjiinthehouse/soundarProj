@@ -111,7 +111,6 @@ function MyNavbar(props) {
           props.history.push('/');
         }}
       ></div>
-<<<<<<< HEAD
       <div>
         <Button
           ref={anchorRef}
@@ -186,8 +185,6 @@ function MyNavbar(props) {
           </Grow>
         )}
       </Popper>
-=======
->>>>>>> 97e01266b3ed5c1c96974728f99de0853a7e35a3
       <div className="navBarBtn">
         <Button
           href="#"
@@ -335,7 +332,6 @@ function MyNavbar(props) {
       ></div>
       <div className="navBarBtn">
         <Button
-<<<<<<< HEAD
           ref={anchorRef}
           onClick={handleToggle}
           className="navBarCollapse"
@@ -408,8 +404,6 @@ function MyNavbar(props) {
       </Popper>
       <div className="navBarBtn">
         <Button
-=======
->>>>>>> 97e01266b3ed5c1c96974728f99de0853a7e35a3
           href="#"
           onClick={(event) => {
             event.preventDefault();
