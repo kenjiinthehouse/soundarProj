@@ -227,7 +227,11 @@ function ChannelPage(props) {
                       type="button"
                       className=" btn btn-sm btn-secondary my-3"
                       onClick={() => {
-                        setShowRatingModel(true);
+                        if (props.member && props.member.sid) {
+                          setShowRatingModel(true);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
                       }}
                     >
                       評分
@@ -377,7 +381,19 @@ function ChannelPage(props) {
                           name: playTargetAudio.audio_title,
                           singer: playTargetAudio.channel_title,
                         };
-                        setGlobalAudioArry([...globalAudioArry, payload]);
+                        if (globalAudioArry[0]) {
+                          let alreadyInArry = false;
+                          globalAudioArry.forEach((item) => {
+                            if (item.name === payload.name) {
+                              alreadyInArry = true;
+                            }
+                          });
+                          if (alreadyInArry !== true) {
+                            setGlobalAudioArry([...globalAudioArry, payload]);
+                          }
+                        } else {
+                          setGlobalAudioArry([...globalAudioArry, payload]);
+                        }
                       }}
                     >
                       <RiPlayListAddLine style={{ fontSize: '2rem' }} />
@@ -441,6 +457,7 @@ function ChannelPage(props) {
       <InformLoginModal
         show={showInformLoginModal}
         onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
       />
 
       <ChannelRatingModal

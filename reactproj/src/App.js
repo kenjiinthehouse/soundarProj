@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+// import './reckie/styles/custom.scss';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -19,11 +20,8 @@ import IndexShop from './kenji/components/IndexShop';
 import ArticleCarousel from './kenji/components/ArticleCarousel';
 import MyFooter from './kenji/components/MyFooter';
 
-
 //pages
-import PodcasterDashboardHome from './jay/jay_pages/PodcasterDashboardHome';
 import AudioPlayer from './jay/jay_components/AudioPlayer.js';
-import PodcasterAudioList from './jay/jay_pages/PodcasterAudioList.js';
 import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
 import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
 import ChannelPage from './jay/jay_pages/ChannelPage.js';
@@ -44,33 +42,22 @@ import Membersidebar from './samps/pages/Membersidebar';
 import Passwordreset from './samps/pages/Passwordreset';
 import Podlogin from './samps/pages/Podlogin';
 import Verification from './samps/pages/Verification';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import IndexInfo from './kenji/components/IndexInfo';
 import IndexShop from './kenji/components/IndexShop';
->>>>>>> 67393c7... 搬運工/kenji
-=======
 import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 
->>>>>>> 17c6fbd... 調整scss和import img/kenji
-=======
->>>>>>> 938527f... samps member
-=======
 import IndexInfo from './kenji/components/IndexInfo';
 import IndexShop from './kenji/components/IndexShop';
->>>>>>> 67393c7... 搬運工/kenji
-=======
 import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 
->>>>>>> 17c6fbd... 調整scss和import img/kenji
+import ProductMainPage from './reckie/pages/ProductMainPage';
+import ProductItemPage from './reckie/pages/ProductItemPage';
+import { colors } from '@material-ui/core';
+import { Height } from '@material-ui/icons';
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -84,10 +71,6 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
               <Route exact path="/channel_info/:podcaster_id?">
                 <PodcasterDashboardHome />
               </Route>
@@ -98,8 +81,6 @@ function App() {
                 />
               </Route>
               <Route exact path="/explore_home_page">
-=======
-=======
               <Route exact path="/">
                 <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%',paddingBottom:'4rem'}}>
                   <IndexCarousel />
@@ -110,12 +91,18 @@ function App() {
                   <ArticleCarousel />
                 </div>
               </Route>
->>>>>>> 67393c7... 搬運工/kenji
-=======
->>>>>>> ce68bab... 結合會員與播客後台
-=======
               <Route exact path="/">
                 <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%',paddingBottom:'4rem'}}>
+              <Route exact path="/">
+                <div
+                  className="indexDiv"
+                  style={{
+                    backgroundColor: '#232d2f',
+                    width: '100%',
+                    height: '100%',
+                    paddingBottom: '4rem',
+                  }}
+                >
                   <IndexCarousel />
                   <IndexInfo />
                   <IndexChannel />
@@ -124,15 +111,14 @@ function App() {
                   <ArticleCarousel />
                 </div>
               </Route>
->>>>>>> 67393c7... 搬運工/kenji
               <Route path="/explore_home_page">
->>>>>>> ce68bab... 結合會員與播客後台
+              <Route path="/explore_home_page">
                 <ExploreHomePage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
                 />
               </Route>
-              <Route exact path="/explore/category/:cate_term">
+              <Route path="/explore/category/:cate_term">
                 <ExploreCateChannelPage
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
@@ -203,6 +189,8 @@ function App() {
                 <Membersidebar
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
+                  playingAudio={playingAudio}
+                  setPlayingAudio={setPlayingAudio}
                 />
               </Route>
               <Route path="/audiocollect">
@@ -237,6 +225,12 @@ function App() {
               </Route>
               <Route path="/channelcollect">
                 <Channelcollection />
+
+              <Route path="/productlist/:page?">
+                <ProductMainPage />
+              </Route>
+              <Route path="/product/:pd_id?">
+                <ProductItemPage />
               </Route>
             </Switch>
           </ScrollToTop>
@@ -250,15 +244,10 @@ function App() {
             setPlayingAudio={setPlayingAudio}
           />
         </MainContent>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <MyFooter />
-=======
         <MyFooter/>
->>>>>>> 67393c7... 搬運工/kenji
-=======
         <MyFooter />
->>>>>>> 17c6fbd... 調整scss和import img/kenji
+        <MyFooter />
       </Layout>
     </Router>
   );

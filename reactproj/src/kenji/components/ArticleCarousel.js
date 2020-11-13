@@ -24,15 +24,9 @@ function ArticleCarousel(props) {
       subtitle: '為什麼要聽、用什麼聽，以及有哪些好節目',
       description:
         '  如果你不瞭解什麼是podcast，但是很想要瞭解最近在台灣網路世界很火紅的說故事方式的話，這篇文章會告訴你什麼是podcast，想要聽的話又該怎麼入門......',
-<<<<<<< HEAD
-<<<<<<< HEAD
-      img: './k_img/IndexArticle208.jpg',
-=======
       img: '/img/IndexArticle208.jpg',
->>>>>>> 67393c7... 搬運工/kenji
-=======
       img: './k_img/IndexArticle208.jpg',
->>>>>>> 17c6fbd... 調整scss和import img/kenji
+      img: './k_img/IndexArticle208.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(204,97,75,0.5)',
     },

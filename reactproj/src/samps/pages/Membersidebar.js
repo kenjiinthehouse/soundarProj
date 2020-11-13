@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { Link, Router, Switch, withRouter } from 'react-router-dom'
-import '../styles/Sidebar.scss'
-import Memberedit from '../components/Memberedit'
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { Link, Router, Switch, withRouter } from 'react-router-dom';
+import '../styles/Sidebar.scss';
+import Memberedit from '../components/Memberedit';
 
-//活動訂單
-import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
-import ActivityOrder from '../../chieh/ch_pages/ActivityOrder';
 //活動訂單
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder';
 //page7
@@ -14,11 +11,8 @@ import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome
 //page8
 import PodcasterAudioList from './../../jay/jay_pages/PodcasterAudioList.js';
 
-//活動訂單
-import ActivityOrder from '../../chieh/ch_pages/ActivityOrder'
-
 function Membersidebar(props) {
-  const [activenumber, setActivenumber] = useState(1)
+  const [activenumber, setActivenumber] = useState(1);
 
   return (
     <>
@@ -41,7 +35,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(1)
+                        setActivenumber(1);
                       }}
                     >
                       會員資料編輯
@@ -63,7 +57,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(2)
+                        setActivenumber(2);
                       }}
                     >
                       訂單查詢
@@ -75,7 +69,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(3)
+                        setActivenumber(3);
                       }}
                     >
                       活動訂單查詢
@@ -89,7 +83,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(4)
+                        setActivenumber(4);
                       }}
                     >
                       場地租借訂單查詢
@@ -101,7 +95,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(5)
+                        setActivenumber(5);
                       }}
                     >
                       退款申請
@@ -113,7 +107,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(6)
+                        setActivenumber(6);
                       }}
                     >
                       優惠卷
@@ -135,7 +129,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(7)
+                        setActivenumber(7);
                       }}
                     >
                       頻道編輯
@@ -147,7 +141,7 @@ function Membersidebar(props) {
                     <div
                       className="side-bar-option"
                       onClick={() => {
-                        setActivenumber(8)
+                        setActivenumber(8);
                       }}
                     >
                       頻道管理
@@ -166,7 +160,6 @@ function Membersidebar(props) {
                 </div>
               </div>
 
-              <div className="sa-sidebar-mainarea">
               <div className="sa-sidebar-mainarea col-9">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
                 {activenumber == 2 ? <div>2</div> : <></>}
@@ -192,6 +185,6 @@ function Membersidebar(props) {
         </div>
       </div>
     </>
-  )
+  );
 }
-export default withRouter(Membersidebar)
+export default withRouter(Membersidebar);
