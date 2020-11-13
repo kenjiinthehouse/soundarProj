@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [1030/000711.752:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
 [1030/101016.547:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
 [1030/103225.138:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
@@ -21,3 +22,6 @@
 [1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
 [1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
 >>>>>>> a18b9f4... dbå¸³è™Ÿ
+=======
+[1113/135330.801:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
+>>>>>>> 97e0126... samps navbar é »é“ç¯€ç›® è½‰å‘ä¿®æ­£  è™•ç†ä¸€é–‹å§‹ç›´æŽ¥ç”¨googleç™»å…¥ collection åœ–ç‰‡æœƒç”¢ç”Ÿå•é¡Œ

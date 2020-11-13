@@ -25,17 +25,21 @@ function Audiocollection(props) {
   const [downloadingid, setDownloadingid] = useState('');
   // const [downloading, setdownLoading] = useState(false)
 
+  //設定大頭貼來源是否有http
+  const [pictureurl, setPictureurl] = useState('');
+
   const Filedownload = React.useRef(null);
+  //判斷大頭貼來源是否有http
+  const setPicture = function (pic) {
+    if (pic.includes('http')) {
+      setPictureurl(pic);
+    } else {
+      setPictureurl(`ppicture/${pic}`);
+    }
+  };
   const handleClick = (event) => {
     Filedownload.current.click();
   };
-
-  // const loading = (
-  //   <div class="spinner-border text-primary" role="status">
-  //     <span class="sr-only">Loading...</span>
-  //   </div>
-  // )
-
   const setbox = function () {
     console.log('length', audio_collect.length);
     if (audio_collect.length < 3) {
@@ -101,8 +105,12 @@ function Audiocollection(props) {
     }
   };
 
+  //抓資料的同時 設定大頭是否有http
   useEffect(() => {
     getaudio_collect();
+    if (props.member.profile_picture) {
+      setPicture(props.member.profile_picture);
+    }
   }, [props.member]);
 
   useEffect(() => {
@@ -156,7 +164,7 @@ function Audiocollection(props) {
                     {props.member.profile_picture ? (
                       <img
                         className="sa-collection-title-photo-img"
-                        src={`ppicture/${props.member.profile_picture}`}
+                        src={pictureurl}
                       ></img>
                     ) : (
                       <img

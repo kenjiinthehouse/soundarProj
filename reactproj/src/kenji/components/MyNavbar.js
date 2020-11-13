@@ -182,18 +182,24 @@ function MyNavbar(props) {
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Button
-                        href="javascript"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          props.history.push(`/explore_home_page`);
+                        onClick={() => {
+                          props.history.push(`/audiocollect`);
                         }}
                         style={{ outline: 'none' }}
                       >
                         節目收藏
                       </Button>
                     </MenuItem>
+                    {/* /channelcollect */}
                     <MenuItem onClick={handleClose}>
-                      <Button href="#">頻道追蹤</Button>
+                      <Button
+                        onClick={() => {
+                          props.history.push(`/channelcollect`);
+                        }}
+                        style={{ outline: 'none' }}
+                      >
+                        頻道追蹤
+                      </Button>
                     </MenuItem>
                     {/* <MenuItem onClick={handleClose}>
                       <Button href="#">專欄</Button>
