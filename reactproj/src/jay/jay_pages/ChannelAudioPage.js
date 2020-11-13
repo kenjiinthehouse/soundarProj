@@ -202,8 +202,6 @@ function ChannelAudioPage(props) {
                             await props.initMemberChannelCollectionAsync(
                               props.member.sid
                             );
-                          } else {
-                            setShowInformLoginModal(true);
                           }
                         }}
                       >
@@ -223,8 +221,6 @@ function ChannelAudioPage(props) {
                             await props.initMemberChannelCollectionAsync(
                               props.member.sid
                             );
-                          } else {
-                            setShowInformLoginModal(true);
                           }
                         }}
                       >
@@ -420,7 +416,7 @@ function ChannelAudioPage(props) {
                                       );
                                     }
                                   } else {
-                                    setShowInformLoginModal(true);
+                                    console.log('no');
                                   }
                                 }}
                               >
@@ -496,5 +492,11 @@ export default withRouter(
     initalChannelPageAsync,
     initalDashboardAsync,
     getMsgAsync,
+    initMemberChannelCollectionAsync,
+    initMemberAudioCollectionAsync,
+    addCollection,
+    delCollection,
+    addChannelCollection,
+    delChannelCollection,
   })(ChannelAudioPage)
 );

@@ -10,6 +10,9 @@ import {
   initMemberAudioCollectionAsync,
   addCollection,
   delCollection,
+  initMemberChannelCollectionAsync,
+  addChannelCollection,
+  delChannelCollection,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -106,6 +109,7 @@ function ChannelPage(props) {
 
   useEffect(() => {
     props.initMemberAudioCollectionAsync(props.member.sid);
+    props.initMemberChannelCollectionAsync(props.member.sid);
   }, [props.member]);
 
   const displayCatePage = (
@@ -181,8 +185,6 @@ function ChannelPage(props) {
                             await props.initMemberChannelCollectionAsync(
                               props.member.sid
                             );
-                          } else {
-                            setShowInformLoginModal(true);
                           }
                         }}
                       >
@@ -202,8 +204,6 @@ function ChannelPage(props) {
                             await props.initMemberChannelCollectionAsync(
                               props.member.sid
                             );
-                          } else {
-                            setShowInformLoginModal(true);
                           }
                         }}
                       >
@@ -467,6 +467,7 @@ const mapStateToProps = (store) => {
     channel_data: store.podcasterDashboardInfoState,
     member: store.member,
     audioCollection: store.memberAudioCollection,
+    subscribe_channels: store.memberChannelCollection,
   };
 };
 
@@ -478,5 +479,8 @@ export default withRouter(
     initMemberAudioCollectionAsync,
     addCollection,
     delCollection,
+    initMemberChannelCollectionAsync,
+    addChannelCollection,
+    delChannelCollection,
   })(ChannelPage)
 );
