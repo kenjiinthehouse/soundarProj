@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './../ruby_styles/ProductAmountList.scss'
-// import { MdNavigateNext, MdStayCurrentLandscape } from 'react-icons/md'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
@@ -26,8 +27,9 @@ function ProductAmountList(props){
         axios({
             method: 'get',
             baseURL: 'http://localhost:5566',
-            url: '/coupon/client/get?client_sid=1',
+            url: '/coupon/client/get',
             'Content-Type': 'application/json',
+            params: {client_sid:props.member.sid}
           })
             .then((result) => { 
                 const newData = result.data.data
@@ -35,7 +37,8 @@ function ProductAmountList(props){
                     item.isActive = false
                     return item
                 })
-                setCouponDisplay(newDisplay)
+                let filtNewDisplay = newDisplay.filter(item => item.used !== 1)
+                setCouponDisplay(filtNewDisplay)
             })
             .catch((err) => { console.error(err) })
     }
@@ -114,7 +117,7 @@ function ProductAmountList(props){
             }
             localStorage.setItem('amountData', JSON.stringify(amountObj))
         }
-    },[coupon, discount, mycartDisplay, totalAmount, orderAmount, path, dFee])
+    },[coupon, discount, mycartDisplay, totalAmount, orderAmount, path, dFee,props.member])
 
     return(
         <>
@@ -168,15 +171,15 @@ function ProductAmountList(props){
             </Modal>
             <aside className="">
                 <div className="ru-cart-amount-info">
-                    <div className="ru-cart-sum pb-2">
-                        <h4>訂單總結</h4>
+                    <div>
+                        <h4 className="ru-cart-sum pb-2">訂單總結</h4>
                     </div>
                     <div className="ru-cart-pd-price d-flex justify-content-between align-items-center w-100">
-                        <div>訂單金額</div>
-                        <div>NT$ {orderAmount.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}</div>
+                        <div className="ru-amountlist-font">訂單金額</div>
+                        <div className="ru-amountlist-font">NT$ {orderAmount.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}</div>
                     </div>
                     <div className="ru-cart-coupon d-flex justify-content-between align-items-center w-100">
-                        <div>優惠券</div>
+                        <div className="ru-amountlist-font">優惠券</div>
                         <div 
                         className="ru-cart-coupon-btn" 
                         variant="primary" 
@@ -188,12 +191,12 @@ function ProductAmountList(props){
                             </div>
                     </div>
                     <div className="ru-cart-coupon d-flex justify-content-between align-items-center w-100">
-                        <div>折扣</div>
-                        <div>-NT$ {discount}</div>
+                        <div className="ru-amountlist-font">折扣</div>
+                        <div className="ru-amountlist-font">-NT$ {discount}</div>
                     </div>
                     <div className="ru-cart-coupon d-flex justify-content-between align-items-center w-100">
-                        <div>運費</div>
-                        <div>
+                        <div className="ru-amountlist-font">運費</div>
+                        <div className="ru-amountlist-font">
                         { dFee > 0 ?
                             `NT$ ${dFee}`
                             :
@@ -216,4 +219,7 @@ function ProductAmountList(props){
     )
 }
 
-export default ProductAmountList
+const mapStateToProps = (store) => {
+    return {member: store.member}
+}
+export default withRouter(connect(mapStateToProps)(ProductAmountList))

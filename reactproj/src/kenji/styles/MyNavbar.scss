@@ -1,22 +1,15 @@
-// Import Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap.scss';
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
-html body {
-  // background-color: #232d2f !important;
-  // color: #ffffff;
-  cursor: default;
-}
 
 //Nav
 .ant-layout-header {
   color: #fff;
-  background: rgba($color: #232d2f, $alpha: 0.95);
+  background-color: rgba($color: #232d2f, $alpha: 0.95) !important;
   min-width: 100%;
   min-height: 3rem;
   // padding: 0px;
   border-bottom: 1px solid rgba($color: #f8f8f8, $alpha: 0.1);
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
 }
 .ant-layout-footer {
   line-height: 1.5;
@@ -36,6 +29,7 @@ html body {
 header .MuiButton-label,
 header .MuiIconButton-label {
   color: #ffffff;
+  font-size: 1rem;
 }
 ul,
 li {
@@ -46,25 +40,30 @@ a,
 a:active,
 a:focus,
 a:hover {
-  color: #ffffff !important;
-  text-decoration: none !important;
+  color: #ffffff;
+  text-decoration: none;
 }
-@media (min-width: 1000px) {
-  .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
-    display: none !important;
-  }
-  Header .navBarLogInBtn {
-    display: none !important;
-  }
-}
-@media (max-width: 1000px) {
-  Header .navBarBtn {
-    display: none !important;
-  }
-}
+// @media (min-width: 1000px) {
+//   .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
+//     display: none !important;
+//   }
+//   Header .navBarLogInBtn {
+//     display: none !important;
+//   }
+// }
+// @media (max-width: 1000px) {
+//   Header .navBarBtn {
+//     display: none !important;
+//   }
+// }
 .MuiList-padding {
   background-color: #232d2f;
 }
+
+.MuiTouchRipple-root {
+  color: #909393;
+}
+
 .MuiButtonBase-root.MuiButton-root.MuiButton-text {
   padding: 0px;
 }
@@ -77,4 +76,9 @@ a:hover {
   background-image: url(http://localhost:3000/k_img/logofordark.svg);
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.ant-layout-header .navBarBtn button {
+  outline: none;
 }

@@ -21,13 +21,14 @@ function Breadcrumb(props){
   }
 return(
     <>
-        <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item" aria-current="page">
+    
+        <nav aria-label="breadcrumb ">
+            <ol className="breadcrumb reBreadcrumb">
+                <li className="breadcrumb-item reBreadcrumb" aria-current="page">
                 {/* <Link to="/productlist" >商品首頁</Link> */}
                 </li>
                
-                <li className="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item reBreadcrumb" aria-current="page">
                 {path}
                 </li>
             </ol>

@@ -1,8 +1,10 @@
 import React, {useState,useEffect} from 'react'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios'
 import './../ruby_styles/CouponPage.scss'
 
-function CouponPage(){
+function CouponPage(props){
     const [ couponState, setCouponState ] = useState(3)
     const [ allCouponDisplay, setAllCouponDisplay ] = useState([])
     const [ clientCouponDisplay, setClientCouponDisplay ] = useState([])
@@ -31,9 +33,9 @@ function CouponPage(){
         axios({
             method: 'get',
             baseURL: 'http://localhost:5566',
-            url: '/coupon/client/get?client_sid=1',
+            url: '/coupon/client/get',
             'Content-Type': 'application/json',
-            // params: {client_sid:1}
+            params: {client_sid:props.member.sid}
           })
             .then((result) => { 
                 const newData = result.data.data
@@ -59,7 +61,7 @@ function CouponPage(){
 
     function insertNewCoupon(item){
         let data = {
-            client_sid : 1,
+            client_sid : props.member.sid,
             coupon_sid : item.sid,
             used : 0
         }
@@ -73,7 +75,7 @@ function CouponPage(){
     useEffect(()=>{
         getAllCoupon()
         getClientCoupon()
-    },[])
+    },[props.member])
 
     useEffect(()=>{
         let clientCouponSid = clientCouponDisplay.map(item=>{
@@ -168,4 +170,7 @@ function CouponPage(){
     )
 }
 
-export default CouponPage
+const mapStateToProps = (store) => {
+    return {member: store.member}
+}
+export default withRouter(connect(mapStateToProps)(CouponPage))

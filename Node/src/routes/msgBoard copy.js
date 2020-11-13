@@ -1,5 +1,6 @@
 const express = require("express");
-const db = require("./../db_connect");
+// const db = require("./../db_connect");
+const db = require(__dirname + '/../db_connect2');
 const router = express.Router();
 
 

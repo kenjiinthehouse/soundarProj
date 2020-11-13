@@ -1,5 +1,7 @@
 import React,{ useState,useEffect } from 'react'
 import { Accordion, Card, Button } from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './../ruby_styles/OrderPage.scss'
 // import Sidebar from '../sidebar_component/SidebarMember'
 import { FiCheck } from 'react-icons/fi'
@@ -45,12 +47,7 @@ function OrderPage(props){
         return [year, month, day].join('-');
     }
     function getOrderData(){
-        axios({
-            method: 'get',
-            baseURL: 'http://localhost:5566',
-            url: '/order/get?client_sid=1',
-            'Content-Type': 'application/json',
-          })
+        axios.get('http://localhost:5566/order/get', {params: {client_sid: props.member.sid}})
             .then((result) => { 
                 let newData = result.data.orderArr
                 let commentID = 0
@@ -87,14 +84,14 @@ function OrderPage(props){
     // 訂單畫面
     useEffect(()=>{
         getOrderData()
-    },[])
+    },[props.member])
 
     useEffect(()=>{
         // console.log(commentData)
         let data = {
             "stars":rateStars,
             "pd_sid":productID,
-            "cl_sid":1,
+            "cl_sid":props.member.sid,
             "content":commentText
         }
         setSingleComment(data)
@@ -123,11 +120,11 @@ function OrderPage(props){
             <div className="order-page">
                 {/* <div className="container d-flex mx-auto justify-content-between"> */}
 
-                    <div className="row ru-odPage-display d-flex flex-column align-item-center">
+                    <div className="row ru-odPage-display">
                         <div className="ru-odPage-title">
                             <h4>訂單查詢</h4>
                         </div>
-                        <div className="ru-odPage-option-btn d-flex justify-content-around">
+                        <div className="ru-odPage-option-btn d-flex justify-content-around w-100">
                             <div className={ orderStatus === 0 ? "ru-odPage-order-status order-status-active" : "ru-odPage-order-status"} onClick={() => setOrderStatus(0)}>處理中</div>
                             <div className={ orderStatus === 1 ? "ru-odPage-order-status order-status-active" : "ru-odPage-order-status"} onClick={() => setOrderStatus(1)}>待收貨</div>
                             <div className={ orderStatus === 2 ? "ru-odPage-order-status order-status-active" : "ru-odPage-order-status"} onClick={() => setOrderStatus(2)}>已完成</div>
@@ -142,7 +139,7 @@ function OrderPage(props){
                         { orderDisplay.filter(item => item.status === orderStatus)
                             .map(value => {
                             return(
-                                <div className="ru-odPage-order-card" key={value}>
+                                <div className="ru-odPage-order-card w-100" key={value}>
                                     <div className="ru-odPage-order-id">訂單編號:{value.sid}</div>
                                     <div className="ru-odPage-order-detail d-flex justify-content-between">
                                         <div className="ru-odPage-order-left">
@@ -415,4 +412,7 @@ function OrderPage(props){
     )
 }
 
-export default OrderPage
+const mapStateToProps = (store) => {
+    return {member: store.member}
+}
+export default withRouter(connect(mapStateToProps)(OrderPage))

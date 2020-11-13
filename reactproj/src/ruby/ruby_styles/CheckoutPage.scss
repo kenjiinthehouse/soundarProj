@@ -13,9 +13,11 @@
   }
 
   .ru-ckpage-ship-state {
-    width: calc(100% - 435px);
+    background-color: #fff;
+    width: calc(100% - 465px);
     padding: 40px;
     .ru-ckpage-choose-payment {
+      background-color: #fff;
       border: 0;
       display: flex;
       align-items: center;
@@ -27,6 +29,7 @@
       }
     }
     .ru-ckpage-payment-btn {
+      background-color: #fff;
       width: 12.5rem;
       height: 5rem;
       border: 2px solid #232d2f;
@@ -48,6 +51,7 @@
     .ru-ckpage-step-one,
     .ru-ckpage-step-two,
     .ru-ckpage-step-three {
+      background-color: #fff;
       width: 30%;
       //   width: 21rem;
       height: 12.5rem;
@@ -68,7 +72,7 @@
   }
 
   .ru-ckpage-choose-payment {
-    background-color: white;
+    background-color: #f1f2f6;
     padding: 0;
     .ru-ckpage-payment-btn img {
       width: 33%;
@@ -108,7 +112,7 @@
 
   .ru-ckpage-card-body {
     border: 0;
-    padding: 0 10px;
+    padding: 20px;
     .payment-info-topic {
       margin-bottom: 30px;
       .info-topic-border-front {
@@ -190,7 +194,7 @@
     &:hover {
       background-color: #ff6431;
     }
-    .ru-cart-next-btn-pay{
+    .ru-cart-next-btn-pay {
       width: 80%;
       font-size: 1.5rem;
       font-weight: bold;

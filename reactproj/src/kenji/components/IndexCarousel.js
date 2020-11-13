@@ -3,9 +3,24 @@ import '../styles/IndexCarousel.scss';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@material-ui/core';
 
-
+//samps引入會員登入
+import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { initMember, initMemberAsync } from '../../actions/index';
+import { withRouter } from 'react-router-dom';
 
 function IndexCarousel(props) {
+  useEffect(() => {
+    // console.log(uu.get('jwt'))
+    if (!localStorage.getItem('jwt')) {
+      const uu = new URLSearchParams(window.location.search);
+      if (uu.get('jwt')) {
+        localStorage.setItem('jwt', JSON.stringify(uu.get('jwt')));
+        props.initMemberAsync();
+      }
+    }
+  }, []);
+
   let items = [
     {
       name: '百靈果NEWS',
@@ -70,4 +85,10 @@ function Item(props) {
     </Paper>
   );
 }
-export default IndexCarousel;
+//samps引入會員登入
+const mapStateToProps = (store) => {
+  return { member: store.member };
+};
+export default withRouter(
+  connect(mapStateToProps, { initMember, initMemberAsync })(IndexCarousel)
+);

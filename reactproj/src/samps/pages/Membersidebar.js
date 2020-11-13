@@ -26,7 +26,7 @@ function Membersidebar(props) {
       <div className="sa-Memberedit-wrap">
         <div className="container">
           <div className="row">
-            <div className="sa-Memberedit-area d-flex">     
+            <div className="sa-Memberedit-area d-flex">
               <div className="side-bar-container col-3 pr-4">
                 <div className="side-bar-member-area">
                   <div className="side-bar-member-title">
@@ -180,8 +180,12 @@ function Membersidebar(props) {
                 {activenumber == 4 ? <div>4</div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div><Coupon /></div> : <></>}
-                {activenumber == 7 ? <div><PodcasterDashboardHome /></div> : <></>}
-                {activenumber == 8 ? <div><PodcasterAudioList /></div> : <></>}
+                {activenumber == 7 ? (
+                  <PodcasterDashboardHome {...props} />
+                ) : (
+                  <></>
+                )}
+                {activenumber == 8 ? <PodcasterAudioList {...props} /> : <></>}
               </div>
             </div>
           </div>

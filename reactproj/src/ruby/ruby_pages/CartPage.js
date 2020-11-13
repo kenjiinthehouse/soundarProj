@@ -43,6 +43,26 @@ function getCartFromLocalStorage() {
         setMycartDisplay(newMycartDisplay)
     }, [coupon, mycart])
 
+
+    const emptyCart = (
+        <>
+            <div className="cart-page noselect">
+                <div className="ru-cart-wrap mx-auto">
+                    <div className="ru-cart-title d-flex">
+                        <div className="ru-guide-block"></div>
+                        <div className="ru-cart-topic">
+                            <h4 className="ru-cart-main-font-color">我的購物車</h4>
+                        </div>
+                    </div>
+                    <main className="d-flex ru-cart-main w-100">
+                        <div className="empty-cart-display">
+                            <h4>您的購物車是空的！快去Shopping吧！</h4>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </>
+      )
     
 
     const loading = (
@@ -146,7 +166,7 @@ function getCartFromLocalStorage() {
         </>
       )
       // 以資料載入的指示狀態來切換要出現的畫面
-      return display
+      return localStorage.getItem('cart') ? display : emptyCart
 }
 
 

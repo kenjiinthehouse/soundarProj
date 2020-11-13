@@ -19,6 +19,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { RiLogoutCircleRLine } from 'react-icons/ri';
 //scss
 import '../styles/MyNavbar.scss';
 
@@ -26,6 +27,12 @@ import '../styles/MyNavbar.scss';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { initMemberAsync, logOutAsync } from '../../actions/index';
+
+//jay改動
+import InformLoginModal from './../../jay/jay_components/InformLoginModal';
+
+//ruby改動
+import CartPage from './../../ruby/ruby_pages/CartPage'
 
 // ant-design Layout
 const { Header } = Layout;
@@ -51,8 +58,12 @@ const useStyles = makeStyles((theme) => ({
 function MyNavbar(props) {
   const [logged, setLogged] = useState(false);
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
+  const [placement, setPlacement] = React.useState();
+
+  //jay
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
 
   //samps
 
@@ -97,84 +108,23 @@ function MyNavbar(props) {
 
   const loggedNav = (
     <Header className="d-flex row no-gutters">
-      <div className="logo col-3 mr-auto"></div>
-      <div>
-        <Button
-          ref={anchorRef}
-          onClick={handleToggle}
-          className="navBarCollapse"
-        >
-          <ReorderIcon />
-        </Button>
-      </div>
-
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        className="popper"
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-            className="popper"
-          >
-            <Paper className="popper">
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      href="#"
-                      key="1"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        props.history.push(`/memberedit`);
-                      }}
-                    >
-                      加入播客
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      href="javascript"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        props.history.push(`/explore_home_page`);
-                      }}
-                      style={{ outline: 'none' }}
-                    >
-                      探索
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">商城</Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">專欄</Button>
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      <div
+        className="logo col-3 mr-auto"
+        onClick={() => {
+          props.history.push('/');
+        }}
+      ></div>      
       <div className="navBarBtn">
         <Button
           href="#"
           key="1"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -198,29 +148,101 @@ function MyNavbar(props) {
       </div>
 
       <div className="diverVertical my-auto ml-2 mr-2"></div>
-      <div>
+      <div className="navBarBtn">
         <IconButton>
           <SearchIcon />
         </IconButton>
       </div>
-      <div>
-        <IconButton>
+      <div className="navBarBtn">
+        {/* 會員 */}
+        <IconButton ref={anchorRef} onClick={handleToggle}>
           <PersonIcon />
         </IconButton>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+          className="popper"
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
+              }}
+              className="popper"
+            >
+              <Paper className="popper">
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={handleClose}>
+                      <Button
+                        href="#"
+                        key="1"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          if (props.member.sid) {
+                            props.history.push(`/memberedit`);
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        會員資料
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Button
+                        onClick={() => {
+                          props.history.push(`/audiocollect`);
+                        }}
+                        style={{ outline: 'none' }}
+                      >
+                        節目收藏
+                      </Button>
+                    </MenuItem>
+                    {/* /channelcollect */}
+                    <MenuItem onClick={handleClose}>
+                      <Button
+                        onClick={() => {
+                          props.history.push(`/channelcollect`);
+                        }}
+                        style={{ outline: 'none' }}
+                      >
+                        頻道追蹤
+                      </Button>
+                    </MenuItem>
+                    {/* <MenuItem onClick={handleClose}>
+                      <Button href="#">專欄</Button>
+                    </MenuItem> */}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
       </div>
 
       {/* samps登出 */}
-      <div
-        onClick={() => {
-          props.logOutAsync();
-        }}
-      >
-        <IconButton>
-          <PersonIcon />
+      <div className="navBarBtn">
+        <IconButton
+          onClick={() => {
+            props.logOutAsync();
+            props.history.push('/');
+          }}
+        >
+          <RiLogoutCircleRLine />
         </IconButton>
       </div>
-      <div>
-        <IconButton>
+      <div className="navBarBtn">
+        <IconButton onClick={() => { props.history.push('/cart') }}>
           <StyledBadge badgeContent={4} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
@@ -231,81 +253,22 @@ function MyNavbar(props) {
 
   const notLoggedNav = (
     <Header className="d-flex row no-gutters">
-      <div className="logo col-3 mr-auto"></div>
-      <div>
-        <Button
-          ref={anchorRef}
-          onClick={handleToggle}
-          className="navBarCollapse"
-        >
-          <ReorderIcon />
-        </Button>
-      </div>
-
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        className="popper"
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-            className="popper"
-          >
-            <Paper className="popper">
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      href="#"
-                      key="1"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        props.history.push(`/memberedit`);
-                      }}
-                    >
-                      加入播客
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button
-                      onClick={() => {
-                        props.history.push(`/explore_home_page`);
-                      }}
-                      style={{ outline: 'none' }}
-                    >
-                      探索
-                    </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">商城</Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Button href="#">專欄</Button>
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      <div
+        className="logo col-3 mr-auto"
+        onClick={() => {
+          props.history.push('/');
+        }}
+      ></div>    
       <div className="navBarBtn">
         <Button
           href="#"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -350,24 +313,29 @@ function MyNavbar(props) {
           登入
         </Button>
       </div>
-      <div className="navBarLogInBtn">
+      {/* <div className="navBarLogInBtn navBarBtn">
         <Button href="#">
           <ExitToAppIcon />
         </Button>
-      </div>
+      </div> */}
       <div className="diverVertical my-auto ml-2 mr-2"></div>
-      <div>
+      <div className="navBarBtn">
         <IconButton>
           <SearchIcon />
         </IconButton>
       </div>
-      <div>
+      <div className="navBarBtn">
         <IconButton>
           <StyledBadge badgeContent={4} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
       </div>
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
+      />
     </Header>
   );
 

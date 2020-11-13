@@ -9,7 +9,8 @@ const uploadAudio = require('./../jay_modules/upload_audio_module');
 const upload_audio_img = require('./../jay_modules/upload_audio_img');
 
 const { v4: uuidv4 } = require('uuid');
-const db = require(__dirname + '/../db_connect');
+// const db = require(__dirname + '/../db_connect');
+const db = require(__dirname + '/../db_connect2')
 
 const router = express.Router();
 const cors = require('cors');
@@ -26,10 +27,19 @@ router.get('/', (req, res) => {
 router.get('/channel_info/api/:podcaster_id?', async (req, res) => {
 
     const sql = "SELECT * FROM `podcast_channel_info` WHERE podcaster_id=?";
-    const [results] = await db.query(sql, [req.params.podcaster_id]);    //要以陣列送進去
+    const [results] = await db.query(sql, [req.params.podcaster_id]);
+    res.send(results);
+});
+
+
+//create channel
+router.post('/create_channel/api', async (req, res) => {
+    const sql = "INSERT INTO `podcast_channel_info`(`podcaster_id`) VALUES (?)";
+    const [results] = await db.query(sql, [req.body.podcaster_id]);    
 
     res.send(results);
 });
+
 
 // 修改頻道資料
 router.post('/channel_info/edit/api', upload_audio_img.single('podcaster_img'), async (req, res) => {

@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux';
 import ProductAmountList from './../ruby_components/ProductAmountList'
 import './../ruby_styles/CheckoutPage.scss'
 import { Accordion, Card, Button, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { GrNext } from 'react-icons/gr'
 import { MdNavigateNext } from 'react-icons/md'
 import axios from 'axios'
 // import Cleave from 'cleave.js/react'
 
 function CheckoutPage(props){
-    const [sid,setSid] = useState(1)
+    const [sid,setSid] = useState(props.member.sid)
     const {mycartDisplay,setMycartDisplay}= props;
     const [isActive,setIsActive] = useState([false,false,false])
     const [status, setStatus] = useState(0)
@@ -38,6 +39,7 @@ function CheckoutPage(props){
     const [ memberData, setMemberData ] = useState({})
     const [ memberCheckbox1, setMemberCheckbox1 ] = useState(false)
     const [ memberCheckbox2, setMemberCheckbox2 ] = useState(false)
+
 
     function setCardInput(index,value) {
         if(value.length < 5) {
@@ -75,9 +77,15 @@ function CheckoutPage(props){
         }
     }
 
+
+
+    // useEffect(() => {
+
+    // },[props.member])
+
     function getMemberData(){
         axios.post('http://localhost:5566/member/getmember', 
-            { sid: 1 })
+            { sid: props.member.sid })
                 .then((res) => { 
                     let members = res.data.rs
                     console.log(members)
@@ -132,7 +140,7 @@ function CheckoutPage(props){
                 setCoupon(data.coupon)
                 setProducts(data.products)
                 setTotalAmount(data.totalAmount)
-    },[])
+    },[props.member])
     useEffect(()=>{
 
         if(cardInput1.length === 4)
@@ -158,7 +166,7 @@ function CheckoutPage(props){
                 <div className="animate-img popout d-flex flex-column justify-content-center align-items-center">
                     <div className="guiding-frame d-flex flex-column justify-content-center align-items-center">
                         <h2>感謝您的購買</h2>
-                        <Link to="/orderlist" className="text-decoration-none ru-ckpage-go-to-order-btn">
+                        <Link to="/memberedit" className="text-decoration-none ru-ckpage-go-to-order-btn">
                             <div className="d-flex align-items-center justify-content-center">
                                 <div className="text-align-center ru-cart-next-btn-pay">查看訂單</div>
                                 <MdNavigateNext size={32} style={{ color: '#2690DF', backgroundColor: '#F8F8F8', borderRadius: '50%'}} />
@@ -203,7 +211,7 @@ function CheckoutPage(props){
                             <Form.Group controlId="receiver-name1" className="row align-items-center">
                                 <Form.Label className="mx-3">收件人姓名</Form.Label>
                                 <Form.Control id="receiver-name1" 
-                                              className="w-25" 
+                                              className="w-50" 
                                               type="text"
                                               defaultValue={`${memberCheckbox1 ? memberData.name : ''}`}
                                               onChange={(e)=>{
@@ -215,7 +223,7 @@ function CheckoutPage(props){
                             <Form.Group controlId="receiver-mobile1" className="row align-items-center">
                                 <Form.Label className="mx-3">收件人手機</Form.Label>
                                 <Form.Control id="receiver-mobile1" 
-                                              className="w-25"  
+                                              className="w-50"  
                                               type="text"
                                               defaultValue={`${memberCheckbox1 ? memberData.phone : ''}`}
                                               onChange={(e)=>{
@@ -244,6 +252,9 @@ function CheckoutPage(props){
                                             onClick={()=> {
                                                 let attrOfCheckbox = document.querySelector('#formBasicCheckbox1').checked
                                                 setMemberCheckbox1(attrOfCheckbox)
+                                                setReceiver(memberData.name)
+                                                setMobile(memberData.phone)
+                                                setAddress(memberData.address)
                                             } } 
                                             label="同訂購人資料" />
                             </Form.Group>
@@ -312,7 +323,7 @@ function CheckoutPage(props){
                         </div>
                         <div className="payment-info-topic d-flex align-items-center justify-content-between">
                             <div className="info-topic-border-front"></div>
-                            <h5>超商取貨門市</h5>
+                            <h5>取貨門市</h5>
                             <div className="info-topic-border-end"></div>
                         </div>
                         <div className="d-flex ru-ckpage-choose-store justify-content-around align-items-center">
@@ -339,7 +350,7 @@ function CheckoutPage(props){
                             <Form.Group controlId="reciever-name2" className="row align-items-center">
                                 <Form.Label className="mx-3">收件人姓名</Form.Label>
                                 <Form.Control id="reciever-name2" 
-                                              className="w-25" 
+                                              className="w-50" 
                                               type="text"
                                               onChange={(e)=>{
                                                   let receiverName = e.target.value
@@ -350,7 +361,7 @@ function CheckoutPage(props){
                             <Form.Group controlId="reciever-mobile2" className="row align-items-center">
                                 <Form.Label className="mx-3">收件人手機</Form.Label>
                                 <Form.Control id="reciever-mobile2" 
-                                              className="w-25"  
+                                              className="w-50"  
                                               type="text"
                                               onChange={(e)=>{
                                                   let receiverMobile = e.target.value
@@ -455,14 +466,14 @@ function CheckoutPage(props){
                             <Form.Group controlId="card-owner-name" className="row align-items-center">
                                 <Form.Label className="mx-3 mb-0">持卡人姓名</Form.Label>
                                 <Form.Control id="card-owner-name" 
-                                              className="w-25" 
+                                              className="w-50" 
                                               type="text"
                                               placeholder="請輸入持卡人姓名"  />
                             </Form.Group>
                             <Form.Group controlId="card-owner-mobile" className="row align-items-center">
                                 <Form.Label className="mx-3 mb-0">持卡人手機</Form.Label>
                                 <Form.Control id="card-owner-mobile" 
-                                              className="w-25" 
+                                              className="w-50" 
                                               type="text"
                                               pattern="^09[0-9]{8}$"
                                               maxlength="10"
@@ -477,7 +488,7 @@ function CheckoutPage(props){
                         <Form>
                             <Form.Group controlId="reciever-name3" className="row align-items-center">
                                 <Form.Label className="mx-3">收件人姓名</Form.Label>
-                                <Form.Control className="w-25" 
+                                <Form.Control className="w-50" 
                                               type="text"
                                               defaultValue={`${memberCheckbox2 ? memberData.name : ''}`}
                                               onChange={(e)=>{
@@ -488,7 +499,7 @@ function CheckoutPage(props){
                             </Form.Group>
                             <Form.Group controlId="reciever-mobile3" className="row align-items-center">
                                 <Form.Label className="mx-3">收件人手機</Form.Label>
-                                <Form.Control className="w-25"  
+                                <Form.Control className="w-50"  
                                               type="text"
                                               defaultValue={`${memberCheckbox2 ? memberData.phone : ''}`}
                                               onChange={(e)=>{
@@ -552,7 +563,7 @@ function CheckoutPage(props){
                         if(!receiver || !mobile || !address) return
                             setStatus(2)
                             let data = JSON.parse(localStorage.getItem('orderData'))
-                            
+                            console.log(data)
                             axios.post('http://localhost:5566/order/insert', 
                             data
                             )
@@ -636,4 +647,7 @@ function CheckoutPage(props){
     )
 }
 
-export default CheckoutPage
+const mapStateToProps = (store) => {
+    return {member: store.member}
+}
+export default withRouter(connect(mapStateToProps)(CheckoutPage))

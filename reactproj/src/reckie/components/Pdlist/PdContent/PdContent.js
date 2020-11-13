@@ -6,6 +6,9 @@ import { red } from '@material-ui/core/colors';
 
 import PdContentItem from './PdContentItem'
 import QueueAnim from 'rc-queue-anim';
+import { Form } from 'react-bootstrap'
+import { MdFilterList } from "react-icons/md";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 function PdContent(props) {
 
-  const {viewFilter,products} =props
+  const {value,products,setSort} =props
 // useEffect(()=>{ console.log('produtsPdContent',products)},[products])
  
 
@@ -48,40 +51,42 @@ function PdContent(props) {
   const handleExpandLeave = () => {
     setExpanded(false);
   };
+  const getSelectedValue = (e)=>{
+    setSort(e.target.value)
+  }
 
 
 
   return (
     <>
-    <QueueAnim className="pdContent demo-content d-flex flex-wrap mx-auto">
-    
-    {/* 10:錄音設備 20:播客周邊 1:耳機 2:麥克風 3:t-shirt 4:杯 */}
-    {/* 10:錄音設備 11:耳機 12:麥克風 20:播客周邊 1:耳塞式 2:耳罩式 3:t-shirt 4:杯 */}
+    <div className={`pdContentPart ${(value===0)||(value===1)?'':'reHidden' }`}>
+    <div className="d-flex justify-content-between align-items-end mb-3">
+    <h2 className="head2 dark font-weight-bold">提升Podcast<br/>更高品質</h2>
+    <div className="d-flex align-items-baseline">
+      <MdFilterList className="mr-2" style={{fontSize:'1rem', lineHeight:'1.5rem'}} />
+      <Form onChange={(e)=>getSelectedValue(e)}>
+        <Form.Group controlId="exampleForm.SelectCustom">
+          <Form.Control as="select" custom>
+            <option selected="selected">排序</option>
+            <option value="priceDESC">價格由高到低</option>
+            <option value="priceASC">價格由低到高</option>
+            <option value="starsDESC">評價由高到低</option>
+            <option value="starsASC">評價由低到高</option>
+          </Form.Control>
+        </Form.Group>
+     </Form>
+    </div>
+     
+    </div>
+     
+    <QueueAnim className={`demo-content row flex-wrap`}>
       {products.map((item, index) => {
-          {/* if (viewFilter === 10 && (item.cate_id >=6 ) )return
-          if (viewFilter === 20 && (item.cate_id <6 ) )return */}
-          {/* if (viewFilter === 11 && (item.cate_id ==2 || item.cate_id ==3 || item.cate_id ==4) )return
-          if (viewFilter === 12 && (item.cate_id !==2))return */}
-
-          {/* for(let i=1 ; i<5 ;i++){
-            if (viewFilter === i && item.cate_id!==i) return
-          }
-          if (viewFilter === 1 && item.cate_id!==1) return
-          if (viewFilter === 2 && item.cate_id!==2) return
-          if (viewFilter === 3 && item.cate_id!==3) return
-          if (viewFilter === 4 && item.cate_id!==4) return */}
-
           return <PdContentItem key={item.id} products={item}/>
         })}
-        {/* {products.map((item, index) => {
-          
-          return <PdContentItem key={item.id} products={item}/>
-         
-
-        })} */}
-
-                 
-     </QueueAnim>
+     
+     </QueueAnim> 
+    </div>
+    
     </>
   );
   

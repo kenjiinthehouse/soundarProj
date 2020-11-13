@@ -20,11 +20,8 @@ import IndexShop from './kenji/components/IndexShop';
 import ArticleCarousel from './kenji/components/ArticleCarousel';
 import MyFooter from './kenji/components/MyFooter';
 
-
 //pages
-import PodcasterDashboardHome from './jay/jay_pages/PodcasterDashboardHome';
 import AudioPlayer from './jay/jay_components/AudioPlayer.js';
-import PodcasterAudioList from './jay/jay_pages/PodcasterAudioList.js';
 import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
 import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
 import ChannelPage from './jay/jay_pages/ChannelPage.js';
@@ -52,7 +49,6 @@ import ProductItemPage from './reckie/pages/ProductItemPage';
 import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 
-
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
   const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
@@ -66,7 +62,15 @@ function App() {
           <ScrollToTop>
             <Switch>
               <Route exact path="/">
-                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%',paddingBottom:'4rem'}}>
+                <div
+                  className="indexDiv"
+                  style={{
+                    backgroundColor: '#232d2f',
+                    width: '100%',
+                    height: '100%',
+                    paddingBottom: '4rem',
+                  }}
+                >
                   <IndexCarousel />
                   <IndexInfo />
                   <IndexChannel />
@@ -155,6 +159,8 @@ function App() {
                 <Membersidebar
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
+                  playingAudio={playingAudio}
+                  setPlayingAudio={setPlayingAudio}
                 />
               </Route>
               <Route path="/audiocollect">

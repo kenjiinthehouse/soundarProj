@@ -28,9 +28,6 @@ function Podlogin(props) {
         props.initMemberAsync();
       }
     }
-    // setAccount(props.member.account)
-    // setNickname(props.member.nickname)
-    // props.member.nickname
   }, []);
   useEffect(() => {
     // console.log(uu.get('jwt'))
@@ -88,6 +85,7 @@ function Podlogin(props) {
           // console.log('data2', data2)
 
           props.initMember(data2);
+          props.history.push('/');
         } catch (error) {}
 
         // props.initMember(data.token)

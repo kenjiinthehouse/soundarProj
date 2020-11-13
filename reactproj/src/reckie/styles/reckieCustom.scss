@@ -74,8 +74,19 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .container.pd-container {
   max-width: 1440px;
 }
-.breadcrumb {
-  margin-top: 5rem;
+.reBreadcrumb {
+  background-color: transparent !important;
+}
+
+// -- space --
+.rePaddingX0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border: none !important;
+}
+.rePaddingX1 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 }
 
 // -- banner start --
@@ -161,7 +172,7 @@ input.reSearch:focus {
 // -- tab end --
 // -- side bar start --
 .sidebar {
-  min-width: 15rem;
+  min-width: 18rem;
 }
 .test-box1 {
   width: 15rem;
@@ -180,18 +191,43 @@ input.reSearch:focus {
   background-color: #fff;
   border: none;
 }
+.reSidebarTitle {
+  margin: 4rem 2rem 2rem 0;
+}
+.reArrowSpace {
+  margin-right: 1rem;
+}
+.turnArrow {
+  animation: turnarrow 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes turnarrow {
+  form {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
 
 // -- card start --
+.reHidden {
+  display: none !important;
+}
+.demo-content.d-flex.flex-wrap.reHidden {
+  display: none !important;
+}
 
 .pdCard {
   max-width: 20rem;
+  padding: 0;
 }
 .pdCard:hover {
   text-decoration: none;
 }
-.col-lg-4.pdCard {
-  // padding: 1rem;
-}
+// .col-lg-4.pdCard {
+//   // padding: 1rem;
+// }
 .cardWrap {
   // min-height: 25rem;
   box-shadow: 0px 1px 5px 2px #eee;
@@ -211,6 +247,13 @@ input.reSearch:focus {
   position: relative;
   padding: 0rem;
 }
+.twoLine {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 .cardBody-activity {
   // text-align: center;
@@ -228,8 +271,8 @@ input.reSearch:focus {
   transition: all 2s ease-in;
 }
 
-.pdContent {
-  width: 100%;
+.pdContentPart {
+  margin: 0 0 0 3rem;
 }
 .addCartBtn {
   width: 100%;
