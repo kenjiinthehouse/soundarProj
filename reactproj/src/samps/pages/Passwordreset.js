@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import { Link, Router, Switch, withRouter } from 'react-router-dom'
-import { initMember, initMemberAsync } from '../../actions/index'
-import { Modal, Button } from 'react-bootstrap'
-import { connect } from 'react-redux'
-import '../styles/Passwordreset.scss'
+import React, { useEffect, useState } from 'react';
+import { Link, Router, Switch, withRouter } from 'react-router-dom';
+import { initMember, initMemberAsync } from '../../actions/index';
+import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import '../styles/Passwordreset.scss';
 
 function Passwordreset(props) {
   // const [account, setAccount] = useState('')
   // const [nickname, setNickname] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordreset, setPasswordreset] = useState('')
-  const [passworderror, setPassworderror] = useState(false)
-  const [show, setShow] = useState(false)
-  const [errormsg, setErrorMsg] = useState('密碼不可為空值')
-  const [success, setSuccess] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-  const [eyes, setEyes] = useState(1)
-  const [passwordstate, setPasswordstate] = useState('password')
+  const [password, setPassword] = useState('');
+  const [passwordreset, setPasswordreset] = useState('');
+  const [passworderror, setPassworderror] = useState(false);
+  const [show, setShow] = useState(false);
+  const [errormsg, setErrorMsg] = useState('密碼不可為空值');
+  const [success, setSuccess] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [eyes, setEyes] = useState(1);
+  const [passwordstate, setPasswordstate] = useState('password');
+  //密碼格式檢查
+  const password_pattern = /^.*(?!.*[^\x21-\x7e])(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/;
 
   const passwordChange = async function (p) {
-    const url = ' http://localhost:5566/member/passwordchange'
+    const url = ' http://localhost:5566/member/passwordchange';
 
-    const password = p
+    const password = p;
 
-    const sid = props.member.sid
+    const sid = props.member.sid;
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -35,51 +37,54 @@ function Passwordreset(props) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
-    })
+    });
 
     try {
-      const response = await fetch(request)
-      const data = await response.json()
-      console.log('data:', data)
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log('data:', data);
       if (!data.success) {
-        setErrorMsg('密碼不可與原本的相同')
-        handleShow()
+        setErrorMsg('密碼不可與原本的相同');
+        handleShow();
       }
 
       // console.log('data2', data2)
     } catch (error) {}
-  }
+  };
   useEffect(() => {
     if (eyes == 1) {
-      setPasswordstate('password')
+      setPasswordstate('password');
     } else {
-      setPasswordstate('text')
+      setPasswordstate('text');
     }
-  }, [eyes])
+  }, [eyes]);
 
   useEffect(() => {
     // console.log(uu.get('jwt'))
     if (!localStorage.getItem('jwt')) {
-      const uu = new URLSearchParams(window.location.search)
-      localStorage.setItem('jwt', JSON.stringify(uu.get('jwt')))
-      props.initMemberAsync()
+      const uu = new URLSearchParams(window.location.search);
+      localStorage.setItem('jwt', JSON.stringify(uu.get('jwt')));
+      props.initMemberAsync();
     }
     // setAccount(props.member.account)
     // setNickname(props.member.nickname)
     // props.member.nickname
-  }, [])
+  }, []);
 
   const checkPassword = function () {
-    if (password != passwordreset) {
-      setPassworderror(true)
-      setErrorMsg('新密碼與確認密碼不同，請重新輸入')
-    } else if (password.length == 0 && passwordreset == 0) {
-      setPassworderror(true)
-      setErrorMsg('密碼不可為空值')
+    if (password.length == 0 && passwordreset == 0) {
+      setPassworderror(true);
+      setErrorMsg('密碼不可為空值');
+    } else if (!password_pattern.test(password)) {
+      setPassworderror(true);
+      setErrorMsg('密碼格式不合');
+    } else if (password != passwordreset) {
+      setPassworderror(true);
+      setErrorMsg('新密碼與確認密碼不同，請重新輸入');
     } else {
-      setPassworderror(false)
+      setPassworderror(false);
     }
-  }
+  };
 
   const messageModal = (
     <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
@@ -92,7 +97,7 @@ function Passwordreset(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.history.push('/')
+              props.history.push('/');
             }}
           >
             前往首頁
@@ -112,7 +117,7 @@ function Passwordreset(props) {
         </Button> */}
       </Modal.Footer>
     </Modal>
-  )
+  );
 
   // sa-Passwordreset-
   return (
@@ -157,7 +162,9 @@ function Passwordreset(props) {
               </div>
               <div className="form-group">
                 <div className="sa-Podlogin-password-area">
-                  <label htmlFor="exampleInputEmail1">新密碼</label>
+                  <label htmlFor="exampleInputEmail1">
+                    新密碼(請使用6位以上的英數字組合)
+                  </label>
                   <input
                     type={passwordstate}
                     className="form-control sa-Passwordreset-newpassword"
@@ -165,11 +172,11 @@ function Passwordreset(props) {
                     aria-describedby="emailHelp"
                     value={password}
                     onChange={(e) => {
-                      setPassword(e.target.value)
+                      setPassword(e.target.value);
                     }}
                     onBlur={() => {
                       if (passworderror) {
-                        return checkPassword()
+                        return checkPassword();
                       }
                     }}
 
@@ -179,7 +186,7 @@ function Passwordreset(props) {
                     <div
                       className="sa-Podlogin-eyes"
                       onClick={() => {
-                        setEyes(2)
+                        setEyes(2);
                       }}
                     >
                       <img
@@ -192,7 +199,7 @@ function Passwordreset(props) {
                     <div
                       className="sa-Podlogin-eyes"
                       onClick={() => {
-                        setEyes(1)
+                        setEyes(1);
                       }}
                     >
                       <img
@@ -213,10 +220,10 @@ function Passwordreset(props) {
                   aria-describedby="emailHelp"
                   value={passwordreset}
                   onChange={(e) => {
-                    setPasswordreset(e.target.value)
+                    setPasswordreset(e.target.value);
                   }}
                   onBlur={() => {
-                    checkPassword()
+                    checkPassword();
                   }}
                   //   placeholder="Enter email"
                 />
@@ -232,18 +239,21 @@ function Passwordreset(props) {
                 className="sa-Passwordreset-enter-area sa-Passwordreset-check-button"
                 onClick={() => {
                   if (passworderror || password.length == 0) {
-                    handleShow()
-                  } else if (password != passwordreset) {
-                    setErrorMsg('新密碼與確認密碼不同，請重新輸入')
-                    handleShow()
+                    handleShow();
                   } else if (password.length == 0) {
-                    setErrorMsg('密碼不可為空值')
-                    handleShow()
+                    setErrorMsg('密碼不可為空值');
+                    handleShow();
+                  } else if (!password_pattern.test(password)) {
+                    setErrorMsg('密碼格式不合');
+                    handleShow();
+                  } else if (password != passwordreset) {
+                    setErrorMsg('新密碼與確認密碼不同，請重新輸入');
+                    handleShow();
                   } else {
-                    passwordChange(password)
-                    setSuccess(true)
-                    setErrorMsg('修改成功')
-                    handleShow()
+                    passwordChange(password);
+                    setSuccess(true);
+                    setErrorMsg('修改成功');
+                    handleShow();
                   }
                 }}
               >
@@ -254,13 +264,13 @@ function Passwordreset(props) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 const mapStateToProps = (store) => {
-  return { member: store.member }
-}
+  return { member: store.member };
+};
 
 export default withRouter(
   connect(mapStateToProps, { initMemberAsync })(Passwordreset)
-)
+);
