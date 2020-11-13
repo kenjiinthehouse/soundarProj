@@ -19,7 +19,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {RiLogoutCircleRLine} from 'react-icons/ri';
+import { RiLogoutCircleRLine } from 'react-icons/ri';
 //scss
 import '../styles/MyNavbar.scss';
 
@@ -96,7 +96,6 @@ function MyNavbar(props) {
     prevOpen.current = open;
   }, [open]);
 
-
   const loggedNav = (
     <Header className="d-flex row no-gutters">
       <div
@@ -104,7 +103,7 @@ function MyNavbar(props) {
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>      
+      ></div>
       <div className="navBarBtn">
         <Button
           href="#"
@@ -212,6 +211,7 @@ function MyNavbar(props) {
         <IconButton
           onClick={() => {
             props.logOutAsync();
+            props.history.push('/');
           }}
         >
           <RiLogoutCircleRLine />
@@ -229,12 +229,12 @@ function MyNavbar(props) {
 
   const notLoggedNav = (
     <Header className="d-flex row no-gutters">
-      <div        
+      <div
         className="logo col-3 mr-auto"
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>     
+      ></div>
       <div className="navBarBtn">
         <Button
           href="#"
