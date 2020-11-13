@@ -11,6 +11,15 @@ const pool = mysql2.createPool({
   // queueLimit: 0,
 
   // kenji
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "mfee09_project",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+
+  //reckie
   // host: "localhost",
   // user: "root",
   // password: "",
