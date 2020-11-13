@@ -37,6 +37,7 @@ function ProductMainPage(props) {
         if(mainCate) query += `&mainCate=${mainCate}`
         if(detailCate) query += `&detailCate=${detailCate}`
         if(search) query += `&search=${search}`
+        if(sort) query += `&sort=${sort}`
         const url = `http://localhost:5566/products/get-api/?${query}`
         console.log("url",url)
         const response = await fetch(
@@ -53,7 +54,7 @@ function ProductMainPage(props) {
       }
     };
     getDataFromServer();
-  }, [page,mainCate,detailCate,search]);
+  }, [page,mainCate,detailCate,search,sort]);
   //查看後端抓回來的資料
 // useEffect(()=>{
 //   // console.log('productList',productList)
@@ -83,6 +84,8 @@ function ProductMainPage(props) {
           setMainCate={setMainCate}
           detailCate={detailCate}
           setDetailCate={setDetailCate}
+          setSearch={setSearch}
+          setSort={setSort}
         />
         <PaginationRounded
           products={products}

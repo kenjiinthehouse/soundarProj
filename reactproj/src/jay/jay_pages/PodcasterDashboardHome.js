@@ -73,20 +73,6 @@ function PodcasterDashboardHome(props) {
 
   return (
     <>
-      {props.channel_data.map((item, index) => {
-        return (
-          <div key={index}>
-          <div key={index}>
-            <div className="row justify-content-center">
-              <div className="jay-podcastImgArea my-3">
-                <img
-                  src={
-                    item.podcaster_img.indexOf('http') !== -1
-                      ? item.podcaster_img
-                      : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
-                  }
-                  alt=""
-                />
       {channel_data.map((item, index) => {
         if (channel_data && channel_data[0]) {
           return (
@@ -764,8 +750,8 @@ const mapStateToProps = (store) => {
   };
 };
 
-// 注意：第二個// 綁定部份action creators
-傳入參數` { addValue, minusValue, addValueAsync }`是個物件值
+// 綁定部份action creators
+// 注意：第二個傳入參數` { addValue, minusValue, addValueAsync }`是個物件值
 export default withRouter(
   connect(mapStateToProps, {
     initalDashboardAsync,

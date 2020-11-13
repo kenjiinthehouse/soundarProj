@@ -25,6 +25,7 @@ import AudioPlayer from './jay/jay_components/AudioPlayer.js';
 import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
 import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
 import ChannelPage from './jay/jay_pages/ChannelPage.js';
+import ChannelAudioPage from './jay/jay_pages/ChannelAudioPage.js';
 import ArticleHome from './jen/pages/ArticleHome';
 import ArticlePage from './jen/pages/ArticlePage';
 import Cart from './ruby/ruby_pages/CartPage.js';
@@ -44,18 +45,6 @@ import Podlogin from './samps/pages/Podlogin';
 import Verification from './samps/pges/Verification';
 import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
-import IndexInfo from './kenji/components/IndexInfo';
-import IndexShop from './kenji/components/IndexShop';
-import { colors } from '@material-ui/core';
-import { Height } from '@material-ui/icons';
-
-// import IndexInfo from './kenji/components/IndexInfo';
-// import IndexShop from './kenji/components/IndexShop';
-// import { colors } from '@material-ui/core';
-// import { Height } from '@material-ui/icons';
-
-import ProductMainPage from './reckie/pages/ProductMainPage';
-import ProductItemPage from './reckie/pages/ProductItemPage';
 import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 
@@ -71,28 +60,6 @@ function App() {
         <MainContent>
           <ScrollToTop>
             <Switch>
-              <Route exact path="/channel_info/:podcaster_id?">
-                <PodcasterDashboardHome />
-              </Route>
-              <Route exact path="/channel_audio_list/:podcaster_id?">
-                <PodcasterAudioList
-                  globalAudioArry={globalAudioArry}
-                  setGlobalAudioArry={setGlobalAudioArry}
-                />
-              </Route>
-              <Route exact path="/explore_home_page">
-              <Route exact path="/">
-                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%',paddingBottom:'4rem'}}>
-                  <IndexCarousel />
-                  <IndexInfo />
-                  <IndexChannel />
-                  <IndexPodcastEp />
-                  <IndexShop />
-                  <ArticleCarousel />
-                </div>
-              </Route>
-              <Route exact path="/">
-                <div className="indexDiv" style={{ backgroundColor: '#232d2f',width:'100%',height:'100%',paddingBottom:'4rem'}}>
               <Route exact path="/">
                 <div
                   className="indexDiv"
@@ -111,7 +78,6 @@ function App() {
                   <ArticleCarousel />
                 </div>
               </Route>
-              <Route path="/explore_home_page">
               <Route path="/explore_home_page">
                 <ExploreHomePage
                   globalAudioArry={globalAudioArry}
@@ -202,29 +168,6 @@ function App() {
               <Route path="/channelcollect">
                 <Channelcollection />
               </Route>
-              <Route path="/login">
-                <Podlogin />
-              </Route>
-              <Route path="/verify">
-                <Verification />
-              </Route>
-              <Route path="/passwordreset">
-                <Passwordreset />
-              </Route>
-              <Route path="/applymember">
-                <Applymembership />
-              </Route>
-              <Route path="/memberedit">
-                <Membersidebar
-                  globalAudioArry={globalAudioArry}
-                  setGlobalAudioArry={setGlobalAudioArry}
-                />
-              </Route>
-              <Route path="/audiocollect">
-                <Audiocollection />
-              </Route>
-              <Route path="/channelcollect">
-                <Channelcollection />
 
               <Route path="/productlist/:page?">
                 <ProductMainPage />

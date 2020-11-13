@@ -1,4 +1,3 @@
-
 .IndexChannelContainer {
   width: 100%;
   height: 56rem;
@@ -82,7 +81,7 @@
   z-index: 0;
 }
 .IndexChannelPageBox .IndexChannelPageBoxContent .ChannelDrawer {
-  width: 30rem;
+  width: 35rem;
   height: 100%;
   border-radius: 0px 5px 5px 0;
   background-color: rgba($color: #232d2f, $alpha: 0.2);
@@ -92,10 +91,26 @@
   z-index: 1;
 }
 .IndexChannelPageBox .IndexChannelPageBoxContent .ChannelDrawer .ChannelCard {
-  width: 24rem;
+  width: 30rem;
   height: 90%;
   margin-top: 2rem;
+  cursor: pointer;
   // border: #ff359a 1px solid;
+}
+
+.IndexChannelPageBox
+  .IndexChannelPageBoxContent
+  .ChannelDrawer
+  .ChannelCard
+  .indexChannelTitle {
+  width: 20rem;
+  font-size: 1.25rem;
+  color: #f8f8f8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .IndexChannelPageBox
@@ -106,6 +121,7 @@
   width: 80%;
   height: 2rem;
   border-radius: 5px;
+  color: #f8f8f8;
   background-color: rgba($color: #232d2f, $alpha: 0.5);
 }
 .IndexChannelPageBox

@@ -62,7 +62,7 @@ const handleExpandEnter = () => {
       />
             <div className="cardBody">
             <div variant="body2">
-                <h4 className="head5">{products.pd_title}</h4>
+                <h4 className="head5 twoLine">{products.pd_title}</h4>
               </div>
             <div variant="body2">
                 <h4 className="pdPrice">${products.pd_price}</h4>
