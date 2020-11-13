@@ -1,14 +1,4 @@
-$color-white: #fff;
-$color-black: #000;
 
-$transition-time: 250ms;
-$transition-method: ease-in-out;
-
-$card-height: 440px;
-$card-width: 840px;
-$card-hover-offset-x: 40px;
-$card-hover-offset-y: 60px;
-@import '~bootstrap/scss/bootstrap.scss';
 .card-movie-container {
   width: 100%;
   height: 36.5rem;
@@ -75,19 +65,19 @@ $card-hover-offset-y: 60px;
 }
 
 .card-movie-container .card-movie-wrapper {
-  box-shadow: 0px 0px 100px 25px rgba($color-black, 0.2);
-  height: $card-height;
+  box-shadow: 0px 0px 100px 25px rgba(#000, 0.2);
+  height: 27.5rem;
   position: relative;
-  width: $card-width;
+  width: 52.5rem;
   margin-top: 4rem;
 
   &:hover {
     .card-movie-carousel {
-      -webkit-transition: all $transition-time $transition-method;
-      -moz-transition: all $transition-time $transition-method;
-      transition: all $transition-time $transition-method;
-      bottom: $card-hover-offset-y;
-      right: $card-hover-offset-x;
+      -webkit-transition: all 250ms ease-in-out;
+      -moz-transition: all 250ms ease-in-out;
+      transition: all 250ms ease-in-out;
+      bottom: 3.75rem;
+      right: 2.5rem;
     }
     // .card-movie-carousel
   }
@@ -109,11 +99,11 @@ $card-hover-offset-y: 60px;
 // .card-movie-wrapper--centered
 
 .card-movie-carousel {
-  -webkit-transition: all $transition-time $transition-method 250ms;
-  -moz-transition: all $transition-time $transition-method 250ms;
-  transition: all $transition-time $transition-method 250ms;
-  height: $card-height;
-  width: $card-width;
+  -webkit-transition: all 250ms ease-in-out 250ms;
+  -moz-transition: all 250ms ease-in-out 250ms;
+  transition: all 250ms ease-in-out 250ms;
+  height: 27.5rem;
+  width: 52.5rem;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -121,7 +111,7 @@ $card-hover-offset-y: 60px;
 }
 
 .card-movie-navigation {
-  background-color: $color-white;
+  background-color: #fff;
   bottom: 0;
   height: 100%;
   overflow: hidden;
@@ -139,15 +129,15 @@ $card-hover-offset-y: 60px;
     -o-transform: translateY(-50%);
     // transform: translateY(-50%);
     position: absolute;
-    // right: ($card-hover-offset-x - $item-size) / 2;
+    // right: (2.5rem - $item-size) / 2;
     right: 1%;
     top: 50%;
     // width: $item-size-active;
 
     li {
-      -webkit-transition: all $transition-time $transition-method;
-      -moz-transition: all $transition-time $transition-method;
-      transition: all $transition-time $transition-method;
+      -webkit-transition: all 250ms ease-in-out;
+      -moz-transition: all 250ms ease-in-out;
+      transition: all 250ms ease-in-out;
       background-color: #ccc;
       border-radius: 100%;
       cursor: pointer;
@@ -186,12 +176,12 @@ $card-hover-offset-y: 60px;
     color: #aac8ca;
     cursor: pointer;
     font-size: 14px;
-    line-height: $card-hover-offset-y;
+    line-height: 3.75rem;
     margin: 0;
     outline: none;
     padding: 0;
     position: absolute;
-    right: $card-hover-offset-x;
+    right: 2.5rem;
 
     // &:before {
     //   content: 'Watch Trailer';
@@ -240,9 +230,9 @@ $card-hover-offset-y: 60px;
 // .card-movie-navigation
 
 .card-movie {
-  -webkit-transition: all ($transition-time * 2) $transition-method;
-  -moz-transition: all ($transition-time * 2) $transition-method;
-  transition: all ($transition-time * 2) $transition-method;
+  -webkit-transition: all (250ms * 2) ease-in-out;
+  -moz-transition: all (250ms * 2) ease-in-out;
+  transition: all (250ms * 2) ease-in-out;
   background-size: cover;
   bottom: 0;
   height: 100%;
@@ -345,9 +335,9 @@ $card-hover-offset-y: 60px;
   // &__rating
 
   &__player {
-    -webkit-transition: all ($transition-time * 2) $transition-method;
-    -moz-transition: all ($transition-time * 2) $transition-method;
-    transition: all ($transition-time * 2) $transition-method;
+    -webkit-transition: all (250ms * 2) ease-in-out;
+    -moz-transition: all (250ms * 2) ease-in-out;
+    transition: all (250ms * 2) ease-in-out;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -361,8 +351,8 @@ $card-hover-offset-y: 60px;
     z-index: 20;
 
     .card-movie--playing & {
-      height: $card-height;
-      width: $card-width;
+      height: 27.5rem;
+      width: 52.5rem;
     }
     // .card-movie--playing &
 
@@ -386,14 +376,14 @@ $card-hover-offset-y: 60px;
   background-color: #effdfd;
 
   [class*='__title'] {
-    color: $color-black;
+    color: #000;
   }
   // [class*='__title']
 }
 // .card-movie--light
 
 .card-movie--dark {
-  background-color: $color-black;
+  background-color: #000;
   color: #fff;
 
   [class*='__title'] {

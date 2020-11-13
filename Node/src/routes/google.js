@@ -28,6 +28,7 @@ passport.use(
       const sql =
         "SELECT `sid`, `account`, `nickname`,`profile_picture` FROM `members` WHERE google_id=?";
       const [rs] = await db.query(sql, [profile.id]);
+      console.log("q1");
 
       const sql_account =
         "SELECT `sid`, `account`, `nickname`,`profile_picture` FROM `members` WHERE `account`=?";
@@ -36,6 +37,7 @@ passport.use(
         profile.emails[0].value,
       ]);
       console.log("rs:", rs);
+      console.log("q2");
 
       // obj = {
       //   googleid: profile.id,

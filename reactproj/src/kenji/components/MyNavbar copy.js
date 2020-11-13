@@ -19,7 +19,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { RiLogoutCircleRLine } from 'react-icons/ri';
+import {RiLogoutCircleRLine} from 'react-icons/ri';
 //scss
 import '../styles/MyNavbar.scss';
 
@@ -27,9 +27,6 @@ import '../styles/MyNavbar.scss';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { initMemberAsync, logOutAsync } from '../../actions/index';
-
-//jay改動
-import InformLoginModal from './../../jay/jay_components/InformLoginModal';
 
 // ant-design Layout
 const { Header } = Layout;
@@ -58,10 +55,6 @@ function MyNavbar(props) {
   const anchorRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
-
-  //jay
-  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
-
   //samps
 
   useEffect(() => {
@@ -103,6 +96,7 @@ function MyNavbar(props) {
     prevOpen.current = open;
   }, [open]);
 
+
   const loggedNav = (
     <Header className="d-flex row no-gutters">
       <div
@@ -111,7 +105,6 @@ function MyNavbar(props) {
           props.history.push('/');
         }}
       ></div>
-<<<<<<< HEAD
       <div>
         <Button
           ref={anchorRef}
@@ -152,11 +145,7 @@ function MyNavbar(props) {
                       key="1"
                       onClick={(event) => {
                         event.preventDefault();
-                        if (props.member.sid) {
-                          props.history.push(`/memberedit`);
-                        } else {
-                          setShowInformLoginModal(true);
-                        }
+                        props.history.push(`/memberedit`);
                       }}
                     >
                       加入播客
@@ -186,19 +175,13 @@ function MyNavbar(props) {
           </Grow>
         )}
       </Popper>
-=======
->>>>>>> 97e01266b3ed5c1c96974728f99de0853a7e35a3
       <div className="navBarBtn">
         <Button
           href="#"
           key="1"
           onClick={(event) => {
             event.preventDefault();
-            if (props.member.sid) {
-              props.history.push(`/memberedit`);
-            } else {
-              setShowInformLoginModal(true);
-            }
+            props.history.push(`/memberedit`);
           }}
         >
           加入播客
@@ -262,40 +245,30 @@ function MyNavbar(props) {
                         key="1"
                         onClick={(event) => {
                           event.preventDefault();
-                          if (props.member.sid) {
-                            props.history.push(`/memberedit`);
-                          } else {
-                            setShowInformLoginModal(true);
-                          }
+                          props.history.push(`/memberedit`);
                         }}
                       >
-                        會員資料
+                        加入播客
                       </Button>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Button
-                        onClick={() => {
-                          props.history.push(`/audiocollect`);
+                        href="javascript"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          props.history.push(`/explore_home_page`);
                         }}
                         style={{ outline: 'none' }}
                       >
-                        節目收藏
+                        探索
                       </Button>
                     </MenuItem>
-                    {/* /channelcollect */}
                     <MenuItem onClick={handleClose}>
-                      <Button
-                        onClick={() => {
-                          props.history.push(`/channelcollect`);
-                        }}
-                        style={{ outline: 'none' }}
-                      >
-                        頻道追蹤
-                      </Button>
+                      <Button href="#">商城</Button>
                     </MenuItem>
-                    {/* <MenuItem onClick={handleClose}>
+                    <MenuItem onClick={handleClose}>
                       <Button href="#">專欄</Button>
-                    </MenuItem> */}
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -309,7 +282,6 @@ function MyNavbar(props) {
         <IconButton
           onClick={() => {
             props.logOutAsync();
-            props.history.push('/');
           }}
         >
           <RiLogoutCircleRLine />
@@ -327,7 +299,7 @@ function MyNavbar(props) {
 
   const notLoggedNav = (
     <Header className="d-flex row no-gutters">
-      <div
+      <div        
         className="logo col-3 mr-auto"
         onClick={() => {
           props.history.push('/');
@@ -335,7 +307,6 @@ function MyNavbar(props) {
       ></div>
       <div className="navBarBtn">
         <Button
-<<<<<<< HEAD
           ref={anchorRef}
           onClick={handleToggle}
           className="navBarCollapse"
@@ -374,11 +345,7 @@ function MyNavbar(props) {
                       key="1"
                       onClick={(event) => {
                         event.preventDefault();
-                        if (props.member.sid) {
-                          props.history.push(`/memberedit`);
-                        } else {
-                          setShowInformLoginModal(true);
-                        }
+                        props.history.push(`/memberedit`);
                       }}
                     >
                       加入播客
@@ -408,16 +375,10 @@ function MyNavbar(props) {
       </Popper>
       <div className="navBarBtn">
         <Button
-=======
->>>>>>> 97e01266b3ed5c1c96974728f99de0853a7e35a3
           href="#"
           onClick={(event) => {
             event.preventDefault();
-            if (props.member.sid) {
-              props.history.push(`/memberedit`);
-            } else {
-              setShowInformLoginModal(true);
-            }
+            props.history.push(`/memberedit`);
           }}
         >
           加入播客
@@ -480,11 +441,6 @@ function MyNavbar(props) {
           </StyledBadge>
         </IconButton>
       </div>
-      <InformLoginModal
-        show={showInformLoginModal}
-        onHide={() => setShowInformLoginModal(false)}
-        setShowInformLoginModal={setShowInformLoginModal}
-      />
     </Header>
   );
 
