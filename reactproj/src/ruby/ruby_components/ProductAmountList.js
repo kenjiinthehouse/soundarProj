@@ -123,7 +123,7 @@ function ProductAmountList(props){
                 <Modal.Header closeButton style={{ backgroundColor: '#44494A',color: '#F8F8F8' }}>
                 <Modal.Title>我的優惠券</Modal.Title>
                 </Modal.Header>
-                    <Modal.Body >
+                    <Modal.Body className="amountlist-modal-body" >
                         {couponDisplay.map(value => {
                             return(
                                 <div className="ru-cart-coupon-card noselect"
@@ -156,11 +156,11 @@ function ProductAmountList(props){
             {
                 disableUse()
                 ?
-                <Button variant="primary use-btn radius-btn" onClick={handleSubmit} disabled>
+                <Button variant="primary ru-cart-use-btn ru-cart-radius-btn" onClick={handleSubmit} disabled>
                     立即使用
                 </Button>
                 :
-                <Button variant="primary use-btn radius-btn" onClick={handleSubmit} >
+                <Button variant="primary ru-cart-use-btn ru-cart-radius-btn" onClick={handleSubmit} >
                     立即使用
                 </Button>
             }

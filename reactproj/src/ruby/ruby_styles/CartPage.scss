@@ -10,7 +10,7 @@
     width: 1356px;
   }
   .ru-cart-title {
-    margin: 50px 0 60px 0;
+    margin: 100px 0 60px 0;
   }
   .ru-cart-section {
     width: 66.66%;
@@ -63,10 +63,6 @@
   }
   .ru-cart-next-btn {
     width: 18.75rem;
-    height: 3.75rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #f8f8f8;
     background-color: #2690df;
     border-radius: 2rem;
     text-align: center;
@@ -79,7 +75,11 @@
     }
   }
   .ru-cart-next-btn-pay {
-    width: 14rem;
+    width: 80%;
+    height: 3.75rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f8f8f8;
   }
 
   .ru-cart-radius-btn {
@@ -88,6 +88,10 @@
 
   .ru-cart-del-btn {
     cursor: pointer;
+    transition: 0.3s;
+    &:hover{
+      color: #DC2621;
+    }
   }
 
   .ru-cart-use-btn {

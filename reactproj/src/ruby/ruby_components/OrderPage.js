@@ -142,7 +142,7 @@ function OrderPage(props){
                         { orderDisplay.filter(item => item.status === orderStatus)
                             .map(value => {
                             return(
-                                <div className="ru-odPage-order-card">
+                                <div className="ru-odPage-order-card" key={value}>
                                     <div className="ru-odPage-order-id">訂單編號:{value.sid}</div>
                                     <div className="ru-odPage-order-detail d-flex justify-content-between">
                                         <div className="ru-odPage-order-left">
@@ -206,20 +206,22 @@ function OrderPage(props){
                                         </div>
                                     </div>
                                     <Accordion>
-                                        <Card>
+                                        <Card className="ru-orderPage-card">
                                         <Card.Header className="ru-odPage-check-detail-btn ml-auto">
-                                            <Accordion.Toggle as={Button} 
-                                                            //   onClick={()=>{
-                                                            //     setSelectedOrderID(value.sid)
-                                                            //   }}
-                                                              className="mb-3"
-                                                              variant="link" 
-                                                              eventKey="0">
+                                            <Accordion.Toggle 
+                                                    as={Button}
+                                                    onClick={() => { 
+                                                        let el = document.querySelector('.ru-odPage-button')
+                                                        el.classList.toggle("check-btn-active") 
+                                                        }}
+                                                    className="mb-3 ru-odPage-button"
+                                                    variant="link" 
+                                                    eventKey="0">
                                                 查看訂單細節
                                             </Accordion.Toggle>
                                         </Card.Header>
                                             <Accordion.Collapse eventKey="0">
-                                                <Card.Body>
+                                                <Card.Body className="ru-orderPage-card-body">
                                                     <div className="ru-odPage-detail-topic">訂單明細</div>
                                                     <div className="ru-odPage-detail">
                                                         <h5>配送進度</h5>

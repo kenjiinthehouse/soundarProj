@@ -16,6 +16,7 @@
     width: calc(100% - 435px);
     padding: 40px;
     .ru-ckpage-choose-payment {
+      border: 0;
       display: flex;
       align-items: center;
       padding-bottom: 30px;
@@ -34,6 +35,8 @@
       position: relative;
       overflow: hidden;
       padding: 0;
+      text-decoration: none;
+      color: #232d2f;
       h5 {
         margin: 0;
       }
@@ -97,18 +100,13 @@
     }
   }
 
-  .card {
+  .ru-ckpage-card {
     border: 0;
     margin-bottom: 40px;
-    .btn-link {
-      text-decoration: none;
-      color: #232d2f;
-    }
+    height: auto;
   }
-  .card-header {
-    border: 0;
-  }
-  .card-body {
+
+  .ru-ckpage-card-body {
     border: 0;
     padding: 0 10px;
     .payment-info-topic {
@@ -183,9 +181,6 @@
   .ru-ckpage-next-btn {
     width: 18.75rem;
     height: 3.75rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #f8f8f8;
     background-color: #fc774c;
     border-radius: 2rem;
     text-align: center;
@@ -194,6 +189,12 @@
     cursor: pointer;
     &:hover {
       background-color: #ff6431;
+    }
+    .ru-cart-next-btn-pay{
+      width: 80%;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f8f8f8;
     }
   }
   .ru-ckpage-go-to-order-btn {

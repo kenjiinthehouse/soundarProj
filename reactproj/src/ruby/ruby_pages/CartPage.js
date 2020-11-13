@@ -62,7 +62,7 @@ function getCartFromLocalStorage() {
                     <div className="ru-cart-title d-flex">
                         <div className="ru-guide-block"></div>
                         <div className="ru-cart-topic">
-                            <h4>我的購物車</h4>
+                            <h4 className="ru-cart-main-font-color">我的購物車</h4>
                         </div>
                     </div>
                     <main className="d-flex ru-cart-main">

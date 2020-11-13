@@ -9,10 +9,16 @@
         font-size: 1.5rem;
         .ru-cart-sum {
           border-bottom: 1px solid #909393;
+          h4 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+          }
         }
         .ru-cart-coupon,
         .ru-cart-pd-price {
-        padding-top: 30px;
+          font-size: 1rem;
+          padding-top: 30px;
         }
         .ru-cart-coupon-btn {
           width: 8rem;
@@ -51,17 +57,23 @@
     .modal-dialog {
       overflow-y: initial !important;
     }
-    .modal-body {
+    .amountlist-modal-body {
       height: 500px;
       overflow-y: auto;
     }
-    .modal-center {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+    // .modal-center {
+    //   position: absolute;
+    //   left: 50%;
+    //   top: 50%;
+    //   transform: translate(-50%, -50%);
+    // }
+    .ru-cart-radius-btn {
+      border-radius: 30px;
     }
-
+    .ru-cart-use-btn {
+      width: 8rem;
+      color: #f8f8f8;
+    }
     .ru-cart-coupon-card {
         width: 100%;
         border: 1px solid #44494a;
