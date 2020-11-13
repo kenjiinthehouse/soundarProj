@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './../ch_styles/custom.scss';
-import { Link, Switch, withRouter } from 'react-router-dom'
-import { Button, Collapse, Tabs, Tab } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
+import { Tabs, Tab } from 'react-bootstrap'
 
 import ActivityOrderContent from '../ch_components/ActivityOrderContent'
 
 function ActivityOrder(props){
     const [activityOrder, setActivityOrder] = useState([])
+
+    //Tab控制(切換訂單狀態:已報名/未完成/已取消/退票紀錄)
     const [key, setKey] = useState('complete');
   
     async function getActivityOrderFromServer() {
@@ -25,7 +27,6 @@ function ActivityOrder(props){
       setActivityOrder(data)
     } 
    
-    // 一開始就會開始載入資料
     useEffect(() => {
         getActivityOrderFromServer()
     }, [])
@@ -42,7 +43,7 @@ function ActivityOrder(props){
                       className="nav-pills d-flex justify-content-around"            
                   >
                       <Tab eventKey="complete" title="已報名">
-                      {activityOrder.map((item,index)=>{
+                      {activityOrder.map((item)=>{
                         return(
                           <ActivityOrderContent key={item.id} activityOrder={item}/>
                           )})}   

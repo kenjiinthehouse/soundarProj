@@ -48,7 +48,7 @@ router.get('/api', async(req,res)=>{
 
 //會員的訂單
 router.get('/member/:members_sid', async (req, res) => {
-    const sql = "SELECT ticket_order.*, activity.activity_name, activity.activity_img, activity.activity_location,activity.activity_date, members.account, members.name, members.phone FROM ticket_order LEFT JOIN activity ON ticket_order.activity_sid = activity.sid LEFT JOIN members ON ticket_order.members_sid = members.sid WHERE members_sid=?";
+    const sql = "SELECT ticket_order.*, activity.activity_name, activity.activity_img, activity.activity_location,activity.activity_date,activity.ticket_option, members.account, members.name, members.phone FROM ticket_order LEFT JOIN activity ON ticket_order.activity_sid = activity.sid LEFT JOIN members ON ticket_order.members_sid = members.sid WHERE members_sid=?";
     const [results] = await db.query(sql, [req.params.members_sid]);
     res.json(results);
 })
