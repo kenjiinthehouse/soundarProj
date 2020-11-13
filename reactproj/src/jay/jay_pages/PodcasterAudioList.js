@@ -3,25 +3,30 @@ import { connect } from 'react-redux';
 
 // action、props
 import { initalAudioListAsync, delAudioAsync } from '../../jay_actions/index';
-import { withRouter, useParams } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 // react icon
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { AiFillPlayCircle, AiOutlineToTop } from 'react-icons/ai';
+import { TiArrowSortedUp } from 'react-icons/ti';
 
 // components
 import AudioEditModal from './../jay_components/AudioEditModal';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import AudioAddModal from '../jay_components/AudioAddModal';
 import ScrollToTop from 'react-scroll-to-top';
-import SidebarMember from '../jay_components/SidebarMember.js';
 
 //css
 import './../jay_styles/PodcasterAudioList.scss';
 import { css } from '@emotion/core';
 
 function PodcasterAudioList(props) {
-  const { globalAudioArry, setGlobalAudioArry } = props;
+  const {
+    globalAudioArry,
+    setGlobalAudioArry,
+    playingAudio,
+    setPlayingAudio,
+  } = props;
 
   const [addModalShow, setAddModalShow] = useState(false);
   const [editModalShow, setEditModalShow] = useState(false);
@@ -51,8 +56,14 @@ function PodcasterAudioList(props) {
     <>
       <ScrollToTop
         smooth
-        style={{ bottom: '120px', right: '80px' }}
-        component={<AiOutlineToTop style={{ fontSize: '1.8rem' }} />}
+        style={{
+          bottom: '120px',
+          right: '80px',
+          borderRadius: '50%',
+          outline: 'none',
+          opacity: '0.75',
+        }}
+        component={<TiArrowSortedUp style={{ fontSize: '1.8rem' }} />}
       />
 
       <div className="col-12">
@@ -146,10 +157,15 @@ function PodcasterAudioList(props) {
                           }
                         }}
                       >
-                        <AiFillPlayCircle />
+                        {playingAudio &&
+                        playingAudio.name === item.audio_title ? (
+                          <AiFillPlayCircle style={{ color: '#F780AE' }} />
+                        ) : (
+                          <AiFillPlayCircle />
+                        )}
                       </a>
                     </td>
-                    <td className="icon">
+                    <td className="jay-icon">
                       <a
                         onClick={(e) => {
                           e.preventDefault();
@@ -168,7 +184,7 @@ function PodcasterAudioList(props) {
                         <FaEdit />
                       </a>
                     </td>
-                    <td className="icon">
+                    <td className="jay-icon">
                       <a
                         onClick={(e) => {
                           e.preventDefault();

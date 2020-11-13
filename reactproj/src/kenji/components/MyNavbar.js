@@ -28,6 +28,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { initMemberAsync, logOutAsync } from '../../actions/index';
 
+//jay改動
+import InformLoginModal from './../../jay/jay_components/InformLoginModal';
+
 // ant-design Layout
 const { Header } = Layout;
 // 購物車徽章
@@ -55,6 +58,10 @@ function MyNavbar(props) {
   const anchorRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+
+  //jay
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
+
   //samps
 
   useEffect(() => {
@@ -104,13 +111,94 @@ function MyNavbar(props) {
           props.history.push('/');
         }}
       ></div>
+<<<<<<< HEAD
+      <div>
+        <Button
+          ref={anchorRef}
+          onClick={handleToggle}
+          className="navBarCollapse"
+        >
+          <ReorderIcon />
+        </Button>
+      </div>
+
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+        className="popper"
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'center bottom',
+            }}
+            className="popper"
+          >
+            <Paper className="popper">
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  id="menu-list-grow"
+                  onKeyDown={handleListKeyDown}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Button
+                      href="#"
+                      key="1"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        if (props.member.sid) {
+                          props.history.push(`/memberedit`);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
+                      }}
+                    >
+                      加入播客
+                    </Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Button
+                      href="javascript"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        props.history.push(`/explore_home_page`);
+                      }}
+                      style={{ outline: 'none' }}
+                    >
+                      探索
+                    </Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Button href="#">商城</Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Button href="#">專欄</Button>
+                  </MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+=======
+>>>>>>> 97e01266b3ed5c1c96974728f99de0853a7e35a3
       <div className="navBarBtn">
         <Button
           href="#"
           key="1"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -174,7 +262,11 @@ function MyNavbar(props) {
                         key="1"
                         onClick={(event) => {
                           event.preventDefault();
-                          props.history.push(`/memberedit`);
+                          if (props.member.sid) {
+                            props.history.push(`/memberedit`);
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
                         }}
                       >
                         會員資料
@@ -243,10 +335,89 @@ function MyNavbar(props) {
       ></div>
       <div className="navBarBtn">
         <Button
+<<<<<<< HEAD
+          ref={anchorRef}
+          onClick={handleToggle}
+          className="navBarCollapse"
+        >
+          <ReorderIcon />
+        </Button>
+      </div>
+
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+        className="popper"
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'center bottom',
+            }}
+            className="popper"
+          >
+            <Paper className="popper">
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  id="menu-list-grow"
+                  onKeyDown={handleListKeyDown}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Button
+                      href="#"
+                      key="1"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        if (props.member.sid) {
+                          props.history.push(`/memberedit`);
+                        } else {
+                          setShowInformLoginModal(true);
+                        }
+                      }}
+                    >
+                      加入播客
+                    </Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Button
+                      onClick={() => {
+                        props.history.push(`/explore_home_page`);
+                      }}
+                      style={{ outline: 'none' }}
+                    >
+                      探索
+                    </Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Button href="#">商城</Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Button href="#">專欄</Button>
+                  </MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+      <div className="navBarBtn">
+        <Button
+=======
+>>>>>>> 97e01266b3ed5c1c96974728f99de0853a7e35a3
           href="#"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -309,6 +480,11 @@ function MyNavbar(props) {
           </StyledBadge>
         </IconButton>
       </div>
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
+      />
     </Header>
   );
 
