@@ -43,7 +43,7 @@
     }
     .icon-cancel {
       position: absolute;
-      top: calc(50% - 0.9rem);
+      top: calc(50% - 1rem);
       right: 1.2rem;
       z-index: 2;
       font-size: 2rem;
@@ -106,6 +106,7 @@
     }
     .active {
       background-color: #444c4e;
+      border-bottom: none; //去除active設定的藍底線
     }
   }
 

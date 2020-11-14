@@ -6,7 +6,8 @@ import { MdAddCircle } from 'react-icons/md';
 import { getArticleReply, getArticleReplyAsync } from '../../actions/index';
 
 function ArticleMsgReplyInput(props) {
-  const { parentId } = props;
+  const { parentId, sid } = props;
+  console.log('reply', props);
   const [userId, setUserId] = useState('5566'); //memberId
   const [userNickname, setUserNickname] = useState('浪漫Duke'); //nickname
   const [textValue, setTextValue] = useState(''); //content
@@ -20,6 +21,7 @@ function ArticleMsgReplyInput(props) {
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify({
+        sid: props.sid, //對應到API article_sid
         parentId: parentId,
         memberId: userId,
         nickname: userNickname,
@@ -33,7 +35,7 @@ function ArticleMsgReplyInput(props) {
 
     const response = await fetch(request);
     const data = await response.json();
-    console.log('data', data);
+    // console.log('data', data);
     //完成後清空輸入框
     setTextValue('');
     async function replyList() {

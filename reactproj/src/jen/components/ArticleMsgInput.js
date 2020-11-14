@@ -4,6 +4,7 @@ import { IconContext } from 'react-icons';
 import { MdAddCircle } from 'react-icons/md';
 //引入留言
 import { getArticleMsg, getArticleMsgAsync } from '../../actions/index';
+import { FaPlaceOfWorship } from 'react-icons/fa';
 
 function ArticleMsgInput(props) {
   const [userId, setUserId] = useState('9527'); //memberId
@@ -14,10 +15,11 @@ function ArticleMsgInput(props) {
   };
 
   const sendInput = async function () {
-    const url = 'http://localhost:5566/article/comment/add';
+    const url = 'http://localhost:5566/article/comment/add/msg';
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify({
+        sid:props.sid, //對應到API article_sid
         memberId: userId,
         nickname: userNickname,
         content: textValue,
@@ -27,16 +29,14 @@ function ArticleMsgInput(props) {
         'Content-type': 'application/json',
       }),
     });
-
-    const response = await fetch(request);
-    const data = await response.json();
-    console.log('data', data);
-    //完成後清空輸入框
-    setTextValue('');
-    async function msgList() {
-      await props.getArticleMsgAsync();
-    }
-    msgList();
+      const response = await fetch(request);
+      const data = await response.json();
+      //完成後清空輸入框
+      setTextValue('');
+      async function msgList() {
+        await props.getArticleMsgAsync(props.sid);
+      }
+      msgList();
   };
 
   return (
@@ -71,7 +71,7 @@ function ArticleMsgInput(props) {
                   <button
                     type="button"
                     className="article-cmtSendBtn"
-                    onClick={() => sendInput()}
+                    onClick={() => { sendInput(); props.setMsgSort(false)}}
                   >
                     <IconContext.Provider value={{ className: 'addBtn' }}>
                       <MdAddCircle />

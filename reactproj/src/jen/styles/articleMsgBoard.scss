@@ -29,7 +29,8 @@
   .article-cmtBoxArea {
     width: 100%;
     /* min-height: 8.125rem; */
-    border-bottom: 1px solid #909393;
+    // border-bottom: 1px solid #909393;
+    border-bottom: 1px solid #333;
     .article-cmtInfo {
       width: 100%;
       /* height: 1.688rem; */
@@ -93,7 +94,8 @@
 .article-cmtSortOption {
   width: 100%;
   height: 4.5rem;
-  border-bottom: 1px solid #909393;
+  // border-bottom: 1px solid #909393;
+  border-bottom: 1px solid #333;
 }
 
 .article-cmtSortOption ul,
@@ -113,6 +115,25 @@
   font-style: normal;
 }
 
+.article-cmtSortOptionList {
+  .active {
+    background-color: #444c4e;
+    border-bottom: none; //去除active預設的藍底線
+  }
+  li {
+    border-radius: 38px;
+    line-height: 1.8;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem 0.5rem 1rem;
+  }
+  li:hover {
+    background-color: #444c4e;
+  }
+  span:hover {
+    cursor: pointer;
+  }
+}
+
 .article-userHeadIcon {
   width: 1.5rem;
   height: 1.5rem;
@@ -120,8 +141,14 @@
   left: 50%;
   background-size: contain;
   border-radius: 50%;
-  background-image: url(http://0.gravatar.com/avatar/fa4df8540bab3cb38f7dfa60c6e0522c?size=2000);
+  background-color: #444c4e;
+  // background-image: url(http://0.gravatar.com/avatar/fa4df8540bab3cb38f7dfa60c6e0522c?size=2000);
   /* background-image: url(/img/1-2.png); */
+  overflow: hidden;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 .article-cmtNickname {
@@ -170,7 +197,8 @@
 
 .article-cmtBoxReplyArea {
   /* height: 7.438rem; */
-  border-bottom: 1px solid #909393;
+  // border-bottom: 1px solid #909393;
+  border-bottom: 1px solid #333;
   .article-cmtInfo {
     padding-top: 0.938rem;
     padding-bottom: 0.938rem;

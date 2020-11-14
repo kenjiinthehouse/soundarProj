@@ -29,16 +29,22 @@
     .title {
       width: auto;
     }
-    p {
-      margin: 0.25rem;
+    .fz-select {
+      margin: 0.3rem;
+      width: 1rem;
+      height: 1rem;
       border-radius: 50%;
       text-align: center;
+      background-color: #f8f8f8;
     }
-    p:hover {
+    .fz-select:hover {
       cursor: pointer;
     }
-    p.active {
-      color: #707070;
+    .fz-select.active {
+      background-color: #707070;
+    }
+    .active {
+      border-bottom: none; //去除active設定的藍底線
     }
   }
 
@@ -88,7 +94,9 @@
     }
     // .article-page-previous:hover,
     // .article-page-next:hover {
-    //   color: #707070;
-    // }
+    //   a {
+    //     color: #707070;
+    //   }
+    //}
   }
 }

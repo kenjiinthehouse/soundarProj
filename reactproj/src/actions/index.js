@@ -69,9 +69,13 @@ export const getArticleDetailAsync = (sid) => {
 export const getArticleMsg = (payload) => {
   return { type: GET_ARTICLE_MSG, payload: payload };
 };
-export const getArticleMsgAsync = () => {
+//針對特定專欄取得對應留言
+export const getArticleMsgAsync = (sid,msgSort) => {
   return async function getArticleMsgFunc(dispatch) {
-    const url = 'http://localhost:5566/article/comment/index';
+    let query = '';
+    if (sid) query += `&sid=${sid}`;
+    if (msgSort) query += `&msgSort=${msgSort}` 
+    const url = `http://localhost:5566/article/comment/index/?${query}`;
     const request = new Request(url, {
       method: 'GET',
       headers: new Headers({
@@ -81,7 +85,7 @@ export const getArticleMsgAsync = () => {
     });
     const response = await fetch(request);
     const msgList = await response.json();
-    console.log('msgList',msgList)
+    // console.log('msgList',msgList)
     dispatch(getArticleMsg(msgList));
   };
 };
@@ -89,9 +93,12 @@ export const getArticleMsgAsync = () => {
 export const getArticleReply = (payload) => {
   return { type: GET_ARTICLE_REPLY, payload: payload };
 };
-export const getArticleReplyAsync = (sid) => {
+export const getArticleReplyAsync = (pid) => {
   return async function getArticleReplyFunc(dispatch) {
-    const url = `http://localhost:5566/article/comment/reply/${sid}`;
+    // let query = '';
+    // if (sid) query += `&sid=${sid}`;
+    // if (pid) query += `&pid=${pid}`;
+    const url = `http://localhost:5566/article/comment/reply/${pid}`;
     const request = new Request(url, {
       method: 'GET',
       headers: new Headers({
@@ -101,7 +108,7 @@ export const getArticleReplyAsync = (sid) => {
     });
     const response = await fetch(request);
     const replyList = await response.json();
-    console.log('parentId給多少:', replyList);
+    // console.log('parentId給多少:', replyList);
     dispatch(getArticleReply(replyList));
   };
 };

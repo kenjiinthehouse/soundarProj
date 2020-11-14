@@ -22,7 +22,12 @@
     text-decoration: none;
   }
   .carousel {
-    padding-top: 1rem; //留Navbar空隙
+    padding-top: 4rem; //留Navbar空隙
+    .carousel-inner {
+      .active {
+        border-bottom: none; //去除active設定的藍底線
+      }
+    }
     ol {
       justify-content: flex-start;
     }
@@ -84,6 +89,9 @@
             color: #444c4e;
             cursor: default;
           }
+        }
+        .active {
+          border-bottom: none; //去除active設定的藍底線
         }
       }
     }
