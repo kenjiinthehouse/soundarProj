@@ -71,31 +71,7 @@ const handleExpandEnter = () => {
            
             <Collapse in={isShown} timeout="auto" unmountOnExit>
                 
-                   <Button className="addCartBtn re-btn-color" onClick={(event)=>{
-                    let cart = []
-                    if(localStorage.getItem('cart'))
-                      cart = JSON.parse(localStorage.getItem('cart'))
-                    //id一樣的話只加count
-                    console.log(cart.map(item => item.sid))
-                    if(cart.map(item => item.sid).indexOf(products.id) > -1) {
-                      let index = cart.map(item => item.sid).indexOf(products.id)
-                      cart[index].count ++
-                    }
-                    else{
-                      let obj = {
-                        sid: products.id,
-                        name: '',
-                        spec: '',
-                        price: products.pd_price,
-                        count: '1',
-                        pic_url: ''
-                      }
-                      cart.push(obj)
-                    }
-                    localStorage.setItem('cart',JSON.stringify(cart))
-                    event.stopPropagation();
-                    event.preventDefault();
-                  }}>加入購物車車車車</Button>
+                   <Button className="addCartBtn re-btn-color" >加入購物車車車車</Button>
                 
                 
             </Collapse>
