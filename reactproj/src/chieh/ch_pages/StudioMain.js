@@ -14,6 +14,8 @@ import { Tabs, Tab } from 'react-bootstrap';
 
 function StudioMain(props) {
   const [studioData, setStudioData] = useState([]);
+  const [newStudio, setNewStudio] = useState([])
+
   async function getStudioFromServer() {
     const url = 'http://localhost:5566/studio/option/1';
     const request = new Request(url, {
@@ -25,6 +27,7 @@ function StudioMain(props) {
     });
     const response = await fetch(request);
     const data = await response.json();
+    setNewStudio(data)
     let arr = [];
     arr.push(data);
     console.log(arr);
@@ -44,7 +47,7 @@ function StudioMain(props) {
             <h3>NT$ {item[0].studio_price} </h3>
             <span>
               顧客評價
-              <Rater rating={4.5} total={5} interactive={false} />
+              <Rater rating={item[0].studio_review} total={5} interactive={false} />
               {item[0].studio_review}(25)
             </span>
             <div className="location-wrap mt-4">
@@ -66,7 +69,7 @@ function StudioMain(props) {
   );
 
   //圖片切換
-  class MyCarousel extends React.Component {
+  class ImgCarousel extends React.Component {
     constructor() {
       super();
       this.state = {
@@ -152,7 +155,7 @@ function StudioMain(props) {
         className="nav-pills-studio d-flex justify-content-between"
       >
         <Tab eventKey="option" title="方案">
-          <StudioOption studioData={studioData} setStudioData={setStudioData} />
+          <StudioOption newStudio={newStudio} setNewStudio={setNewStudio} />
         </Tab>
         <Tab eventKey="info" title="介紹">
           <StudioInfo />
@@ -170,8 +173,8 @@ function StudioMain(props) {
     <>
       {/* <Breadcrumb /> */}
       <div className="studio-main">
-        <div className="container d-flex">
-          <MyCarousel />
+        <div className="container d-flex studio-head">
+          <ImgCarousel />
           {introduction}
         </div>
         <ControlledTabs />

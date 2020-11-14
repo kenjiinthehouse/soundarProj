@@ -45,12 +45,13 @@ function ActivityMain(props) {
     
       return (
         <Tabs
-          id="controlled-tab-example"
+          id="controlled-tab-activity"
           activeKey={key}
           onSelect={(k) => setKey(k)}
           className="nav-pills d-flex justify-content-around"
+          style={{color:'#232d2f'}}
         >
-          <Tab eventKey="option" title="方案票價">
+          <Tab eventKey="option" title="方案票價" style={{color:'#232d2f'}}>
             <ActivityOption 
             activityData={activityData} setActivityData={setActivityData}
             newActivity={newActivity} setNewActivity={setNewActivity} 
@@ -105,7 +106,7 @@ function ActivityMain(props) {
                 </div>       
               </div>
 
-              <div className="container">
+              <div className="container activity-tab">
                 <ControlledTabs/>
               </div> 
             </>

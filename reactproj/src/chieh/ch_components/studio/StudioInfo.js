@@ -7,17 +7,19 @@ function StudioInfo(props) {
 
     return (
       <>      
-        <Card className="">
+        <Card>
           <Card.Img src="http://localhost:3000/ch_img/jumbotron04.jpg" alt="Card image" />
           <Card.ImgOverlay >
-            <div className="container" >
-              <Card.Title><h1 style={{color: '#f8f8f8'}}>LAZI Corner</h1></Card.Title>
-              <Card.Text>
-                <h5 className="mb-4 mt-5">全台北最懂 podcaster 的錄音室</h5>
-                <h5>這裡讓你的唇舌可以盡情發揮，優異的設備、很 Lazy 的空間，</h5>
-                <h5>此外更齊聚全台熱門 Podcast 節目主持人！</h5>
-                <h5>想加入 Podcast 這個大家庭，那麼這裡會是你的首選。</h5>
-              </Card.Text>
+            <div className="container">
+              <div className="info-img1">
+                <Card.Title><h3 style={{color: '#f8f8f8'}}>LAZI Corner</h3></Card.Title>
+                <Card.Text>
+                  <h6 className="mb-4 mt-3">全台北最懂 podcaster 的錄音室</h6>
+                  <h6>這裡讓你的唇舌可以盡情發揮，優異的設備、很 Lazy 的空間，</h6>
+                  <h6>此外更齊聚全台熱門 Podcast 節目主持人！</h6>
+                  <h6>想加入 Podcast 這個大家庭，那麼這裡會是你的首選。</h6>
+                </Card.Text>
+              </div>              
             </div>            
           </Card.ImgOverlay>
         </Card>
@@ -70,9 +72,9 @@ function StudioInfo(props) {
           <Card.Img src="http://localhost:3000/ch_img/jumbotron05.jpg" alt="Card image" />
           <Card.ImgOverlay>
           <div className="container">
-            <Card.Text>
-              <h5>裝潢很 Chill，環境很 Cozy，以後都要來這裡錄音了</h5>
-              <h5>- 寂寞拖延 節目主持人 Allen</h5>
+            <Card.Text className="info-img2">
+              <h6>裝潢很 Chill，環境很 Cozy，以後都要來這裡錄音了</h6>
+              <h6 className="pl-4">- 寂寞拖延 節目主持人 Allen</h6>
             </Card.Text>
             </div>
           </Card.ImgOverlay>
@@ -94,16 +96,18 @@ function StudioInfo(props) {
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0049657993086!2d121.5412041507614!3d25.03390554437016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abd379a5ec97%3A0xec12a62666a81e3d!2zMTA25Y-w5YyX5biC5aSn5a6J5Y2A5b6p6IiI5Y2X6Lev5LiA5q61Mzkw6Jmf!5e0!3m2!1szh-TW!2stw!4v1604138400418!5m2!1szh-TW!2stw" width="896" height="450" frameborder="0" style={{border:0}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         </div>
         
-        <Card className="">
+        <Card>
           <Card.Img src="http://localhost:3000/ch_img/jumbotron06.jpg" alt="Card image" />
           <Card.ImgOverlay>
-          <div className="container">
-            <Card.Title><h1 style={{color: '#f8f8f8'}}>一起 LAZI ?</h1></Card.Title>
-            <Card.Text className="mt-5">
-            <h5>想要成為podcast? 有錄音的需求?</h5>
-            <h5>一起成為錄音夥伴</h5>
-            <h5>我們的收費標準是每小時500元，趕快訂位吧。</h5>
-            </Card.Text>
+            <div className="container">
+              <div className="info-img3">
+                <Card.Title><h3 style={{color: '#f8f8f8'}}>一起 LAZI ?</h3></Card.Title>
+                <Card.Text className="mt-3">
+                <h6>想要成為podcast? 有錄音的需求?</h6>
+                <h6>一起成為錄音夥伴</h6>
+                <h6>我們的收費標準是每小時500元，趕快訂位吧。</h6>
+                </Card.Text>
+              </div>            
             </div>
           </Card.ImgOverlay>
         </Card>

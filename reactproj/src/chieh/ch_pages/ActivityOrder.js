@@ -36,22 +36,22 @@ function ActivityOrder(props){
       <>
         <div className="activity-order">
             <div className="list-title mx-auto">活動票券訂單查詢</div>            
-                  <Tabs
-                      id="controlled-tab-order"
-                      activeKey={key}
-                      onSelect={(k) => setKey(k)}
-                      className="nav-pills d-flex justify-content-around"            
-                  >
-                      <Tab eventKey="complete" title="已報名">
-                      {activityOrder.map((item)=>{
-                        return(
-                          <ActivityOrderContent key={item.id} activityOrder={item}/>
-                          )})}   
-                      </Tab>
-                      <Tab eventKey="unfinished" title="未完成"></Tab>
-                      <Tab eventKey="cancel" title="已取消"></Tab>
-                      <Tab eventKey="refund" title="退票紀錄"></Tab>
-                  </Tabs>                         
+            <Tabs
+                id="controlled-tab-order"
+                activeKey={key}
+                onSelect={(k) => setKey(k)}
+                className="nav-pills d-flex justify-content-around"            
+            >
+                <Tab eventKey="complete" title="已報名">
+                {activityOrder.map((item)=>{
+                  return(
+                    <ActivityOrderContent key={item.id} activityOrder={item}/>
+                    )})}   
+                </Tab>
+                <Tab eventKey="unfinished" title="未完成"></Tab>
+                <Tab eventKey="cancel" title="已取消"></Tab>
+                <Tab eventKey="refund" title="退票紀錄"></Tab>
+            </Tabs>                         
         </div>
       </>
     )
