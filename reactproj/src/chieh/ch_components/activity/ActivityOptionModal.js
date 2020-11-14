@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button, Modal, Form, Row, Col } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 //以下是samps小小改動(寄信功能)
 import { connect } from 'react-redux';
@@ -21,6 +21,7 @@ const sendmail = async function (account) {
   const data = await response.json();
   console.log('mes', data.message);
 };
+
 
 function ActivityOptionModal(props) {
   const {
@@ -50,127 +51,64 @@ function ActivityOptionModal(props) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        className="activity-modal"
       >
         <Modal.Header closeButton>
           <Modal.Title>確認報名項目</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            {activityData.map((item) => {
-              return (
-                <>
-                  <Form.Group
-                    as={Row}
-                    controlId="formPlaintextEmail"
-                    key={item}
-                  >
-                    <Form.Label column sm="2">
-                      活動名稱
-                    </Form.Label>
-                    <Col sm="10">
-                      <Form.Control
-                        plaintext
-                        readOnly
-                        defaultValue={item[0].activity_name}
-                      />
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row} controlId="formPlaintextPassword">
-                    <Form.Label column sm="2">
-                      活動日期
-                    </Form.Label>
-                    <Col sm="10">
-                      <Form.Control
-                        plaintext
-                        readOnly
-                        defaultValue={item[0].activity_date}
-                      />
-                    </Col>
-                  </Form.Group>
-                </>
-              );
-            })}
+          {activityData.map((item) => {
+            return (
+              <>
+                <div className="d-flex">
+                  <div>
+                    <ul>
+                      <li>活動名稱</li>
+                      <li>活動日期</li>
+                      <li>方案</li>
+                      <li>費用</li>
+                      <li>數量</li>
+                      <li>小計</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>{item[0].activity_name}</li>
+                      <li>{item[0].activity_date}</li>
+                      <li>{option}</li>
+                      <li>{ticket_price}</li>
+                      <li>{quantity}</li>
+                      <li>{total}</li>
+                    </ul>
+                  </div>
+                </div>                 
+              </>
+            );
+          })}
+        </Modal.Body>           
 
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
-                方案
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue={option} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
-                費用
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue={ticket_price} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
-                數量
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue={quantity} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
-                小計
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue={total} />
-              </Col>
-            </Form.Group>
-            <hr />
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
-                報名者姓名
-              </Form.Label>
-              <Col sm="10">
-                {/* samps */}
-                {/* <Form.Control plaintext readOnly defaultValue="michael" /> */}
-                <Form.Control
-                  plaintext
-                  readOnly
-                  defaultValue={props.member.nickname}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
-                報名者手機
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue="0977777555" />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
-                報名者E-mail
-              </Form.Label>
-              <Col sm="4">
-                {/* samps */}
-                {/* <Form.Control
-                  plaintext
-                  readOnly
-                  defaultValue="michael.sps168@gmail.com"
-                /> */}
-                <Form.Control
-                  plaintext
-                  readOnly
-                  defaultValue={props.member.account}
-                />
-              </Col>
-              <Col sm="6">
-                <Form.Text className="text-muted">
-                  轉帳通知及電子票券將寄至此信箱
-                </Form.Text>
-              </Col>
-            </Form.Group>
-          </Form>
+        <Modal.Header>
+          <Modal.Title>報名資料</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="d-flex">
+            <div>
+              <ul>
+                <li>姓名</li>
+                <li>手機</li>
+                <li>E-mail</li>
+              </ul>
+            </div>
+            <div>
+              <ul>
+                <li>{props.member.nickname}</li>
+                <li>0975379482</li>
+                <li>{props.member.account}<span>轉帳通知及電子票券將寄至此信箱</span></li>
+              </ul>
+            </div>
+          </div>
         </Modal.Body>
+        
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             取消

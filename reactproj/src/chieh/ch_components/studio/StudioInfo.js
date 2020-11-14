@@ -26,45 +26,52 @@ function StudioInfo(props) {
 
         <div className="container studio-info">
           <h3>我們的設備</h3>
-          <h5 style={{color: '#44494A'}}>不用調校，不用架，你人來就好。</h5>
+          <h5>不用調校，不用架，你人來就好。</h5>
           <div className="d-flex justify-content-between">
             <div className="card info-card">
-              <img src={"http://localhost:3000/ch_img/audient.jpg"} className="card-img-top" alt="" />
-              <div className="card-body">
-                <p className="card-text">Audient iD4 錄音介面</p>
-                <p className="card-text">2輸入/2輸出USB錄音介面
-                    Audient麥克風前級
-                    JFET DI樂器輸入
-                    零延遲監聽
-                    相容Windows、MacOs和iOS</p>
+              <div className="info-card-line">
+                 <img src={"http://localhost:3000/ch_img/audient.jpg"} alt=""/>
+              </div>             
+              <div className="card-body mx-auto">
+                <p className="card-text-title">Audient iD4 錄音介面</p>
+                <p className="card-text">2輸入/2輸出USB錄音介面</p>
+                <p className="card-text">Audient麥克風前級</p>
+                <p className="card-text">JFET DI樂器輸入</p>
+                <p className="card-text">零延遲監聽</p>
+                <p className="card-text">相容Windows、MacOs和iOS</p>
               </div>              
             </div>
             <div className="card info-card">
-              <img src={"http://localhost:3000/ch_img/microphone.jpg"} className="card-img-top" alt="" />
-              <div className="card-body">
-                <p className="card-text">MXL 990 電容麥克風</p>
-                <p className="card-text">心型大震模電容麥克風
-                  低噪聲FET前級放大器
-                  甜美的高頻與緊實的中低頻
-                  適合人聲與樂器收音</p>
+              <div className="info-card-line">
+                <img src={"http://localhost:3000/ch_img/microphone.jpg"} alt=""/>
+              </div>              
+              <div className="card-body mx-auto">
+                <p className="card-text-title">MXL 990 電容麥克風</p>
+                <p className="card-text">心型大震模電容麥克風</p>
+                <p className="card-text">低噪聲FET前級放大器</p>
+                <p className="card-text">甜美的高頻與緊實的中低頻</p>
+                <p className="card-text">適合人聲與樂器收音</p>
               </div>              
             </div>
             <div className="card info-card">
-              <img src={"http://localhost:3000/ch_img/headset.jpg"} className="card-img-top" alt="" />
-              <div className="card-body">
-                <p className="card-text">Superlux HD681 監聽耳機</p>
-                <p className="card-text">半開放式監聽耳機
-                  專業品質與高性價比
-                  德國網購平台熱銷第一
-                  真實原因還原
-                  驚人的細節解析度</p>
+              <div className="info-card-line">
+                <img src={"http://localhost:3000/ch_img/headset.jpg"} alt=""/>
+              </div>              
+              <div className="card-body mx-auto">
+                <p className="card-text-title">Superlux HD681 監聽耳機</p>
+                <p className="card-text">半開放式監聽耳機</p>
+                <p className="card-text">專業品質與高性價比</p>
+                <p className="card-text">德國網購平台熱銷第一</p>
+                <p className="card-text">真實原因還原</p>
+                <p className="card-text">驚人的細節解析度</p>
               </div>              
             </div>
           </div>
           <div className="d-flex felmenon justify-content-center">
             <div ><img src={"http://localhost:3000/ch_img/felmenon.png"} alt="" /></div>
-            <div className="d-flex align-items-center"><p>LAZI Corner 唯一採用 日本 Felmenon吸音板，<br/>
-            解決回音，提升美感。有多種款式以及顏色。</p></div>
+            <div className="d-flex align-items-center pl-3">
+              <p style={{color:'#44494A',fontSize:'1.25rem'}}>LAZI Corner 唯一採用 日本 Felmenon吸音板，<br/>解決回音，提升美感。有多種款式以及顏色。</p>
+            </div>
           </div>
         </div>
 
@@ -73,8 +80,8 @@ function StudioInfo(props) {
           <Card.ImgOverlay>
           <div className="container">
             <Card.Text className="info-img2">
-              <h6>裝潢很 Chill，環境很 Cozy，以後都要來這裡錄音了</h6>
-              <h6 className="pl-4">- 寂寞拖延 節目主持人 Allen</h6>
+              <p>裝潢很 Chill，環境很 Cozy，以後都要來這裡錄音了</p>
+              <p className="pl-4">- 寂寞拖延 節目主持人 Allen</p>
             </Card.Text>
             </div>
           </Card.ImgOverlay>

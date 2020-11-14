@@ -26,11 +26,11 @@ function ActivityMain(props) {
   
       const response = await fetch(request)
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       setNewActivity(data)
       let arr = []
       arr.push(data)
-      console.log(arr)
+      // console.log(arr)
       setActivityData(arr)
     } 
    

@@ -11,47 +11,47 @@ function ActivityOrderContent(props) {
 
     return (
         <>
-        <div className="order-number mt-2"><h6>訂單編號: {activityOrder.ticket_order_id}</h6></div>
-                <div className="order-info d-flex w-100">
-                            <div className="d-flex mr-3">
-                                <div className="order-info-title">
-                                    <ul className="list-unstyled">
-                                        <li>購買項目</li>
-                                        <li>訂購日期</li>
-                                        <li>訂單狀態</li>
-                                        <li>訂單金額</li>
-                                        <li>活動日期</li>
-                                    </ul>
-                                </div>
-                                <div className="order-info-content">
-                                    <ul className="list-unstyled">
-                                    <li>{activityOrder.activity_name}</li>
-                                        <li>{activityOrder.ticket_order_date.slice(0,10)}</li>
-                                        <li>{activityOrder.order_status}</li>
-                                        <li>NT${activityOrder.total_amount}</li>
-                                        <li>{activityOrder.activity_date}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="d-flex">
-                                <div className="order-info-title">
-                                    <ul className="list-unstyled">                                        
-                                        <li>{activityOrder.ticket_qrcode.length == 0 ? '' : '電子票券'}</li>
-                                    </ul>
-                                </div>
-                                <div className="">
-                                    <ul className="list-unstyled">                                        
-                                        <li><img src={activityOrder.ticket_qrcode} /></li>
-                                    </ul>
-                                </div>
-                            </div>
+            <div className="order-number mt-2"><h6>訂單編號: {activityOrder.ticket_order_id}</h6></div>
+            <div className="order-info d-flex w-100">
+                <div className="d-flex mr-3">
+                    <div className="order-info-title">
+                        <ul className="list-unstyled">
+                            <li>購買項目</li>
+                            <li>訂購日期</li>
+                            <li>訂單狀態</li>
+                            <li>訂單金額</li>
+                            <li>活動日期</li>
+                        </ul>
+                    </div>
+                    <div className="order-info-content">
+                        <ul className="list-unstyled">
+                        <li>{activityOrder.activity_name}</li>
+                            <li>{activityOrder.ticket_order_date.slice(0,10)}</li>
+                            <li>{activityOrder.order_status}</li>
+                            <li>NT${activityOrder.total_amount}</li>
+                            <li>{activityOrder.activity_date}</li>
+                        </ul>
+                    </div>
                 </div>
-                <div className="order-info d-flex flex-row-reverse">
-                    <button onClick={() => setOpen(!open)}
-                    aria-controls="open-order"
-                    aria-expanded={open}  
-                    className="btn-order">查看訂單細節</button>
-                  </div>     
+                <div className="d-flex">
+                    <div className="order-info-title">
+                        <ul className="list-unstyled">                                        
+                            <li>{activityOrder.ticket_qrcode.length == 0 ? '' : '電子票券'}</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul className="list-unstyled">                                        
+                            <li><img src={activityOrder.ticket_qrcode} /></li>
+                        </ul>
+                    </div>
+                </div>                            
+            </div>
+            <div className="check-detail d-flex flex-row-reverse">
+                <button onClick={() => setOpen(!open)}
+                aria-controls="open-order"
+                aria-expanded={open}  
+                className="btn-order">查看訂單細節</button>
+            </div>     
                 
                 <Collapse in={open}>
                   <div id="open-order">

@@ -38,7 +38,7 @@ function StudioOption(props) {
               <div className="option-action d-flex flex-wrap justify-content-between">           
                   <Accordion>                
                     <Card.Header className="d-flex flex-wrap justify-content-between">
-                      <span style={{fontSize : '2rem', fontWeight:'bold', fontFamily:'Roboto'}}>NT$ {item.studio_price}</span>
+                      <span style={{fontSize : '2rem', fontWeight:'bold', fontFamily:'Roboto', color:'#232D2F'}}>NT$ {item.studio_price}</span>
                       <Accordion.Toggle as={Button} eventKey="0" className="btn-select">
                         選擇
                       </Accordion.Toggle>

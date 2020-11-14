@@ -48,6 +48,7 @@
     font-size: 2.5rem;
     line-height: 1.5;
     margin: 0;
+    color: #232d2f;
   }
 
   h4 {
@@ -111,7 +112,8 @@
 
   //----------introduction------------//
   .studio-head {
-    padding: 48px 0;
+    padding: 3rem 0;
+    min-height: 540px;
   }
 
   .studio-introduction {
@@ -139,6 +141,7 @@
   .location-wrap {
     align-items: center;
     display: flex;
+    color: #44494a;
   }
 
   .studio-introduction > button {
@@ -223,16 +226,18 @@
   .option-content > li {
     font-size: 1rem;
     margin-bottom: 16px;
+    color: #44494a;
   }
 
   .option-content > h4 {
     font-weight: bold;
     margin-bottom: 16px;
+    color: #232d2f;
   }
 
   .counter > span {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.25rem;
+    color: #44494a;
   }
 
   .card {
@@ -255,10 +260,21 @@
     padding-top: 270px;
   }
 
-  .card-text > h5 {
-    font-size: 1.5rem;
-    line-height: 1.5;
+  .card-text {
+    font-size: 1rem;
+    line-height: 2;
     font-weight: normal;
+    color: #44494a;
+    margin-bottom: 0;
+  }
+
+  .card-text-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #232d2f;
+    margin-top: -37px;
+    background-color: #fff;
+    padding: 0 8px;
   }
 
   //-----------StudioInfo-----------//
@@ -266,13 +282,17 @@
     margin: 250px 0 0 130px;
     padding: 16px;
     width: 500px;
-    // background-color: rgba($color: #232d2f, $alpha: 0.2);
-    // box-shadow: 0 0 10px 10px rgba($color: #232d2f, $alpha: 0.2);
   }
 
   .info-img2 {
     margin: 200px 0 0 200px;
     padding: 16px;
+
+    p {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #f8f8f8;
+    }
   }
 
   .info-img3 {
@@ -282,10 +302,24 @@
 
   .studio-info {
     padding: 96px 0;
+
+    h5 {
+      font-size: 1.25rem;
+      color: rgba($color: #44494a, $alpha: 0.7);
+      margin: 8px 0 48px 0;
+      padding-left: 24px;
+    }
   }
 
   .studio-attention {
-    padding: 96px 0;
+    padding: 96px 100px 96px 0;
+
+    p,
+    li {
+      color: #44494a;
+      line-height: 3;
+      list-style-type: disc;
+    }
   }
 
   .felmenon > div > img {
@@ -297,6 +331,21 @@
   }
 
   .info-card {
-    padding: 32px 64px;
+    border: 1px solid rgba(144, 147, 147, 0.3);
+    border-radius: 5px;
+    width: 28%;
+
+    p {
+      text-align: center;
+    }
+  }
+  .info-card-line {
+    border-bottom: 1px solid rgba(144, 147, 147, 0.3);
+    padding: 32px;
+    text-align: center;
+
+    img {
+      width: 65%;
+    }
   }
 }

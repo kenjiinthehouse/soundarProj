@@ -45,7 +45,7 @@ function StudioMain(props) {
           <div className="studio-introduction" key={item}>
             <h2>{item[0].studio_name}</h2>
             <h3>NT$ {item[0].studio_price} </h3>
-            <span>
+            <span style={{color:'#44494A'}}>
               顧客評價
               <Rater rating={item[0].studio_review} total={5} interactive={false} />
               {item[0].studio_review}(25)
@@ -160,11 +160,7 @@ function StudioMain(props) {
         <Tab eventKey="info" title="介紹">
           <StudioInfo />
         </Tab>
-        <Tab eventKey="evaluation" title="評價">
-          <div>
-            <h1>評價</h1>
-          </div>
-        </Tab>
+        <Tab eventKey="evaluation" title="評價"></Tab>
       </Tabs>
     );
   }
@@ -173,9 +169,11 @@ function StudioMain(props) {
     <>
       {/* <Breadcrumb /> */}
       <div className="studio-main">
-        <div className="container d-flex studio-head">
-          <ImgCarousel />
-          {introduction}
+        <div className="container studio-head">
+          <div className="d-flex ">
+            <ImgCarousel />
+            {introduction}
+          </div>          
         </div>
         <ControlledTabs />
       </div>
