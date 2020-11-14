@@ -15,10 +15,22 @@ import PdPriceSlider from './PdPriceSlider'
 
 function PdSideBar2(props){
   // console.log('v',props.value)
-  const { value, pdIndex,setDetailCate,setMainCate,setSearch}= props
+  const { 
+    value,
+    pdIndex,
+    setDetailCate,
+    setMainCate,
+    setSearch,
+    setFrontPrice,
+    setBackPrice,
+    setPage,
+    setSort
+  }= props
   const [activeKey, setActiveKey] = useState('0')
   const [activeArrow, setActiveArrow] = useState(false)
+  const [rangeValue, setRangeValue] = useState([1000, 5000]);
   
+  //展開時Arrow轉向
   useEffect(()=>{
     if(activeArrow){
       document.querySelector('.reArrow').classList.add('turnArrow')
@@ -27,9 +39,7 @@ function PdSideBar2(props){
     }
   },[activeArrow])
   
-
-  
-
+  //選擇哪個大項目展開
   useEffect(()=>{
     switch (value){
       case 1:
@@ -51,7 +61,16 @@ function PdSideBar2(props){
     height: 22,
     background: '#000'
   };
-
+  
+  //搜尋設定值reset
+  const resetData = () => {
+    setDetailCate('');
+    setPage(1);
+    setSearch('');
+    setFrontPrice('');
+    setBackPrice('');
+    setSort('');
+  }
 
     return(
         <>
@@ -70,7 +89,7 @@ function PdSideBar2(props){
         variant="link" 
         eventKey="0" 
         className="rePaddingX0"
-        onClick={()=> {setMainCate(1);setDetailCate('');}}
+        onClick={()=> {setMainCate(1);resetData();}}
         >
         <h5>錄音設備</h5>
         </Accordion.Toggle>
@@ -109,7 +128,7 @@ function PdSideBar2(props){
     as={Button} 
     variant="link" 
     eventKey="1"
-    onClick={()=> {setMainCate(2);setDetailCate('');setSearch('')}}
+    onClick={()=> {setMainCate(2);resetData();}}
     >
      <h5>播客周邊</h5>
     </Accordion.Toggle>
@@ -184,7 +203,20 @@ function PdSideBar2(props){
     </div>
   </div>
   <p className="font-weight-bold">價格</p>
-  <PdPriceSlider/>
+  <PdPriceSlider
+    rangeValue={rangeValue}
+    setRangeValue={setRangeValue}
+  />
+  <div className="d-flex justify-content-center mt-4">
+    <button 
+    className="btn re-btn btn-rounded re-btn-border-color"
+    onClick={()=>{
+      setFrontPrice(rangeValue[0]);
+      setBackPrice(rangeValue[1]);
+      }}
+    >查看商品</button>
+  </div>
+  
 
 </Accordion>
 

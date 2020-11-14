@@ -79,9 +79,9 @@ function StudioContentItem(props){
       </div>
       </div>
      
-      <Collapse in={isShown} timeout="auto" unmountOnExit>                
+      {/* <Collapse in={isShown} timeout="auto" unmountOnExit>                
         <Button className="addCartBtn" onClick={()=>{props.history.push('/studiomain')}}>立即預訂</Button>                              
-      </Collapse>
+      </Collapse> */}
       </div>
     </Link>
 )

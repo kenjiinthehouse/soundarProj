@@ -12,6 +12,9 @@ $DarkOpacity60: rgba($Dark, 0.6);
 }
 
 @import '~bootstrap/scss/bootstrap.scss';
+.reBgWhite {
+  background-color: #fff;
+}
 
 .head2 {
   font-size: font(2);
@@ -44,8 +47,16 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .re-btn-color {
   background-color: #2690df !important;
 }
+.re-btn-border-color {
+  border: 1px solid #2690df !important;
+  color: #2690df;
+}
+.re-btn-border-color:hover {
+  background-color: #2690df;
+  color: #fff;
+}
 .btn-rounded {
-  border-radius: 40px;
+  border-radius: calc(3rem * 0.5);
   margin-right: 1.8rem;
 }
 .btn-vital {
@@ -58,9 +69,10 @@ $DarkOpacity60: rgba($Dark, 0.6);
   color: #fff;
 }
 .re-btn {
-  width: 12.5rem;
-  height: 3.75rem;
+  min-width: 10rem;
+  height: 3rem;
   font-size: font(1.25);
+  padding: 0 0.5rem;
 }
 
 .wrap {
@@ -218,10 +230,10 @@ input.reSearch:focus {
   display: none !important;
 }
 
-.pdCard {
-  max-width: 20rem;
-  padding: 0;
-}
+// .pdCard {
+//   max-width: 20rem;
+//   padding: 0;
+// }
 .pdCard:hover {
   text-decoration: none;
 }
@@ -230,15 +242,15 @@ input.reSearch:focus {
 // }
 .cardWrap {
   // min-height: 25rem;
-  box-shadow: 0px 1px 5px 2px #eee;
+  box-shadow: 0px 0px 5px 2px #eee;
   border-radius: 5px;
   margin: 0rem 0rem 3rem;
   padding: 1rem;
-  transition: all 0.8s ease-out;
+  transition: all 0.1s ease-out;
 }
 .cardWrap:hover {
   transform: translate(0.5px, 1px);
-  box-shadow: 1px 1px 8px 6px #eee;
+  box-shadow: 0px 1px 8px 5px #eee;
 }
 
 .cardBody {
@@ -351,6 +363,7 @@ input.reSearch:focus {
 .pdMainFieldLT {
   padding-top: 3rem;
 }
+
 // -- product top end --
 // -- ItemTabBar start --
 .ItemTabBar {

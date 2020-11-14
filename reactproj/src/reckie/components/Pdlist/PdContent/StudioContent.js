@@ -6,6 +6,9 @@ import { red } from '@material-ui/core/colors';
 
 import StudioContentItem from './StudioContentItem'
 import QueueAnim from 'rc-queue-anim';
+//re-排序
+import { Form } from 'react-bootstrap'
+import { MdFilterList } from "react-icons/md";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -72,11 +75,31 @@ function StudioContent(props) {
 
   return (
     <>
-    <QueueAnim className={`pdContent demo-content d-flex flex-wrap mx-auto ${(value===pdIndex)?'':'reHidden'}`}>    
+    <div className={`pdContentPart ${(value===pdIndex)?'':'reHidden'}`}>
+    <div className="d-flex justify-content-between align-items-end mb-3">
+    <h2 className="head2 dark font-weight-bold">優質錄音室<br/></h2>
+    <div className="d-flex align-items-baseline">
+      <MdFilterList className="mr-2" style={{fontSize:'1rem', lineHeight:'1.5rem'}} />
+      <Form>
+        <Form.Group controlId="exampleForm.SelectCustom">
+          <Form.Control as="select" custom>
+            <option selected="selected">排序</option>
+            <option value="priceDESC">價格由高到低</option>
+            <option value="priceASC">價格由低到高</option>
+            <option value="starsDESC">評價由高到低</option>
+            <option value="starsASC">評價由低到高</option>
+          </Form.Control>
+        </Form.Group>
+     </Form>
+    </div>
+     
+    </div>
+    <QueueAnim className={`demo-content row flex-wrap`}>    
         {studioData.map((item, index) => {          
           return <StudioContentItem key={item.id} studioData={item}/>       
         })}
      </QueueAnim>
+     </div>
     </>
   );
   
