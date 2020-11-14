@@ -4,15 +4,19 @@ import { connect } from 'react-redux';
 import {
   initalDashboardAsync,
   editChannelAsync,
+  createChannelAsync,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 import ChannelEdditImgModal from '../jay_components/ChannelEdditImgModal.js';
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import { css } from '@emotion/core';
 
 function PodcasterDashboardHome(props) {
   const { channel_data } = props;
   const [editTargrt, setEditTargrt] = useState('');
   const [editInputData, setEditInputData] = useState({});
   const [editImgModalShow, setEditImgModalShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const transTermToChinese = (cate_term) => {
     let tempCateTerm = cate_term.toLowerCase();
@@ -42,7 +46,7 @@ function PodcasterDashboardHome(props) {
         return '娛樂';
         break;
       default:
-        return '無此';
+        return '無';
     }
   };
 
@@ -70,616 +74,697 @@ function PodcasterDashboardHome(props) {
     setEditInputData(...channel_data);
   }, [channel_data]);
 
-  return (
-    <>
-      {props.channel_data.map((item, index) => {
-        return (
-          <div key={index}>
-            <div className="row justify-content-center">
-              <div className="jay-podcastImgArea my-3">
-                <img
-                  src={
-                    item.podcaster_img.indexOf('http') !== -1
-                      ? item.podcaster_img
-                      : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
-                  }
-                  alt=""
-                />
-              </div>
-              <div className="col-12 text-center">
-                <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() => {
-                    setEditImgModalShow(true);
-                  }}
-                >
-                  更換封面
-                </button>
-              </div>
-            </div>
-            <hr className="jay-dashboard-hr" />
-            <div className="row justify-content-center custom-table-width">
-              <table className="table col-10 jay-table">
-                <tbody>
-                  <tr>
-                    <th scope="row">頻道編號</th>
-                    <td>{item.podcaster_id}</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">頻道名稱</th>
-                    {editTargrt === 'edit_channel_title' ? (
-                      <>
-                        <td>
-                          <input
-                            className="form-control"
-                            value={editInputData.channel_title}
-                            onChange={(event) => {
-                              let copyData = { ...editInputData };
-                              copyData.channel_title = event.target.value;
-                              setEditInputData(copyData);
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <a
-                            className=" text-info"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              handleSubmit();
-                            }}
-                          >
-                            確認
-                          </a>
-                          <br />
-                          <br />
-                          <a
-                            className=" text-danger"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              let copyData = { ...editInputData };
-                              copyData.channel_title = item.channel_title;
-                              setEditInputData(copyData);
-                            }}
-                          >
-                            取消
-                          </a>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>{item.channel_title}</td>
-                        <td>
-                          <a
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('edit_channel_title');
-                            }}
-                          >
-                            編輯
-                          </a>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                  <tr>
-                    <th scope="row">簡介</th>
-                    {editTargrt === 'edit_channel_summary' ? (
-                      <>
-                        <td>
-                          <textarea
-                            className="form-control"
-                            value={editInputData.channel_summary}
-                            onChange={(event) => {
-                              let copyData = { ...editInputData };
-                              copyData.channel_summary = event.target.value;
-                              setEditInputData(copyData);
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <a
-                            className=" text-info"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              handleSubmit();
-                            }}
-                          >
-                            確認
-                          </a>
-                          <br />
-                          <br />
-                          <a
-                            className=" text-danger"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              let copyData = { ...editInputData };
-                              copyData.channel_summary = item.channel_summary;
-                              setEditInputData(copyData);
-                            }}
-                          >
-                            取消
-                          </a>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>{item.channel_summary}</td>
-                        <td>
-                          <a
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('edit_channel_summary');
-                            }}
-                          >
-                            編輯
-                          </a>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                  <tr>
-                    <th scope="row">詳細內容</th>
-                    {editTargrt === 'edit_podcaster_description' ? (
-                      <>
-                        <td>
-                          <textarea
-                            className="form-control"
-                            value={editInputData.podcaster_description}
-                            onChange={(event) => {
-                              let copyData = { ...editInputData };
-                              copyData.podcaster_description =
-                                event.target.value;
-                              setEditInputData(copyData);
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <a
-                            className=" text-info"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              handleSubmit();
-                            }}
-                          >
-                            確認
-                          </a>
-                          <br />
-                          <br />
-                          <a
-                            className=" text-danger"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              let copyData = { ...editInputData };
-                              copyData.podcaster_description =
-                                item.podcaster_description;
-                              setEditInputData(copyData);
-                            }}
-                          >
-                            取消
-                          </a>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>{item.podcaster_description}</td>
-                        <td>
-                          <a
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('edit_podcaster_description');
-                            }}
-                          >
-                            編輯
-                          </a>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                  <tr>
-                    <th scope="row">頻道類別</th>
-                    {editTargrt === 'edit_channel_catagory' ? (
-                      <>
-                        <td className=" d-flex justify-content-around h-100">
-                          <div className="form-check">
-                            <input
-                              className="form-check-input mr-3"
-                              type="radio"
-                              name="channel_catagory"
-                              id="News"
-                              value="News"
-                              checked={
-                                editInputData.channel_catagory === 'News'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label mr-3"
-                              htmlFor="News"
-                            >
-                              新聞
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="channel_catagory"
-                              value="Technology"
-                              id="Technology"
-                              checked={
-                                editInputData.channel_catagory === 'Technology'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="Technology"
-                            >
-                              科技
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="channel_catagory"
-                              value="Sports"
-                              id="Sports"
-                              checked={
-                                editInputData.channel_catagory === 'Sports'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="Sports"
-                            >
-                              運動
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="channel_catagory"
-                              value="Entertainment"
-                              id="Entertainment"
-                              checked={
-                                editInputData.channel_catagory ===
-                                'Entertainment'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="Entertainment"
-                            >
-                              娛樂
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="channel_catagory"
-                              value="Society"
-                              id="Society"
-                              checked={
-                                editInputData.channel_catagory === 'Society'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="Society"
-                            >
-                              故事
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="channel_catagory"
-                              value="Business"
-                              id="Business"
-                              checked={
-                                editInputData.channel_catagory === 'Business'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="Business"
-                            >
-                              商業
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="channel_catagory"
-                              value="Education"
-                              id="Education"
-                              checked={
-                                editInputData.channel_catagory === 'Education'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="Education"
-                            >
-                              教育
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="channel_catagory"
-                              value="Health"
-                              id="Health"
-                              checked={
-                                editInputData.channel_catagory === 'Health'
-                                  ? true
-                                  : false
-                              }
-                              onChange={(event) => {
-                                let copyData = { ...editInputData };
-                                copyData.channel_catagory = event.target.value;
-                                setEditInputData(copyData);
-                              }}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="Health"
-                            >
-                              健康
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a
-                            className=" text-info"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              handleSubmit();
-                            }}
-                          >
-                            確認
-                          </a>
-                          <br />
-                          <br />
-                          <a
-                            className=" text-danger"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              let copyData = { ...editInputData };
-                              copyData.channel_catagory = item.channel_catagory;
-                              setEditInputData(copyData);
-                            }}
-                          >
-                            取消
-                          </a>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>{transTermToChinese(item.channel_catagory)}</td>
-                        <td>
-                          <a
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('edit_channel_catagory');
-                            }}
-                          >
-                            編輯
-                          </a>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                  <tr>
-                    <th scope="row">RSS連結</th>
-                    {editTargrt === 'edit_channel_rss_link' ? (
-                      <>
-                        <td>
-                          <textarea
-                            className="form-control"
-                            value={editInputData.channel_rss_link}
-                            onChange={(event) => {
-                              let copyData = { ...editInputData };
-                              copyData.channel_rss_link = event.target.value;
-                              setEditInputData(copyData);
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <a
-                            className=" text-info"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              handleSubmit();
-                            }}
-                          >
-                            確認
-                          </a>
-                          <br />
-                          <br />
-                          <a
-                            className=" text-danger"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              let copyData = { ...editInputData };
-                              copyData.channel_rss_link = item.channel_rss_link;
-                              setEditInputData(copyData);
-                            }}
-                          >
-                            取消
-                          </a>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>{item.channel_rss_link}</td>
-                        <td>
-                          <a
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('edit_channel_rss_link');
-                            }}
-                          >
-                            編輯
-                          </a>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                  <tr>
-                    <th scope="row">聯絡信箱</th>
-                    {editTargrt === 'edit_owner_email' ? (
-                      <>
-                        <td>
-                          <textarea
-                            className="form-control"
-                            value={editInputData.owner_email}
-                            onChange={(event) => {
-                              let copyData = { ...editInputData };
-                              copyData.owner_email = event.target.value;
-                              setEditInputData(copyData);
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <a
-                            className=" text-info"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              handleSubmit();
-                            }}
-                          >
-                            確認
-                          </a>
-                          <br />
-                          <br />
-                          <a
-                            className=" text-danger"
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('');
-                              let copyData = { ...editInputData };
-                              copyData.owner_email = item.owner_email;
-                              setEditInputData(copyData);
-                            }}
-                          >
-                            取消
-                          </a>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>{item.owner_email}</td>
-                        <td>
-                          <a
-                            href="javascript"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setEditTargrt('edit_owner_email');
-                            }}
-                          >
-                            編輯
-                          </a>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        );
-      })}
-      <ChannelEdditImgModal
-        show={editImgModalShow}
-        onHide={() => setEditImgModalShow(false)}
-        editInputData={editInputData}
-        setEditInputData={setEditInputData}
+  const loader_css = css`
+    display: inline-block;
+  `;
+
+  const displaySpinner = (
+    <div className="jay-spinnerArea">
+      <ScaleLoader
+        css={loader_css}
+        color={'#4A90E2'}
+        height={80}
+        width={10}
+        margin={6}
+        radius={20}
       />
+    </div>
+  );
+
+  const displayDashboard = (
+    <>
+      {channel_data.map((item, index) => {
+        if (channel_data && channel_data[0]) {
+          return (
+            <div key={index}>
+              <div className="row justify-content-center">
+                <div className="jay-podcastImgArea my-3">
+                  {item.podcaster_img ? (
+                    <img
+                      src={
+                        item.podcaster_img.indexOf('http') !== -1
+                          ? item.podcaster_img
+                          : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
+                      }
+                      alt=""
+                    />
+                  ) : (
+                      <img
+                        src={`http://localhost:3000/ppicture/profile_picture.png`}
+                        alt=""
+                      />
+                    )}
+                </div>
+                <div className="col-12 text-center">
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => {
+                      setEditImgModalShow(true);
+                    }}
+                  >
+                    更換封面
+                  </button>
+                </div>
+              </div>
+              <hr className="jay-dashboard-hr" />
+              <div className="row justify-content-center custom-table-width">
+                <table className="table col-10 jay-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">頻道編號</th>
+                      <td>{item.podcaster_id}</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">頻道名稱</th>
+                      {editTargrt === 'edit_channel_title' ? (
+                        <>
+                          <td>
+                            <input
+                              className="form-control"
+                              value={
+                                editInputData.channel_title
+                                  ? editInputData.channel_title
+                                  : ''
+                              }
+                              onChange={(event) => {
+                                let copyData = { ...editInputData };
+                                copyData.channel_title = event.target.value;
+                                setEditInputData(copyData);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <a
+                              className=" text-info"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                handleSubmit();
+                              }}
+                            >
+                              確認
+                            </a>
+                            <br />
+                            <br />
+                            <a
+                              className=" text-danger"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                let copyData = { ...editInputData };
+                                copyData.channel_title = item.channel_title;
+                                setEditInputData(copyData);
+                              }}
+                            >
+                              取消
+                            </a>
+                          </td>
+                        </>
+                      ) : (
+                          <>
+                            <td>{item.channel_title}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_title');
+                                }}
+                              >
+                                編輯
+                            </a>
+                            </td>
+                          </>
+                        )}
+                    </tr>
+                    <tr>
+                      <th scope="row">簡介</th>
+                      {editTargrt === 'edit_channel_summary' ? (
+                        <>
+                          <td>
+                            <textarea
+                              className="form-control"
+                              value={
+                                editInputData.channel_summary
+                                  ? editInputData.channel_summary
+                                  : ''
+                              }
+                              onChange={(event) => {
+                                let copyData = { ...editInputData };
+                                copyData.channel_summary = event.target.value;
+                                setEditInputData(copyData);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <a
+                              className=" text-info"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                handleSubmit();
+                              }}
+                            >
+                              確認
+                            </a>
+                            <br />
+                            <br />
+                            <a
+                              className=" text-danger"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                let copyData = { ...editInputData };
+                                copyData.channel_summary = item.channel_summary;
+                                setEditInputData(copyData);
+                              }}
+                            >
+                              取消
+                            </a>
+                          </td>
+                        </>
+                      ) : (
+                          <>
+                            <td>{item.channel_summary}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_summary');
+                                }}
+                              >
+                                編輯
+                            </a>
+                            </td>
+                          </>
+                        )}
+                    </tr>
+                    <tr>
+                      <th scope="row">詳細內容</th>
+                      {editTargrt === 'edit_podcaster_description' ? (
+                        <>
+                          <td>
+                            <textarea
+                              className="form-control"
+                              value={
+                                editInputData.podcaster_description
+                                  ? editInputData.podcaster_description
+                                  : ''
+                              }
+                              onChange={(event) => {
+                                let copyData = { ...editInputData };
+                                copyData.podcaster_description =
+                                  event.target.value;
+                                setEditInputData(copyData);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <a
+                              className=" text-info"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                handleSubmit();
+                              }}
+                            >
+                              確認
+                            </a>
+                            <br />
+                            <br />
+                            <a
+                              className=" text-danger"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                let copyData = { ...editInputData };
+                                copyData.podcaster_description =
+                                  item.podcaster_description;
+                                setEditInputData(copyData);
+                              }}
+                            >
+                              取消
+                            </a>
+                          </td>
+                        </>
+                      ) : (
+                          <>
+                            <td>{item.podcaster_description}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_podcaster_description');
+                                }}
+                              >
+                                編輯
+                            </a>
+                            </td>
+                          </>
+                        )}
+                    </tr>
+                    <tr>
+                      <th scope="row">頻道類別</th>
+                      {editTargrt === 'edit_channel_catagory' ? (
+                        <>
+                          <td className=" d-flex justify-content-around h-100">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input mr-3"
+                                type="radio"
+                                name="channel_catagory"
+                                id="News"
+                                value="News"
+                                checked={
+                                  editInputData.channel_catagory === 'News'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label mr-3"
+                                htmlFor="News"
+                              >
+                                新聞
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="channel_catagory"
+                                value="Technology"
+                                id="Technology"
+                                checked={
+                                  editInputData.channel_catagory ===
+                                    'Technology'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="Technology"
+                              >
+                                科技
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="channel_catagory"
+                                value="Sports"
+                                id="Sports"
+                                checked={
+                                  editInputData.channel_catagory === 'Sports'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="Sports"
+                              >
+                                運動
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="channel_catagory"
+                                value="Entertainment"
+                                id="Entertainment"
+                                checked={
+                                  editInputData.channel_catagory ===
+                                    'Entertainment'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="Entertainment"
+                              >
+                                娛樂
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="channel_catagory"
+                                value="Society"
+                                id="Society"
+                                checked={
+                                  editInputData.channel_catagory === 'Society'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="Society"
+                              >
+                                故事
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="channel_catagory"
+                                value="Business"
+                                id="Business"
+                                checked={
+                                  editInputData.channel_catagory === 'Business'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="Business"
+                              >
+                                商業
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="channel_catagory"
+                                value="Education"
+                                id="Education"
+                                checked={
+                                  editInputData.channel_catagory === 'Education'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="Education"
+                              >
+                                教育
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="channel_catagory"
+                                value="Health"
+                                id="Health"
+                                checked={
+                                  editInputData.channel_catagory === 'Health'
+                                    ? true
+                                    : false
+                                }
+                                onChange={(event) => {
+                                  let copyData = { ...editInputData };
+                                  copyData.channel_catagory =
+                                    event.target.value;
+                                  setEditInputData(copyData);
+                                }}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="Health"
+                              >
+                                健康
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <a
+                              className=" text-info"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                handleSubmit();
+                              }}
+                            >
+                              確認
+                            </a>
+                            <br />
+                            <br />
+                            <a
+                              className=" text-danger"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                let copyData = { ...editInputData };
+                                copyData.channel_catagory =
+                                  item.channel_catagory;
+                                setEditInputData(copyData);
+                              }}
+                            >
+                              取消
+                            </a>
+                          </td>
+                        </>
+                      ) : (
+                          <>
+                            <td>
+                              {transTermToChinese(
+                                item.channel_catagory ? item.channel_catagory : ''
+                              )}
+                            </td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_catagory');
+                                }}
+                              >
+                                編輯
+                            </a>
+                            </td>
+                          </>
+                        )}
+                    </tr>
+                    <tr>
+                      <th scope="row">RSS連結</th>
+                      {editTargrt === 'edit_channel_rss_link' ? (
+                        <>
+                          <td>
+                            <textarea
+                              className="form-control"
+                              value={
+                                editInputData.channel_rss_link
+                                  ? editInputData.channel_rss_link
+                                  : ''
+                              }
+                              onChange={(event) => {
+                                let copyData = { ...editInputData };
+                                copyData.channel_rss_link = event.target.value;
+                                setEditInputData(copyData);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <a
+                              className=" text-info"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                handleSubmit();
+                              }}
+                            >
+                              確認
+                            </a>
+                            <br />
+                            <br />
+                            <a
+                              className=" text-danger"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                let copyData = { ...editInputData };
+                                copyData.channel_rss_link =
+                                  item.channel_rss_link;
+                                setEditInputData(copyData);
+                              }}
+                            >
+                              取消
+                            </a>
+                          </td>
+                        </>
+                      ) : (
+                          <>
+                            <td>{item.channel_rss_link}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_rss_link');
+                                }}
+                              >
+                                編輯
+                            </a>
+                            </td>
+                          </>
+                        )}
+                    </tr>
+                    <tr>
+                      <th scope="row">聯絡信箱</th>
+                      {editTargrt === 'edit_owner_email' ? (
+                        <>
+                          <td>
+                            <textarea
+                              className="form-control"
+                              value={
+                                editInputData.owner_email
+                                  ? editInputData.owner_email
+                                  : ''
+                              }
+                              onChange={(event) => {
+                                let copyData = { ...editInputData };
+                                copyData.owner_email = event.target.value;
+                                setEditInputData(copyData);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <a
+                              className=" text-info"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                handleSubmit();
+                              }}
+                            >
+                              確認
+                            </a>
+                            <br />
+                            <br />
+                            <a
+                              className=" text-danger"
+                              href="javascript"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setEditTargrt('');
+                                let copyData = { ...editInputData };
+                                copyData.owner_email = item.owner_email;
+                                setEditInputData(copyData);
+                              }}
+                            >
+                              取消
+                            </a>
+                          </td>
+                        </>
+                      ) : (
+                          <>
+                            <td>{item.owner_email}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_owner_email');
+                                }}
+                              >
+                                編輯
+                            </a>
+                            </td>
+                          </>
+                        )}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ChannelEdditImgModal
+                {...props}
+                show={editImgModalShow}
+                onHide={() => setEditImgModalShow(false)}
+                editInputData={editInputData}
+                setEditInputData={setEditInputData}
+                setIsLoading={setIsLoading}
+              />
+            </div>
+          );
+        } else {
+          return (
+            <div className=" text-center d-flex flex-column align-items-center mt-5">
+              <h3>尚未創建頻道</h3>
+              <button
+                type="button"
+                className="btn btn-info my-5 d-block w-25"
+                onClick={async () => {
+                  await props.createChannelAsync(props.member.sid);
+                  await props.initalDashboardAsync(props.member.sid);
+                }}
+              >
+                申請開通
+              </button>
+            </div>
+          );
+        }
+      })}
     </>
   );
+
+  return isLoading ? displaySpinner : displayDashboard ;
 }
 
 const mapStateToProps = (store) => {
@@ -692,7 +777,9 @@ const mapStateToProps = (store) => {
 // 綁定部份action creators
 // 注意：第二個傳入參數` { addValue, minusValue, addValueAsync }`是個物件值
 export default withRouter(
-  connect(mapStateToProps, { initalDashboardAsync, editChannelAsync })(
-    PodcasterDashboardHome
-  )
+  connect(mapStateToProps, {
+    initalDashboardAsync,
+    editChannelAsync,
+    createChannelAsync,
+  })(PodcasterDashboardHome)
 );

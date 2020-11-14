@@ -5,7 +5,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //components
-
 import ScrollToTop from './jay/jay_components/ScrollToTop.js';
 import MainContent from './jay/jay_components/MainContent.js';
 import { Layout } from 'antd';
@@ -20,11 +19,8 @@ import IndexShop from './kenji/components/IndexShop';
 import ArticleCarousel from './kenji/components/ArticleCarousel';
 import MyFooter from './kenji/components/MyFooter';
 
-
 //pages
-import PodcasterDashboardHome from './jay/jay_pages/PodcasterDashboardHome';
 import AudioPlayer from './jay/jay_components/AudioPlayer.js';
-import PodcasterAudioList from './jay/jay_pages/PodcasterAudioList.js';
 import ExploreHomePage from './jay/jay_pages/ExploreHomePage.js';
 import ExploreCateChannelPage from './jay/jay_pages/ExploreCateChannelPage.js';
 import ChannelPage from './jay/jay_pages/ChannelPage.js';
@@ -33,7 +29,8 @@ import ArticleHome from './jen/pages/ArticleHome';
 import ArticlePage from './jen/pages/ArticlePage';
 import Cart from './ruby/ruby_pages/CartPage.js';
 import Checkout from './ruby/ruby_pages/CheckoutPage.js';
-import Orderlist from './ruby/ruby_pages/OrderPage.js';
+import Orderlist from './ruby/ruby_components/OrderPage.js';
+import Coupon from './ruby/ruby_components/CouponPage.js';
 import ActivityMain from './chieh/ch_pages/ActivityMain';
 // import ActivityCart from './chieh/ch_pages/ActivityCart';
 import ActivityOrder from './chieh/ch_pages/ActivityOrder';
@@ -50,7 +47,6 @@ import ProductMainPage from './reckie/pages/ProductMainPage';
 import ProductItemPage from './reckie/pages/ProductItemPage';
 import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
-
 
 function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
@@ -142,6 +138,9 @@ function App() {
               <Route path="/orderlist">
                 <Orderlist />
               </Route>
+              <Route path="/coupon">
+              <Coupon />
+              </Route>
               <Route path="/activitymain">
                 <ActivityMain />
               </Route>
@@ -173,6 +172,11 @@ function App() {
                 <Membersidebar
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
+<<<<<<< HEAD
+=======
+                  playingAudio={playingAudio}
+                  setPlayingAudio={setPlayingAudio}
+>>>>>>> dc7370ab8cfd52c25c00b7a9c8232c29ae008520
                 />
               </Route>
               <Route path="/audiocollect">

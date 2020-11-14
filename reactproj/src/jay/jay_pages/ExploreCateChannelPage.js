@@ -174,16 +174,6 @@ function ExploreCateChannelPage(props) {
                     <p>頻道</p>
                   </a>
                 </div>
-                <div className="px-3 py-2 jay-hot-list-toggle-btn">
-                  <a
-                    href="javascript"
-                    onClick={(event) => {
-                      event.preventDefault();
-                    }}
-                  >
-                    <p>單集</p>
-                  </a>
-                </div>
               </div>
               <div className=" jay-hot-list-cate-channel">
                 {props.cate_channels.map((item, index) => {
@@ -193,7 +183,7 @@ function ExploreCateChannelPage(props) {
                   return (
                     <div key={index} style={styles.fadeIn01}>
                       <a
-                        className=" d-block w-100 jay-hot-list-cate-channel-btn pt-3 pb-2 mh14 px-3"
+                        className=" d-block w-100 jay-hot-list-cate-channel-btn pt-3 pb-2 mh14"
                         href="javascript"
                         onClick={(event) => {
                           event.preventDefault();
@@ -207,25 +197,27 @@ function ExploreCateChannelPage(props) {
                           setHoverChannel(index);
                         }}
                       >
-                        <div className="jay-border-line d-flex pb-2">
-                          <div className="jay-hot-list-cate-channel-rank d-flex align-items-center">
-                            <h4>{index + 1}</h4>
-                          </div>
-                          <div className="jay-hot-list-cate-channel-pic mx-3">
-                            <img
-                              src={
-                                item.podcaster_img.indexOf('http') !== -1
-                                  ? item.podcaster_img
-                                  : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
-                              }
-                              alt=""
-                            />
-                          </div>
-                          <div className="jay-hot-list-cate-channel-info">
-                            <h6>{item.channel_title}</h6>
-                            <span>
-                              評分：{(+item.channel_rating).toFixed(1)}
-                            </span>
+                        <div className="jay-border-line pb-2 container-fluid">
+                          <div className=" row no-gutters d-flex">
+                            <div className="jay-hot-list-cate-channel-rank d-flex align-items-center col-1">
+                              <h4>{index + 1}</h4>
+                            </div>
+                            <div className="jay-hot-list-cate-channel-pic mx-3 col-3">
+                              <img
+                                src={
+                                  item.podcaster_img.indexOf('http') !== -1
+                                    ? item.podcaster_img
+                                    : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
+                                }
+                                alt=""
+                              />
+                            </div>
+                            <div className="jay-hot-list-cate-channel-info col-5">
+                              <h6>{item.channel_title}</h6>
+                              <span>
+                                評分：{(+item.channel_rating).toFixed(1)}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </a>
@@ -238,7 +230,7 @@ function ExploreCateChannelPage(props) {
               {props.cate_channels.map((item, index) => {
                 if (index === hoverChannel) {
                   return (
-                    <div className=" d-flex">
+                    <div className=" d-flex jay-svg-animation">
                       <div className="jay-svg-area col-6 position-relative">
                         <div className="jay-svg-img-area position-absolute">
                           <img
@@ -351,7 +343,7 @@ function ExploreCateChannelPage(props) {
                 {props.cate_channels.map((item, index) => {
                   return (
                     <div
-                      className="col-6 col-md-3 cate-all-channel"
+                      className="col-6 col-lg-3 col-md-4 cate-all-channel"
                       key={index}
                       style={styles.fadeIn02}
                     >
@@ -388,6 +380,7 @@ function ExploreCateChannelPage(props) {
       <InformLoginModal
         show={showInformLoginModal}
         onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
       />
     </StyleRoot>
   );

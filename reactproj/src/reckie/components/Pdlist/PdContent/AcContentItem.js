@@ -73,16 +73,16 @@ function AcContentItem(props){
       <div className="cardBody-activity">
       <div variant="body2">
           <h6>{activityData.activity_date.slice(0,11)}</h6>
-          <h4>{activityData.activity_name}</h4>
+          <h4 className="twoLine">{activityData.activity_name}</h4>
         </div>
       <div variant="body2">
           <h4 className="pdPrice">{activityData.ticket_price == 0 ? '免費' : '$'+activityData.ticket_price}</h4>
       </div>
       </div>
      
-      <Collapse in={isShown} timeout="auto" unmountOnExit>                
+      {/* <Collapse in={isShown} timeout="auto" unmountOnExit>                
         <Button className="addCartBtn" onClick={()=>{props.history.push('/activitymain')}}>立即購票</Button>                              
-      </Collapse>
+      </Collapse> */}
       </div>
     </Link>
 )

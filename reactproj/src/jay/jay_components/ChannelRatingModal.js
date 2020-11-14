@@ -8,6 +8,7 @@ import {
   initalRateModalAsync,
   updateRateScore,
   calculateScore,
+  initalDashboardAsync,
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ import { Rate } from 'antd';
 
 function ChannelRatingModal(props) {
   const { podcaster_id } = useParams();
-  const { setIsLoading, show } = props;
+  const { setIsLoading } = props;
   const [rateValue, setRateValue] = useState(0);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ function ChannelRatingModal(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (props.member && props.member.sid) {
+      setIsLoading(true);
       const formData = new FormData();
       formData.append('podcaster_id', podcaster_id);
       formData.append('reviewer_id', props.member.sid);
@@ -39,12 +41,15 @@ function ChannelRatingModal(props) {
         await props.updateRateScore(formData);
         await props.initalRateModalAsync(props.member.sid, podcaster_id);
         await props.calculateScore();
+        await props.initalDashboardAsync(podcaster_id);
       } else {
         await props.submitRateScore(formData);
         await props.initalRateModalAsync(props.member.sid, podcaster_id);
         await props.calculateScore();
+        await props.initalDashboardAsync(podcaster_id);
       }
       props.onHide();
+      setTimeout(() => { setIsLoading(false) }, 500);
     } else {
       props.onHide();
     }
@@ -62,26 +67,22 @@ function ChannelRatingModal(props) {
           <Modal.Title id="contained-modal-title-vcenter">
             對&nbsp;
             {props.channel_data.map((item) => {
-              return item.channel_title;
-            })}
+            return item.channel_title;
+          })}
             &nbsp;&nbsp;的評分
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: '5rem' }}>
           <div className=" text-center">
-            {props.member && props.member.sid ? (
-              <Rate
-                style={{ fontSize: '1.5rem', filter: 'brightness(0.95)' }}
-                defaultValue={
-                  props.rating_state[0] ? props.rating_state[0].score : 0
-                }
-                onChange={(value) => {
-                  setRateValue(value);
-                }}
-              />
-            ) : (
-              <h5>請先登入會員！</h5>
-            )}
+            <Rate
+              style={{ fontSize: '1.5rem', filter: 'brightness(0.95)' }}
+              defaultValue={
+                props.rating_state[0] ? props.rating_state[0].score : 0
+              }
+              onChange={(value) => {
+                setRateValue(value);
+              }}
+            />
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -120,5 +121,6 @@ export default withRouter(
     initalRateModalAsync,
     updateRateScore,
     calculateScore,
+    initalDashboardAsync,
   })(ChannelRatingModal)
 );

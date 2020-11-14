@@ -28,6 +28,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { initMemberAsync, logOutAsync } from '../../actions/index';
 
+//jay改動
+import InformLoginModal from './../../jay/jay_components/InformLoginModal';
+
+
 // ant-design Layout
 const { Header } = Layout;
 // 購物車徽章
@@ -55,6 +59,10 @@ function MyNavbar(props) {
   const anchorRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+
+  //jay
+  const [showInformLoginModal, setShowInformLoginModal] = useState(false);
+
   //samps
 
   useEffect(() => {
@@ -103,14 +111,18 @@ function MyNavbar(props) {
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>
+      ></div>      
       <div className="navBarBtn">
         <Button
           href="#"
           key="1"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -174,7 +186,11 @@ function MyNavbar(props) {
                         key="1"
                         onClick={(event) => {
                           event.preventDefault();
-                          props.history.push(`/memberedit`);
+                          if (props.member.sid) {
+                            props.history.push(`/memberedit`);
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
                         }}
                       >
                         會員資料
@@ -224,7 +240,8 @@ function MyNavbar(props) {
         </IconButton>
       </div>
       <div className="navBarBtn">
-        <IconButton>
+        <IconButton onClick={() => { props.history.push('/cart') }}>
+          {/* 這邊需要接購物車props過來的length */}
           <StyledBadge badgeContent={4} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
@@ -240,13 +257,17 @@ function MyNavbar(props) {
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>
+      ></div>    
       <div className="navBarBtn">
         <Button
           href="#"
           onClick={(event) => {
             event.preventDefault();
-            props.history.push(`/memberedit`);
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           加入播客
@@ -291,11 +312,11 @@ function MyNavbar(props) {
           登入
         </Button>
       </div>
-      <div className="navBarLogInBtn navBarBtn">
+      {/* <div className="navBarLogInBtn navBarBtn">
         <Button href="#">
           <ExitToAppIcon />
         </Button>
-      </div>
+      </div> */}
       <div className="diverVertical my-auto ml-2 mr-2"></div>
       <div className="navBarBtn">
         <IconButton>
@@ -309,6 +330,11 @@ function MyNavbar(props) {
           </StyledBadge>
         </IconButton>
       </div>
+      <InformLoginModal
+        show={showInformLoginModal}
+        onHide={() => setShowInformLoginModal(false)}
+        setShowInformLoginModal={setShowInformLoginModal}
+      />
     </Header>
   );
 

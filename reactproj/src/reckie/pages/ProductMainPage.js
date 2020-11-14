@@ -27,6 +27,7 @@ function ProductMainPage(props) {
   const [backPrice,setBackPrice]= useState ('');
   //排序
   const [sort,setSort]= useState ('');
+  const [queryReset,setQueryReset]=useState('');
 
 
   useEffect(() => {
@@ -37,6 +38,9 @@ function ProductMainPage(props) {
         if(mainCate) query += `&mainCate=${mainCate}`
         if(detailCate) query += `&detailCate=${detailCate}`
         if(search) query += `&search=${search}`
+        if(sort) query += `&sort=${sort}`
+        if(frontPrice || backPrice) query += `&frontPrice=${frontPrice}&backPrice=${backPrice}`
+        if(queryReset){ query = ''};
         const url = `http://localhost:5566/products/get-api/?${query}`
         console.log("url",url)
         const response = await fetch(
@@ -53,7 +57,7 @@ function ProductMainPage(props) {
       }
     };
     getDataFromServer();
-  }, [page,mainCate,detailCate,search]);
+  }, [page,mainCate,detailCate,search,sort,frontPrice,backPrice,queryReset]);
   //查看後端抓回來的資料
 // useEffect(()=>{
 //   // console.log('productList',productList)
@@ -68,6 +72,7 @@ function ProductMainPage(props) {
 
   const MainPage = (
     <>
+    <div className="reBgWhite">
       <Banner />
       <div className="container pd-container">
         <SearchInput
@@ -78,11 +83,17 @@ function ProductMainPage(props) {
           products={products}
           productList={productList}
           page={page}
+          sort={sort}
           setPage={setPage}
           mainCate={mainCate}
           setMainCate={setMainCate}
           detailCate={detailCate}
           setDetailCate={setDetailCate}
+          setSearch={setSearch}
+          setSort={setSort}
+          setBackPrice={setBackPrice}
+          setFrontPrice={setFrontPrice}
+          setQueryReset={setQueryReset}
         />
         <PaginationRounded
           products={products}
@@ -91,6 +102,10 @@ function ProductMainPage(props) {
           setPage={setPage}
         />
       </div>
+      
+    </div>
+      
+      
     </>
   );
   const loader_css = css`

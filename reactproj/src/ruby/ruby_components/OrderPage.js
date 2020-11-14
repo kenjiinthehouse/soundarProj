@@ -1,8 +1,11 @@
 import React,{ useState,useEffect } from 'react'
 import { Accordion, Card, Button } from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './../ruby_styles/OrderPage.scss'
+// import Sidebar from '../sidebar_component/SidebarMember'
 import { FiCheck } from 'react-icons/fi'
-import { AiFillPicture, AiOutlineConsoleSql } from 'react-icons/ai'
+// import { AiFillPicture, AiOutlineConsoleSql } from 'react-icons/ai'
 import ReactStars from "react-rating-stars-component"
 import axios from 'axios'
 
@@ -10,13 +13,25 @@ function OrderPage(props){
     const [ orderStatus, setOrderStatus ] = useState(0)
     const [ orderDisplay, setOrderDisplay ] = useState([])
     const [ commentData,setCommentData] = useState([])
-    // const [ picDisplay, setPicDisplay ] = useState([])
-    // const [ productDisplay, setProductDisplay ] = useState([])
-    // const [ selectedOrderID, setSelectedOrderID] = useState(null)
+    const [ rateStars, setRateStars ] = useState(null)
+    const [ commentText, setCommentText ] = useState('')
+    const [ productID, setProductID ] = useState(null)
+    const [ singleComment, setSingleComment ] = useState([])
     
     const ratingChanged = (newRating) => {
+        let stars = newRating
         console.log(newRating);
+        setRateStars(stars)
       };
+    
+    function submitComments(){
+        if(!singleComment) return
+        axios.post('http://localhost:5566/comment/insert', 
+        singleComment
+        )
+        .then((res) => { console.table(res.data) })
+        .catch((error) => { console.error(error) })
+    }
 
     function setTimeFormat(date) {
         var d = new Date(date),
@@ -32,12 +47,7 @@ function OrderPage(props){
         return [year, month, day].join('-');
     }
     function getOrderData(){
-        axios({
-            method: 'get',
-            baseURL: 'http://localhost:5566',
-            url: '/order/get?client_sid=1',
-            'Content-Type': 'application/json',
-          })
+        axios.get('http://localhost:5566/order/get', {params: {client_sid: props.member.sid}})
             .then((result) => { 
                 let newData = result.data.orderArr
                 let commentID = 0
@@ -49,6 +59,7 @@ function OrderPage(props){
                              pic_url: el.pic_url,
                              name: el.name,
                              spec: el.spec,
+                             pd_sid: el.pd_sid
                          }
                          commentID ++
                          return commentObj
@@ -73,11 +84,18 @@ function OrderPage(props){
     // 訂單畫面
     useEffect(()=>{
         getOrderData()
-    },[])
+    },[props.member])
 
     useEffect(()=>{
-        console.log(commentData)
-    },[commentData])
+        // console.log(commentData)
+        let data = {
+            "stars":rateStars,
+            "pd_sid":productID,
+            "cl_sid":props.member.sid,
+            "content":commentText
+        }
+        setSingleComment(data)
+    },[commentData, commentText, productID, rateStars])
 
     let deliveryStatus = {
         0 : "宅配",
@@ -100,15 +118,13 @@ function OrderPage(props){
     return(
         <>
             <div className="order-page">
-                <div className="container d-flex mx-auto justify-content-between">
-                    <div className="row flex-column ru-odPage-sidebar">
-                        
-                    </div>
-                    <div className="row ru-odPage-display d-flex flex-column align-item-center">
+                {/* <div className="container d-flex mx-auto justify-content-between"> */}
+
+                    <div className="row ru-odPage-display">
                         <div className="ru-odPage-title">
                             <h4>訂單查詢</h4>
                         </div>
-                        <div className="ru-odPage-option-btn d-flex justify-content-around">
+                        <div className="ru-odPage-option-btn d-flex justify-content-around w-100">
                             <div className={ orderStatus === 0 ? "ru-odPage-order-status order-status-active" : "ru-odPage-order-status"} onClick={() => setOrderStatus(0)}>處理中</div>
                             <div className={ orderStatus === 1 ? "ru-odPage-order-status order-status-active" : "ru-odPage-order-status"} onClick={() => setOrderStatus(1)}>待收貨</div>
                             <div className={ orderStatus === 2 ? "ru-odPage-order-status order-status-active" : "ru-odPage-order-status"} onClick={() => setOrderStatus(2)}>已完成</div>
@@ -123,7 +139,7 @@ function OrderPage(props){
                         { orderDisplay.filter(item => item.status === orderStatus)
                             .map(value => {
                             return(
-                                <div className="ru-odPage-order-card">
+                                <div className="ru-odPage-order-card w-100" key={value}>
                                     <div className="ru-odPage-order-id">訂單編號:{value.sid}</div>
                                     <div className="ru-odPage-order-detail d-flex justify-content-between">
                                         <div className="ru-odPage-order-left">
@@ -179,28 +195,35 @@ function OrderPage(props){
                                                 </div>
                                                 <div className="ru-odPage-pic-display">
                                                     <img alt="pic" src={`${value.pic_url[1]}`} />
-                                                    <div className="ru-odPage-pic-mask">
+                                                    { (value.pic_url.length-2) !== 0 
+                                                        ?
+                                                        <div className="ru-odPage-pic-mask">
                                                         <div className="ru-odPage-pic-num">+{value.pic_url.length-2}</div>
-                                                    </div>
+                                                        </div>
+                                                        :
+                                                        ''
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <Accordion>
-                                        <Card>
+                                        <Card className="ru-orderPage-card">
                                         <Card.Header className="ru-odPage-check-detail-btn ml-auto">
-                                            <Accordion.Toggle as={Button} 
-                                                            //   onClick={()=>{
-                                                            //     setSelectedOrderID(value.sid)
-                                                            //   }}
-                                                              className="mb-3"
-                                                              variant="link" 
-                                                              eventKey="0">
+                                            <Accordion.Toggle 
+                                                    as={Button}
+                                                    onClick={() => { 
+                                                        let el = document.querySelector('.ru-odPage-button')
+                                                        el.classList.toggle("check-btn-active") 
+                                                        }}
+                                                    className="mb-3 ru-odPage-button"
+                                                    variant="link" 
+                                                    eventKey="0">
                                                 查看訂單細節
                                             </Accordion.Toggle>
                                         </Card.Header>
                                             <Accordion.Collapse eventKey="0">
-                                                <Card.Body>
+                                                <Card.Body className="ru-orderPage-card-body">
                                                     <div className="ru-odPage-detail-topic">訂單明細</div>
                                                     <div className="ru-odPage-detail">
                                                         <h5>配送進度</h5>
@@ -320,7 +343,8 @@ function OrderPage(props){
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="ru-odPage-detail">
+                                                    { orderStatus === 2 ?
+                                                        <div className="ru-odPage-detail">
                                                         <h5>商品評論</h5>
                                                         { value.comment.map(item => {
                                                             return(
@@ -348,9 +372,15 @@ function OrderPage(props){
                                                                         </div>
                                                                         :
                                                                         <div>
-                                                                            <textarea rows="3" cols="40" placeholder="留下你的評論 ..."></textarea>
+                                                                            <textarea rows="3" cols="40"
+                                                                            onChange={(e) => {
+                                                                                let newText = e.target.value
+                                                                            setCommentText(newText)
+                                                                            setProductID(item.pd_sid) 
+                                                                            }}
+                                                                            placeholder="留下你的評論 ..."></textarea>
                                                                         </div>
-                                                                    }                                                                    
+                                                                    }                    
                                                                 </div>
                                                                 { commentData.filter(el => el.comment_id === item.comment_id)[0].isCommented ?
                                                                     null
@@ -362,8 +392,7 @@ function OrderPage(props){
                                                                         return el
                                                                     })
                                                                     setCommentData(newData)
-                                                                    console.log(item.comment_id)
-                                                                    // console.log('newData',newData)
+                                                                    submitComments()
                                                                     }}>評論
                                                                     </div>
                                                                 }
@@ -371,6 +400,9 @@ function OrderPage(props){
                                                             )
                                                         })}
                                                     </div>
+                                                    :
+                                                    null
+                                                    }
                                                 </Card.Body>
                                             </Accordion.Collapse>
                                         </Card>
@@ -379,10 +411,13 @@ function OrderPage(props){
                                 )})
                             }
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </>
     )
 }
 
-export default OrderPage
+const mapStateToProps = (store) => {
+    return {member: store.member}
+}
+export default withRouter(connect(mapStateToProps)(OrderPage))
