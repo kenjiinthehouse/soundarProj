@@ -140,6 +140,9 @@
     }
     .ru-ckpage-choose-store {
       margin-bottom: 30px;
+      .ru-ckpage-store-info {
+        width: 60%;
+      }
       .choose-store-btn {
         width: 30%;
         height: 50px;
@@ -152,6 +155,7 @@
       }
       .store-info-key {
         p {
+          width: 64px;
           margin-right: 1rem;
         }
       }

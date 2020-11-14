@@ -40,6 +40,34 @@ function CheckoutPage(props){
     const [ memberCheckbox1, setMemberCheckbox1 ] = useState(false)
     const [ memberCheckbox2, setMemberCheckbox2 ] = useState(false)
 
+    const [ fakeStoreData, setFakeStoreData ] = useState(false)
+
+    const [ cashForm, setCashForm ] = useState({
+        receiver:'',
+        mobile:'',
+        address:'',
+        remark:''
+    })
+    const [ storeForm, setStoreForm ] = useState({
+        storeType:'',
+        storeID:'',
+        storeName:'',
+        storeAddress:'',
+        receiver:'',
+        mobile:'',
+        remark:''
+    })
+    const [ creditCardForm, setCreditCardForm ] = useState({
+        cardNum:null,
+        cardExp:'',
+        cardBackCode:null,
+        cardOwner:'',
+        cardOwnerMobile:'',
+        receiver:'',
+        mobile:'',
+        address:'',
+        remark:''
+    })
 
     function setCardInput(index,value) {
         if(value.length < 5) {
@@ -77,11 +105,17 @@ function CheckoutPage(props){
         }
     }
 
+    let sevenElevenStore = {
+        storeID:187921,
+        storeName:'合旺',
+        storeAddress:'台北市大安區復興南路二段151巷41號'
+    }
 
-
-    // useEffect(() => {
-
-    // },[props.member])
+    let familyMartStore = {
+        storeID:10076,
+        storeName:'全家大安店',
+        storeAddress:'台北市大安區大安路一段20號'
+    }
 
     function getMemberData(){
         axios.post('http://localhost:5566/member/getmember', 
@@ -118,19 +152,6 @@ function CheckoutPage(props){
 
     },[address, coupon, dFee, delivery, discount, mobile, payment, products, receiver, remark, sid, totalAmount])
 
-    // useEffect(()=>{
-    //     let attrOfCheckbox = document.querySelector('#formBasicCheckbox1').checked
-    //     setMemberCheckbox1(attrOfCheckbox)
-    //     if(memberCheckbox1) console.log(memberCheckbox1)
-    // },[memberCheckbox1])
-
-    // const checkboxRef = useCallback(() => {
-    //     let attrOfCheckbox = document.querySelector('#formBasicCheckbox1').checked
-    //     setMemberCheckbox1(attrOfCheckbox)
-    //     console.log(memberCheckbox1)
-    //     // setMemberCheckbox1(node.getBoundingClientRect().checked(true))
-    //   }, [memberCheckbox1]);
-
     useEffect(()=>{
         getMemberData()
         let data = {}
@@ -158,8 +179,8 @@ function CheckoutPage(props){
 
         isActive.filter(item => item === true).length > 0 ? setStatus(1) : setStatus(0)
 
-        
-    }, [isActive, cardInput2, cardInput3, cardInput4, cardInput1, expDate2, expDate1])
+        // console.log(storeForm)
+    }, [cashForm,storeForm,isActive, cardInput2, cardInput3, cardInput4, cardInput1, expDate2, expDate1])
 
     const finishPage = (
             <div className="ru-ckpage-step-content w-100 position-relative">
@@ -215,10 +236,14 @@ function CheckoutPage(props){
                                               type="text"
                                               defaultValue={`${memberCheckbox1 ? memberData.name : ''}`}
                                               onChange={(e)=>{
-                                                  let receiverName = e.target.value
-                                                  setReceiver(receiverName)
+                                                  const newData = JSON.parse(JSON.stringify(cashForm))
+                                                  newData.receiver = e.target.value
+                                                  setCashForm(newData)
+                                                //   let receiverName = e.target.value
+                                                //   setReceiver(receiverName)
                                                   }} 
-                                              placeholder="請輸入收件人姓名" />
+                                              placeholder="請輸入收件人姓名" isInvalid/>
+                                <Form.Control.Feedback type="invalid">You did it!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="receiver-mobile1" className="row align-items-center">
                                 <Form.Label className="mx-3">收件人手機</Form.Label>
@@ -227,8 +252,11 @@ function CheckoutPage(props){
                                               type="text"
                                               defaultValue={`${memberCheckbox1 ? memberData.phone : ''}`}
                                               onChange={(e)=>{
-                                                  let receiverMobile = e.target.value
-                                                  setMobile(receiverMobile)
+                                                  const newData = JSON.parse(JSON.stringify(cashForm))
+                                                  newData.mobile = e.target.value
+                                                  setCashForm(newData)
+                                                //   let receiverMobile = e.target.value
+                                                //   setMobile(receiverMobile)
                                                   }} 
                                               pattern="^09[0-9]{8}$"
                                               maxlength="10" 
@@ -241,8 +269,11 @@ function CheckoutPage(props){
                                               type="text" 
                                               defaultValue={`${memberCheckbox1 ? memberData.address : ''}`}
                                               onChange={(e)=>{
-                                                  let receiverAddress = e.target.value
-                                                  setAddress(receiverAddress)
+                                                  const newData = JSON.parse(JSON.stringify(cashForm))
+                                                  newData.address = e.target.value
+                                                  setCashForm(newData)
+                                                //   let receiverAddress = e.target.value
+                                                //   setAddress(receiverAddress)
                                                   }} 
                                               placeholder="請輸入收件人地址" />
                             </Form.Group>
@@ -267,8 +298,11 @@ function CheckoutPage(props){
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Control as="textarea"
                                           onChange={(e)=>{
-                                              let newRemark = e.target.value
-                                              setRemark(newRemark)
+                                              const newData = JSON.parse(JSON.stringify(cashForm))
+                                              newData.remark = e.target.value
+                                              setCashForm(newData)
+                                            //   let newRemark = e.target.value
+                                            //   setRemark(newRemark)
                                           }} 
                                           rows={3} 
                                           style={{ resize:'none' }} />
@@ -311,12 +345,28 @@ function CheckoutPage(props){
                         </div>
                         <div className="d-flex ru-store-radio">
                             <div className="seven-eleven-img d-flex align-items-center mr-3">
-                                <input className="mr-2" type="radio" name="store-type" value="sevenElevent"/>
+                                <input className="mr-2" 
+                                       type="radio" 
+                                       name="store-type"
+                                       onChange={(e)=>{
+                                            let newData = JSON.parse(JSON.stringify(storeForm))
+                                            newData.storeType = e.target.value
+                                            setStoreForm(newData) 
+                                        }} 
+                                       value="sevenEleven"/>
                                 <img src="ruby_images/7-eleven_logo.png" alt="pic"/>
                                 <p>7-11便利商店</p>
                             </div>
                             <div className="family-mart-img d-flex align-items-center">
-                                <input className="mr-2" type="radio" name="store-type" value="familyMart"/>
+                                <input className="mr-2" 
+                                       type="radio" 
+                                       name="store-type"
+                                       onChange={(e)=>{
+                                            let newData = JSON.parse(JSON.stringify(storeForm))
+                                            newData.storeType = e.target.value
+                                            setStoreForm(newData) 
+                                        }}
+                                       value="familyMart"/>
                                 <img src="ruby_images/familymart-vector-logo.svg" alt="pic"/>
                                 <p>全家便利商店</p>
                             </div>
@@ -327,17 +377,56 @@ function CheckoutPage(props){
                             <div className="info-topic-border-end"></div>
                         </div>
                         <div className="d-flex ru-ckpage-choose-store justify-content-around align-items-center">
-                            <div type="button" className="btn  btn-primary choose-store-btn">搜尋門市</div>
-                            <div className="w-50 d-flex">
+                            <div type="button"
+                                 onClick={() => {
+                                     if(fakeStoreData){
+                                        setFakeStoreData(false)
+                                     }else{
+                                        setFakeStoreData(true)
+                                     }
+                                     
+                                     let newData = JSON.parse(JSON.stringify(storeForm))
+                                     if(storeForm.storeType === 'sevenEleven'){
+                                        newData.storeID = sevenElevenStore.storeID
+                                        newData.storeName = sevenElevenStore.storeName
+                                        newData.storeAddress = sevenElevenStore.storeAddress
+                                        setStoreForm(newData) 
+                                     }
+                                     if(storeForm.storeType === 'familyMart'){
+                                        newData.storeID = familyMartStore.storeID
+                                        newData.storeName = familyMartStore.storeName
+                                        newData.storeAddress = familyMartStore.storeAddress
+                                        setStoreForm(newData) 
+                                     }
+                                 } } 
+                                 className="btn  btn-primary choose-store-btn">搜尋門市</div>
+                            <div className="d-flex ru-ckpage-store-info">
                                 <div className="store-info-key">
                                     <p>門市店號</p>
                                     <p>門市店名</p>
                                     <p>門市地址</p>
                                 </div>
                                 <div className="store-info-value">
-                                    <p>10076</p>
-                                    <p>全家大安店</p>
-                                    <p>台北市大安區大安路一段20號</p>
+                                    { fakeStoreData === true && storeForm.storeType === 'sevenEleven'
+                                        ?
+                                        <>
+                                        <p>{sevenElevenStore.storeID}</p>
+                                        <p>{sevenElevenStore.storeName}</p>
+                                        <p>{sevenElevenStore.storeAddress}</p>
+                                        </>
+                                        :
+                                        ''
+                                    }
+                                    { fakeStoreData === true && storeForm.storeType === 'familyMart'
+                                        ?
+                                        <>
+                                        <p>{familyMartStore.storeID}</p>
+                                        <p>{familyMartStore.storeName}</p>
+                                        <p>{familyMartStore.storeAddress}</p>
+                                        </>
+                                        :
+                                        ''
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -353,8 +442,9 @@ function CheckoutPage(props){
                                               className="w-50" 
                                               type="text"
                                               onChange={(e)=>{
-                                                  let receiverName = e.target.value
-                                                  setReceiver(receiverName)
+                                                  const newData = JSON.parse(JSON.stringify)
+                                                //   let receiverName = e.target.value
+                                                //   setReceiver(receiverName)
                                                   }} 
                                               placeholder="請輸入收件人姓名" />
                             </Form.Group>
