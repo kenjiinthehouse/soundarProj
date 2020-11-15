@@ -121,8 +121,19 @@ function TabBar(props) {
               resetData();
             }}
           />
-          <StyledTab label="線下活動" {...a11yProps(2)} />
-          <StyledTab label="錄音室租借" {...a11yProps(3)} />
+          <StyledTab 
+          label="線下活動" {...a11yProps(2)}
+          onClick={() => {
+              setMainCate(3);
+              resetData();
+            }}
+             />
+          <StyledTab 
+          label="錄音室租借" {...a11yProps(3)}
+          onClick={() => {
+              setMainCate(4);
+              resetData();
+            }} />
         </StyledTabs>
       </div>
 
@@ -135,7 +146,7 @@ function TabBar(props) {
           <PdSideBar2 value={value} pdIndex={2} {...props} />
           <PdSideBar2 value={value} pdIndex={3} {...props} />
           <div>
-            <Breadcrumb value={value} setValue={setValue} />
+          <Breadcrumb value={value} {...props} />
           <PdContent
           value={value}
           {...props}

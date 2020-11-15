@@ -21,6 +21,7 @@ $react-rater-active: #fadb28 !default;
 @import '~bootstrap/scss/bootstrap.scss';
 .reBgWhite {
   background-color: #fff;
+  padding-bottom: 3rem;
 }
 
 .head2 {
@@ -93,10 +94,18 @@ $react-rater-active: #fadb28 !default;
 .container.pd-container {
   max-width: 1440px;
 }
-.reBreadcrumb {
-  background-color: transparent !important;
+.reBreadcrumbWrap {
+  margin: 2rem 3rem;
 }
 
+.reBreadcrumb {
+  background-color: transparent !important;
+  padding: 0;
+}
+.reBreadcrumbItem:hover {
+  color: #2690df;
+  // text-decoration: underline;
+}
 // -- space --
 .rePaddingX0 {
   padding-left: 0 !important;
@@ -106,6 +115,9 @@ $react-rater-active: #fadb28 !default;
 .rePaddingX1 {
   padding-left: 1rem !important;
   padding-right: 1rem !important;
+}
+.rePt-6rem {
+  padding-top: 6rem;
 }
 
 // -- banner start --
@@ -117,10 +129,17 @@ $react-rater-active: #fadb28 !default;
   color: #f8f8f8;
   padding: 20rem 0 2rem 0rem;
 }
+.banner-slogan-title2 {
+  color: #f8f8f8;
+  padding: 20rem 0 2rem 40rem;
+}
 .banner-slogan-span {
   color: #f8f8f8;
 }
-
+.banner-slogan-span2 {
+  color: #f8f8f8;
+  padding: 0 0 0 50rem;
+}
 .banner-anim-elem .bg {
   width: 100%;
   height: 100%;
@@ -252,7 +271,7 @@ input.reSearch:focus {
   box-shadow: 0px 0px 5px 2px #eee;
   border-radius: 5px;
   margin: 0rem 0rem 3rem;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   transition: all 0.1s ease-out;
 }
 .cardWrap:hover {
@@ -262,15 +281,15 @@ input.reSearch:focus {
 
 .cardBody {
   text-align: center;
-  height: 6rem;
+  height: 7rem;
   position: relative;
-  padding: 0rem;
+  padding: 1rem;
 }
-.twoLine {
+.oneLine {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 
@@ -283,8 +302,9 @@ input.reSearch:focus {
 .pdPrice {
   position: absolute;
   bottom: 0rem;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 1rem;
+  // left: 50%;
+  // transform: translateX(-50%);
 }
 .testTrans {
   transition: all 2s ease-in;
@@ -302,9 +322,16 @@ input.reSearch:focus {
 // -- card end --
 
 // *** product item ***
+// -- bread --
+// .pdItemBread {
+//   margin-top: 10crem;
+// }
 // -- pagination --
 .rePagination {
   margin-bottom: 5.5rem;
+}
+.MuiPaginationItem-textPrimary.Mui-selected {
+  background-color: #2690df !important;
 }
 
 // *** product Detail ***
@@ -446,6 +473,14 @@ input.reSearch:focus {
   max-height: 30rem;
   overflow: hidden;
 }
+.rec.rec-arrow.rec-arrow-right,
+.rec.rec-arrow.rec-arrow-left {
+  background-color: #fff;
+}
+.rec.rec-arrow.rec-arrow-right:hover,
+.rec.rec-arrow.rec-arrow-left:hover {
+  background-color: #707070;
+}
 .contentPics {
   // width: 100%;
   background-color: #f8f8f8f5;
@@ -476,6 +511,7 @@ input.reSearch:focus {
   height: 8rem;
   border: 1px solid #ccc;
   border-radius: 5rem;
+  overflow: hidden;
 }
 .commentPdPic {
   width: 6rem;

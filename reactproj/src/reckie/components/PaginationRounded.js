@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
 function PaginationRounded(props) {
@@ -7,12 +8,21 @@ useEffect(()=>{
   console.log('productList',productList)
 },[productList])
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+  outlinedPrimary:{
+    backgroundColor: 'red'
+  }
+}));
 
 const handleChange = (event, value) => {
   setPage(value);
 };
-// let query = ''
-// if (page) query += `&page=${page}`
+const classes = useStyles();
 
   return (
     <div className="d-flex rePagination">

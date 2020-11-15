@@ -119,7 +119,7 @@ export default function CustomizedSlider(props) {
     setRangeValue(newValue);
   };
   useEffect(()=>{
-    console.log('val',rangeValue)
+    // console.log('val',rangeValue)
   },[rangeValue])
 
   return (

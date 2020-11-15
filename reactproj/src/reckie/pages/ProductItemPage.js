@@ -5,7 +5,7 @@ import Breadcrumb from '../components/Breadcrumb'
 
 import PdPicField from '../components/Pditem/PdPicField'
 import PdMainField from '../components/Pditem/PdMainField'
-import ItemTabBar from '../components/Pditem/ItemTabBar';
+import ItemTabBar from '../components/Pditem/ItemTabBar'
 import { withRouter,useParams } from 'react-router-dom'
 
 import ScaleLoader from 'react-spinners/ScaleLoader';
@@ -14,6 +14,7 @@ import { css } from '@emotion/core';
 
 
 function ProductItemPage(props) {
+  console.log('props',props)
   const {pd_id} = useParams()
   const [pdDetail,setPdDetail]= useState()
   const [isLoading, setIsLoading] = useState(false);
@@ -28,14 +29,13 @@ const [SubImg,setSubImg] = useState([])
 
   //從後端抓商品資料
   useEffect(()=>{
-    setIsLoading(true)
+    // setIsLoading(true)
     const getProductDetailFromServer = async () => {
         try{
           const response = await fetch(`http://localhost:5566/products/get-api/${pd_id}`,{method:'GET',
           })
             const data = await response.json()
-           
-            
+
             setPdDetail(data)
         } catch(error){
           console.log(error)
@@ -45,29 +45,21 @@ const [SubImg,setSubImg] = useState([])
 },[])
 //查看後端抓回來的資料
 useEffect(()=>{
-  const newSubImg = pdDetail?pdDetail.combine_img:''
-  
-
+  const newSubImg = pdDetail?pdDetail.combine_img:'';
   setMainImg(pdDetail?pdDetail.pd_main_img:'')
   setSubImg([...SubImg,...newSubImg])
   
-  setTimeout(()=>{
-    setIsLoading(false)
-},800)
+//   setTimeout(()=>{
+//     setIsLoading(false)
+// },800)
 }, [pdDetail])
-
-
-
-
-
-
 
   const PdItemPage = (
     <>
     <div className="reBgWhite">
-    <div className="container">
+    <div className="container rePt-6rem">
       
-      <Breadcrumb/>  
+      <Breadcrumb pdDetail={pdDetail}/>  
    
     <div className="row mt-3 pdItemPage" >
     <div className="col-6">
@@ -116,7 +108,8 @@ const displaySpinner = (
       />
     </div>
   );
-    return isLoading? displaySpinner : PdItemPage
+    // return isLoading? displaySpinner : PdItemPage
+    return PdItemPage
   }
   
   export default ProductItemPage

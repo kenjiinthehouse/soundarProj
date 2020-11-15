@@ -29,7 +29,7 @@ async function getPdData(req){
     const price_set = `AND (pd_price BETWEEN ${frontPrice} AND ${backPrice})`     
     
     //大項分類
-    let mainCate_set = '`AND (pd_id <= 297)`';
+    let mainCate_set = `AND (pd_id <= 297)`;
     if(mainCate == 1){
        mainCate_set = `AND (pd_id <= 297)`;
     }else if(mainCate == 2){
@@ -98,7 +98,7 @@ async function getPdData(req){
 
 
 
-    console.log('hihi');
+  
     const [r2]= await db.query(item_sql);
     output.rows = r2;
     //新增合併主圖附圖欄位

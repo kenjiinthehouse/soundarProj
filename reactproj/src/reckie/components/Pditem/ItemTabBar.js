@@ -4,15 +4,53 @@ import { withRouter } from "react-router-dom";
 import PdComment from './PdComment';
 import { MdStar,MdStarBorder,MdStarHalf,MdShoppingCart,MdShoppingBasket } from "react-icons/md";
 import {Form} from 'react-bootstrap'
+import Rater from 'react-rater'
 
 
 
 function ItemTabBar(props){
   const{pdDetail,SubImg}=props
-  const [pdFeaturesLabel,setPdFeaturesLabel]=useState([])
+  const [pdComment,setPdComment]= useState([
+    {
+    average: 5,
+    comment_num: 4,
+    comment: [
+    {
+    user_name: "manager",
+    avatar_url: "97da1b0c-9552-4d10-95cb-a640cf8fb400.jpg",
+    date: "2020-11-01T12:50:28.000Z",
+    content: "舒適度跟音質超好， 消噪耳罩耳機這款真的非常值得入手。",
+    pic_url: null
+    },
+    {
+    user_name: "michael",
+    avatar_url: "deb48946-148f-475a-a772-cc6123f3a831.jpg",
+    date: "2020-10-14T12:50:42.000Z",
+    content: "音質比我想像中好很多，外觀也很潮很好看！推薦！",
+    pic_url: null
+    },
+    {
+    user_name: "michael",
+    avatar_url: "deb48946-148f-475a-a772-cc6123f3a831.jpg",
+    date: "2020-11-01T13:42:59.000Z",
+    content: "買來送給男朋友，他非常喜歡！價錢合理音質又棒！大推！",
+    pic_url: "pd1.jpg,pd1-2.jpg"
+    },
+    {
+    user_name: "demo1",
+    avatar_url: "4d718e7f-a64d-4165-9986-e37f9bc29185.jpg",
+    date: "2020-11-01T13:48:51.000Z",
+    content: "雖然很漂亮，但覺得對音質的期望太大，覺得價錢沒有符合期待",
+    pic_url: "pd001.jpg,pd001-2.jpg"
+    }
+    ]
+    }
+    ])
+   
 
-  //Sticky Tab Bar
+  
   useEffect(()=>{
+    //Sticky Tab Bar
     // document.addEventListener('DOMContentLoaded', function() {
       window.addEventListener('scroll',fixedTest);
       const fakePoint = document.querySelector('.fake-point') 
@@ -32,10 +70,11 @@ function ItemTabBar(props){
         };
 
     // });
-  },[])
 
- 
-  
+    
+
+  },[])
+   
 
   //Function- Tabs切換
     function handleActive(e){
@@ -88,14 +127,13 @@ function ItemTabBar(props){
       let newFeaturesArr=[]
       for(let i = 0; i< (pdDetail?JSON.parse(pdDetail.pd_features_label).length:0); i++){
         newFeaturesArr.push (pdDetail?JSON.parse(pdDetail.pd_features_label)[i]:[])
-        console.log('newFeaturesArr',newFeaturesArr)
       }
       let newFeaturesValueArr=[]
       for(let i = 0; i< (pdDetail?JSON.parse(pdDetail.pd_features_value).length:0); i++){
         newFeaturesValueArr.push (pdDetail?JSON.parse(pdDetail.pd_features_value)[i]:[])
-        console.log('newFeaturesArr',newFeaturesValueArr)
       }
 
+   
     return(<>
     <div className="fake-point"></div>
     <div className="ItemTabBar d-flex justify-content-center align-items-center ">
@@ -171,11 +209,9 @@ function ItemTabBar(props){
       <div className="d-flex justify-content-between">
             <div className="d-flex align-items-baseline commentStarPart justify-content-between">
                 <p className="pdMainFieldStars caption">顧客好評</p>
-                <div style={{color:'gold', fontSize:'1.375rem'}}>
-                <MdStar/><MdStar/><MdStar/><MdStar/><MdStarHalf/>   
-                </div>
+                <Rater total={5} rating={pdDetail?pdDetail.stars:''} interactive={false} /> 
                     <p className="pdMainFieldStars caption">{pdDetail?pdDetail.stars:''}</p>
-                    <p className="pdMainFieldStars caption">(30)</p>
+                    {/* <p className="pdMainFieldStars caption">({pdComment[0].comment_num})</p> */}
             </div>    
             <Form>
                 <Form.Group controlId="exampleForm.SelectCustom">
@@ -187,9 +223,10 @@ function ItemTabBar(props){
             </Form>
         </div>
         <div className="separateLine"></div>
-      <PdComment {...props}/>
-      <PdComment {...props}/>
-      <PdComment {...props}/>
+        {pdComment[0].comment.map((item,index)=>{
+          return <PdComment key={index} {...props} pdComment={item}/>
+        })}
+      
 </div>
     
 

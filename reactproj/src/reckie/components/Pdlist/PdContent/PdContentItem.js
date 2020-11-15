@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import { red } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
+import Rater from 'react-rater'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,18 +62,22 @@ const handleExpandEnter = () => {
       title={products.pd_title}
       />
             <div className="cardBody">
-            <div variant="body2">
-                <h4 className="head5 twoLine">{products.pd_title}</h4>
-              </div>
-            <div variant="body2">
-                <h4 className="pdPrice">${products.pd_price}</h4>
+            
+            <div variant="body2" className="text-left">
+                <h4 className="head5 oneLine ">{products.pd_title}</h4>  
+                <Rater total={5} rating={products.stars} interactive={false} /> 
             </div>
+
+            <div variant="body2" >
+                <h4 className="pdPrice pt-5">${products.pd_price}</h4>
+            </div>
+            
             </div>
            
            
-            </div>
+      </div>
      
-          </Link>
+      </Link>
    
    
 

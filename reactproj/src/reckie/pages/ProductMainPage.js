@@ -47,7 +47,7 @@ function ProductMainPage(props) {
           url,{ method: 'GET' }
         );
         const data = await response.json();
-        console.log('data', data.rows);
+        // console.log('data', data.rows);
         const newPds = data.rows;
 
         setProducts([...newPds]);

@@ -151,7 +151,16 @@ function PdSideBar2(props){
   </ListGroup>  
   </Accordion.Collapse>
   <div>
-    <Accordion.Toggle as={Button} className="rePaddingX0" variant="link" eventKey="2">
+    <Accordion.Toggle 
+    as={Button} 
+    className="rePaddingX0" 
+    variant="link" 
+    eventKey="2"
+    onClick={() => {
+              setMainCate(3);
+              resetData();
+            }}
+    >
      <h5>線下活動</h5>
     </Accordion.Toggle>
   </div>
@@ -173,7 +182,16 @@ function PdSideBar2(props){
   </ListGroup>  
   </Accordion.Collapse>
   <div>
-    <Accordion.Toggle className="rePaddingX0" as={Button} variant="link" eventKey="3">
+    <Accordion.Toggle 
+    className="rePaddingX0" 
+    as={Button} 
+    variant="link" 
+    eventKey="3"
+    onClick={() => {
+              setMainCate(4);
+              resetData();
+            }}
+    >
      <h5>錄音室租借</h5>
     </Accordion.Toggle>
   </div>
