@@ -29,8 +29,6 @@ import ArticleHome from './jen/pages/ArticleHome';
 import ArticlePage from './jen/pages/ArticlePage';
 import Cart from './ruby/ruby_pages/CartPage.js';
 import Checkout from './ruby/ruby_pages/CheckoutPage.js';
-import Orderlist from './ruby/ruby_components/OrderPage.js';
-import Coupon from './ruby/ruby_components/CouponPage.js';
 import ActivityMain from './chieh/ch_pages/ActivityMain';
 // import ActivityCart from './chieh/ch_pages/ActivityCart';
 import ActivityOrder from './chieh/ch_pages/ActivityOrder';
@@ -124,12 +122,6 @@ function App() {
               </Route>
               <Route path="/checkout">
                 <Checkout />
-              </Route>
-              <Route path="/orderlist">
-                <Orderlist />
-              </Route>
-              <Route path="/coupon">
-              <Coupon />
               </Route>
               <Route path="/activitymain">
                 <ActivityMain />

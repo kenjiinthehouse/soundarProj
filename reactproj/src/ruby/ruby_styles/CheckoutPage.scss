@@ -132,14 +132,21 @@
     .form-control::placeholder {
       opacity: 0.5;
     }
-    form {
+    .ru-ckpage-form {
       margin-bottom: 30px;
     }
-    label {
+    .ru-ckpage-label {
       width: 100px;
     }
+    .ru-ckpage-feedback-tag {
+      padding-left: 132px;
+    }
+
     .ru-ckpage-choose-store {
       margin-bottom: 30px;
+      .ru-ckpage-store-info {
+        width: 60%;
+      }
       .choose-store-btn {
         width: 30%;
         height: 50px;
@@ -152,6 +159,7 @@
       }
       .store-info-key {
         p {
+          width: 64px;
           margin-right: 1rem;
         }
       }

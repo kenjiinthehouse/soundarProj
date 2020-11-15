@@ -86,7 +86,7 @@
 
 .jay-channel-rating-pic{
     left: 6.5rem;
-    filter: brightness(0.9);
+    filter: brightness(0.95);
     overflow: hidden;
 }
 
@@ -126,6 +126,7 @@
 }
 
 .jay-channel-rating-pic-part2{
+    filter: brightness(0.95);
     width: 4rem;
     height: 4rem;
 }
