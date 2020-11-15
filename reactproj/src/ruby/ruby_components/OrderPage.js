@@ -16,15 +16,16 @@ function OrderPage(props){
     const [ rateStars, setRateStars ] = useState(null)
     const [ commentText, setCommentText ] = useState('')
     const [ productID, setProductID ] = useState(null)
-    const [ singleComment, setSingleComment ] = useState([])
+    const [ singleComment, setSingleComment ] = useState({})
     
     const ratingChanged = (newRating) => {
         let stars = newRating
-        console.log(newRating);
+        // console.log(newRating);
         setRateStars(stars)
       };
     
     function submitComments(){
+        // console.log(singleComment)
         if(!singleComment) return
         axios.post('http://localhost:5566/comment/insert', 
         singleComment
@@ -89,10 +90,10 @@ function OrderPage(props){
     useEffect(()=>{
         // console.log(commentData)
         let data = {
-            "stars":rateStars,
-            "pd_sid":productID,
-            "cl_sid":props.member.sid,
-            "content":commentText
+            stars:rateStars,
+            pd_sid:productID,
+            cl_sid:props.member.sid,
+            content:commentText
         }
         setSingleComment(data)
     },[commentData, commentText, productID, rateStars])
@@ -375,8 +376,8 @@ function OrderPage(props){
                                                                             <textarea rows="3" cols="40"
                                                                             onChange={(e) => {
                                                                                 let newText = e.target.value
-                                                                            setCommentText(newText)
-                                                                            setProductID(item.pd_sid) 
+                                                                                setCommentText(newText)
+                                                                                setProductID(item.pd_sid) 
                                                                             }}
                                                                             placeholder="留下你的評論 ..."></textarea>
                                                                         </div>

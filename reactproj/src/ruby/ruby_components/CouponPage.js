@@ -21,10 +21,8 @@ function CouponPage(props){
             'Content-Type': 'application/json',
           })
             .then((result) => { 
-                console.log('getAll')
                 const newAllData = result.data.data
                 setAllCouponDisplay(newAllData)
-                // console.log('all',newAllData)
             })
             .catch((err) => { console.error(err) })
     }
@@ -40,7 +38,6 @@ function CouponPage(props){
             .then((result) => { 
                 const newData = result.data.data
                 setClientCouponDisplay(newData)
-                // console.log('client',newData)
             })
             .catch((err) => { console.error(err) })
     }

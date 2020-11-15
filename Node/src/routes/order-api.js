@@ -30,6 +30,7 @@ router.get('/get', async(req,res) => {
             productsArr = results.map(item => {
                 let obj = {
                     "sid":item.sid,
+                    "pd_sid":item.pd_id,
                     "name":item.pd_title,
                     "spec":item.pd_type,
                     "count":item.product_amount,
