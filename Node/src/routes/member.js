@@ -166,7 +166,7 @@ router.get("/verify", async (req, res) => {
   const sql = " UPDATE `members` SET `verify`=1 WHERE `hashcode`=?";
 
   const [{ affectedRows, changedRows }] = await db.query(sql, [hash]);
-  const go_back_react = `http://localhost:3000?hash=${hash}`;
+  const go_back_react = `http://localhost:3000/login?hash=${hash}`;
 
   // res.json({
   //   success: !!changedRows,

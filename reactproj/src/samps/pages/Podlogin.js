@@ -128,7 +128,7 @@ function Podlogin(props) {
       backdrop="static"
       keyboard={false}
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title>驗證成功</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ height: '3rem' }}>點選前往，回到首頁</Modal.Body>

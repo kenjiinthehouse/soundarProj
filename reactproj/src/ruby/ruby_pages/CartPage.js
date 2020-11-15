@@ -7,42 +7,16 @@ import ProductAmountList from './../ruby_components/ProductAmountList'
 import { Link } from 'react-router-dom';
 
 function CartPage(props) {
-    const [mycart, setMycart] = useState([])
-    // const [dataLoading, setDataLoading] = useState(false)
     const [mycartDisplay, setMycartDisplay] = useState([])
-    const [coupon, setCoupon] = useState('')
-
 
 function getCartFromLocalStorage() {
-        // setDataLoading(true)
         const newCart = localStorage.getItem('cart') || '[]'
-        setMycart(JSON.parse(newCart))
+        setMycartDisplay(JSON.parse(newCart))
 }
 
     useEffect(() => {
         getCartFromLocalStorage()
       }, [])
-
-    useEffect(() => {
-        // setTimeout(() => setDataLoading(false), 500)
-        // mycartDisplay運算
-        let newMycartDisplay = []
-
-        //尋找mycartDisplay
-        for (let i = 0; i < mycart.length; i++) {
-        const index = newMycartDisplay.findIndex(
-            (value) => value.sid === mycart[i].sid
-        )
-        if (index !== -1) {
-            newMycartDisplay[index].count += mycart[i].count
-        } else {
-            const newItem = { ...mycart[i] }
-            newMycartDisplay = [...newMycartDisplay, newItem]
-        }
-        }
-        setMycartDisplay(newMycartDisplay)
-    }, [coupon, mycart])
-
 
     const emptyCart = (
         <>
@@ -63,21 +37,10 @@ function getCartFromLocalStorage() {
             </div>
         </>
       )
-    
 
-    const loading = (
-        <>
-          <div className="d-flex justify-content-center mt-5 mx-auto">
-            <div className="spinner-border mt-5 text-primary" role="status" style={{width: "3rem",height: "3rem"}}>
-                <span className="sr-only">Loading...</span>
-            </div>
-          </div>
-        </>
-      )
-    
     const display = (
         <>
-            <div className="cart-page noselect">
+            <div className="cart-page noselect mb-5">
                 <div className="ru-cart-wrap mx-auto">
                     <div className="ru-cart-title d-flex">
                         <div className="ru-guide-block"></div>
@@ -107,7 +70,8 @@ function getCartFromLocalStorage() {
                                         <div className="ru-cart-intro-block d-flex align-items-center justify-content-center">
                                             <HiOutlineMinusCircle 
                                             size={32} 
-                                            type="button" 
+                                            type="button"
+                                            style={value.count === 1 ? {color:'#B7B7B7'} : ''} 
                                             onClick={() => {
                                                     let newDisplay = mycartDisplay.map(item => {
                                                         if(item.sid === value.sid) {
@@ -138,8 +102,7 @@ function getCartFromLocalStorage() {
                                         <div className="ru-cart-intro-block">{(value.price * value.count).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}</div>
                                         <div className="ru-cart-intro-block ru-cart-del-btn" onClick={() => {
                                                     let newDisplay = mycartDisplay.filter(item => {
-                                                        if(item.sid !== value.sid) return item
-                                                        else return false
+                                                        return item.sid !== value.sid
                                                     })
                                                     setMycartDisplay(newDisplay)
                                                     localStorage.setItem('cart', JSON.stringify(newDisplay))
@@ -166,7 +129,12 @@ function getCartFromLocalStorage() {
         </>
       )
       // 以資料載入的指示狀態來切換要出現的畫面
-      return localStorage.getItem('cart') ? display : emptyCart
+    //   return localStorage.getItem('cart') ? display : emptyCart
+    if(!localStorage.getItem('cart') || JSON.parse(localStorage.getItem('cart')).length === 0 ){ 
+        return emptyCart 
+    }else{ 
+        return display
+    } 
 }
 
 

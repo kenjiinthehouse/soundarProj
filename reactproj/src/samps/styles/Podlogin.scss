@@ -1,5 +1,3 @@
-
-
 // body {
 //   background-color: #232d2f;
 //   position: relative;
@@ -113,6 +111,12 @@
 
   cursor: pointer;
 }
+
+.sa-Podlogin-login-area:hover {
+  background-color: #1a6aa7;
+
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
 .sa-Podlogin-google-login-area-a:hover {
   text-decoration: none;
 }
@@ -129,6 +133,13 @@
   margin-bottom: 2rem;
   cursor: pointer;
   text-decoration: none;
+}
+
+.sa-Podlogin-google-login-area:hover {
+
+  background-color: #cecece;
+
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .sa-Podlogin-google-icon {
@@ -148,8 +159,8 @@
   padding-bottom: 2rem;
 }
 
- a.sa-Podlogin-registered-word  {
-  color: #73e1b4 !important; 
+a.sa-Podlogin-registered-word {
+  color: #73e1b4 !important;
 }
 
 a.sa-Podlogin-registered-word:hover {
