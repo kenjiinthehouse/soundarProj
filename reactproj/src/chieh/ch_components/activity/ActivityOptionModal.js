@@ -38,11 +38,34 @@ function ActivityOptionModal(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [myTicket, setMyTicket] = useState([])
+
+  const ticketToLocalStorage = (item) =>{
+    const currentCart = JSON.parse(localStorage.getItem('ticket')) || []
+    currentCart.push(item)
+    localStorage.setItem('ticket', JSON.stringify(currentCart))
+
+    setMyTicket(currentCart)
+    console.log('已加入localStorage') 
+  }
+
   return (
     <>
-      <button type="button" className="btn btn-option" onClick={handleShow}>
-        立即報名
-      </button>
+      <button type="button" className="btn btn-option" 
+        onClick={()=>{
+          handleShow();
+          ticketToLocalStorage({                
+            ticket_order_id: "20201120001T0001F",
+            ticket_order_date: new Date(),
+            total_amount: total,
+            order_status: 1,
+            order_quantity: quantity,
+            ticket_qrcode: '',
+            activity_sid: 1,
+            members_sid: props.member.sid
+          });   
+        }}>
+        立即報名</button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -103,7 +126,7 @@ function ActivityOptionModal(props) {
               <ul>
                 <li>{props.member.nickname}</li>
                 <li>0975379482</li>
-                <li>{props.member.account}<span>轉帳通知及電子票券將寄至此信箱</span></li>
+                <li>{props.member.account}<span style={{color:'#909393'}} className="ml-3">轉帳通知及電子票券將寄至此信箱</span></li>
               </ul>
             </div>
           </div>
@@ -122,6 +145,7 @@ function ActivityOptionModal(props) {
             onClick={() => {
               sendmail(props.member.account);
               handleClose();
+              // sendTicket();              
             }}
           >
             完成報名

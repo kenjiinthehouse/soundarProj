@@ -12,11 +12,36 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { Tabs, Tab } from 'react-bootstrap';
 
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import { css } from '@emotion/core';
+
 function StudioMain(props) {
   const [studioData, setStudioData] = useState([]);
   const [newStudio, setNewStudio] = useState([])
 
+  const [dataLoading, setDataLoading] = useState(false)
+    const loader_css = css`
+    display: inline-block;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    `;
+    const displaySpinner = (
+        <div className="re-spinnerArea">
+          <ScaleLoader
+            css={loader_css}
+            color={'#4A90E2'}
+            height={80}
+            width={10}
+            margin={6}
+            radius={20}
+          />
+        </div>
+      );
+
   async function getStudioFromServer() {
+    setDataLoading(true)
     const url = 'http://localhost:5566/studio/option/1';
     const request = new Request(url, {
       method: 'GET',
@@ -36,6 +61,7 @@ function StudioMain(props) {
 
   useEffect(() => {
     getStudioFromServer();
+    setTimeout(() => setDataLoading(false), 1200);
   }, []);
 
   const introduction = (
@@ -165,8 +191,8 @@ function StudioMain(props) {
     );
   }
 
-  return (
-    <>
+  const display = (
+    <> 
       {/* <Breadcrumb /> */}
       <div className="studio-main">
         <div className="container studio-head">
@@ -178,7 +204,9 @@ function StudioMain(props) {
         <ControlledTabs />
       </div>
     </>
-  );
+  )
+
+  return dataLoading ? displaySpinner : display
 }
 
 export default withRouter(StudioMain);

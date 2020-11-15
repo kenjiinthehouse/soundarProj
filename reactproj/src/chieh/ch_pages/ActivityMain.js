@@ -10,11 +10,36 @@ import ActivityInfo from '../ch_components/activity/ActivityInfo'
 import ActivityOption from '../ch_components/activity/ActivityOption'
 import OptionCard from '../ch_components/activity/OptionCard'
 
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import { css } from '@emotion/core';
+
 function ActivityMain(props) {
     const [activityData, setActivityData] = useState([])
     const [newActivity, setNewActivity] = useState([])
+
+    const [dataLoading, setDataLoading] = useState(false)
+    const loader_css = css`
+    display: inline-block;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    `;
+    const displaySpinner = (
+        <div className="re-spinnerArea">
+          <ScaleLoader
+            css={loader_css}
+            color={'#4A90E2'}
+            height={80}
+            width={10}
+            margin={6}
+            radius={20}
+          />
+        </div>
+      );
   
     async function getActivityFromServer() {
+      setDataLoading(true)
       const url = 'http://localhost:5566/activity/option/1'
       const request = new Request(url, {
         method: 'GET',
@@ -36,6 +61,10 @@ function ActivityMain(props) {
    
     useEffect(() => {
         getActivityFromServer()
+    }, [])
+
+    useEffect(() => {
+      setTimeout(() => setDataLoading(false), 800)  
     }, [])
 
 
@@ -74,10 +103,9 @@ function ActivityMain(props) {
       );
     }
 
-    return (
+    const display = (
       <>
-        
-        <div className="activity-main">
+       <div className="activity-main">
         {activityData.map((item)=>{
           return (
             <>
@@ -115,6 +143,8 @@ function ActivityMain(props) {
         </div>      
       </>
     )
+
+    return dataLoading ? displaySpinner : display
   }
   
   export default withRouter(ActivityMain)

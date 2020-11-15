@@ -58,7 +58,8 @@ router.get('/member/:members_sid', async (req, res) => {
 // add(C)
 router.post('/add', async (req, res) => {
     const data = { ...req.body };
-    const sql = "INSERT INTO `ticket_order` set ?";
+    // const sql = "INSERT INTO `ticket_order` set ?";
+    const sql = "INSERT INTO `ticket_order`(ticket_order_id`, `ticket_order_date`, `total_amount`, `order_status`, `order_quantity`, `ticket_qrcode`, `activity_sid`, `members_sid`) VALUES (?,?,?,?,?,?,?,?)";
     const [{ affectedRows, insertId }] = await db.query(sql, [data]);
 
     res.json({
@@ -68,6 +69,35 @@ router.post('/add', async (req, res) => {
     });
 })
 
+// router.post('/add',async (req,res) =>{
+//     const sql = "INSERT INTO `ticket_order`(ticket_order_id`, `ticket_order_date`, `total_amount`, `order_status`, `order_quantity`, `ticket_qrcode`, `activity_sid`, `members_sid`) VALUES (?,?,?,?,?,?,?,?)"
+
+// })
+
+// router.post('/add',async(req,res) => {
+//     let returnData = {
+//         code: 0,
+//         data:''
+//     }
+//     // console.log(req.body)
+//     let obj = req.body
+//     let ticket_order_id = obj.ticket_order_id
+//     let ticket_order_date = obj.ticket_order_date
+//     let total_amount = obj.total_amount
+//     let order_status = obj.order_status
+//     let order_quantity = obj.order_quantity
+//     let ticket_qrcode = obj.ticket_qrcode
+//     let activity_sid = obj.activity_sid
+//     let members_sid = obj.members_sid
+
+//     const sql = "INSERT INTO `ticket_order`(ticket_order_id`, `ticket_order_date`, `total_amount`, `order_status`, `order_quantity`, `ticket_qrcode`, `activity_sid`, `members_sid`) VALUES (?,?,?,?,?,?,?,?)"
+//     await db.query(sql,[ticket_order_id,ticket_order_date,total_amount,order_status,order_quantity,ticket_qrcode,activity_sid,members_sid])
+//         .then(([results]) => {
+//             // console.log([results])
+//         })
+   
+//     res.json(returnData);
+// })
 
 //edit(U) 呈現單筆
 // router.get('/edit/:sid', async (req, res) => {
