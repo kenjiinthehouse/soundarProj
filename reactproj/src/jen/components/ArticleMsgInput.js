@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { MdAddCircle } from 'react-icons/md';
+import { BiMessageSquareAdd } from 'react-icons/bi';
 //引入留言
 import { getArticleMsg, getArticleMsgAsync } from '../../actions/index';
 import { FaPlaceOfWorship } from 'react-icons/fa';
@@ -13,7 +14,7 @@ function ArticleMsgInput(props) {
   const styleNone = {
     display: 'none',
   };
-
+  //新增主留言
   const sendInput = async function () {
     const url = 'http://localhost:5566/article/comment/add/msg';
     const request = new Request(url, {
@@ -45,7 +46,7 @@ function ArticleMsgInput(props) {
         <div className="writeBoxLogged">
           <form>
             <fieldset>
-              <legend className="ghost">留下評論</legend>
+              <legend className="ghost">留下評論<BiMessageSquareAdd style={{ fontSize: '1rem',color:'#232d11'}} onClick={()=>setTextValue('想請問有提供錄音室租借服務嗎?') }/></legend>
               <div>
                 <div className="userProfile">
                   <span className="userId" style={styleNone}>

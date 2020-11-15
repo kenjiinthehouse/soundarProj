@@ -23,65 +23,20 @@ import {
 } from '../actions/index';
 
 function ArticlePage(props) {
-  const [clicks, setClicks] = useState(props.articleDetailData.article_clicks);
-  const [fontSize, setFontSize] = useState('1rem');
   const [sid, setSid] = useState(+props.match.params.sid);
+  const [fontSize, setFontSize] = useState('1rem');
   // 先字串化,再陣列化,才能map
   const articleTagsArray = ('' + props.articleDetailData.article_tags).split(
     ','
   );
-
-  //clicks POST
-  const updateTotalToServer = async function (sid) {
-    const newClicks = { article_clicks: clicks + 1};
-    console.log('newCliskd', newClicks);
-    const url = `http://localhost:5566/article/edit/${sid}`;
-    const request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        article_clicks: +props.articleDetailData.article_clicks + 1
-      }),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-      }),
-    });
-
-
-    // const request = new Request(url, {
-    //   method: 'POST',
-    //   body: JSON.stringify(newClicks),
-    //   headers: new Headers({
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   }),
-    // });
-    const response = await fetch(request);
-    const data = await response.json();
-    console.log('clicks-data', data);
-    const newClicksValue = clicks + 1;
-    setClicks(newClicksValue);
-    async function getNewArticleDetail() {
-      await props.getArticleDetailAsync(sid);
-    }
-    getNewArticleDetail();
-  }
   //componentDidMount
   useEffect(() => {
     props.getArticleDetailAsync(sid);
-      //  if (props.articleDetailData.article_clicks) {
-      //    updateTotalToServer(sid);
-      //  } else {
-      //    setClicks(props.articleDetailData.article_clicks);
-      //    updateTotalToServer(sid);
-      //  }
   }, []);
 
   //componentDidUpdate
   useEffect(() => {
     props.getArticleDetailAsync(sid);
-  }, [fontSize, sid,clicks]);
-  useEffect(() => {
     //每當更換新文章時自動滾至頁首
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   }, [sid]);
@@ -143,7 +98,7 @@ function ArticlePage(props) {
                 className={
                   fontSize === '0.9rem' ? 'fz-select active' : 'fz-select'
                 }
-                style={{ width: '0.6rem', height: '0.6rem' }}
+                style={{ width: '0.5rem', height: '0.5rem' }}
                 onClick={() => {
                   setFontSize('0.9rem');
                 }}
@@ -152,6 +107,7 @@ function ArticlePage(props) {
                 className={
                   fontSize === '1rem' ? 'fz-select active' : 'fz-select'
                 }
+                style={{ width: '0.7rem', height: '0.7rem' }}
                 onClick={() => {
                   setFontSize('1rem');
                 }}
@@ -160,7 +116,7 @@ function ArticlePage(props) {
                 className={
                   fontSize === '1.2rem' ? 'fz-select active' : 'fz-select'
                 }
-                style={{ width: '1.2rem', height: '1.2rem' }}
+                style={{ width: '0.9rem', height: '0.9rem' }}
                 onClick={() => {
                   setFontSize('1.2rem');
                 }}

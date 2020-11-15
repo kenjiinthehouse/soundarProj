@@ -36,19 +36,19 @@ function ArticleMsgBoard(props) {
   useEffect(() => {
     async function msgList() {
       // 取的該專欄(sid)對應留言
-      await props.getArticleMsgAsync(sid,msgSort);
+      await props.getArticleMsgAsync(sid, msgSort);
     }
     msgList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-    useEffect(() => {
-      async function msgList() {
-        // 取的該專欄(sid)對應留言
-        await props.getArticleMsgAsync(sid,msgSort);
-      }
-      msgList();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sid,msgSort]);
+  useEffect(() => {
+    async function msgList() {
+      // 取的該專欄(sid)對應留言
+      await props.getArticleMsgAsync(sid, msgSort);
+    }
+    msgList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sid, msgSort]);
 
   const styleNone = {
     display: 'none',
@@ -114,7 +114,14 @@ function ArticleMsgBoard(props) {
                           <div className="article-cmtBoxArea">
                             <div className="article-cmtInfo d-flex align-items-center">
                               <div className="article-userHeadIcon mr-2">
-                                <img src={(item.profile_picture)? ('http://localhost:3000/ppicture/' + `${item.profile_picture}`):''} />
+                                <img
+                                  src={
+                                    item.profile_picture
+                                      ? 'http://localhost:3000/ppicture/' +
+                                        `${item.profile_picture}`
+                                      : ''
+                                  }
+                                />
                               </div>
                               <div className="cmtSid" style={styleNone}>
                                 {item.sid}
@@ -171,14 +178,14 @@ function ArticleMsgBoard(props) {
 
                               <div className="cmtToolsBtn pr-2">
                                 <a href="" className="pr-2">
-                                  <span className="material-icons pr-1">
-                                    <IconContext.Provider
-                                      value={{ className: 'cmtToolsBtn' }}
-                                    >
-                                      <MdThumbUp />
-                                    </IconContext.Provider>
-                                  </span>
-                                  <span>{item.upPoint}</span>
+                                <span className="material-icons pr-1">
+                                  <IconContext.Provider
+                                    value={{ className: 'cmtToolsBtn' }}
+                                  >
+                                    <MdThumbUp />
+                                  </IconContext.Provider>
+                                </span>
+                                <span>{item.upPoint}</span>
                                 </a>
                                 <a href="">
                                   <span className="material-icons pr-1">

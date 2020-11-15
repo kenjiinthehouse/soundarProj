@@ -172,10 +172,11 @@ router.get("/edit/:sid", async (req, res) => {
 });
 
 router.post("/edit/:sid", upload_module.none(), async (req, res) => {
-  const data = { ...req.body };
-  const sql = "UPDATE `article` SET ? WHERE `sid` =?";
+  // const data = { ...req.body };
+  const article_clicks = req.body.article_clicks;
+  const sql = "UPDATE article SET article_clicks=? WHERE sid =?";
   const [{ affectedRows, changedRows }] = await db.query(sql, [
-    data,
+    article_clicks,
     req.params.sid,
   ]);
 

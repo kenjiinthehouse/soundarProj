@@ -100,6 +100,25 @@ router.post("/add/msg", async (req, res) => {
   });
 });
 
+router.post("/edit/msg/:sid", async (req, res) => {
+  const upPoint = req.body.up;
+  const downPoint = req.body.down;
+
+  const editSql = "UPDATE article_comment SET upPoint=?,downPoint=? WHERE sid =?";
+  const [{ affectedRows, insertId }] = await db.query(editSql, [
+    upPoint,
+    downPoint,
+    req.params.sid,
+  ]);
+  // [{"fieldCount":0,"affectedRows":1,"insertId":860,"info":"","serverStatus":2,"warningStatus":1},null]
+
+  res.json({
+    success: !!affectedRows,
+    affectedRows,
+    insertId,
+  });
+});
+
 //對應該篇專欄該主留言新增回覆
 router.post("/add/reply", async (req, res) => {
   const article_sid = req.body.sid;

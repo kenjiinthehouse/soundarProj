@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { MdAddCircle } from 'react-icons/md';
+import { BiMessageSquareAdd } from 'react-icons/bi';
 //引入留言 子留言
 import { getArticleReply, getArticleReplyAsync } from '../../actions/index';
 
@@ -50,7 +51,13 @@ function ArticleMsgReplyInput(props) {
         <div className="writeBoxLogged">
           <form>
             <fieldset>
-              <legend className="ghost">留下評論</legend>
+              <legend className="ghost">
+                留下評論
+                <BiMessageSquareAdd
+                  style={{ fontSize: '1rem', color: '#232d11' }}
+                  onClick={() => setTextValue('在商城有提供租借服務喔')}
+                />
+              </legend>
               <div>
                 <div className="userProfile">
                   <span className="parentId" style={styleNone}>

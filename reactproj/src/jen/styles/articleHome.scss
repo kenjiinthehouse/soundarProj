@@ -143,7 +143,8 @@
 }
 
 .article-card {
-  width: 85rem;
+  // width: 85rem;
+  width: 100%;
   height: 22.5rem;
   border-radius: 5px;
   background-color: #707070;
@@ -178,6 +179,7 @@
   .article-card-body {
     height: 100%;
     padding: 2.69rem 4.125rem;
+    width: 62%;
 
     .article-card-title {
       font-weight: bold;

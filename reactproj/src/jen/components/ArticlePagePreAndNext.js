@@ -7,6 +7,23 @@ import { FaCaretRight } from 'react-icons/fa';
 function ArticlePagePreAndNext(props) {
   const preSid = +props.sid - 1;
   const nextSid = +props.sid + 1;
+
+  //clicks POST
+  const updateTotalToServer = async function (sid) {
+    const url = `http://localhost:5566/article/edit/${sid}`;
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        article_clicks: +props.articleDetailData.article_clicks + 1,
+      }),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      }),
+    });
+    const response = await fetch(request);
+    const data = await response.json();
+  };
   return (
     <>
       {' '}
@@ -20,7 +37,10 @@ function ArticlePagePreAndNext(props) {
             <span>
               <Link
                 to={'/articlePage/' + preSid}
-                onClick={() => props.setSid(preSid)}
+                onClick={() => {
+                  props.setSid(preSid);
+                  updateTotalToServer(props.sid)
+                }}
               >
                 {props.articleDetailData.pre_title}
               </Link>
@@ -38,7 +58,10 @@ function ArticlePagePreAndNext(props) {
             <span>
               <Link
                 to={'/articlePage/' + nextSid}
-                onClick={() => props.setSid(nextSid)}
+                onClick={() => {
+                  props.setSid(nextSid);
+                  updateTotalToServer(props.sid);
+                }}
               >
                 {props.articleDetailData.next_title}
               </Link>

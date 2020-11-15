@@ -323,7 +323,7 @@ function ArticleHome(props) {
                     </h4>
                   </div>
                   <div className="article-card-img">
-                    <Link to={'/articlePage/' + item.sid} setTags={setTags}>
+                    <Link to={'/articlepage/' + item.sid} setTags={setTags}>
                       <img
                         // src="http://localhost:3000/img/article02.jpg"
                         src={item.article_img_url}
@@ -365,7 +365,7 @@ function ArticleHome(props) {
                         );
                       })}
                       <span className="article-card-cates text-right ml-auto">
-                        <Link to={'/articlePage/' + item.sid} setTags={setTags}>
+                        <Link to={'/articlepage/' + item.sid} setTags={setTags}>
                           繼續閱讀
                         </Link>
                       </span>

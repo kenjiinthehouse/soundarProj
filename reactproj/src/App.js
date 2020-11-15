@@ -139,7 +139,7 @@ function App() {
                 <Orderlist />
               </Route>
               <Route path="/coupon">
-              <Coupon />
+                <Coupon />
               </Route>
               <Route path="/activitymain">
                 <ActivityMain />
@@ -172,11 +172,8 @@ function App() {
                 <Membersidebar
                   globalAudioArry={globalAudioArry}
                   setGlobalAudioArry={setGlobalAudioArry}
-<<<<<<< HEAD
-=======
                   playingAudio={playingAudio}
                   setPlayingAudio={setPlayingAudio}
->>>>>>> dc7370ab8cfd52c25c00b7a9c8232c29ae008520
                 />
               </Route>
               <Route path="/audiocollect">
