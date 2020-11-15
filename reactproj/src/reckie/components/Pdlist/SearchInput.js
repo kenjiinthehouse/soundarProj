@@ -9,6 +9,7 @@ function SearchInput(props){
     
     const searchSubmit = (e)=>{
         setIsLoading(true);
+        // setSearch('')
         let searchText = e.target.closest('.searchContainer').querySelector('.reSearch')
         setSearch(searchText.value);
         setTimeout(() => {

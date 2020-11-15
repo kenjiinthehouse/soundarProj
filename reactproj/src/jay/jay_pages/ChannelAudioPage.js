@@ -179,113 +179,122 @@ function ChannelAudioPage(props) {
             {props.channel_data.map((item, index) => {
               return (
                 <div
-                  className="col-3 jay-side-bar"
+                  className="col-lg-3 col-12 jay-side-bar"
                   key={index}
                   style={styles.fadeIn01}
                 >
                   <div className="jay-channel-head-pic-area">
                     <img src={item.podcaster_img} alt="" />
                   </div>
-                  <h3 className="pt-3" style={{ lineHeight: '1.5' }}>
-                    {item.channel_title}
-                  </h3>
-                  <div>
-                    <span>{breadcrumbCateTerm}</span>
-                  </div>
-                  <div>
-                    {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                  <div className="col-12 col-sm mb-5">
+                    <h3 className="pt-3" style={{ lineHeight: '1.5' }}>
+                      {item.channel_title}
+                    </h3>
+                    <div>
+                      <span>{breadcrumbCateTerm}</span>
+                    </div>
+                    <div>
+                      {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                        <button
+                          type="button"
+                          className=" btn btn-sm btn-info my-3 mr-3"
+                          style={styles.fadeInLeft01}
+                          onClick={async () => {
+                            if (props.member.sid) {
+                              await props.addChannelCollection(
+                                props.member.sid,
+                                item.sid
+                              );
+                              await props.initMemberChannelCollectionAsync(
+                                props.member.sid
+                              );
+                            } else {
+                              setShowInformLoginModal(true);
+                            }
+                          }}
+                        >
+                          訂閱
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                          style={styles.fadeInLeft01}
+                          onClick={async () => {
+                            if (props.member.sid) {
+                              await props.delChannelCollection(
+                                props.member.sid,
+                                item.sid
+                              );
+                              await props.initMemberChannelCollectionAsync(
+                                props.member.sid
+                              );
+                            } else {
+                              setShowInformLoginModal(true);
+                            }
+                          }}
+                        >
+                          訂閱中
+                        </button>
+                      )}
                       <button
                         type="button"
-                        className=" btn btn-sm btn-info my-3 mr-3"
-                        style={styles.fadeInLeft01}
-                        onClick={async () => {
-                          if (props.member.sid) {
-                            await props.addChannelCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberChannelCollectionAsync(
-                              props.member.sid
-                            );
+                        className=" btn btn-sm btn-secondary my-3 mr-3"
+                      >
+                        分享
+                      </button>
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-secondary my-3"
+                        onClick={() => {
+                          if (props.member && props.member.sid) {
+                            setShowRatingModel(true);
                           } else {
                             setShowInformLoginModal(true);
                           }
                         }}
                       >
-                        訂閱
+                        評分
                       </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
-                        style={styles.fadeInLeft01}
-                        onClick={async () => {
-                          if (props.member.sid) {
-                            await props.delChannelCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberChannelCollectionAsync(
-                              props.member.sid
-                            );
-                          } else {
-                            setShowInformLoginModal(true);
-                          }
+                    </div>
+                    <div className=" mb-1">
+                      <Rate
+                        style={{
+                          filter: 'brightness(1.5)',
+                          fontSize: '1.5rem',
                         }}
-                      >
-                        訂閱中
-                      </button>
-                    )}
-                    <button
-                      type="button"
-                      className=" btn btn-sm btn-secondary my-3 mr-3"
-                    >
-                      分享
-                    </button>
-                    <button
-                      type="button"
-                      className=" btn btn-sm btn-secondary my-3"
-                      onClick={() => {
-                        if (props.member && props.member.sid) {
-                          setShowRatingModel(true);
-                        } else {
-                          setShowInformLoginModal(true);
-                        }
-                      }}
-                    >
-                      評分
-                    </button>
-                  </div>
-                  <div className=" mb-1">
-                    <Rate
-                      style={{ filter: 'brightness(1.5)', fontSize: '1.5rem' }}
-                      allowHalf
-                      disabled
-                      defaultValue={item.channel_rating}
-                    />
-                  </div>
-                  <div>
-                    <span>
-                      網友評比： &nbsp;&nbsp;{(+item.channel_rating).toFixed(1)}
-                      &nbsp;/&nbsp; 5
-                    </span>
-                  </div>
-                  <div className="pt-4">
-                    <a target="_blank" href={item.channel_rss_link}>
-                      <FaRss style={{ fontSize: '1.25rem' }} />
-                      <span className="px-2">RSS訂閱</span>
-                    </a>
-                  </div>
-                  <div className="pt-2">
-                    <a href={'mailto:' + item.owner_email}>
-                      <MdEmail style={{ fontSize: '1.25rem' }} />
-                      <span className="px-2">聯絡我們</span>
-                    </a>
+                        allowHalf
+                        disabled
+                        defaultValue={item.channel_rating}
+                      />
+                    </div>
+                    <div>
+                      <span>
+                        網友評比： &nbsp;&nbsp;
+                        {(+item.channel_rating).toFixed(1)}
+                        &nbsp;/&nbsp; 5
+                      </span>
+                    </div>
+                    <div className="pt-4">
+                      <a target="_blank" href={item.channel_rss_link}>
+                        <FaRss style={{ fontSize: '1.25rem' }} />
+                        <span className="px-2">RSS訂閱</span>
+                      </a>
+                    </div>
+                    <div className="pt-2">
+                      <a href={'mailto:' + item.owner_email}>
+                        <MdEmail style={{ fontSize: '1.25rem' }} />
+                        <span className="px-2">聯絡我們</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               );
             })}
-            <div className="col-9 jay-main-bar" style={styles.fadeIn02}>
+            <div
+              className="col-lg-9 col-12 jay-main-bar"
+              style={styles.fadeIn02}
+            >
               {props.channel_audio_data.map((item, index) => {
                 if (item.sid === +audio_sid) {
                   return (
