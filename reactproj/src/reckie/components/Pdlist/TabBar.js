@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabBar(props) {
-  const { mainCate, setMainCate, setDetailCate} = props;
+  const { mainCate, setMainCate, setDetailCate,setPage,setSearch,setFrontPrice,setBackPrice,setSort} = props;
   const classes = useStyles();
   // const [viewFilter, setViewFilter] = useState(10)
 
@@ -83,10 +83,14 @@ function TabBar(props) {
   const handleChange = (e, newValue) => {
     setValue(newValue);
   };
-
-  useEffect(() => {
-    // console.log('value',value)
-  }, [value]);
+  const resetData = () => {
+    setDetailCate('');
+    setPage(1);
+    setSearch('');
+    setFrontPrice('');
+    setBackPrice('');
+    setSort('');
+  }
 
   //篩選products分類資料
   {
@@ -106,7 +110,7 @@ function TabBar(props) {
             {...a11yProps(0)}
             onClick={() => {
               setMainCate(1);
-              setDetailCate('');
+              resetData()
             }}
           />
           <StyledTab
@@ -114,7 +118,7 @@ function TabBar(props) {
             {...a11yProps(1)}
             onClick={() => {
               setMainCate(2);
-              setDetailCate('');
+              resetData();
             }}
           />
           <StyledTab label="線下活動" {...a11yProps(2)} />

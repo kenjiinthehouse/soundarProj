@@ -60,33 +60,36 @@ useEffect(()=>{
 
   const PdItemPage = (
     <>
-      <div className="container">
+    <div className="reBgWhite">
+    <div className="container">
       
-          <Breadcrumb/>  
-       
-        <div className="row mt-3 pdItemPage" >
-        <div className="col-6">
-        <PdPicField 
-        {...props} 
-        pdDetail={pdDetail}
-        MainImg={MainImg}
-        setMainImg={setMainImg}
-        SubImg={SubImg}
-        />
-        </div>
-        <div className="col-6 pl-5">
-        <PdMainField {...props} pdDetail={pdDetail} />
-        </div>
-        </div>
-        
-      </div>
-        
-          <ItemTabBar 
-          {...props} 
-          pdDetail={pdDetail}
-          SubImg={SubImg}
-          />
-         
+      <Breadcrumb/>  
+   
+    <div className="row mt-3 pdItemPage" >
+    <div className="col-6">
+    <PdPicField 
+    {...props} 
+    pdDetail={pdDetail}
+    MainImg={MainImg}
+    setMainImg={setMainImg}
+    SubImg={SubImg}
+    />
+    </div>
+    <div className="col-6 pl-5">
+    <PdMainField {...props} pdDetail={pdDetail} />
+    </div>
+    </div>
+    
+  </div>
+    
+      <ItemTabBar 
+      {...props} 
+      pdDetail={pdDetail}
+      SubImg={SubImg}
+      />
+     
+    </div>
+      
         
       </>
   )

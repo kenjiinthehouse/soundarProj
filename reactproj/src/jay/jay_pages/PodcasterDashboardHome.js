@@ -8,12 +8,15 @@ import {
 } from '../../jay_actions/index';
 import { withRouter, useParams } from 'react-router-dom';
 import ChannelEdditImgModal from '../jay_components/ChannelEdditImgModal.js';
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import { css } from '@emotion/core';
 
 function PodcasterDashboardHome(props) {
   const { channel_data } = props;
   const [editTargrt, setEditTargrt] = useState('');
   const [editInputData, setEditInputData] = useState({});
   const [editImgModalShow, setEditImgModalShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const transTermToChinese = (cate_term) => {
     let tempCateTerm = cate_term.toLowerCase();
@@ -71,7 +74,24 @@ function PodcasterDashboardHome(props) {
     setEditInputData(...channel_data);
   }, [channel_data]);
 
-  return (
+  const loader_css = css`
+    display: inline-block;
+  `;
+
+  const displaySpinner = (
+    <div className="jay-spinnerArea">
+      <ScaleLoader
+        css={loader_css}
+        color={'#4A90E2'}
+        height={80}
+        width={10}
+        margin={6}
+        radius={20}
+      />
+    </div>
+  );
+
+  const displayDashboard = (
     <>
       {channel_data.map((item, index) => {
         if (channel_data && channel_data[0]) {
@@ -79,7 +99,7 @@ function PodcasterDashboardHome(props) {
             <div key={index}>
               <div className="row justify-content-center">
                 <div className="jay-podcastImgArea my-3">
-                  {channel_data.podcaster_img ? (
+                  {item.podcaster_img ? (
                     <img
                       src={
                         item.podcaster_img.indexOf('http') !== -1
@@ -89,11 +109,11 @@ function PodcasterDashboardHome(props) {
                       alt=""
                     />
                   ) : (
-                    <img
-                      src={`http://localhost:3000/ppicture/profile_picture.png`}
-                      alt=""
-                    />
-                  )}
+                      <img
+                        src={`http://localhost:3000/ppicture/profile_picture.png`}
+                        alt=""
+                      />
+                    )}
                 </div>
                 <div className="col-12 text-center">
                   <button
@@ -164,21 +184,21 @@ function PodcasterDashboardHome(props) {
                           </td>
                         </>
                       ) : (
-                        <>
-                          <td>{item.channel_title}</td>
-                          <td>
-                            <a
-                              href="javascript"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setEditTargrt('edit_channel_title');
-                              }}
-                            >
-                              編輯
+                          <>
+                            <td>{item.channel_title}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_title');
+                                }}
+                              >
+                                編輯
                             </a>
-                          </td>
-                        </>
-                      )}
+                            </td>
+                          </>
+                        )}
                     </tr>
                     <tr>
                       <th scope="row">簡介</th>
@@ -229,21 +249,21 @@ function PodcasterDashboardHome(props) {
                           </td>
                         </>
                       ) : (
-                        <>
-                          <td>{item.channel_summary}</td>
-                          <td>
-                            <a
-                              href="javascript"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setEditTargrt('edit_channel_summary');
-                              }}
-                            >
-                              編輯
+                          <>
+                            <td>{item.channel_summary}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_summary');
+                                }}
+                              >
+                                編輯
                             </a>
-                          </td>
-                        </>
-                      )}
+                            </td>
+                          </>
+                        )}
                     </tr>
                     <tr>
                       <th scope="row">詳細內容</th>
@@ -296,21 +316,21 @@ function PodcasterDashboardHome(props) {
                           </td>
                         </>
                       ) : (
-                        <>
-                          <td>{item.podcaster_description}</td>
-                          <td>
-                            <a
-                              href="javascript"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setEditTargrt('edit_podcaster_description');
-                              }}
-                            >
-                              編輯
+                          <>
+                            <td>{item.podcaster_description}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_podcaster_description');
+                                }}
+                              >
+                                編輯
                             </a>
-                          </td>
-                        </>
-                      )}
+                            </td>
+                          </>
+                        )}
                     </tr>
                     <tr>
                       <th scope="row">頻道類別</th>
@@ -352,7 +372,7 @@ function PodcasterDashboardHome(props) {
                                 id="Technology"
                                 checked={
                                   editInputData.channel_catagory ===
-                                  'Technology'
+                                    'Technology'
                                     ? true
                                     : false
                                 }
@@ -405,7 +425,7 @@ function PodcasterDashboardHome(props) {
                                 id="Entertainment"
                                 checked={
                                   editInputData.channel_catagory ===
-                                  'Entertainment'
+                                    'Entertainment'
                                     ? true
                                     : false
                                 }
@@ -559,25 +579,25 @@ function PodcasterDashboardHome(props) {
                           </td>
                         </>
                       ) : (
-                        <>
-                          <td>
-                            {transTermToChinese(
-                              item.channel_catagory ? item.channel_catagory : ''
-                            )}
-                          </td>
-                          <td>
-                            <a
-                              href="javascript"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setEditTargrt('edit_channel_catagory');
-                              }}
-                            >
-                              編輯
+                          <>
+                            <td>
+                              {transTermToChinese(
+                                item.channel_catagory ? item.channel_catagory : ''
+                              )}
+                            </td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_catagory');
+                                }}
+                              >
+                                編輯
                             </a>
-                          </td>
-                        </>
-                      )}
+                            </td>
+                          </>
+                        )}
                     </tr>
                     <tr>
                       <th scope="row">RSS連結</th>
@@ -629,21 +649,21 @@ function PodcasterDashboardHome(props) {
                           </td>
                         </>
                       ) : (
-                        <>
-                          <td>{item.channel_rss_link}</td>
-                          <td>
-                            <a
-                              href="javascript"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setEditTargrt('edit_channel_rss_link');
-                              }}
-                            >
-                              編輯
+                          <>
+                            <td>{item.channel_rss_link}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_channel_rss_link');
+                                }}
+                              >
+                                編輯
                             </a>
-                          </td>
-                        </>
-                      )}
+                            </td>
+                          </>
+                        )}
                     </tr>
                     <tr>
                       <th scope="row">聯絡信箱</th>
@@ -694,30 +714,38 @@ function PodcasterDashboardHome(props) {
                           </td>
                         </>
                       ) : (
-                        <>
-                          <td>{item.owner_email}</td>
-                          <td>
-                            <a
-                              href="javascript"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                setEditTargrt('edit_owner_email');
-                              }}
-                            >
-                              編輯
+                          <>
+                            <td>{item.owner_email}</td>
+                            <td>
+                              <a
+                                href="javascript"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  setEditTargrt('edit_owner_email');
+                                }}
+                              >
+                                編輯
                             </a>
-                          </td>
-                        </>
-                      )}
+                            </td>
+                          </>
+                        )}
                     </tr>
                   </tbody>
                 </table>
               </div>
+              <ChannelEdditImgModal
+                {...props}
+                show={editImgModalShow}
+                onHide={() => setEditImgModalShow(false)}
+                editInputData={editInputData}
+                setEditInputData={setEditInputData}
+                setIsLoading={setIsLoading}
+              />
             </div>
           );
         } else {
           return (
-            <div className=" text-center d-flex flex-column align-items-center">
+            <div className=" text-center d-flex flex-column align-items-center mt-5">
               <h3>尚未創建頻道</h3>
               <button
                 type="button"
@@ -733,14 +761,10 @@ function PodcasterDashboardHome(props) {
           );
         }
       })}
-      <ChannelEdditImgModal
-        show={editImgModalShow}
-        onHide={() => setEditImgModalShow(false)}
-        editInputData={editInputData}
-        setEditInputData={setEditInputData}
-      />
     </>
   );
+
+  return isLoading ? displaySpinner : displayDashboard ;
 }
 
 const mapStateToProps = (store) => {

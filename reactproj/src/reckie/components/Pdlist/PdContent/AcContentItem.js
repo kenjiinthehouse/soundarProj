@@ -80,9 +80,9 @@ function AcContentItem(props){
       </div>
       </div>
      
-      <Collapse in={isShown} timeout="auto" unmountOnExit>                
+      {/* <Collapse in={isShown} timeout="auto" unmountOnExit>                
         <Button className="addCartBtn" onClick={()=>{props.history.push('/activitymain')}}>立即購票</Button>                              
-      </Collapse>
+      </Collapse> */}
       </div>
     </Link>
 )

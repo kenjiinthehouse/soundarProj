@@ -5,7 +5,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //components
-
 import ScrollToTop from './jay/jay_components/ScrollToTop.js';
 import MainContent from './jay/jay_components/MainContent.js';
 import { Layout } from 'antd';

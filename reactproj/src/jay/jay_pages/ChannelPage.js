@@ -164,7 +164,9 @@ function ChannelPage(props) {
                   style={styles.fadeIn01}
                 >
                   <div className="jay-channel-head-pic-area">
-                    <img src={item.podcaster_img} alt="" />
+                    <img src={item.podcaster_img.indexOf('http') !== -1
+                      ? item.podcaster_img
+                      : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`} alt="" />
                   </div>
                   <h3 className="pt-3" style={{ lineHeight: '1.5' }}>
                     {item.channel_title}
@@ -195,27 +197,27 @@ function ChannelPage(props) {
                         訂閱
                       </button>
                     ) : (
-                      <button
-                        type="button"
-                        className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
-                        style={styles.fadeInLeft01}
-                        onClick={async () => {
-                          if (props.member.sid) {
-                            await props.delChannelCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberChannelCollectionAsync(
-                              props.member.sid
-                            );
-                          } else {
-                            setShowInformLoginModal(true);
-                          }
-                        }}
-                      >
-                        訂閱中
-                      </button>
-                    )}
+                        <button
+                          type="button"
+                          className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                          style={styles.fadeInLeft01}
+                          onClick={async () => {
+                            if (props.member.sid) {
+                              await props.delChannelCollection(
+                                props.member.sid,
+                                item.sid
+                              );
+                              await props.initMemberChannelCollectionAsync(
+                                props.member.sid
+                              );
+                            } else {
+                              setShowInformLoginModal(true);
+                            }
+                          }}
+                        >
+                          訂閱中
+                        </button>
+                      )}
 
                     <button
                       type="button"
@@ -284,170 +286,174 @@ function ChannelPage(props) {
               })}
               <hr className="jay-cate-hr" />
               {props.channel_audio_data.map((item, index) => {
-                return (
-                  <div
-                    className=" position-relative channel-page-audio-list"
-                    key={index}
-                  >
+                if (item.sid === null) {
+                  return null;
+                } else {
+                  return (
                     <div
-                      className=" d-flex py-3 px-3 mb-3 mh14"
-                      onClick={() => {
-                        props.history.push(
-                          `/channel_page/${cate_term}/${podcaster_id}/${item.sid}`
-                        );
-                      }}
-                      style={{ cursor: 'pointer' }}
+                      className=" position-relative channel-page-audio-list"
+                      key={index}
                     >
-                      <div>
-                        <h6>{item.audio_title}</h6>
-                        <p>{truncate(item.audio_content_snippet, 120)}</p>
-                        <span>{item.pubDate}</span>
+                      <div
+                        className=" d-flex py-3 px-3 mb-3 mh14"
+                        onClick={() => {
+                          props.history.push(
+                            `/channel_page/${cate_term}/${podcaster_id}/${item.sid}`
+                          );
+                        }}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <div>
+                          <h6>{item.audio_title}</h6>
+                          <p>{truncate(item.audio_content_snippet ? item.audio_content_snippet : '', 120)}</p>
+                          <span>{item.pubDate}</span>
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      className="channel-audio-list-icon position-absolute"
-                      style={{ left: '70%' }}
-                      onMouseEnter={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.add('mh15');
-                      }}
-                      onMouseLeave={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.remove('mh15');
-                      }}
-                      onClick={(event) => {
-                        let playTargetAudio = null;
-                        [playTargetAudio] = props.channel_audio_data.filter(
-                          (v) => v.sid === item.sid
-                        );
-                        let payload = {
-                          musicSrc:
-                            playTargetAudio.audio_file.indexOf('http') !== -1
-                              ? playTargetAudio.audio_file
-                              : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
-                          cover: playTargetAudio.podcaster_img,
-                          name: playTargetAudio.audio_title,
-                          singer: playTargetAudio.channel_title,
-                        };
-                        if (
-                          globalAudioArry[0] &&
-                          globalAudioArry[0].name === payload.name
-                        ) {
-                          return null;
-                        } else {
-                          setGlobalAudioArry([payload, ...globalAudioArry]);
-                        }
-                      }}
-                    >
-                      {playingAudio &&
-                      playingAudio.name === item.audio_title ? (
-                        <AiFillPlayCircle
-                          style={{ fontSize: '2.5rem', color: '#F780AE' }}
-                        />
-                      ) : (
-                        <AiFillPlayCircle style={{ fontSize: '2.5rem' }} />
-                      )}
-                    </div>
-                    <div
-                      className="channel-audio-list-icon position-absolute"
-                      style={{ left: '80%' }}
-                      onMouseEnter={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.add('mh15');
-                      }}
-                      onMouseLeave={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.remove('mh15');
-                      }}
-                      onClick={(event) => {
-                        let playTargetAudio = null;
-                        [playTargetAudio] = props.channel_audio_data.filter(
-                          (v) => v.sid === item.sid
-                        );
-                        let payload = {
-                          musicSrc:
-                            playTargetAudio.audio_file.indexOf('http') !== -1
-                              ? playTargetAudio.audio_file
-                              : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
-                          cover: playTargetAudio.podcaster_img,
-                          name: playTargetAudio.audio_title,
-                          singer: playTargetAudio.channel_title,
-                        };
-                        if (globalAudioArry[0]) {
-                          let alreadyInArry = false;
-                          globalAudioArry.forEach((item) => {
-                            if (item.name === payload.name) {
-                              alreadyInArry = true;
+                      <div
+                        className="channel-audio-list-icon position-absolute"
+                        style={{ left: '70%' }}
+                        onMouseEnter={(event) => {
+                          event.target
+                            .closest('.channel-page-audio-list')
+                            .querySelector('.mh14')
+                            .classList.add('mh15');
+                        }}
+                        onMouseLeave={(event) => {
+                          event.target
+                            .closest('.channel-page-audio-list')
+                            .querySelector('.mh14')
+                            .classList.remove('mh15');
+                        }}
+                        onClick={(event) => {
+                          let playTargetAudio = null;
+                          [playTargetAudio] = props.channel_audio_data.filter(
+                            (v) => v.sid === item.sid
+                          );
+                          let payload = {
+                            musicSrc:
+                              playTargetAudio.audio_file.indexOf('http') !== -1
+                                ? playTargetAudio.audio_file
+                                : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
+                            cover: playTargetAudio.podcaster_img,
+                            name: playTargetAudio.audio_title,
+                            singer: playTargetAudio.channel_title,
+                          };
+                          if (
+                            globalAudioArry[0] &&
+                            globalAudioArry[0].name === payload.name
+                          ) {
+                            return null;
+                          } else {
+                            setGlobalAudioArry([payload, ...globalAudioArry]);
+                          }
+                        }}
+                      >
+                        {playingAudio &&
+                          playingAudio.name === item.audio_title ? (
+                            <AiFillPlayCircle
+                              style={{ fontSize: '2.5rem', color: '#F780AE' }}
+                            />
+                          ) : (
+                            <AiFillPlayCircle style={{ fontSize: '2.5rem' }} />
+                          )}
+                      </div>
+                      <div
+                        className="channel-audio-list-icon position-absolute"
+                        style={{ left: '80%' }}
+                        onMouseEnter={(event) => {
+                          event.target
+                            .closest('.channel-page-audio-list')
+                            .querySelector('.mh14')
+                            .classList.add('mh15');
+                        }}
+                        onMouseLeave={(event) => {
+                          event.target
+                            .closest('.channel-page-audio-list')
+                            .querySelector('.mh14')
+                            .classList.remove('mh15');
+                        }}
+                        onClick={(event) => {
+                          let playTargetAudio = null;
+                          [playTargetAudio] = props.channel_audio_data.filter(
+                            (v) => v.sid === item.sid
+                          );
+                          let payload = {
+                            musicSrc:
+                              playTargetAudio.audio_file.indexOf('http') !== -1
+                                ? playTargetAudio.audio_file
+                                : `http://localhost:3000/audios/${playTargetAudio.audio_file}`,
+                            cover: playTargetAudio.podcaster_img,
+                            name: playTargetAudio.audio_title,
+                            singer: playTargetAudio.channel_title,
+                          };
+                          if (globalAudioArry[0]) {
+                            let alreadyInArry = false;
+                            globalAudioArry.forEach((item) => {
+                              if (item.name === payload.name) {
+                                alreadyInArry = true;
+                              }
+                            });
+                            if (alreadyInArry !== true) {
+                              setGlobalAudioArry([...globalAudioArry, payload]);
                             }
-                          });
-                          if (alreadyInArry !== true) {
+                          } else {
                             setGlobalAudioArry([...globalAudioArry, payload]);
                           }
-                        } else {
-                          setGlobalAudioArry([...globalAudioArry, payload]);
-                        }
-                      }}
-                    >
-                      <RiPlayListAddLine style={{ fontSize: '2rem' }} />
-                    </div>
-                    <div
-                      className="channel-audio-list-icon position-absolute"
-                      style={{ left: '90%' }}
-                      onMouseEnter={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.add('mh15');
-                      }}
-                      onMouseLeave={(event) => {
-                        event.target
-                          .closest('.channel-page-audio-list')
-                          .querySelector('.mh14')
-                          .classList.remove('mh15');
-                      }}
-                      onClick={async () => {
-                        if (props.member.sid) {
-                          //寫回資料庫
-                          if (props.audioCollection.indexOf(item.sid) === -1) {
-                            await props.addCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberAudioCollectionAsync(
-                              props.member.sid
-                            );
+                        }}
+                      >
+                        <RiPlayListAddLine style={{ fontSize: '2rem' }} />
+                      </div>
+                      <div
+                        className="channel-audio-list-icon position-absolute"
+                        style={{ left: '90%' }}
+                        onMouseEnter={(event) => {
+                          event.target
+                            .closest('.channel-page-audio-list')
+                            .querySelector('.mh14')
+                            .classList.add('mh15');
+                        }}
+                        onMouseLeave={(event) => {
+                          event.target
+                            .closest('.channel-page-audio-list')
+                            .querySelector('.mh14')
+                            .classList.remove('mh15');
+                        }}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            //寫回資料庫
+                            if (props.audioCollection.indexOf(item.sid) === -1) {
+                              await props.addCollection(
+                                props.member.sid,
+                                item.sid
+                              );
+                              await props.initMemberAudioCollectionAsync(
+                                props.member.sid
+                              );
+                            } else {
+                              await props.delCollection(
+                                props.member.sid,
+                                item.sid
+                              );
+                              await props.initMemberAudioCollectionAsync(
+                                props.member.sid
+                              );
+                            }
                           } else {
-                            await props.delCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberAudioCollectionAsync(
-                              props.member.sid
-                            );
+                            setShowInformLoginModal(true);
                           }
-                        } else {
-                          setShowInformLoginModal(true);
-                        }
-                      }}
-                    >
-                      {props.audioCollection.indexOf(item.sid) === -1 ? (
-                        <FaHeart style={{ fontSize: '2rem' }} />
-                      ) : (
-                        <FaHeart
-                          style={{ fontSize: '2rem', color: '#F780AE' }}
-                        />
-                      )}
+                        }}
+                      >
+                        {props.audioCollection.indexOf(item.sid) === -1 ? (
+                          <FaHeart style={{ fontSize: '2rem' }} />
+                        ) : (
+                            <FaHeart
+                              style={{ fontSize: '2rem', color: '#F780AE' }}
+                            />
+                          )}
+                      </div>
                     </div>
-                  </div>
-                );
+                  );
+                }
               })}
             </div>
           </div>
@@ -463,6 +469,7 @@ function ChannelPage(props) {
       <ChannelRatingModal
         show={showRatingModel}
         onHide={() => setShowRatingModel(false)}
+        setIsLoading={setIsLoading}
       />
     </StyleRoot>
   );
