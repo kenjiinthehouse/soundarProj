@@ -24,6 +24,7 @@ import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 import MsgBoard from './../../kenji/components/MsgBoard';
 import InformLoginModal from './../jay_components/InformLoginModal';
+import InformAudioActionModal from './../jay_components/InformAudioActionModal';
 // bootstrap
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
@@ -62,6 +63,8 @@ function ChannelAudioPage(props) {
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id, audio_sid } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
+  const [showActionModal, setShowActionModal] = useState(false);
+  const [actionModalText, setActionModalText] = useState('');
   const transTermToChinese = () => {
     switch (cate_term) {
       case 'news':
@@ -263,13 +266,13 @@ function ChannelAudioPage(props) {
                   </div>
                   <div>
                     <span>
-                      網友評比： &nbsp;&nbsp;{item.channel_rating} &nbsp;/&nbsp;
-                      5
+                      網友評比： &nbsp;&nbsp;{(+item.channel_rating).toFixed(1)}
+                      &nbsp;/&nbsp; 5
                     </span>
                   </div>
                   <div className="pt-4">
                     <a target="_blank" href={item.channel_rss_link}>
-                      <FaRss style={{ fontSize: '1.25rem' }} />{' '}
+                      <FaRss style={{ fontSize: '1.25rem' }} />
                       <span className="px-2">RSS訂閱</span>
                     </a>
                   </div>
@@ -357,6 +360,8 @@ function ChannelAudioPage(props) {
                               <div
                                 className="audio-info-icon"
                                 onClick={(event) => {
+                                  setActionModalText('已加入至播放儲列');
+                                  setShowActionModal(true);
                                   let playTargetAudio = null;
                                   [
                                     playTargetAudio,
@@ -409,6 +414,8 @@ function ChannelAudioPage(props) {
                                         item.sid
                                       ) === -1
                                     ) {
+                                      setActionModalText('已加入我的收藏');
+                                      setShowActionModal(true);
                                       await props.addCollection(
                                         props.member.sid,
                                         item.sid
@@ -417,6 +424,8 @@ function ChannelAudioPage(props) {
                                         props.member.sid
                                       );
                                     } else {
+                                      setActionModalText('已從我的收藏移除');
+                                      setShowActionModal(true);
                                       await props.delCollection(
                                         props.member.sid,
                                         item.sid
@@ -467,6 +476,12 @@ function ChannelAudioPage(props) {
         onHide={() => setShowInformLoginModal(false)}
         setShowInformLoginModal={setShowInformLoginModal}
       />
+      {showActionModal ? (
+        <InformAudioActionModal
+          setShowActionModal={setShowActionModal}
+          actionModalText={actionModalText}
+        />
+      ) : null}
     </StyleRoot>
   );
 

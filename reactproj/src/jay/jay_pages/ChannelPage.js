@@ -17,12 +17,13 @@ import {
 import { withRouter, useParams } from 'react-router-dom';
 
 //components
-import { fadeIn } from 'react-animations';
+import { fadeIn, fadeInDown } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 import InformLoginModal from './../jay_components/InformLoginModal';
+import InformAudioActionModal from './../jay_components/InformAudioActionModal';
 // bootstrap
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
@@ -47,6 +48,10 @@ function ChannelPage(props) {
       animation: '2.5s',
       animationName: Radium.keyframes(fadeIn, 'fadeIn'),
     },
+    fadeInDown01: {
+      animation: '5s 1',
+      animationName: Radium.keyframes(fadeInDown, 'fadeInDown'),
+    },
   };
 
   const {
@@ -58,6 +63,8 @@ function ChannelPage(props) {
   const { Search } = Input;
   const [isLoading, setIsLoading] = useState(false);
   const [showInformLoginModal, setShowInformLoginModal] = useState(false);
+  const [showActionModal, setShowActionModal] = useState(false);
+  const [actionModalText, setActionModalText] = useState('');
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
@@ -164,9 +171,14 @@ function ChannelPage(props) {
                   style={styles.fadeIn01}
                 >
                   <div className="jay-channel-head-pic-area">
-                    <img src={item.podcaster_img.indexOf('http') !== -1
-                      ? item.podcaster_img
-                      : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`} alt="" />
+                    <img
+                      src={
+                        item.podcaster_img.indexOf('http') !== -1
+                          ? item.podcaster_img
+                          : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
+                      }
+                      alt=""
+                    />
                   </div>
                   <h3 className="pt-3" style={{ lineHeight: '1.5' }}>
                     {item.channel_title}
@@ -197,27 +209,27 @@ function ChannelPage(props) {
                         訂閱
                       </button>
                     ) : (
-                        <button
-                          type="button"
-                          className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
-                          style={styles.fadeInLeft01}
-                          onClick={async () => {
-                            if (props.member.sid) {
-                              await props.delChannelCollection(
-                                props.member.sid,
-                                item.sid
-                              );
-                              await props.initMemberChannelCollectionAsync(
-                                props.member.sid
-                              );
-                            } else {
-                              setShowInformLoginModal(true);
-                            }
-                          }}
-                        >
-                          訂閱中
-                        </button>
-                      )}
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                        style={styles.fadeInLeft01}
+                        onClick={async () => {
+                          if (props.member.sid) {
+                            await props.delChannelCollection(
+                              props.member.sid,
+                              item.sid
+                            );
+                            await props.initMemberChannelCollectionAsync(
+                              props.member.sid
+                            );
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        訂閱中
+                      </button>
+                    )}
 
                     <button
                       type="button"
@@ -250,7 +262,7 @@ function ChannelPage(props) {
                   <div>
                     <span>
                       網友評比： &nbsp;&nbsp;{(+item.channel_rating).toFixed(1)}
-                      &nbsp;&nbsp; 5
+                      &nbsp;/&nbsp; 5
                     </span>
                   </div>
                   <div className="pt-4">
@@ -303,9 +315,16 @@ function ChannelPage(props) {
                         }}
                         style={{ cursor: 'pointer' }}
                       >
-                        <div>
+                        <div className=" w-100">
                           <h6>{item.audio_title}</h6>
-                          <p>{truncate(item.audio_content_snippet ? item.audio_content_snippet : '', 120)}</p>
+                          <p>
+                            {truncate(
+                              item.audio_content_snippet
+                                ? item.audio_content_snippet
+                                : '',
+                              120
+                            )}
+                          </p>
                           <span>{item.pubDate}</span>
                         </div>
                       </div>
@@ -349,13 +368,13 @@ function ChannelPage(props) {
                         }}
                       >
                         {playingAudio &&
-                          playingAudio.name === item.audio_title ? (
-                            <AiFillPlayCircle
-                              style={{ fontSize: '2.5rem', color: '#F780AE' }}
-                            />
-                          ) : (
-                            <AiFillPlayCircle style={{ fontSize: '2.5rem' }} />
-                          )}
+                        playingAudio.name === item.audio_title ? (
+                          <AiFillPlayCircle
+                            style={{ fontSize: '2.5rem', color: '#F780AE' }}
+                          />
+                        ) : (
+                          <AiFillPlayCircle style={{ fontSize: '2.5rem' }} />
+                        )}
                       </div>
                       <div
                         className="channel-audio-list-icon position-absolute"
@@ -373,6 +392,8 @@ function ChannelPage(props) {
                             .classList.remove('mh15');
                         }}
                         onClick={(event) => {
+                          setActionModalText('已加入至播放儲列');
+                          setShowActionModal(true);
                           let playTargetAudio = null;
                           [playTargetAudio] = props.channel_audio_data.filter(
                             (v) => v.sid === item.sid
@@ -421,7 +442,12 @@ function ChannelPage(props) {
                         onClick={async () => {
                           if (props.member.sid) {
                             //寫回資料庫
-                            if (props.audioCollection.indexOf(item.sid) === -1) {
+                            if (
+                              props.audioCollection.indexOf(item.sid) === -1
+                            ) {
+                              //送內容至彈出元件
+                              setActionModalText('已加入我的收藏');
+                              setShowActionModal(true);
                               await props.addCollection(
                                 props.member.sid,
                                 item.sid
@@ -430,6 +456,9 @@ function ChannelPage(props) {
                                 props.member.sid
                               );
                             } else {
+                              //送內容至彈出元件
+                              setActionModalText('已從我的收藏移除');
+                              setShowActionModal(true);
                               await props.delCollection(
                                 props.member.sid,
                                 item.sid
@@ -446,10 +475,10 @@ function ChannelPage(props) {
                         {props.audioCollection.indexOf(item.sid) === -1 ? (
                           <FaHeart style={{ fontSize: '2rem' }} />
                         ) : (
-                            <FaHeart
-                              style={{ fontSize: '2rem', color: '#F780AE' }}
-                            />
-                          )}
+                          <FaHeart
+                            style={{ fontSize: '2rem', color: '#F780AE' }}
+                          />
+                        )}
                       </div>
                     </div>
                   );
@@ -459,6 +488,13 @@ function ChannelPage(props) {
           </div>
         </div>
       </div>
+
+      {showActionModal ? (
+        <InformAudioActionModal
+          setShowActionModal={setShowActionModal}
+          actionModalText={actionModalText}
+        />
+      ) : null}
 
       <InformLoginModal
         show={showInformLoginModal}
