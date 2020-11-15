@@ -29,27 +29,27 @@ function IndexCarousel(props) {
       click: '>>去聽聽',
     },
     {
-      name: 'Random Name #2',
-      description: 'Hello World!',
+      name: 'Gooaye 股癌',
+      description: '“晦澀金融投資知識直白講，重要海內外時事輕鬆談”',
+      img: './k_img/IndexGooaye.jpg',
+      click: '>>去聽聽',
+    },
+    {
+      name: '法客電台',
+      description: '“法律白話文運動無極限！跨界經營【法客電台】”',
+      img: './k_img/IndexLawWhite.jpg',
+      click: '>>去聽聽',
+    },
+    {
+      name: '呱吉',
+      description: `“賣房創業的87，是Youtuber，也是上班不要看的首腦。”`,
+      img: './k_img/IndexFroggy.jpg',
+      click: '>>去聽聽',
+    },
+    {
+      name: 'Soundar',
+      description: '“Podcast界到底發生了什麼事，透過我們的雷達幫你搜尋”',
       img: './k_img/IndexC2.jpg',
-      click: '>>去聽聽',
-    },
-    {
-      name: 'Random Name #3',
-      description: 'Hello World!',
-      img: './k_img/IndexC3.jpg',
-      click: '>>去聽聽',
-    },
-    {
-      name: 'Random Name #4',
-      description: 'Hello World!',
-      img: './k_img/IndexC4.jpg',
-      click: '>>去聽聽',
-    },
-    {
-      name: 'Random Name #5',
-      description: 'Hello World!',
-      img: './k_img/IndexC5.jpg',
       click: '>>去聽聽',
     },
   ];
