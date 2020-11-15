@@ -31,15 +31,27 @@
   align-items: center;
   margin-bottom: 2rem;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.sa-channel-collection-colbox:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 
 .sa-channel-collection-img-area {
   width: 15rem;
   height: 15rem;
+  overflow: hidden;
 }
 
 .sa-channel-collection-img {
   width: 100%;
+}
+
+.sa-channel-collection-img-area:hover {
+  width: 15rem;
+  height: 15rem;
 }
 
 .sa-channel-collection-title-area {

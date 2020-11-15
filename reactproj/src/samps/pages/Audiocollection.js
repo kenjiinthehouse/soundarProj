@@ -40,9 +40,11 @@ function Audiocollection(props) {
   const handleClick = (event) => {
     Filedownload.current.click();
   };
+
+  //控制高度大小
   const setbox = function () {
     console.log('length', audio_collect.length);
-    if (audio_collect.length < 3) {
+    if (audio_collect.length < 2) {
       setCollect_box('sa-100vh');
     } else {
       setCollect_box('sa-collection-wrap');
