@@ -27,7 +27,13 @@ function ActivityOrderContent(props) {
                         <ul className="list-unstyled">
                         <li>{activityOrder.activity_name}</li>
                             <li>{activityOrder.ticket_order_date.slice(0,10)}</li>
-                            <li>{activityOrder.order_status}</li>
+                            <li>
+                            {activityOrder.order_status==0?'已報名':
+                            activityOrder.order_status==1?'未完成':
+                            activityOrder.order_status==2?'已取消':
+                            activityOrder.order_status==3?'退票紀錄':
+                            ''
+                            }</li>
                             <li>NT${activityOrder.total_amount}</li>
                             <li>{activityOrder.activity_date}</li>
                         </ul>
@@ -66,6 +72,7 @@ function ActivityOrderContent(props) {
                                         <li>活動地址</li>
                                         <li>活動日期</li>
                                         <li>報名方案</li>
+                                        <li>數量</li>
                                     </ul>
                                 </div>
                                 <div className="detail-content">
@@ -74,19 +81,21 @@ function ActivityOrderContent(props) {
                                         <li>{activityOrder.activity_location}</li>
                                         <li>{activityOrder.activity_date}</li>
                                         <li>{activityOrder.ticket_option}</li>
+                                        <li>{activityOrder.order_quantity}</li>
                                     </ul>
                                 </div>
+                                <div className="detail-img ml-auto"><img src={activityOrder.activity_img} alt=""/></div>
                             </div>                            
                         </div>
                         <div className="order-info w-100">
-                            <h5>收件人資訊</h5>
+                            <h5>報名資訊</h5>
                             <hr/>
                             <div className="d-flex">
                                 <div className="detail-title">
                                     <ul className="list-unstyled">
-                                        <li>收件人姓名</li>
-                                        <li>收件人手機</li>
-                                        <li>收件人Email</li>
+                                        <li>姓名</li>
+                                        <li>手機</li>
+                                        <li>E-mail</li>
                                     </ul>
                                 </div>
                                 <div className="detail-content">

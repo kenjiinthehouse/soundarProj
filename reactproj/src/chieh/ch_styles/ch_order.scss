@@ -6,7 +6,6 @@
     width: 231px;
     height: 50px;
     font-size: 1.5rem;
-    // font-weight: bold;
     line-height: 1.5;
     color: #232d2f;
     border-radius: 30px;
@@ -62,7 +61,6 @@
     text-align: center;
     border-left: 3px solid #232d2f;
     border-right: 3px solid #232d2f;
-    // margin-bottom: 24px;
   }
 
   .member-bar {
@@ -95,7 +93,6 @@
     font-size: 1.5rem;
     font-weight: bold;
     border-bottom: solid 1px rgba(112, 112, 112, 0.3);
-    // background-color: transparent;
   }
 
   a,
@@ -146,20 +143,18 @@
 
   .order-info-title {
     width: 100px;
-
-    // ul > li {
-    //   line-height: 2;
-    //   color: #232d2f;
-    // }
   }
 
   .order-info-content {
     width: 385px;
     padding-right: 16px;
+  }
 
-    // ul > li {
-    //   line-height: 2;
-    //   color: #232d2f;
-    // }
+  .detail-img {
+    width: 30%;
+
+    img {
+      width: 100%;
+    }
   }
 }
