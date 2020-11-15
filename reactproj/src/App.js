@@ -52,11 +52,15 @@ function App() {
   const [globalAudioArry, setGlobalAudioArry] = useState([]);
   const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
   const [playingAudio, setPlayingAudio] = useState(null);
+  const [navCartNum,setNavCartNum] = useState(0);
 
   return (
     <Router>
       <Layout>
-        <MyNavbar />
+        <MyNavbar 
+        navCartNum={navCartNum}
+        setNavCartNum={setNavCartNum}
+         />
         <MainContent>
           <ScrollToTop>
             <Switch>
@@ -176,7 +180,10 @@ function App() {
                 <ProductMainPage />
               </Route>
               <Route path="/product/:pd_id?">
-                <ProductItemPage />
+                <ProductItemPage 
+                  navCartNum={navCartNum}
+                  setNavCartNum={setNavCartNum}
+                />
               </Route>
             </Switch>
           </ScrollToTop>

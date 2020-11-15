@@ -1,4 +1,9 @@
 // $primary: #2690df;
+
+// $react-rater-link: #ccc !default; // color of star not rated
+// $react-rater-hover: #666 !default; // color of star on hover
+// $react-rater-active: #fadb28 !default; // color of star rated
+
 $thirdColor: #fc774c;
 $thirdColorBrighter: brighten($thirdColor, 85%);
 $baseSize: 16px;
@@ -10,6 +15,8 @@ $DarkOpacity60: rgba($Dark, 0.6);
 @function font($level: 1) {
   @return $baseSize * $level;
 }
+$react-rater-active: #fadb28 !default;
+@import 'react-rater/lib/react-rater.scss';
 
 @import '~bootstrap/scss/bootstrap.scss';
 .reBgWhite {
@@ -423,10 +430,16 @@ input.reSearch:focus {
 // -- ItemTabBar end --
 // -- Product Intro --
 .pdIntroPart {
-  padding: 4rem 0rem;
+  padding: 2rem 0rem;
   background: url('/reckie_img/bg-pdintro.jpg');
   background-attachment: fixed;
   background-size: cover;
+}
+.contentHeight2 {
+  padding: 4rem 0 2rem;
+}
+.contentHeight3 {
+  padding: 4rem 0 2rem;
 }
 .pdIntroImgField {
   // width: 100%;

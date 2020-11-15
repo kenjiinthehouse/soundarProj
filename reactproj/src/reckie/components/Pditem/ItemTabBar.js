@@ -8,10 +8,8 @@ import {Form} from 'react-bootstrap'
 
 
 function ItemTabBar(props){
-  console.log('props',props)
   const{pdDetail,SubImg}=props
-  const [products,setProducts]= useState([])
-
+  const [pdFeaturesLabel,setPdFeaturesLabel]=useState([])
 
   //Sticky Tab Bar
   useEffect(()=>{
@@ -22,7 +20,6 @@ function ItemTabBar(props){
      
       function fixedTest(){
           // console.log('w',window.pageYOffset)
-          
           // console.log('y', fakePoint.offsetTop)
           // console.log('fakePoint',fakePoint)
        let y = fakePoint.offsetTop;
@@ -36,12 +33,14 @@ function ItemTabBar(props){
 
     // });
   },[])
-useEffect(()=>{},[pdDetail])
+
+ 
+  
 
   //Function- Tabs切換
     function handleActive(e){
         if(e.target.closest('.ItemTabBar').querySelector('.tabsAct')){
-            e.target.closest('.ItemTabBar').querySelector('.tabsAct').classList.remove('tabsAct')
+          e.target.closest('.ItemTabBar').querySelector('.tabsAct').classList.remove('tabsAct')
         }
       e.target.classList.add('tabsAct')
     }
@@ -83,6 +82,19 @@ useEffect(()=>{},[pdDetail])
               });
       }
 
+    
+
+    //規格
+      let newFeaturesArr=[]
+      for(let i = 0; i< (pdDetail?JSON.parse(pdDetail.pd_features_label).length:0); i++){
+        newFeaturesArr.push (pdDetail?JSON.parse(pdDetail.pd_features_label)[i]:[])
+        console.log('newFeaturesArr',newFeaturesArr)
+      }
+      let newFeaturesValueArr=[]
+      for(let i = 0; i< (pdDetail?JSON.parse(pdDetail.pd_features_value).length:0); i++){
+        newFeaturesValueArr.push (pdDetail?JSON.parse(pdDetail.pd_features_value)[i]:[])
+        console.log('newFeaturesArr',newFeaturesValueArr)
+      }
 
     return(<>
     <div className="fake-point"></div>
@@ -110,36 +122,50 @@ useEffect(()=>{},[pdDetail])
     </div>
     <div className="container">
       <h2 className="contentHeight2">規格</h2>
+    <div className="d-flex">
+      <table class="table table-striped" style={{textAlign:'right',width:"50%"}}>
+        <tbody>
+          {newFeaturesArr.map((item,index)=>{
+            if(index < 9 ){
+             return <tr><th scope="row">{item}</th></tr>}
+             })   
+            }
+        </tbody>
+      </table>
       <table class="table table-striped">
-      <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+        <tbody>
+          {newFeaturesValueArr.map((item,index)=>{
+            if (index < 9 ){
+              return <tr><td>{item}</td></tr>}
+            }
+             )}
+        </tbody>
+      </table>
+      <div style={{width:'1rem'}}></div>
+      <table class="table table-striped" style={{textAlign:'right',width:"50%"}}>
+        <tbody>
+          {newFeaturesArr.map((item,index)=>{
+            if(index >= 9 && index < 18 ){
+             return <tr><th scope="row">{item}</th></tr>}
+             })   
+            }
+        </tbody>
+      </table>
+
+      <table class="table table-striped">
+        <tbody>
+          {newFeaturesValueArr.map((item,index)=>{
+            if (index >= 9 && index < 18 ){
+              return <tr><td>{item}</td></tr>}
+            }
+             )}
+        </tbody>
+      </table>
+
+      
+    </div>
+   
+
       <h2 className="contentHeight3">評論</h2>
 
       <div className="d-flex justify-content-between">

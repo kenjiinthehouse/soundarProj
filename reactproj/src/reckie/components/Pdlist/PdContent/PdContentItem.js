@@ -58,7 +58,7 @@ const handleExpandEnter = () => {
       <CardMedia
       className={classes.media}
       image={products.pd_main_img.indexOf('http')=== -1 ?`/reckie_img/${products.pd_main_img}`:products.pd_main_img}
-      title="Paella dish"
+      title={products.pd_title}
       />
             <div className="cardBody">
             <div variant="body2">
@@ -69,12 +69,7 @@ const handleExpandEnter = () => {
             </div>
             </div>
            
-            <Collapse in={isShown} timeout="auto" unmountOnExit>
-                
-                   <Button className="addCartBtn re-btn-color" >加入購物車車車車</Button>
-                
-                
-            </Collapse>
+           
             </div>
      
           </Link>

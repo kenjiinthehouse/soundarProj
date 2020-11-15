@@ -105,7 +105,7 @@ function PdSideBar2(props){
           as={Button} 
           variant="link" 
           eventKey="0"
-          onClick={()=>{setSearch("耳機");setActiveArrow(!activeArrow)}}
+          onClick={()=>{setSearch("耳機");setDetailCate('');setActiveArrow(!activeArrow)}}
            >
           <p className="body3 dark" ><MdKeyboardArrowRight className="reArrow reArrowSpace" />耳機</p>
           </Accordion.Toggle>

@@ -1,11 +1,15 @@
 import '../../styles/reckieCustom.scss';
 import React,{useState,useEffect} from 'react';
+import Rater from 'react-rater'
 import { MdStar,MdStarBorder,MdStarHalf,MdShoppingCart,MdShoppingBasket,MdAddCircleOutline,MdRemoveCircleOutline} from "react-icons/md";
 import { withRouter } from 'react-router-dom';
 
 function PdMainField(props){
-const {pdDetail}=props
+const {pdDetail,navCartNum,setNavCartNum}=props
 const [counterNum,setCounterNum]=useState(1)
+
+
+//加入購物車，將資訊存loacalStorage
 const addToCart=(event)=>{
     let cart = []
     if(localStorage.getItem('cart'))
@@ -28,8 +32,12 @@ const addToCart=(event)=>{
       cart.push(obj)
     }
     localStorage.setItem('cart',JSON.stringify(cart))
-
+    //將購物車數量傳入nav
+    console.log('cart',localStorage.getItem('cart'))
+    setNavCartNum(JSON.parse(localStorage.getItem('cart')).length)
 }
+
+
 
     return(<>
     <div className="pdMainfield d-flex flex-column justify-content-between h-100">
@@ -40,10 +48,8 @@ const addToCart=(event)=>{
 
     <div className="d-flex align-items-baseline commentStarPart justify-content-between">
       <p className="pdMainFieldStars caption">顧客好評</p>
-      <div style={{color:'gold', fontSize:'1.375rem'}}>
-      {/* 星星不會跟著評分調整 */}
-      <MdStar/><MdStar/><MdStar/><MdStar/><MdStarHalf/>   
-      </div>
+      
+        <Rater total={5} rating={pdDetail?pdDetail.stars:''} interactive={false} /> 
         <p className="pdMainFieldStars subtitle1">{pdDetail?pdDetail.stars:''}</p>
         <p className="pdMainFieldStars caption">(30)</p>
       </div>  
@@ -79,7 +85,7 @@ const addToCart=(event)=>{
     className="btn btn-rounded btn-vital re-btn"
     onClick={(event)=>{
       addToCart(event);
-      props.history.push('/checkout')
+      props.history.push('/cart')
       }}
     ><div className="d-flex align-items-baseline justify-content-center"><div><MdShoppingBasket className="mr-2 mb-1" style={{fontSize:'1.25rem'}} /></div>立即購買</div></button>
     </div>

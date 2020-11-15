@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 function Breadcrumb(props){
-    console.log("B",props)
     const { value, pds , viewFilter, setViewFilter,setValue}= props
 
     let path = '';

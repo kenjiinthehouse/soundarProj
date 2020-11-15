@@ -59,6 +59,7 @@ function MyNavbar(props) {
   const anchorRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+  const {navCartNum,setNavCartNum}=props
 
   //jay
   const [showInformLoginModal, setShowInformLoginModal] = useState(false);
@@ -67,6 +68,9 @@ function MyNavbar(props) {
 
   useEffect(() => {
     props.initMemberAsync();
+    if(localStorage.getItem('cart')){
+      setNavCartNum(JSON.parse(localStorage.getItem('cart')).length)
+    }
     // console.log("hi")
   }, []);
 
@@ -240,9 +244,9 @@ function MyNavbar(props) {
         </IconButton>
       </div>
       <div className="navBarBtn">
-        <IconButton onClick={() => { props.history.push('/cart') }}>
+        <IconButton onClick={() => { props.history.push('/cart'); console.log('11') }}>
           {/* 這邊需要接購物車props過來的length */}
-          <StyledBadge badgeContent={4} color="secondary">
+          <StyledBadge badgeContent={navCartNum} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
@@ -325,7 +329,7 @@ function MyNavbar(props) {
       </div>
       <div className="navBarBtn">
         <IconButton>
-          <StyledBadge badgeContent={4} color="secondary">
+          <StyledBadge badgeContent={navCartNum} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
