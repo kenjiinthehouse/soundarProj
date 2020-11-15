@@ -47,52 +47,13 @@ router.get('/api', async(req,res)=>{
    res.json(await getListData(req));
 });
 
-// add(C)
-router.post('/add', async (req, res) => {
-    const data = { ...req.body };
-    const sql = "INSERT INTO `rent_order` set ?";
-    const [{ affectedRows, insertId }] = await db.query(sql, [data]);
-
-    res.json({
-        success: !!affectedRows,
-        affectedRows,
-        insertId
-    });
+//會員的訂單
+router.get('/member/:members_sid', async (req, res) => {
+    const sql = "SELECT rent_order.*, studio.studio_name, studio.studio_main_img, studio.studio_location,studio.studio_option,members.account, members.name, members.phone FROM rent_order LEFT JOIN studio ON rent_order.studio_sid = studio.sid LEFT JOIN members ON rent_order.members_sid = members.sid WHERE members_sid=?";
+    const [results] = await db.query(sql, [req.params.members_sid]);
+    res.json(results);
 })
 
-
-
-
-//edit(U) 呈現單筆
-// router.get('/edit/:sid', async (req, res) => {
-//     // const sql = "SELECT * FROM rent_order WHERE sid=?";
-//     const sql ="SELECT rent_order.*, studio.studio_name, studio.studio_location,studio.studio_option, studio.option_description, studio.studio_price, members.account, members.name, members.phone FROM rent_order LEFT JOIN studio ON rent_order.studio_sid = studio.sid LEFT JOIN members ON rent_order.members_sid = members.sid WHERE rent_order.sid = 1"
-
-//     const [results] = await db.query(sql, [req.params.sid]);
-//     if (!results.length) return res.redirect('/rent_order/api');
-
-//     res.json(results[0]);
-// })
-
-//edit(U) 修改單筆
-// router.post('/edit/:sid', async (req, res)=>{
-//     const data = {...req.body};
-//     const sql = "UPDATE `rent_order` SET ? WHERE `sid`=?";
-//     const [{affectedRows, changedRows}] = await db.query(sql, [ data, req.params.sid ]);
-
-//     res.json({
-//         success: !!changedRows,
-//         affectedRows,
-//         changedRows,
-//     });
-// });
-
-// delete(D)
-// router.delete('/delete/:sid', async (req, res) => {
-//     const sql = "DELETE FROM `rent_order` WHERE `sid`=?";
-//     const [results] = await db.query(sql, [req.params.sid]);
-//     res.json(results);
-// })
 
 
 
