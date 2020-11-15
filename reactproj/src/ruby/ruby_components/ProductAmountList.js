@@ -108,6 +108,7 @@ function ProductAmountList(props){
             setOrderAmount(sum(mycartDisplay,0))
             setTotalAmount(sum(mycartDisplay,discount))
             let amountObj = {
+                client_sid:props.member.sid,
                 discount:discount,
                 coupon:coupon,
                 amount:orderAmount,

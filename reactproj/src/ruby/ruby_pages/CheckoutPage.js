@@ -10,7 +10,7 @@ import axios from 'axios'
 // import Cleave from 'cleave.js/react'
 
 function CheckoutPage(props){
-    const [sid,setSid] = useState(props.member.sid)
+    const [ clientSid, setClientSid ] = useState(props.member.sid)
     const {mycartDisplay,setMycartDisplay}= props;
     const [isActive,setIsActive] = useState([false,false,false])
     const [status, setStatus] = useState(0)
@@ -18,7 +18,6 @@ function CheckoutPage(props){
     const [cardInput2, setCardInput2] = useState('')
     const [cardInput3, setCardInput3] = useState('')
     const [cardInput4, setCardInput4] = useState('')
-    const [creditCardNum, setCardNum] = useState('')
     const [expDate1, setExpDate1] = useState('')
     const [expDate2, setExpDate2] = useState('')
 
@@ -27,13 +26,8 @@ function CheckoutPage(props){
     const [discount,setDiscount] = useState(0)
     const [dFee, setDFee] = useState(null)
    
-    const [remark, setRemark] = useState('')
     const [products, setProducts] = useState([])
     const [coupon, setCoupon] = useState('')
-    const [receiver, setReceiver] = useState('')
-    const [mobile, setMobile] = useState('')
-    const [address, setAddress] = useState('')
-
     const [totalAmount, setTotalAmount] = useState(0)
 
     const [ memberData, setMemberData ] = useState({})
@@ -43,10 +37,13 @@ function CheckoutPage(props){
     const [ fakeStoreData, setFakeStoreData ] = useState(false)
 
     const [ cashForm, setCashForm ] = useState({
-        receiver:'',
-        mobile:'',
-        address:'',
-        remark:''
+        receiver: '',
+        mobile: '',
+        address: '',
+        remark: '',
+        receiverVerify: false,
+        mobileVerify: false,
+        addressVerify: false
     })
     const [ storeForm, setStoreForm ] = useState({
         storeType:'',
@@ -55,7 +52,9 @@ function CheckoutPage(props){
         storeAddress:'',
         receiver:'',
         mobile:'',
-        remark:''
+        remark:'',
+        receiverVerify: false,
+        mobileVerify: false
     })
     const [ creditCardForm, setCreditCardForm ] = useState({
         cardNum:null,
@@ -66,8 +65,14 @@ function CheckoutPage(props){
         receiver:'',
         mobile:'',
         address:'',
-        remark:''
+        remark:'',
+        receiverVerify: false,
+        mobileVerify: false,
+        addressVerify: false,
+        ownerVerify: false,
+        ownerMobileVerify: false
     })
+
 
     function setCardInput(index,value) {
         if(value.length < 5) {
@@ -122,7 +127,6 @@ function CheckoutPage(props){
             { sid: props.member.sid })
                 .then((res) => { 
                     let members = res.data.rs
-                    console.log(members)
                     let newMemberData = {
                         name: members.name,
                         phone: members.phone,
@@ -134,25 +138,6 @@ function CheckoutPage(props){
     }
 
     useEffect(()=>{
-        let finalData = {
-            sid:sid,
-            payment:payment,
-            delivery:delivery,
-            d_fee:dFee,
-            amount:totalAmount,
-            remark:remark,
-            products:products,
-            coupon:coupon,
-            discount:discount,
-            receiver:receiver,
-            mobile:mobile,
-            address:address
-        }
-        localStorage.setItem('orderData',JSON.stringify(finalData))
-
-    },[address, coupon, dFee, delivery, discount, mobile, payment, products, receiver, remark, sid, totalAmount])
-
-    useEffect(()=>{
         getMemberData()
         let data = {}
             if(localStorage.getItem('amountData'))
@@ -162,25 +147,53 @@ function CheckoutPage(props){
                 setProducts(data.products)
                 setTotalAmount(data.totalAmount)
     },[props.member])
-    useEffect(()=>{
 
-        if(cardInput1.length === 4)
-            document.querySelector('#cardInput2').focus()
-        if(cardInput2.length === 4)
-            document.querySelector('#cardInput3').focus()
-        if(cardInput3.length === 4)
-            document.querySelector('#cardInput4').focus()
-        setCardNum(`${cardInput1}-${cardInput2}-${cardInput3}-${cardInput4}`)
+    useEffect(()=>{
+        // if(cardInput1.length === 4)
+        //     document.querySelector('#cardInput2').focus()
+        // if(cardInput2.length === 4)
+        //     document.querySelector('#cardInput3').focus()
+        // if(cardInput3.length === 4)
+        //     document.querySelector('#cardInput4').focus()
+        // setCardNum(`${cardInput1}-${cardInput2}-${cardInput3}-${cardInput4}`)
         
-        if(expDate1.length === 2)
-            document.querySelector('#credit-card-expire-date2').focus()
-        if(expDate2.length === 2)
-            document.querySelector('#credit-card-expire-date3').focus()
+        // if(cardInput4.length === 4)
+        //     document.querySelector('#credit-card-expire-date').focus()
+
+        // if(expDate1.length === 2)
+        //     document.querySelector('#credit-card-expire-date2').focus()
+        // if(expDate2.length === 2)
+        //     document.querySelector('#credit-card-expire-date3').focus()
 
         isActive.filter(item => item === true).length > 0 ? setStatus(1) : setStatus(0)
-
+        // checkFormData()
         // console.log(storeForm)
-    }, [cashForm,storeForm,isActive, cardInput2, cardInput3, cardInput4, cardInput1, expDate2, expDate1])
+    }, [memberCheckbox1,memberCheckbox2,creditCardForm,cashForm,storeForm,isActive, cardInput2, cardInput3, cardInput4, cardInput1, expDate2, expDate1])
+
+
+    function checkFormData(){
+        if(payment === 0){ 
+            if(cashForm.receiverVerify || cashForm.mobileVerify || cashForm.addressVerify) 
+            return
+            let newData = JSON.parse(localStorage.getItem('amountData'))
+            let data = {...newData , ...cashForm,delivery,dFee,payment}
+            localStorage.setItem('amountData',JSON.stringify(data))
+            }
+         if(payment === 1){
+            if(storeForm.receiverVerify || storeForm.mobileVerify ) 
+            return
+            let newData = JSON.parse(localStorage.getItem('amountData'))
+            let data = {...newData , ...storeForm,delivery,dFee,payment}
+            localStorage.setItem('amountData',JSON.stringify(data))
+         }
+         if(payment === 2){
+            if(creditCardForm.receiverVerify || creditCardForm.mobileVerify || creditCardForm.addressVerify) 
+            return
+            let newData = JSON.parse(localStorage.getItem('amountData'))
+            let data = {...newData , ...creditCardForm,delivery,dFee,payment}
+            localStorage.setItem('amountData',JSON.stringify(data))
+         }
+    }
 
     const finishPage = (
             <div className="ru-ckpage-step-content w-100 position-relative">
@@ -230,7 +243,7 @@ function CheckoutPage(props){
                         </div>
                         <Form className="ru-ckpage-form">
                             <Form.Group controlId="receiver-name1" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人姓名</Form.Label>
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人姓名</Form.Label>
                                 <Form.Control id="receiver-name1" 
                                               className="w-50" 
                                               type="text"
@@ -239,14 +252,22 @@ function CheckoutPage(props){
                                                   const newData = JSON.parse(JSON.stringify(cashForm))
                                                   newData.receiver = e.target.value
                                                   setCashForm(newData)
-                                                //   let receiverName = e.target.value
-                                                //   setReceiver(receiverName)
-                                                  }} 
-                                              placeholder="請輸入收件人姓名" isInvalid/>
-                                <Form.Control.Feedback type="invalid">You did it!</Form.Control.Feedback>
+                                                  }}
+                                              onBlur={()=>{
+                                                    let newData = JSON.parse(JSON.stringify(cashForm))
+                                                    if(payment === 0 && !cashForm.receiver)
+                                                        newData.receiverVerify = true
+                                                    else
+                                                        newData.receiverVerify = false
+                                                    setCashForm(newData)
+                                              }}
+                                              placeholder="請輸入收件人姓名"
+                                              isInvalid={cashForm.receiverVerify}
+                                              />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請確實填寫收件人姓名</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="receiver-mobile1" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人手機</Form.Label>
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人手機</Form.Label>
                                 <Form.Control id="receiver-mobile1" 
                                               className="w-50"  
                                               type="text"
@@ -255,27 +276,44 @@ function CheckoutPage(props){
                                                   const newData = JSON.parse(JSON.stringify(cashForm))
                                                   newData.mobile = e.target.value
                                                   setCashForm(newData)
-                                                //   let receiverMobile = e.target.value
-                                                //   setMobile(receiverMobile)
-                                                  }} 
-                                              pattern="^09[0-9]{8}$"
+                                                  }}
+                                              onBlur={()=>{
+                                                    const regex = RegExp('^09[0-9]{8}$')
+                                                    const newData = JSON.parse(JSON.stringify(cashForm))
+                                                    if(payment === 0 && !regex.test(cashForm.mobile))
+                                                            newData.mobileVerify = true
+                                                        else
+                                                            newData.mobileVerify = false
+                                                    setCashForm(newData)
+                                              }}
                                               maxlength="10" 
-                                              placeholder="請輸入收件人手機" />
+                                              placeholder="請輸入收件人手機"
+                                              isInvalid={cashForm.mobileVerify} />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請填寫正確的手機格式</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="receiver-address1" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人地址</Form.Label>
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人地址</Form.Label>
                                 <Form.Control id="receiver-address1" 
                                               className="w-75"  
-                                              type="text" 
+                                              type="text"
+                                              onBlur={()=>{
+                                                    let newData = JSON.parse(JSON.stringify(cashForm))
+                                                    if(payment === 0 && !cashForm.address)
+                                                        newData.addressVerify = true
+                                                    else
+                                                        newData.addressVerify = false
+                                                    setCashForm(newData)
+                                              }} 
                                               defaultValue={`${memberCheckbox1 ? memberData.address : ''}`}
                                               onChange={(e)=>{
-                                                  const newData = JSON.parse(JSON.stringify(cashForm))
-                                                  newData.address = e.target.value
-                                                  setCashForm(newData)
-                                                //   let receiverAddress = e.target.value
-                                                //   setAddress(receiverAddress)
-                                                  }} 
-                                              placeholder="請輸入收件人地址" />
+                                                const newData = JSON.parse(JSON.stringify(cashForm))
+                                                newData.address = e.target.value
+                                                setCashForm(newData)
+                                                }} 
+                                              placeholder="請輸入收件人地址" 
+                                              isInvalid={cashForm.addressVerify}
+                                              />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請填寫收件地址</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="formBasicCheckbox1">
                                 <Form.Check id="formBasicCheckbox1"
@@ -283,9 +321,13 @@ function CheckoutPage(props){
                                             onClick={()=> {
                                                 let attrOfCheckbox = document.querySelector('#formBasicCheckbox1').checked
                                                 setMemberCheckbox1(attrOfCheckbox)
-                                                setReceiver(memberData.name)
-                                                setMobile(memberData.phone)
-                                                setAddress(memberData.address)
+                                                if(attrOfCheckbox){
+                                                    let newData = JSON.parse(JSON.stringify(cashForm))
+                                                    newData.receiver = memberData.name
+                                                    newData.mobile = memberData.phone
+                                                    newData.address = memberData.address
+                                                    setCashForm(newData)
+                                                    }
                                             } } 
                                             label="同訂購人資料" />
                             </Form.Group>
@@ -295,14 +337,12 @@ function CheckoutPage(props){
                             <h5>訂單備註</h5>
                             <div className="info-topic-border-end"></div>
                         </div>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Group>
                             <Form.Control as="textarea"
                                           onChange={(e)=>{
                                               const newData = JSON.parse(JSON.stringify(cashForm))
                                               newData.remark = e.target.value
                                               setCashForm(newData)
-                                            //   let newRemark = e.target.value
-                                            //   setRemark(newRemark)
                                           }} 
                                           rows={3} 
                                           style={{ resize:'none' }} />
@@ -437,29 +477,52 @@ function CheckoutPage(props){
                         </div>
                         <Form>
                             <Form.Group controlId="reciever-name2" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人姓名</Form.Label>
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人姓名</Form.Label>
                                 <Form.Control id="reciever-name2" 
                                               className="w-50" 
                                               type="text"
+                                              onBlur={()=>{
+                                                    let newData = JSON.parse(JSON.stringify(storeForm))
+                                                    if(payment === 1 && !storeForm.receiver)
+                                                        newData.receiverVerify = true
+                                                    else
+                                                        newData.receiverVerify = false
+                                                    setStoreForm(newData)
+                                              }}
                                               onChange={(e)=>{
-                                                  const newData = JSON.parse(JSON.stringify)
-                                                //   let receiverName = e.target.value
-                                                //   setReceiver(receiverName)
+                                                  const newData = JSON.parse(JSON.stringify(storeForm))
+                                                  newData.receiver = e.target.value
+                                                  setStoreForm(newData)
                                                   }} 
-                                              placeholder="請輸入收件人姓名" />
+                                              placeholder="請輸入收件人姓名" 
+                                              isInvalid={storeForm.receiverVerify}
+                                              />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請確實填寫收件人姓名</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="reciever-mobile2" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人手機</Form.Label>
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人手機</Form.Label>
                                 <Form.Control id="reciever-mobile2" 
                                               className="w-50"  
                                               type="text"
                                               onChange={(e)=>{
-                                                  let receiverMobile = e.target.value
-                                                  setMobile(receiverMobile)
-                                                  }} 
-                                              pattern="^09[0-9]{8}$"
+                                                const newData = JSON.parse(JSON.stringify(storeForm))
+                                                  newData.mobile = e.target.value
+                                                  setStoreForm(newData)
+                                                  }}
+                                              onBlur={()=>{
+                                                    const regex = RegExp('^09[0-9]{8}$')
+                                                    const newData = JSON.parse(JSON.stringify(storeForm))
+                                                    if(payment === 1 && !regex.test(storeForm.mobile))
+                                                            newData.mobileVerify = true
+                                                        else
+                                                            newData.mobileVerify = false
+                                                    setStoreForm(newData)
+                                              }}
                                               maxlength="10"
-                                              placeholder="請輸入收件人手機" />
+                                              placeholder="請輸入收件人手機" 
+                                              isInvalid={storeForm.mobileVerify}
+                                              />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請填寫正確的手機格式</Form.Control.Feedback>
                             </Form.Group>
                         </Form>
                         <div className="payment-info-topic d-flex align-items-center justify-content-between">
@@ -467,11 +530,12 @@ function CheckoutPage(props){
                             <h5>訂單備註</h5>
                             <div className="info-topic-border-end"></div>
                         </div>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Group>
                             <Form.Control as="textarea"
                                           onChange={(e)=>{
-                                              let newRemark = e.target.value
-                                              setRemark(newRemark)
+                                            const newData = JSON.parse(JSON.stringify(storeForm))
+                                                  newData.remark = e.target.value
+                                                  setStoreForm(newData)
                                           }} 
                                           rows={3} 
                                           style={{ resize:'none' }} />
@@ -510,64 +574,135 @@ function CheckoutPage(props){
                                 <Form.Label className="mx-3 mb-0">信用卡號</Form.Label>
                                 <Form.Control id="credit-card-num" 
                                               value={cardInput1} 
-                                              type="text" 
-                                              onChange={e=>setCardInput(1,e.target.value)} />
+                                              type="text"
+                                              maxlength="4"  
+                                              onChange={e=>{
+                                                setCardInput(1,e.target.value)
+                                                const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.cardNum = e.target.value
+                                                setCreditCardForm(newData)
+                                              }} />
                                 <span className="mx-1">－</span>
                                 <Form.Control id="cardInput2" 
-                                              type="text" 
+                                              type="text"
+                                              maxlength="4" 
                                               value={cardInput2} 
-                                              onChange={e=>setCardInput(2,e.target.value)} />
+                                              onChange={e=>{
+                                                setCardInput(2,e.target.value)
+                                                const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.cardNum = cardInput1 + e.target.value
+                                                setCreditCardForm(newData)
+                                              }} />
                                 <span className="mx-1">－</span>
                                 <Form.Control id="cardInput3" 
-                                              type="text" 
+                                              type="text"
+                                              maxlength="4" 
                                               value={cardInput3} 
-                                              onChange={e=>setCardInput(3,e.target.value)} />
+                                              onChange={e=>{
+                                                setCardInput(3,e.target.value)
+                                                const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.cardNum = cardInput1 + cardInput2 + e.target.value
+                                                setCreditCardForm(newData)
+                                              }} />
                                 <span className="mx-1">－</span>
                                 <Form.Control className="mr-3" 
                                               id="cardInput4" 
                                               value={cardInput4} 
-                                              type="text" 
-                                              onChange={e=>setCardInput(4,e.target.value)} />
+                                              type="text"
+                                              maxlength="4" 
+                                              onChange={e=>{
+                                                setCardInput(4,e.target.value)
+                                                const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.cardNum = cardInput1 + cardInput2 +  cardInput3 + e.target.value
+                                                setCreditCardForm(newData)
+                                              }} />
                                 <img src="ruby_images/credit-card-icon.svg" alt="pic"/>
                             </Form.Group>
-                            <Form.Group controlId="credit-card-expire-date" 
-                                        className="row align-items-center ru-credit-card-detail">
+                            <Form.Group className="row align-items-center ru-credit-card-detail">
                                 <Form.Label className="mx-3 mb-0">有效期限</Form.Label>
                                 <Form.Control id="credit-card-expire-date" 
                                               value={expDate1}
                                               className="" 
                                               type="text" 
-                                              placeholder="MM" 
-                                              onChange={e=>setExpDateInput(1,e.target.value)} />
+                                              placeholder="MM"
+                                              maxlength="2" 
+                                              onChange={e=>{
+                                                setExpDateInput(1,e.target.value)
+                                                const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.cardExp = e.target.value
+                                                setCreditCardForm(newData)
+                                              }}/>
                                 <span className="mx-1">－</span>
                                 <Form.Control id="credit-card-expire-date2" 
                                               className="mr-3"
                                               value={expDate2} 
                                               type="text" 
-                                              placeholder="YY" 
-                                              onChange={e=>setExpDateInput(2,e.target.value)} />
+                                              placeholder="YY"
+                                              maxlength="2" 
+                                              onChange={e=>{
+                                                setExpDateInput(2,e.target.value)
+                                                const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.cardExp = expDate1 + e.target.value
+                                                setCreditCardForm(newData)
+                                              }} />
                                 <Form.Label className="mb-0">背面末三碼</Form.Label>
                                 <Form.Control id="credit-card-expire-date3" 
                                               className="mx-3"
                                               maxlength="3"
+                                              onChange={(e) => {
+                                                const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.cardBackCode = e.target.value
+                                                setCreditCardForm(newData)
+                                              }}
                                               type="text"/>
                                 <img src="ruby_images/check-backnum.svg" alt="pic"/>
                             </Form.Group>
-                            <Form.Group controlId="card-owner-name" className="row align-items-center">
+                            <Form.Group className="row align-items-center">
                                 <Form.Label className="mx-3 mb-0">持卡人姓名</Form.Label>
                                 <Form.Control id="card-owner-name" 
                                               className="w-50" 
                                               type="text"
-                                              placeholder="請輸入持卡人姓名"  />
+                                              onChange={(e) => {
+                                                  let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                  newData.cardOwner = e.target.value
+                                                  setCreditCardForm(newData)
+                                              }}
+                                              onBlur={()=>{
+                                                    let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                    if(payment === 2 && !creditCardForm.cardOwner)
+                                                        newData.ownerVerify = true
+                                                    else
+                                                        newData.ownerVerify = false
+                                                    setCreditCardForm(newData)
+                                              }}
+                                              placeholder="請輸入持卡人姓名"  
+                                              isInvalid={creditCardForm.ownerVerify}
+                                              />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請確實填寫持卡人姓名</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="card-owner-mobile" className="row align-items-center">
                                 <Form.Label className="mx-3 mb-0">持卡人手機</Form.Label>
                                 <Form.Control id="card-owner-mobile" 
                                               className="w-50" 
                                               type="text"
-                                              pattern="^09[0-9]{8}$"
+                                              onChange={(e) => {
+                                                  let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                  newData.cardOwnerMobile = e.target.value
+                                                  setCreditCardForm(newData)
+                                              }}
+                                              onBlur={()=>{
+                                                    const regex = RegExp('^09[0-9]{8}$')
+                                                    const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                    if(payment === 2 && !regex.test(creditCardForm.cardOwnerMobile))
+                                                            newData.ownerMobileVerify = true
+                                                        else
+                                                            newData.ownerMobileVerify = false
+                                                    setCreditCardForm(newData)
+                                              }}
+                                              isInvalid={storeForm.mobileVerify}
                                               maxlength="10"
                                               placeholder="請輸入持卡人手機"  />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請確實填寫持卡人手機</Form.Control.Feedback>
                             </Form.Group>
                         </Form>
                         <div className="payment-info-topic d-flex align-items-center justify-content-between">
@@ -577,40 +712,76 @@ function CheckoutPage(props){
                         </div>
                         <Form>
                             <Form.Group controlId="reciever-name3" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人姓名</Form.Label>
-                                <Form.Control className="w-50" 
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人姓名</Form.Label>
+                                <Form.Control className="w-50"
+                                              id="reciever-name3" 
                                               type="text"
                                               defaultValue={`${memberCheckbox2 ? memberData.name : ''}`}
                                               onChange={(e)=>{
-                                                  let receiverName = e.target.value
-                                                  setReceiver(receiverName)
-                                                  }} 
+                                                let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.receiver = e.target.value
+                                                setCreditCardForm(newData)
+                                                  }}
+                                              onBlur={()=>{
+                                                    let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                    if(payment === 2 && !creditCardForm.receiver)
+                                                        newData.receiverVerify = true
+                                                    else
+                                                        newData.receiverVerify = false
+                                                    setCreditCardForm(newData)
+                                              }}
+                                              isInvalid={creditCardForm.receiverVerify} 
                                               placeholder="請輸入收件人姓名"  />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請確實填寫收件人姓名</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="reciever-mobile3" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人手機</Form.Label>
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人手機</Form.Label>
                                 <Form.Control className="w-50"  
                                               type="text"
+                                              id="reciever-mobile3"
                                               defaultValue={`${memberCheckbox2 ? memberData.phone : ''}`}
                                               onChange={(e)=>{
-                                                  let receiverMobile = e.target.value
-                                                  setMobile(receiverMobile)
-                                                  }} 
+                                                let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.mobile = e.target.value
+                                                setCreditCardForm(newData)
+                                                  }}
+                                              onBlur={()=>{
+                                                    const regex = RegExp('^09[0-9]{8}$')
+                                                    const newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                    if(payment === 2 && !regex.test(creditCardForm.mobile))
+                                                            newData.mobileVerify = true
+                                                        else
+                                                            newData.mobileVerify = false
+                                                    setCreditCardForm(newData)
+                                              }}
+                                              isInvalid={creditCardForm.mobileVerify} 
                                               pattern="^09[0-9]{8}$"
                                               maxlength="10" 
                                               placeholder="請輸入收件人手機"  />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請填寫正確的手機格式</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="reciever-address2" className="row align-items-center">
-                                <Form.Label className="mx-3">收件人地址</Form.Label>
+                                <Form.Label className="mx-3 ru-ckpage-label">收件人地址</Form.Label>
                                 <Form.Control id="reciever-address2" 
                                               className="w-75"  
                                               type="text" 
                                               defaultValue={`${memberCheckbox2 ? memberData.address : ''}`}
                                               onChange={(e)=>{
-                                                  let receiverAddress = e.target.value
-                                                  setAddress(receiverAddress)
+                                                let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                newData.address = e.target.value
+                                                setCreditCardForm(newData)
                                                   }}
+                                              onBlur={()=>{
+                                                    let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                    if(payment === 2 && !creditCardForm.address)
+                                                        newData.addressVerify = true
+                                                    else
+                                                        newData.addressVerify = false
+                                                    setCreditCardForm(newData)
+                                              }}
+                                              isInvalid={creditCardForm.addressVerify} 
                                               placeholder="請輸入收件人地址"  />
+                                <Form.Control.Feedback type="invalid" className="ru-ckpage-feedback-tag">請確實填寫收件人姓名</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="formBasicCheckbox2">
                                 <Form.Check id="formBasicCheckbox2" 
@@ -618,6 +789,13 @@ function CheckoutPage(props){
                                             onClick={() => {
                                                 let attrOfCheckbox = document.querySelector('#formBasicCheckbox2').checked
                                                 setMemberCheckbox2(attrOfCheckbox)
+                                                if(attrOfCheckbox){
+                                                    let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                                    newData.receiver = memberData.name
+                                                    newData.mobile = memberData.phone
+                                                    newData.address = memberData.address
+                                                    setCreditCardForm(newData)
+                                                    }
                                             }} 
                                             label="同訂購人資料" />
                             </Form.Group>
@@ -627,11 +805,12 @@ function CheckoutPage(props){
                             <h5>訂單備註</h5>
                             <div className="info-topic-border-end"></div>
                         </div>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Group>
                             <Form.Control as="textarea"
                                           onChange={(e)=>{
-                                              let newRemark = e.target.value
-                                              setRemark(newRemark)
+                                            let newData = JSON.parse(JSON.stringify(creditCardForm))
+                                            newData.remark = e.target.value
+                                            setCreditCardForm(newData)
                                           }} 
                                           rows={3} 
                                           style={{ resize:'none' }} />
@@ -650,15 +829,18 @@ function CheckoutPage(props){
                 ?
                 <div className="ru-ckpage-next-btn ml-auto d-flex align-items-center justify-content-center"
                      onClick={()=>{
-                        if(!receiver || !mobile || !address) return
-                            setStatus(2)
-                            let data = JSON.parse(localStorage.getItem('orderData'))
-                            console.log(data)
-                            axios.post('http://localhost:5566/order/insert', 
-                            data
-                            )
-                                .then((res) => { console.table(res.data) })
-                                .catch((error) => { console.error(error) })  
+                        checkFormData()     
+                        let data = JSON.parse(localStorage.getItem('amountData'))
+                        axios.post('http://localhost:5566/order/insert', 
+                        data
+                        )
+                            .then((res) => { 
+                                console.table(res.data)
+                                localStorage.removeItem('cart')
+                                localStorage.removeItem('amountData')
+                                setStatus(2) 
+                            })
+                            .catch((error) => { console.error(error) })
                      }}>
                     <div className="text-align-center ru-cart-next-btn-pay">完成訂購</div>
                     <MdNavigateNext size={32} style={{ color: '#FC774C', backgroundColor: '#F8F8F8', borderRadius: '50%'}} />
