@@ -17,6 +17,7 @@ function ArticleCarousel(props) {
       img: './k_img/IndexArticle205.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(35,45,47,0.5)',
+      link: 'www.yahoo',
     },
     {
       articleId: 208,
@@ -27,6 +28,7 @@ function ArticleCarousel(props) {
       img: './k_img/IndexArticle208.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(204,97,75,0.5)',
+      link: 'www.yahoo',
     },
     {
       articleId: 210,
@@ -37,6 +39,7 @@ function ArticleCarousel(props) {
       img: './k_img/IndexArticle210.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(204,75,183,0.5)',
+      link: 'www.yahoo',
     },
     {
       articleId: 215,
@@ -47,6 +50,7 @@ function ArticleCarousel(props) {
       img: './k_img/IndexArticle215.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(75,183,204,0.5)',
+      link: 'www.yahoo',
     },
   ];
 
