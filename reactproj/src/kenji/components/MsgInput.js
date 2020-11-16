@@ -7,7 +7,7 @@ import { getMsg, getMsgAsync } from '../../actions/index';
 
 function MsgInput(props) {
   const [userId, setUserId] = useState('9527'); //memberId
-  const [userNickname, setUserNickname] = useState('七星刀雷恩'); //nickname
+  const [userNickname, setUserNickname] = useState('小新'); //nickname
   const [textValue, setTextValue] = useState(''); //content
   const styleNone = {
     display: 'none',

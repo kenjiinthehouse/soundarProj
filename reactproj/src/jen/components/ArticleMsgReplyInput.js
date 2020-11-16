@@ -10,7 +10,7 @@ function ArticleMsgReplyInput(props) {
   const { parentId, sid } = props;
   console.log('reply', props);
   const [userId, setUserId] = useState('5566'); //memberId
-  const [userNickname, setUserNickname] = useState('浪漫Duke'); //nickname
+  const [userNickname, setUserNickname] = useState('小新'); //nickname
   const [textValue, setTextValue] = useState(''); //content
 
   const styleNone = {

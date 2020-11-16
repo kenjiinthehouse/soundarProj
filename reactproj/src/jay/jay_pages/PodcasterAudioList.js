@@ -77,7 +77,7 @@ function PodcasterAudioList(props) {
                 setModalData({
                   modalTitle: '新增單集',
                   editTargetData: {
-                    podcaster_id: props.member.podcaster_id,
+                    podcaster_id: props.member.sid,
                   },
                 });
               }}
