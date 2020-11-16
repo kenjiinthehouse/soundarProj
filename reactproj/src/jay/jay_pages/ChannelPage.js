@@ -188,7 +188,8 @@ function ChannelPage(props) {
                       <span>{breadcrumbCateTerm}</span>
                     </div>
                     <div>
-                      {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                      {props.subscribe_channels.indexOf(item.podcaster_id) ===
+                      -1 ? (
                         <button
                           type="button"
                           className=" btn btn-sm btn-info my-3 mr-3"

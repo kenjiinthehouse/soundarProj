@@ -184,7 +184,14 @@ function ChannelAudioPage(props) {
                   style={styles.fadeIn01}
                 >
                   <div className="jay-channel-head-pic-area">
-                    <img src={item.podcaster_img} alt="" />
+                    <img
+                      src={
+                        item.podcaster_img.indexOf('http') !== -1
+                          ? item.podcaster_img
+                          : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
+                      }
+                      alt=""
+                    />
                   </div>
                   <div className="col-12 col-sm mb-5">
                     <h3 className="pt-3" style={{ lineHeight: '1.5' }}>
@@ -194,7 +201,8 @@ function ChannelAudioPage(props) {
                       <span>{breadcrumbCateTerm}</span>
                     </div>
                     <div>
-                      {props.subscribe_channels.indexOf(item.sid) === -1 ? (
+                      {props.subscribe_channels.indexOf(item.podcaster_id) ===
+                      -1 ? (
                         <button
                           type="button"
                           className=" btn btn-sm btn-info my-3 mr-3"

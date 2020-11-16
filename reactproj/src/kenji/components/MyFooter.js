@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      color: "#f8f8f8"
+      color: '#f8f8f8',
     },
   },
 }));

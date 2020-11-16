@@ -76,8 +76,102 @@ function MyNavbar(props) {
   const [placement, setPlacement] = React.useState();
   const { navCartNum, setNavCartNum } = props;
 
-  //jay
+  //jay rwd
   const [showInformLoginModal, setShowInformLoginModal] = useState(false);
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    setState({ ...state, [anchor]: open });
+  };
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+      })}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <ListItem>
+          <Button
+            href="#"
+            key="1"
+            onClick={(event) => {
+              event.preventDefault();
+              if (props.member.sid) {
+                props.history.push(`/memberedit`);
+              } else {
+                setShowInformLoginModal(true);
+              }
+            }}
+          >
+            加入播客
+          </Button>
+        </ListItem>
+        <ListItem>
+          <Button
+            onClick={() => {
+              props.history.push(`/explore_home_page`);
+            }}
+            style={{ outline: 'none', color: 'white' }}
+          >
+            探索
+          </Button>
+        </ListItem>
+        <ListItem>
+          <Button href="#">商城</Button>
+        </ListItem>
+        <ListItem>
+          <Button href="#">專欄</Button>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem>
+          <IconButton>
+            <PersonIcon style={{ color: 'white' }} />
+          </IconButton>
+          <ListItemText primary="會員中心" style={{ color: 'white' }} />
+        </ListItem>
+        <ListItem>
+          <IconButton
+            onClick={() => {
+              props.logOutAsync();
+              props.history.push('/');
+            }}
+          >
+            <RiLogoutCircleRLine style={{ color: 'white' }} />
+          </IconButton>
+          <ListItemText primary="登出" style={{ color: 'white' }} />
+        </ListItem>
+        <ListItem>
+          <IconButton
+            onClick={() => {
+              props.history.push('/cart');
+              console.log('11');
+            }}
+            style={{ color: 'white' }}
+          >
+            {/* 這邊需要接購物車props過來的length */}
+            <StyledBadge badgeContent={navCartNum} color="secondary">
+              <ShoppingCartIcon />
+            </StyledBadge>
+          </IconButton>
+        </ListItem>
+      </List>
+    </div>
+  );
 
   //samps
 
@@ -166,11 +260,6 @@ function MyNavbar(props) {
       </div>
 
       <div className="diverVertical my-auto ml-2 mr-2 navbar-desktop-rwd"></div>
-      <div className="navBarBtn navbar-desktop-rwd">
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-      </div>
       <div className="navBarBtn navbar-desktop-rwd">
         {/* 會員 */}
         <IconButton ref={anchorRef} onClick={handleToggle}>
@@ -275,9 +364,16 @@ function MyNavbar(props) {
 
       {/* rwd menu */}
       <div className="navBarBtn navbar-cell-rwd">
-        <IconButton ref={anchorRef} onClick={handleToggle}>
+        <IconButton onClick={toggleDrawer('left', true)}>
           <MenuIcon />
         </IconButton>
+        <Drawer
+          anchor={'left'}
+          open={state['left']}
+          onClose={toggleDrawer('left', false)}
+        >
+          {list('left')}
+        </Drawer>
       </div>
     </Header>
   );
