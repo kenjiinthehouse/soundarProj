@@ -56,3 +56,4 @@
 =======
 [1116/100429.234:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系統找不到指定的路徑。 (0x3)
 >>>>>>> c10d0bd99a7abc4d6213e2202f509b906e1edb3f
+[1116/145058.454:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系統找不到指定的路徑。 (0x3)
