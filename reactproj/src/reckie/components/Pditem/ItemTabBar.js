@@ -133,6 +133,9 @@ function ItemTabBar(props){
         newFeaturesValueArr.push (pdDetail?JSON.parse(pdDetail.pd_features_value)[i]:[])
       }
 
+    function truncate(str, n) {
+        return str.length > n ? str.substr(0, n - 1) + '......' : str;
+      }
    
     return(<>
     <div className="fake-point"></div>
@@ -161,40 +164,42 @@ function ItemTabBar(props){
     <div className="container">
       <h2 className="contentHeight2">規格</h2>
     <div className="d-flex">
-      <table class="table table-striped" style={{textAlign:'right',width:"50%"}}>
+      <table className="table table-striped" style={{textAlign:'right',width:"50%"}}>
         <tbody>
           {newFeaturesArr.map((item,index)=>{
             if(index < 9 ){
-             return <tr><th scope="row">{item}</th></tr>}
+             return <tr ><th scope="row" >{truncate(item,30)}</th></tr>}
              })   
             }
         </tbody>
       </table>
-      <table class="table table-striped">
+      <table className="table table-striped">
         <tbody>
           {newFeaturesValueArr.map((item,index)=>{
             if (index < 9 ){
-              return <tr><td>{item}</td></tr>}
+              return <tr><td>
+              {truncate(item,30)}
+              </td></tr>}
             }
              )}
         </tbody>
       </table>
       <div style={{width:'1rem'}}></div>
-      <table class="table table-striped" style={{textAlign:'right',width:"50%"}}>
+      <table className="table table-striped" style={{textAlign:'right',width:"50%"}}>
         <tbody>
           {newFeaturesArr.map((item,index)=>{
             if(index >= 9 && index < 18 ){
-             return <tr><th scope="row">{item}</th></tr>}
+             return <tr><th scope="row" >{truncate(item,30)}</th></tr>}
              })   
             }
         </tbody>
       </table>
 
-      <table class="table table-striped">
+      <table className="table table-striped">
         <tbody>
           {newFeaturesValueArr.map((item,index)=>{
             if (index >= 9 && index < 18 ){
-              return <tr><td>{item}</td></tr>}
+              return <tr><td nowrap="nowrap">{truncate(item,30)}</td></tr>}
             }
              )}
         </tbody>

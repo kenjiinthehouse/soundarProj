@@ -78,6 +78,7 @@ function OrderPage(props){
                     }
                     return 0;
                   });
+                  console.log(newData)
                   setOrderDisplay(newData)
             })
             .catch((err) => { console.error(err) })
@@ -194,7 +195,11 @@ function OrderPage(props){
                                                 <div className="ru-odPage-pic-display">
                                                     <img alt="pic" src={`${value.pic_url[0]}`} />
                                                 </div>
-                                                <div className="ru-odPage-pic-display">
+                                                {value.pic_url.length === 1
+                                                ?
+                                                null
+                                                :
+                                                    <div className="ru-odPage-pic-display">
                                                     <img alt="pic" src={`${value.pic_url[1]}`} />
                                                     { (value.pic_url.length-2) !== 0 
                                                         ?
@@ -204,7 +209,8 @@ function OrderPage(props){
                                                         :
                                                         ''
                                                     }
-                                                </div>
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
