@@ -14,8 +14,11 @@ function ActivityOption(props) {
               <div className="option-item d-flex justify-content-between" >
                 <div className="option-content">
                   <h4>{item.ticket_option}</h4>
-                  <li>11/30前報名享早鳥優惠價</li>
-                  <li>三人團體報名享團體優惠價</li>
+                  {index===0 ? <li>11/30前報名享早鳥優惠價</li> :
+                  index===1 ? null :
+                  index===2? <li>三人團體報名享團體優惠價</li> : 
+                  null
+                  }
                   <li>課程附贈教材、午餐、午茶</li>
                   <li>每堂贈送《數位時代》三期 (課程隔月號起算)</li>            
                 </div>

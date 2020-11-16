@@ -1,5 +1,5 @@
 // Import Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap.scss';
+// @import '~bootstrap/scss/bootstrap.scss';
 // GooglgeFonts
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
@@ -10,26 +10,62 @@
   color: #f8f8f8;
   font-family: 'Noto Sans TC', sans-serif, 'ROBOTO';
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #f8f8f8;
+  }
+
   a:hover {
     text-decoration: none;
+    color: #444c4e !important;
   }
   .carousel {
-    padding-top: 3rem; //留Navbar空隙
-
+    padding-top: 4rem; //留Navbar空隙
+    .carousel-inner {
+      .active {
+        border-bottom: none; //去除active設定的藍底線
+      }
+    }
+    ol {
+      justify-content: flex-start;
+    }
     li {
       width: 10px;
       height: 10px;
       border-radius: 50% 50%;
     }
     .carousel-img {
+      position: relative;
       width: 120rem;
       height: 80vh;
       overflow: hidden;
 
       img {
+        position: absolute;
         height: 200%;
         object-fit: cover;
+        filter: blur(1px);
       }
+    }
+    .carousel-hearder-bg {
+      position: absolute;
+      width: 38rem;
+      height: 14rem;
+      left: 0;
+      bottom: 3rem;
+      background-color: #232d2f;
+      opacity: 0.3;
+      border-radius: 5px;
+    }
+    .carousel-caption {
+      width: 38rem;
+      height: 12rem;
+      left: 0;
+      bottom: 3rem;
+      z-index: 1;
     }
   }
 
@@ -49,11 +85,14 @@
             color: #f8f8f8;
           }
         }
-        li:last-child{
-          a{
-            color:#444c4e;
-            cursor:default;
+        li:last-child {
+          a {
+            color: #444c4e;
+            cursor: default;
           }
+        }
+        .active {
+          border-bottom: none; //去除active設定的藍底線
         }
       }
     }
@@ -65,6 +104,9 @@
       padding: 0.2rem 1.5rem;
       margin-left: 1rem;
       background-color: #232d2f;
+    }
+    .article-tags-btn:hover {
+      background-color: #444c4e;
     }
 
     @import './articleHome.scss';

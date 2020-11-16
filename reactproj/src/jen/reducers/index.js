@@ -3,8 +3,8 @@ import articleList from './articleList'
 import articleListPages from './articleListPages'
 import articleListTotalRows from './articleListTotalRows'
 import articleDetail from './articleDetail'
-import articleDetailPre from './articleDetailPre'
-import articleDetailNext from './articleDetailNext'
+// import articleDetailPre from './articleDetailPre'
+// import articleDetailNext from './articleDetailNext'
 
 
 export const jen_rootReducer = combineReducers({
@@ -12,6 +12,6 @@ export const jen_rootReducer = combineReducers({
   articleDetail,
   articleListPages,
   articleListTotalRows,
-  articleDetailPre,
-  articleDetailNext,
+  // articleDetailPre,
+  // articleDetailNext,
 })

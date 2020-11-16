@@ -52,6 +52,10 @@ function App() {
   const [playingAudio, setPlayingAudio] = useState(null);
   const [navCartNum,setNavCartNum] = useState(0);
 
+  //jen
+  const [category, setCategory] = useState('');
+  const [tags, setTags] = useState('');
+
   return (
     <Router>
       <Layout>
@@ -112,10 +116,20 @@ function App() {
                 />
               </Route>
               <Route path="/article">
-                <ArticleHome />
+                <ArticleHome
+                  category={category}
+                  setCategory={setCategory}
+                  tags={tags}
+                  setTags={setTags}
+                />
               </Route>
               <Route path="/articlepage/:sid">
-                <ArticlePage />
+                <ArticlePage
+                  category={category}
+                  setCategory={setCategory}
+                  tags={tags}
+                  setTags={setTags}
+                />
               </Route>
               <Route path="/cart">
                 <Cart />
