@@ -269,7 +269,7 @@ function Audiocollection(props) {
                           ) : (
                             <img
                               className="sa-collection-list-body-channel-picture-img"
-                              src={`podcaster_imgs/${item.cover}`}
+                              src={`images/podcaster_imgs/${item.cover}`}
                               alt=""
                             ></img>
                           )}

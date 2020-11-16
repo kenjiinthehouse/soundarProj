@@ -135,7 +135,8 @@ function Channelcollection(props) {
                         ) : (
                           <img
                             className="sa-channel-collection-img"
-                            src={`podcaster_imgs/${item.channel_img}`}
+                            // src={"/images/podcaster_imgs/" +item.channel_img}
+                            src={`images/podcaster_imgs/${item.channel_img}`}
                             alt=""
                           />
                         )}
