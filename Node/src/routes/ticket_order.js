@@ -58,9 +58,12 @@ router.get('/member/:members_sid', async (req, res) => {
 // add(C)
 router.post('/add', async (req, res) => {
     const data = { ...req.body };
+    console.log(data);
+    console.log("ticket_order_id",req.body[0].ticket_order_id)
     // const sql = "INSERT INTO `ticket_order` set ?";
-    const sql = "INSERT INTO `ticket_order`(ticket_order_id`, `ticket_order_date`, `total_amount`, `order_status`, `order_quantity`, `ticket_qrcode`, `activity_sid`, `members_sid`) VALUES (?,?,?,?,?,?,?,?)";
-    const [{ affectedRows, insertId }] = await db.query(sql, [data]);
+    const sql = "INSERT INTO `ticket_order`(`ticket_order_id`,  `total_amount`, `order_status`, `order_quantity`,`ticket_qrcode`,  `activity_sid`, `members_sid`) VALUES (?,?,?,?,?,?,?)";
+    const [{ affectedRows, insertId }] = await db.query(sql, [req.body[0].ticket_order_id,req.body[0].total_amount,
+        req.body[0].order_status, req.body[0].order_quantity,req.body[0].ticket_qrcode,req.body[0].activity_sid,req.body[0].members_sid]);
 
     res.json({
         success: !!affectedRows,

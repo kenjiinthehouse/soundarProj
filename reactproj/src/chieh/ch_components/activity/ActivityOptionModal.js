@@ -38,16 +38,29 @@ function ActivityOptionModal(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [myTicket, setMyTicket] = useState([])
-
   const ticketToLocalStorage = (item) =>{
     const currentCart = JSON.parse(localStorage.getItem('ticket')) || []
     currentCart.push(item)
     localStorage.setItem('ticket', JSON.stringify(currentCart))
 
-    setMyTicket(currentCart)
     console.log('已加入localStorage') 
   }
+
+    async function sendTicket() {
+      // console.log(JSON.parse(localStorage.getItem('ticket')))
+    const url = 'http://localhost:5566/ticket_order/add';
+    const request = new Request(url, {
+      method: 'POST',
+      body: localStorage.getItem('ticket'),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    });
+    const response = await fetch(request);
+    const data = await response.json();
+    console.log('SQL');    
+  };
 
   return (
     <>
@@ -56,11 +69,10 @@ function ActivityOptionModal(props) {
           handleShow();
           ticketToLocalStorage({                
             ticket_order_id: "20201120001T0001F",
-            ticket_order_date: new Date(),
             total_amount: total,
             order_status: 1,
             order_quantity: quantity,
-            ticket_qrcode: '',
+            ticket_qrcode:'',
             activity_sid: 1,
             members_sid: props.member.sid
           });   
@@ -136,16 +148,12 @@ function ActivityOptionModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             取消
           </Button>
-          {/* samps */}
-          {/* <Button variant="primary" type="submit" onClick={handleClose}>
-            完成報名
-          </Button> */}
           <Button
             variant="primary"
             onClick={() => {
               sendmail(props.member.account);
               handleClose();
-              // sendTicket();              
+              sendTicket();              
             }}
           >
             完成報名
