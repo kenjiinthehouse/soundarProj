@@ -144,7 +144,8 @@ function ActivityMain(props) {
       </>
     )
 
-    return dataLoading ? displaySpinner : display
+    // return dataLoading ? displaySpinner : display
+    return display
   }
   
   export default withRouter(ActivityMain)

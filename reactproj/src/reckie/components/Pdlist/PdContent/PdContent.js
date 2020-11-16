@@ -94,7 +94,13 @@ function PdContent(props) {
      
     </div>
      
-    <QueueAnim className={`demo-content row flex-wrap`}>
+    <QueueAnim 
+    className="demo-content row flex-wrap"
+    animConfig={[
+            { opacity: [1, 0], translateY: [0, 50] },
+            { opacity: [1, 0], translateY: [0, -50] }
+          ]}
+    >
       {products.map((item, index) => {
           return <PdContentItem key={item.id} products={item}/>
         })}
