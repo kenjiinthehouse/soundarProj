@@ -260,7 +260,7 @@ function Audiocollection(props) {
                             );
                           }}
                         >
-                          {item.cover.includes('http') ? (
+                          {item.cover.indexOf('http') !== -1 ? (
                             <img
                               className="sa-collection-list-body-channel-picture-img"
                               src={item.cover}

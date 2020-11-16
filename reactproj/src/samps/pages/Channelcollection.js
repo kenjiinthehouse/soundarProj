@@ -126,7 +126,7 @@ function Channelcollection(props) {
                       className="sa-channel-collection-colbox"
                     >
                       <div className="sa-channel-collection-img-area">
-                        {item.channel_img.includes('http') ? (
+                        {item.channel_img.indexOf('http') !== -1 ? (
                           <img
                             className="sa-channel-collection-img"
                             src={item.channel_img}
