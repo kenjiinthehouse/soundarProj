@@ -41,6 +41,7 @@ function CheckoutPage(props){
         mobile: '',
         address: '',
         remark: '',
+        d_fee:100,
         receiverVerify: false,
         mobileVerify: false,
         addressVerify: false
@@ -52,7 +53,9 @@ function CheckoutPage(props){
         storeAddress:'',
         receiver:'',
         mobile:'',
+        address:'台北市大安區復興南路二段151巷41號',
         remark:'',
+        d_fee:60,
         receiverVerify: false,
         mobileVerify: false
     })
@@ -66,6 +69,7 @@ function CheckoutPage(props){
         mobile:'',
         address:'',
         remark:'',
+        d_fee:100,
         receiverVerify: false,
         mobileVerify: false,
         addressVerify: false,
@@ -176,21 +180,21 @@ function CheckoutPage(props){
             if(cashForm.receiverVerify || cashForm.mobileVerify || cashForm.addressVerify) 
             return
             let newData = JSON.parse(localStorage.getItem('amountData'))
-            let data = {...newData , ...cashForm,delivery,dFee,payment}
+            let data = {...newData , ...cashForm,delivery,payment}
             localStorage.setItem('amountData',JSON.stringify(data))
             }
          if(payment === 1){
             if(storeForm.receiverVerify || storeForm.mobileVerify ) 
             return
             let newData = JSON.parse(localStorage.getItem('amountData'))
-            let data = {...newData , ...storeForm,delivery,dFee,payment}
+            let data = {...newData , ...storeForm,delivery,payment}
             localStorage.setItem('amountData',JSON.stringify(data))
          }
          if(payment === 2){
             if(creditCardForm.receiverVerify || creditCardForm.mobileVerify || creditCardForm.addressVerify) 
             return
             let newData = JSON.parse(localStorage.getItem('amountData'))
-            let data = {...newData , ...creditCardForm,delivery,dFee,payment}
+            let data = {...newData , ...creditCardForm,delivery,payment}
             localStorage.setItem('amountData',JSON.stringify(data))
          }
     }
