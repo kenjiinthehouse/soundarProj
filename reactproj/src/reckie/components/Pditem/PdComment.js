@@ -23,7 +23,12 @@ function PdComment(props){
         <div className="d-flex align-items-center">
             <div className="text-center commentAvatarPart">
                 <div className="commentAvatar mb-2">
-                    <img src={`/ppicture/${pdComment.avatar_url}`}/>
+                    <img 
+                    src={`/ppicture/${pdComment.avatar_url}`}
+                    style={{width:"100%",
+                    height:"100%",
+                    objectFit:"cover",objectPosition:"center center"}}    
+                    />
                 </div> 
                 <div className="commentMember">{pdComment.user_name}</div> 
             </div>
@@ -39,7 +44,7 @@ function PdComment(props){
         <div className="commentPdPicPart d-flex">
         {newPdItem1.map((item)=>{
               return <div className="commentPdPic mx-1">
-                <img src={item.indexOf('http')=== -1 ? `/reckie_img/${item}`:item} style={{width:"100px",height:"100px"}}/>
+                <img src={item.indexOf('http')=== -1 ? `/reckie_img/${item}`:item} style={{width:"100px",objectFit:"contain"}}/>
             </div>
         })}
             {/* <div className="commentPdPic"></div>

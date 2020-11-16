@@ -1,12 +1,18 @@
 import '../../styles/reckieCustom.scss';
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import Rater from 'react-rater'
 import { MdStar,MdStarBorder,MdStarHalf,MdShoppingCart,MdShoppingBasket,MdAddCircleOutline,MdRemoveCircleOutline} from "react-icons/md";
 import { withRouter } from 'react-router-dom';
+import InformCartModal from './InformCartModal';
+import { fadeIn, fadeInDown } from 'react-animations';
+import Radium, { StyleRoot } from 'radium';
 
 function PdMainField(props){
 const {pdDetail,navCartNum,setNavCartNum}=props
 const [counterNum,setCounterNum]=useState(1)
+
+const [showActionModal, setShowActionModal] = useState(false);
+  const [actionModalText, setActionModalText] = useState('');
 
 
 //加入購物車，將資訊存loacalStorage
@@ -40,6 +46,8 @@ const addToCart=(event)=>{
 
 
     return(<>
+    {showActionModal ? <InformCartModal setShowActionModal={setShowActionModal} actionModalText={actionModalText} /> : null}
+   
     <div className="pdMainfield d-flex flex-column justify-content-between h-100">
     <div className="pdMainFieldLT">
       <h2 className="head2 ">{pdDetail?pdDetail.pd_title:''}</h2>
@@ -78,8 +86,13 @@ const addToCart=(event)=>{
     <div className="d-flex">
     <button 
     className="btn btn-primary btn-rounded re-btn re-btn-color"
-    onClick={(event)=>{addToCart(event)}}
-     ><div className="d-flex align-items-baseline justify-content-center"><div><MdShoppingCart className="mr-2 mb-1" style={{fontSize:'1.25rem'}} /></div>加入購物車</div></button>
+    onClick={(event)=>{
+      addToCart(event);
+      setActionModalText('商品已放入購物車');
+      setShowActionModal(true);
+      }}
+     >
+     <div className="d-flex align-items-baseline justify-content-center"><div><MdShoppingCart className="mr-2 mb-1" style={{fontSize:'1.25rem'}} /></div>加入購物車</div></button>
 
     <button 
     className="btn btn-rounded btn-vital re-btn"
@@ -95,6 +108,8 @@ const addToCart=(event)=>{
 
 
     </div>
+    
+    
     </>)
 
 }

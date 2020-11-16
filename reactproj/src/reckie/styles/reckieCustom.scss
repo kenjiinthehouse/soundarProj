@@ -348,6 +348,17 @@ input.reSearch:focus {
   position: relative;
   height: 100vh;
 }
+.informCartModal {
+  text-align: center;
+  position: fixed !important;
+  width: 105%;
+  top: 3.9rem;
+  right: -2px;
+  z-index: 99;
+  background-color: #707070a6;
+  color: #fff;
+  border: none;
+}
 .pdItemPage {
   margin-bottom: 5rem;
 }

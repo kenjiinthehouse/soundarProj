@@ -80,7 +80,7 @@ function preLoadImgs() {
   }
   setTimeout(() => {
     setIsLoading(false);
-  }, 800);
+  },1000);
 }
 useEffect(() => {
   preLoadImgs();
