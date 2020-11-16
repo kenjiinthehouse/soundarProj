@@ -2,8 +2,8 @@ import {
   GET_ARTICLE_DETAIL,
   GET_ARTICLE_LIST,
   GET_ARTICLE_LIST_TOTALROWS,
-  GET_ARTICLE_DETAIL_PRE,
-  GET_ARTICLE_DETAIL_NEXT,
+  GET_ARTICLE_MSG,
+  GET_ARTICLE_REPLY,
   INIT_MEMBER,
   LOG_OUT,
   GET_MSG,
@@ -65,53 +65,51 @@ export const getArticleDetailAsync = (sid) => {
   };
 };
 
-//aciotn creator-get detail-PRE
-export const getArticleDetailPre = (payload) => {
-  return { type: GET_ARTICLE_DETAIL_PRE, payload: payload };
+
+export const getArticleMsg = (payload) => {
+  return { type: GET_ARTICLE_MSG, payload: payload };
 };
-
-export const getArticleDetailPreAsync = (sid) => {
-  return async function getArticleDetailPreFromServer(dispatch) {
-    //欲加入網址列需使用字串(將條件也設定在fetch API來獲取已篩選過的資料)
-    const url = `http://localhost:5566/article/${sid - 1}`;
-
+//針對特定專欄取得對應留言
+export const getArticleMsgAsync = (sid,msgSort) => {
+  return async function getArticleMsgFunc(dispatch) {
+    let query = '';
+    if (sid) query += `&sid=${sid}`;
+    if (msgSort) query += `&msgSort=${msgSort}` 
+    const url = `http://localhost:5566/article/comment/index/?${query}`;
     const request = new Request(url, {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
       }),
     });
-
     const response = await fetch(request);
-    const data = await response.json();
-    //API傳送過來的資料為Array(需先得到第0筆的物件)
-    dispatch(getArticleDetailPre(data[0]));
+    const msgList = await response.json();
+    // console.log('msgList',msgList)
+    dispatch(getArticleMsg(msgList));
   };
 };
 
-//aciotn creator-get detail-NEXT
-export const getArticleDetailNext = (payload) => {
-  return { type: GET_ARTICLE_DETAIL_NEXT, payload: payload };
+export const getArticleReply = (payload) => {
+  return { type: GET_ARTICLE_REPLY, payload: payload };
 };
-
-export const getArticleDetailNextAsync = (sid) => {
-  return async function getArticleDetailNextFromServer(dispatch) {
-    //欲加入網址列需使用字串(將條件也設定在fetch API來獲取已篩選過的資料)
-    const url = `http://localhost:5566/article/${sid}`;
-
+export const getArticleReplyAsync = (pid) => {
+  return async function getArticleReplyFunc(dispatch) {
+    // let query = '';
+    // if (sid) query += `&sid=${sid}`;
+    // if (pid) query += `&pid=${pid}`;
+    const url = `http://localhost:5566/article/comment/reply/${pid}`;
     const request = new Request(url, {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
       }),
     });
-
     const response = await fetch(request);
-    const data = await response.json();
-    //API傳送過來的資料為Array(需先得到第0筆的物件)
-    dispatch(getArticleDetailNext(data[0]));
+    const replyList = await response.json();
+    // console.log('parentId給多少:', replyList);
+    dispatch(getArticleReply(replyList));
   };
 };
 

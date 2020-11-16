@@ -13,6 +13,8 @@ import Coupon from './../../ruby/ruby_components/CouponPage'
 
 //活動訂單
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder';
+//錄音室訂單
+import StudioOrder from '../../chieh/ch_pages/StudioOrder';
 //page7
 import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome';
 //page8
@@ -177,7 +179,9 @@ function Membersidebar(props) {
                 ) : (
                   <></>
                 )}
-                {activenumber == 4 ? <div>4</div> : <></>}
+                {activenumber == 4 ? <div><div>
+                    <StudioOrder />
+                  </div></div> : <></>}
                 {activenumber == 5 ? <div>5</div> : <></>}
                 {activenumber == 6 ? <div><Coupon /></div> : <></>}
                 {activenumber == 7 ? (

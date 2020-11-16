@@ -182,7 +182,7 @@ function Applymembership(props) {
                     accountCheck(account);
                   }}
 
-                  //   placeholder="Enter email"
+                //   placeholder="Enter email"
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.
@@ -244,7 +244,7 @@ function Applymembership(props) {
                   onChange={(e) => {
                     setPasswordcheck(e.target.value);
                   }}
-                  //   placeholder="Enter email"
+                //   placeholder="Enter email"
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.
@@ -261,7 +261,7 @@ function Applymembership(props) {
                   onChange={(e) => {
                     setNickname(e.target.value);
                   }}
-                  //   placeholder="Enter email"
+                //   placeholder="Enter email"
                 />
                 {/* <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.

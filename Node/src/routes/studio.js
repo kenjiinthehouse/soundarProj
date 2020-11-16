@@ -49,7 +49,7 @@ router.get('/api', async(req,res)=>{
 
 //all-lsit
 router.get('/list', async(req,res)=>{
-    const sql = "SELECT * FROM studio ORDER BY sid ASC";
+    const sql = "SELECT * FROM studio ORDER BY studio_price ASC";
     const [results] = await db.query(sql);
     res.json(results);
 })
