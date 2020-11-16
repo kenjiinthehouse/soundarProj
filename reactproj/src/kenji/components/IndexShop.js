@@ -17,11 +17,18 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     width: '20rem',
+    // display:'flex',
+    // flexDirection:'column',
+    // alignItems:'center',
     // height: '21rem',
   },
   media: {
     width: '20rem',
     height: '15rem',
+  },
+  content: {
+    width: '100%',
+    height: '10rem',
   },
 });
 
@@ -50,7 +57,10 @@ const classes = useStyles();
         <div className="StoreTitlePodcaster row no-gutters">
           <div className="StoreTitleTag mr-auto">播客周邊</div>
           <div className="StoreMoreTag d-flex align-items-center">
-            <Button className="d-flex mt-2 mx-auto">
+            <Button
+              className="d-flex mt-2 mx-auto"
+              href="http://localhost:3000/productlist"
+            >
               更多播客周邊
               <BiFastForward />
             </Button>
@@ -64,18 +74,28 @@ const classes = useStyles();
                 image="./k_img/IndexProduct1.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent
+                className={classes.content}
+                className={classes.content}
+              >
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  星箭廣播線下見面會門票
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  《星箭廣播》粉絲見面會台北站，入場門票，當日入場者方可適用，包括11:00開放的周邊選購，以及見面會後的簽名活動。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="http://localhost:3000/product/310"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
@@ -88,18 +108,28 @@ const classes = useStyles();
                 image="./k_img/IndexProduct2.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent
+                className={classes.content}
+                className={classes.content}
+              >
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  區塊勢馬克杯
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  大容量的杯子，一次可以裝足量的咖啡或茶。粗製的圓手柄，讓提握手感更舒適。樸實牛奶白和溫潤天空藍釉色，搭配杯底細緻手作刻紋，品味日常的單純幸福。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="http://localhost:3000/product/310"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
@@ -112,18 +142,28 @@ const classes = useStyles();
                 image="./k_img/IndexProduct3.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent
+                className={classes.content}
+                className={classes.content}
+              >
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  Soundar訂閱紀念帆布袋
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  輕便精巧的托特包，簡約的設計且符合日常使用，輕鬆收納13吋筆電和A4文件，除了有四個口袋，線材和鑰匙收納是此款包最大亮點。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="http://localhost:3000/product/309"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
@@ -136,18 +176,25 @@ const classes = useStyles();
                 image="./k_img/IndexProduct4.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent className={classes.content}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  Tech Tales 紀念帆布袋
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  輕便精巧的托特包，簡約的設計且符合日常使用，輕鬆收納13吋筆電和A4文件，除了有四個口袋，線材和鑰匙收納是此款包最大亮點。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="http://localhost:3000/product/306"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
@@ -157,7 +204,10 @@ const classes = useStyles();
         <div className="StoreTitleProduct row no-gutters">
           <div className="StoreTitleTag mr-auto">開播必備</div>
           <div className="StoreMoreTag d-flex align-items-center">
-            <Button className="d-flex mt-2 mx-auto">
+            <Button
+              className="d-flex mt-2 mx-auto"
+              href="http://localhost:3000/productlist"
+            >
               更多優質設備
               <BiFastForward />
             </Button>
@@ -171,18 +221,26 @@ const classes = useStyles();
                 image="./k_img/IndexProduct8.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent className={classes.content}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  EVO 4 Podcast套組
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  EVO 4
+                  Podcast新手套組對於初學者來說是一套非常好的硬體，既方便又省錢，加購商品的價格也很便宜合理。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="https://bit.ly/30w9ycN"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
@@ -195,18 +253,25 @@ const classes = useStyles();
                 image="./k_img/IndexProduct7.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent className={classes.content}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  多重指向性電容型麥克風
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  DC48V的幻象電源專用，具高感度、及高承受入力高等特性,採用大口徑雙鍍金振動膜的可變型指向性。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="http://localhost:3000/product/285"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
@@ -219,18 +284,25 @@ const classes = useStyles();
                 image="./k_img/IndexProduct6.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent className={classes.content}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  指向真空管電容型麥克風
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  使用新開發的「雙波形振動膜（PAT.）」，帶來高感度與低雜訊位準,配備浮懸機構的元件提升耐震性，加強隔離雜訊,變壓輸出帶來低頻寬的直線性,音質清晰鮮明，自然不誇張,真空管預熱迅速，使用方便。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="http://localhost:3000/product/310"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
@@ -243,18 +315,25 @@ const classes = useStyles();
                 image="./k_img/IndexProduct5.jpg"
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+              <CardContent className={classes.content}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  align="center"
+                >
+                  無線耳罩式耳機
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  以無線傳輸更深沉、更鮮明的重低音。搭載降噪功能。藉由收音麥克風及收音孔最佳的位置排列，打造出自然的降噪空間。
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button className="d-flex mt-2 mx-auto">
+              <Button
+                className="d-flex mt-2 mx-auto hrefToProduct"
+                href="http://localhost:3000/product/310"
+              >
                 馬上去看看
                 <BiFastForward />
               </Button>
