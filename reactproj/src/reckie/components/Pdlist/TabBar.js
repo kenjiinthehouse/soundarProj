@@ -4,15 +4,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from './TabPanel';
 
-
 import PdSideBar2 from './PdSideBar2';
 import PdContent from './PdContent/PdContent';
 import Breadcrumb from '../Breadcrumb';
-import {Form} from 'react-bootstrap'
-
-//活動、錄音室
-import AcContent from './PdContent/AcContent';
-import StudioContent from './PdContent/StudioContent';
+import { Form } from 'react-bootstrap';
 
 //活動、錄音室
 import AcContent from './PdContent/AcContent';
@@ -77,7 +72,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabBar(props) {
-  const { mainCate, setMainCate, setDetailCate,setPage,setSearch,setFrontPrice,setBackPrice,setSort} = props;
+  const {
+    mainCate,
+    setMainCate,
+    setDetailCate,
+    setPage,
+    setSearch,
+    setFrontPrice,
+    setBackPrice,
+    setSort,
+  } = props;
   const classes = useStyles();
   // const [viewFilter, setViewFilter] = useState(10)
 
@@ -93,7 +97,7 @@ function TabBar(props) {
     setFrontPrice('');
     setBackPrice('');
     setSort('');
-  }
+  };
 
   //篩選products分類資料
   {
@@ -113,7 +117,7 @@ function TabBar(props) {
             {...a11yProps(0)}
             onClick={() => {
               setMainCate(1);
-              resetData()
+              resetData();
             }}
           />
           <StyledTab
@@ -124,24 +128,26 @@ function TabBar(props) {
               resetData();
             }}
           />
-          <StyledTab 
-          label="線下活動" {...a11yProps(2)}
-          onClick={() => {
+          <StyledTab
+            label="線下活動"
+            {...a11yProps(2)}
+            onClick={() => {
               setMainCate(3);
               resetData();
             }}
-             />
-          <StyledTab 
-          label="錄音室租借" {...a11yProps(3)}
-          onClick={() => {
+          />
+          <StyledTab
+            label="錄音室租借"
+            {...a11yProps(3)}
+            onClick={() => {
               setMainCate(4);
               resetData();
-            }} />
+            }}
+          />
         </StyledTabs>
       </div>
 
       <TabPanel component="div">
-        
         <div className={classes.panel}>
           {/* <SideBar/> */}
           <PdSideBar2 value={value} pdIndex={0} {...props} />
@@ -149,23 +155,14 @@ function TabBar(props) {
           <PdSideBar2 value={value} pdIndex={2} {...props} />
           <PdSideBar2 value={value} pdIndex={3} {...props} />
           <div>
-          <Breadcrumb value={value} {...props} />
-          <PdContent
-          value={value}
-          {...props}
-          />
-          {/* 活動 */}
-          <AcContent 
-          value={value} pdIndex={2}
-          />
-          {/* 錄音室 */}
-          <StudioContent
-          value={value} pdIndex={3}
-            />
-         
-        </div>
+            <Breadcrumb value={value} {...props} />
+            <PdContent value={value} {...props} />
+            {/* 活動 */}
+            <AcContent value={value} pdIndex={2} />
+            {/* 錄音室 */}
+            <StudioContent value={value} pdIndex={3} />
           </div>
-          
+        </div>
       </TabPanel>
     </div>
   );

@@ -203,7 +203,7 @@ function ChannelAudioPage(props) {
                             if (props.member.sid) {
                               await props.addChannelCollection(
                                 props.member.sid,
-                                item.sid
+                                item.podcaster_id
                               );
                               await props.initMemberChannelCollectionAsync(
                                 props.member.sid
@@ -224,7 +224,7 @@ function ChannelAudioPage(props) {
                             if (props.member.sid) {
                               await props.delChannelCollection(
                                 props.member.sid,
-                                item.sid
+                                item.podcaster_id
                               );
                               await props.initMemberChannelCollectionAsync(
                                 props.member.sid

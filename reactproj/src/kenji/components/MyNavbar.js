@@ -20,6 +20,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
+import MenuIcon from '@material-ui/icons/Menu';
 //scss
 import '../styles/MyNavbar.scss';
 
@@ -30,7 +31,15 @@ import { initMemberAsync, logOutAsync } from '../../actions/index';
 
 //jay改動
 import InformLoginModal from './../../jay/jay_components/InformLoginModal';
-
+import clsx from 'clsx';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
 // ant-design Layout
 const { Header } = Layout;
@@ -51,6 +60,12 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: 'black',
   },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
 }));
 
 function MyNavbar(props) {
@@ -59,7 +74,7 @@ function MyNavbar(props) {
   const anchorRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
-  const {navCartNum,setNavCartNum}=props
+  const { navCartNum, setNavCartNum } = props;
 
   //jay
   const [showInformLoginModal, setShowInformLoginModal] = useState(false);
@@ -68,8 +83,8 @@ function MyNavbar(props) {
 
   useEffect(() => {
     props.initMemberAsync();
-    if(localStorage.getItem('cart')){
-      setNavCartNum(JSON.parse(localStorage.getItem('cart')).length)
+    if (localStorage.getItem('cart')) {
+      setNavCartNum(JSON.parse(localStorage.getItem('cart')).length);
     }
     // console.log("hi")
   }, []);
@@ -115,8 +130,9 @@ function MyNavbar(props) {
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>      
-      <div className="navBarBtn">
+      ></div>
+
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button
           href="#"
           key="1"
@@ -132,7 +148,7 @@ function MyNavbar(props) {
           加入播客
         </Button>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button
           onClick={() => {
             props.history.push(`/explore_home_page`);
@@ -142,20 +158,20 @@ function MyNavbar(props) {
           探索
         </Button>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button href="#">商城</Button>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button href="#">專欄</Button>
       </div>
 
-      <div className="diverVertical my-auto ml-2 mr-2"></div>
-      <div className="navBarBtn">
+      <div className="diverVertical my-auto ml-2 mr-2 navbar-desktop-rwd"></div>
+      <div className="navBarBtn navbar-desktop-rwd">
         <IconButton>
           <SearchIcon />
         </IconButton>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         {/* 會員 */}
         <IconButton ref={anchorRef} onClick={handleToggle}>
           <PersonIcon />
@@ -233,7 +249,7 @@ function MyNavbar(props) {
       </div>
 
       {/* samps登出 */}
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <IconButton
           onClick={() => {
             props.logOutAsync();
@@ -243,12 +259,24 @@ function MyNavbar(props) {
           <RiLogoutCircleRLine />
         </IconButton>
       </div>
-      <div className="navBarBtn">
-        <IconButton onClick={() => { props.history.push('/cart'); console.log('11') }}>
+      <div className="navBarBtn navbar-desktop-rwd">
+        <IconButton
+          onClick={() => {
+            props.history.push('/cart');
+            console.log('11');
+          }}
+        >
           {/* 這邊需要接購物車props過來的length */}
           <StyledBadge badgeContent={navCartNum} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
+        </IconButton>
+      </div>
+
+      {/* rwd menu */}
+      <div className="navBarBtn navbar-cell-rwd">
+        <IconButton ref={anchorRef} onClick={handleToggle}>
+          <MenuIcon />
         </IconButton>
       </div>
     </Header>
@@ -261,7 +289,7 @@ function MyNavbar(props) {
         onClick={() => {
           props.history.push('/');
         }}
-      ></div>    
+      ></div>
       <div className="navBarBtn">
         <Button
           href="#"

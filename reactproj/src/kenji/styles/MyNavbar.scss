@@ -82,3 +82,17 @@ a:hover {
 .ant-layout-header .navBarBtn button {
   outline: none;
 }
+
+.navbar-cell-rwd{
+  display: none;
+}
+
+//jay scss rwd
+@media (max-width: 767.98px) {
+  .navbar-desktop-rwd{
+      display: none !important;
+  }
+  .navbar-cell-rwd{
+    display: block  !important;
+  }
+}
