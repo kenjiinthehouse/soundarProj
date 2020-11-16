@@ -49,7 +49,7 @@ router.get('/api', async(req,res)=>{
 
 //all-lsit
 router.get('/list', async(req,res)=>{
-    const sql = "SELECT * FROM activity ORDER BY sid ASC";
+    const sql = "SELECT * FROM activity ORDER BY ticket_price DESC";
     const [results] = await db.query(sql);
     res.json(results);
 })
@@ -70,7 +70,7 @@ router.get('/option/:activity_id', async (req, res) => {
     const sql = "SELECT * FROM activity WHERE activity_id=?";
     const [results] = await db.query(sql, [req.params.activity_id]);
     if (!results.length) return res.redirect('/activity/api');
-    console.log(results);
+    // console.log(results);
 
     res.json(results);
 })

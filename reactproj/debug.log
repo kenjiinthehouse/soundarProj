@@ -48,4 +48,9 @@
 =======
 [1113/135330.801:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
 >>>>>>> 97e0126... samps navbar é »é“ç¯€ç›® è½‰å‘ä¿®æ­£  è™•ç†ä¸€é–‹å§‹ç›´æŽ¥ç”¨googleç™»å…¥ collection åœ–ç‰‡æœƒç”¢ç”Ÿå•é¡Œ
+<<<<<<< HEAD
 >>>>>>> dc7370ab8cfd52c25c00b7a9c8232c29ae008520
+=======
+[1114/090412.297:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
+[1116/092415.549:ERROR:directory_reader_win.cc(43)] FindFirstFile: ¨t²Î§ä¤£¨ì«ü©wªº¸ô®|¡C (0x3)
+>>>>>>> chieh

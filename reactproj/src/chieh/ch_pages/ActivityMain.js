@@ -10,11 +10,36 @@ import ActivityInfo from '../ch_components/activity/ActivityInfo'
 import ActivityOption from '../ch_components/activity/ActivityOption'
 import OptionCard from '../ch_components/activity/OptionCard'
 
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import { css } from '@emotion/core';
+
 function ActivityMain(props) {
     const [activityData, setActivityData] = useState([])
     const [newActivity, setNewActivity] = useState([])
+
+    const [dataLoading, setDataLoading] = useState(false)
+    const loader_css = css`
+    display: inline-block;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    `;
+    const displaySpinner = (
+        <div className="re-spinnerArea">
+          <ScaleLoader
+            css={loader_css}
+            color={'#4A90E2'}
+            height={80}
+            width={10}
+            margin={6}
+            radius={20}
+          />
+        </div>
+      );
   
     async function getActivityFromServer() {
+      setDataLoading(true)
       const url = 'http://localhost:5566/activity/option/1'
       const request = new Request(url, {
         method: 'GET',
@@ -26,11 +51,11 @@ function ActivityMain(props) {
   
       const response = await fetch(request)
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       setNewActivity(data)
       let arr = []
       arr.push(data)
-      console.log(arr)
+      // console.log(arr)
       setActivityData(arr)
     } 
    
@@ -38,18 +63,24 @@ function ActivityMain(props) {
         getActivityFromServer()
     }, [])
 
+    useEffect(() => {
+      setTimeout(() => setDataLoading(false), 800)  
+    }, [])
+
+
   //切換方案票價、活動內容、注意事項  
     function ControlledTabs() {
       const [key, setKey] = useState('option');
     
       return (
         <Tabs
-          id="controlled-tab-example"
+          id="controlled-tab-activity"
           activeKey={key}
           onSelect={(k) => setKey(k)}
           className="nav-pills d-flex justify-content-around"
+          style={{color:'#232d2f'}}
         >
-          <Tab eventKey="option" title="方案票價">
+          <Tab eventKey="option" title="方案票價" style={{color:'#232d2f'}}>
             <ActivityOption 
             activityData={activityData} setActivityData={setActivityData}
             newActivity={newActivity} setNewActivity={setNewActivity} 
@@ -72,10 +103,9 @@ function ActivityMain(props) {
       );
     }
 
-    return (
+    const display = (
       <>
-        
-        <div className="activity-main">
+       <div className="activity-main">
         {activityData.map((item)=>{
           return (
             <>
@@ -104,7 +134,7 @@ function ActivityMain(props) {
                 </div>       
               </div>
 
-              <div className="container">
+              <div className="container activity-tab">
                 <ControlledTabs/>
               </div> 
             </>
@@ -113,6 +143,8 @@ function ActivityMain(props) {
         </div>      
       </>
     )
+
+    return dataLoading ? displaySpinner : display
   }
   
   export default withRouter(ActivityMain)

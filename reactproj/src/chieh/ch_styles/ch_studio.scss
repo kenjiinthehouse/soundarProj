@@ -1,6 +1,11 @@
 .studio-main {
-  padding-bottom: 80px;
-  margin-top: 24px;
+  .active {
+    border-bottom: none;
+  }
+
+  padding-bottom: 48px;
+  padding-top: 63px;
+  background-color: #fff;
   .btn-option {
     width: 11.875rem;
     height: 3.75rem;
@@ -43,6 +48,7 @@
     font-size: 2.5rem;
     line-height: 1.5;
     margin: 0;
+    color: #232d2f;
   }
 
   h4 {
@@ -52,17 +58,16 @@
     margin: 0;
   }
 
-  h5 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 1.5;
+  h6 {
+    font-size: 1rem;
+    // font-weight: bold;
+    line-height: 2;
     margin: 0;
     color: #f8f8f8;
   }
   .container {
     max-width: 1360px;
     // width: 1360px;
-    margin-top: 32px;
     padding: 0;
   }
 
@@ -74,13 +79,13 @@
   }
 
   .img-demo {
-    height: 433px;
+    height: 320px;
     border-radius: 5px;
   }
 
   .img-wrap {
     width: 100%;
-    margin-top: 56px;
+    margin-top: 32px;
   }
 
   .studio-img {
@@ -106,6 +111,10 @@
   }
 
   //----------introduction------------//
+  .studio-head {
+    padding: 3rem 0;
+    min-height: 540px;
+  }
 
   .studio-introduction {
     width: 50%;
@@ -132,6 +141,7 @@
   .location-wrap {
     align-items: center;
     display: flex;
+    color: #44494a;
   }
 
   .studio-introduction > button {
@@ -142,15 +152,14 @@
   //----------ControlledTabs------------//
   .nav-pills-studio {
     padding: 0 17.5rem;
-    height: 4rem;
+    height: 3rem;
     background-color: #232d2f;
     border: none;
-    margin-top: 150px;
-    font-size: 2rem;
+    font-size: 1.25rem;
 
     .nav-link {
       width: 9.25rem;
-      height: 4rem;
+      height: 3rem;
       text-align: center;
       color: #f8f8f8;
       border-radius: 0px;
@@ -184,7 +193,7 @@
     padding: 48px;
     border: 1px solid #909393;
     border-radius: 5px;
-    margin-bottom: 48px;
+    margin: 48px 0;
   }
 
   .option-content {
@@ -217,16 +226,18 @@
   .option-content > li {
     font-size: 1rem;
     margin-bottom: 16px;
+    color: #44494a;
   }
 
   .option-content > h4 {
     font-weight: bold;
     margin-bottom: 16px;
+    color: #232d2f;
   }
 
   .counter > span {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.25rem;
+    color: #44494a;
   }
 
   .card {
@@ -245,31 +256,70 @@
     background-color: rgba($color: #232d2f, $alpha: 0.3);
   }
 
-  .card-img-overlay .container {
-    margin-top: 200px;
-  }
-
   .card-one {
     padding-top: 270px;
   }
 
-  h1 {
-    font-size: 4rem;
-    font-weight: medium;
+  .card-text {
+    font-size: 1rem;
+    line-height: 2;
+    font-weight: normal;
+    color: #44494a;
+    margin-bottom: 0;
   }
 
-  .card-text > h5 {
-    font-size: 1.5rem;
-    font-weight: normal;
+  .card-text-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #232d2f;
+    margin-top: -37px;
+    background-color: #fff;
+    padding: 0 8px;
   }
 
   //-----------StudioInfo-----------//
+  .info-img1 {
+    margin: 250px 0 0 130px;
+    padding: 16px;
+    width: 500px;
+  }
+
+  .info-img2 {
+    margin: 200px 0 0 200px;
+    padding: 16px;
+
+    p {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #f8f8f8;
+    }
+  }
+
+  .info-img3 {
+    margin: 150px 0 0 130px;
+    padding: 16px;
+  }
+
   .studio-info {
     padding: 96px 0;
+
+    h5 {
+      font-size: 1.25rem;
+      color: rgba($color: #44494a, $alpha: 0.7);
+      margin: 8px 0 48px 0;
+      padding-left: 24px;
+    }
   }
 
   .studio-attention {
-    padding: 96px 0;
+    padding: 96px 100px 96px 0;
+
+    p,
+    li {
+      color: #44494a;
+      line-height: 3;
+      list-style-type: disc;
+    }
   }
 
   .felmenon > div > img {
@@ -280,11 +330,22 @@
     margin-top: 48px;
   }
 
-  // .info-card > img {
-  //   // width: 157px;
-  // }
-
   .info-card {
-    padding: 32px 64px;
+    border: 1px solid rgba(144, 147, 147, 0.3);
+    border-radius: 5px;
+    width: 28%;
+
+    p {
+      text-align: center;
+    }
+  }
+  .info-card-line {
+    border-bottom: 1px solid rgba(144, 147, 147, 0.3);
+    padding: 32px;
+    text-align: center;
+
+    img {
+      width: 65%;
+    }
   }
 }
