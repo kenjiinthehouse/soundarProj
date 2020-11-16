@@ -136,7 +136,7 @@ function App() {
                 />
               </Route>
               <Route path="/cart">
-                <Cart />
+                <Cart setNavCartNum={setNavCartNum} navCartNum={navCartNum} />
               </Route>
               <Route path="/checkout">
                 <Checkout />

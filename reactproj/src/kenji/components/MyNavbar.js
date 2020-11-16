@@ -328,10 +328,22 @@ function MyNavbar(props) {
         </Button>
       </div>
       <div className="navBarBtn navbar-desktop-rwd">
-        <Button href="#">商城</Button>
+        <Button
+          onClick={() => {
+            props.history.push(`/productlist`);
+          }}
+        >
+          商城
+        </Button>
       </div>
       <div className="navBarBtn navbar-desktop-rwd">
-        <Button href="#">專欄</Button>
+        <Button
+          onClick={() => {
+            props.history.push(`/article`);
+          }}
+        >
+          專欄
+        </Button>
       </div>
 
       <div className="diverVertical my-auto ml-2 mr-2 navbar-desktop-rwd"></div>
@@ -488,10 +500,22 @@ function MyNavbar(props) {
         </Button>
       </div>
       <div className="navBarBtn navbar-desktop-rwd">
-        <Button href="#">商城</Button>
+        <Button
+          onClick={() => {
+            props.history.push(`/productlist`);
+          }}
+        >
+          商城
+        </Button>
       </div>
       <div className="navBarBtn navbar-desktop-rwd">
-        <Button href="#">專欄</Button>
+        <Button
+          onClick={() => {
+            props.history.push(`/article`);
+          }}
+        >
+          專欄
+        </Button>
       </div>
       <div className="diverVertical my-auto ml-2 mr-2 navbar-desktop-rwd"></div>
       <div className="navBarBtn navbar-desktop-rwd">
