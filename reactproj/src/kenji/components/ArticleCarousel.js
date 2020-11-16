@@ -17,7 +17,7 @@ function ArticleCarousel(props) {
       img: './k_img/IndexArticle205.jpg',
       click: '閱讀更多',
       backgroundColorStyle: 'rgba(35,45,47,0.5)',
-      link: 'www.yahoo',
+      link: 'http://localhost:3000/articlepage/205',
     },
     {
       articleId: 208,
@@ -27,8 +27,8 @@ function ArticleCarousel(props) {
         '\t本週我們和 Inside 合作的專欄，從唱片公司製作 Podcast 的歷程談起，分析 Sony 之所以砸下重金投入 Podcast 的原因，摘要結論：「唱片公司還有大把機會在內容上攻城掠地，強化日後和平台的 議價能力，當 Podcast 版權再次被唱片公司掌握，他們又會在平台戰爭笑到最後。」',
       img: './k_img/IndexArticle208.jpg',
       click: '閱讀更多',
-      backgroundColorStyle: 'rgba(204,97,75,0.5)',
-      link: 'www.yahoo',
+      backgroundColorStyle: 'rgba(231,148,96,0.5)',
+      link: 'http://localhost:3000/articlepage/208',
     },
     {
       articleId: 210,
@@ -38,8 +38,8 @@ function ArticleCarousel(props) {
         '\t節目企劃能夠幫助你準確完成節目而不偏離主軸，是製作節目不可或缺的環節之一。那麼如何撰寫一份完美的企劃呢？只要掌握住 5 個核心要素：「主題」、「型式」、「時間長度」、「頻率」、「命名」，任何人都能輕鬆上手！接下來就要來幫助你思考這 5 個要點，讓你快速成為企劃好手！',
       img: './k_img/IndexArticle210.jpg',
       click: '閱讀更多',
-      backgroundColorStyle: 'rgba(204,75,183,0.5)',
-      link: 'www.yahoo',
+      backgroundColorStyle: 'rgba(143,90,60,0.5)',
+      link: 'http://localhost:3000/articlepage/210',
     },
     {
       articleId: 215,
@@ -49,8 +49,8 @@ function ArticleCarousel(props) {
         '\t台灣在2019年下半，掀起了一陣Podcast風潮，許多新創公司、創作者、KOL都嗅到新市場，紛紛將觸角伸到Podcast！那麼究竟要如何才能成立自己的Podcast頻道？',
       img: './k_img/IndexArticle215.jpg',
       click: '閱讀更多',
-      backgroundColorStyle: 'rgba(75,183,204,0.5)',
-      link: 'www.yahoo',
+      backgroundColorStyle: 'rgba(120,125,123,0.5)',
+      link: 'http://localhost:3000/articlepage/215',
     },
   ];
 
@@ -93,7 +93,7 @@ function Item(props) {
           <h5 className="articleSubtitle ml-3">{props.item.subtitle}</h5>
           <Divider className="articleDiver" />
           <p className="align-self-center">{props.item.description}</p>
-          <Button className=" d-flex mt-2 mx-auto">
+          <Button className=" d-flex mt-2 mx-auto" href={props.item.link}>
             {props.item.click}
             <BiFastForward />
           </Button>
