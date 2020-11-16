@@ -8,6 +8,7 @@ import '../styles/Audiocollection.scss';
 import { ImFolderDownload } from 'react-icons/im';
 import { RiDislikeFill } from 'react-icons/ri';
 import { BsPlayFill } from 'react-icons/bs';
+import InformModal from '../components/InformAudioActionModal';
 
 function Audiocollection(props) {
   //取得播放state
@@ -27,6 +28,10 @@ function Audiocollection(props) {
 
   //設定大頭貼來源是否有http
   const [pictureurl, setPictureurl] = useState('');
+
+  //移除愛心modal
+  const [showActionModal, setShowActionModal] = useState(false);
+  const [actionModalText, setActionModalText] = useState('');
 
   const Filedownload = React.useRef(null);
   //判斷大頭貼來源是否有http
@@ -255,11 +260,19 @@ function Audiocollection(props) {
                             );
                           }}
                         >
-                          <img
-                            className="sa-collection-list-body-channel-picture-img"
-                            src={item.cover}
-                            alt=""
-                          ></img>
+                          {item.cover.indexOf('http') !== -1 ? (
+                            <img
+                              className="sa-collection-list-body-channel-picture-img"
+                              src={item.cover}
+                              alt=""
+                            ></img>
+                          ) : (
+                            <img
+                              className="sa-collection-list-body-channel-picture-img"
+                              src={`images/podcaster_imgs/${item.cover}`}
+                              alt=""
+                            ></img>
+                          )}
                         </div>
                         <div
                           className="sa-collection-list-body-channel-name"
@@ -295,6 +308,8 @@ function Audiocollection(props) {
                           className="sa-collection-list-body-setting-cancel"
                           onClick={() => {
                             delete_audio(item.audio_id);
+                            setActionModalText('已從我的收藏移除');
+                            setShowActionModal(true);
                           }}
                         >
                           <RiDislikeFill />
@@ -332,6 +347,12 @@ function Audiocollection(props) {
           </div>
         </div>
       </div>
+      {showActionModal ? (
+        <InformModal
+          setShowActionModal={setShowActionModal}
+          actionModalText={actionModalText}
+        />
+      ) : null}
     </>
   );
 }
