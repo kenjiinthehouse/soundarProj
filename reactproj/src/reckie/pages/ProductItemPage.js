@@ -29,7 +29,7 @@ const [SubImg,setSubImg] = useState([])
 
   //從後端抓商品資料
   useEffect(()=>{
-    // setIsLoading(true)
+    setIsLoading(true)
     const getProductDetailFromServer = async () => {
         try{
           const response = await fetch(`http://localhost:5566/products/get-api/${pd_id}`,{method:'GET',
@@ -49,9 +49,9 @@ useEffect(()=>{
   setMainImg(pdDetail?pdDetail.pd_main_img:'')
   setSubImg([...SubImg,...newSubImg])
   
-//   setTimeout(()=>{
-//     setIsLoading(false)
-// },800)
+  setTimeout(()=>{
+    setIsLoading(false)
+},800)
 }, [pdDetail])
 
   const PdItemPage = (
@@ -108,8 +108,7 @@ const displaySpinner = (
       />
     </div>
   );
-    // return isLoading? displaySpinner : PdItemPage
-    return PdItemPage
+    return isLoading? displaySpinner : PdItemPage
   }
   
   export default ProductItemPage
