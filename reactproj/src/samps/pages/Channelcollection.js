@@ -120,7 +120,9 @@ function Channelcollection(props) {
                     <div
                       onClick={() => {
                         props.history.push(
-                          `/channel_page/${item.channel_catagory}/${item.channel_id}`
+                          `/channel_page/${item.channel_catagory.toLowerCase()}/${
+                            item.channel_id
+                          }`
                         );
                       }}
                       className="sa-channel-collection-colbox"
