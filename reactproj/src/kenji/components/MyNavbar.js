@@ -36,10 +36,14 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
+import AudiotrackIcon from '@material-ui/icons/Audiotrack';
+import CreateIcon from '@material-ui/icons/Create';
+import HeadsetIcon from '@material-ui/icons/Headset';
+import MicIcon from '@material-ui/icons/Mic';
+import StoreIcon from '@material-ui/icons/Store';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 
 // ant-design Layout
 const { Header } = Layout;
@@ -103,10 +107,74 @@ function MyNavbar(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem>
-          <Button
-            href="#"
-            key="1"
+        <ListItem
+          onClick={(event) => {
+            event.preventDefault();
+            if (props.member.sid) {
+              props.history.push(`/memberedit`);
+            } else {
+              setShowInformLoginModal(true);
+            }
+          }}
+        >
+          <IconButton>
+            <MicIcon style={{ color: 'white' }} />
+          </IconButton>
+          <ListItemText primary="加入播客" style={{ color: 'white' }} />
+        </ListItem>
+        <ListItem
+          onClick={() => {
+            props.history.push(`/explore_home_page`);
+          }}
+        >
+          <IconButton>
+            <HeadsetIcon style={{ color: 'white' }} />
+          </IconButton>
+          <ListItemText primary="探索" style={{ color: 'white' }} />
+        </ListItem>
+        <ListItem
+          onClick={() => {
+            props.history.push(`/productlist`);
+          }}
+        >
+          <IconButton>
+            <StoreIcon style={{ color: 'white' }} />
+          </IconButton>
+          <ListItemText primary="商城" style={{ color: 'white' }} />
+        </ListItem>
+        <ListItem
+          onClick={() => {
+            props.history.push(`/article`);
+          }}
+        >
+          <IconButton>
+            <ChromeReaderModeIcon style={{ color: 'white' }} />
+          </IconButton>
+          <ListItemText primary="專欄" style={{ color: 'white' }} />
+        </ListItem>
+      </List>
+      <Divider />
+      {props.member.sid ? (
+        <List>
+          <ListItem
+            onClick={(event) => {
+              event.preventDefault();
+              if (props.member.sid) {
+                props.history.push('/cart');
+              } else {
+                setShowInformLoginModal(true);
+              }
+            }}
+          >
+            <IconButton style={{ color: 'white' }}>
+              {/* 這邊需要接購物車props過來的length */}
+              <StyledBadge badgeContent={navCartNum} color="secondary">
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+            <ListItemText primary="購物車" style={{ color: 'white' }} />
+          </ListItem>
+          <ListItem
             onClick={(event) => {
               event.preventDefault();
               if (props.member.sid) {
@@ -116,60 +184,67 @@ function MyNavbar(props) {
               }
             }}
           >
-            加入播客
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button
+            <IconButton>
+              <PersonIcon style={{ color: 'white' }} />
+            </IconButton>
+            <ListItemText primary="會員資料" style={{ color: 'white' }} />
+          </ListItem>
+          <ListItem
             onClick={() => {
-              props.history.push(`/explore_home_page`);
+              props.history.push(`/channelcollect`);
             }}
-            style={{ outline: 'none', color: 'white' }}
           >
-            探索
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button href="#">商城</Button>
-        </ListItem>
-        <ListItem>
-          <Button href="#">專欄</Button>
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem>
-          <IconButton>
-            <PersonIcon style={{ color: 'white' }} />
-          </IconButton>
-          <ListItemText primary="會員中心" style={{ color: 'white' }} />
-        </ListItem>
-        <ListItem>
-          <IconButton
+            <IconButton>
+              <FolderSpecialIcon style={{ color: 'white' }} />
+            </IconButton>
+            <ListItemText primary="追蹤頻道" style={{ color: 'white' }} />
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              props.history.push(`/audiocollect`);
+            }}
+          >
+            <IconButton>
+              <AudiotrackIcon style={{ color: 'white' }} />
+            </IconButton>
+            <ListItemText primary="節目收藏" style={{ color: 'white' }} />
+          </ListItem>
+          <ListItem
             onClick={() => {
               props.logOutAsync();
               props.history.push('/');
             }}
           >
-            <RiLogoutCircleRLine style={{ color: 'white' }} />
-          </IconButton>
-          <ListItemText primary="登出" style={{ color: 'white' }} />
-        </ListItem>
-        <ListItem>
-          <IconButton
+            <IconButton>
+              <RiLogoutCircleRLine style={{ color: 'white' }} />
+            </IconButton>
+            <ListItemText primary="登出" style={{ color: 'white' }} />
+          </ListItem>
+        </List>
+      ) : (
+        <List>
+          <ListItem
             onClick={() => {
-              props.history.push('/cart');
-              console.log('11');
+              props.history.push('/applymember');
             }}
-            style={{ color: 'white' }}
           >
-            {/* 這邊需要接購物車props過來的length */}
-            <StyledBadge badgeContent={navCartNum} color="secondary">
-              <ShoppingCartIcon />
-            </StyledBadge>
-          </IconButton>
-        </ListItem>
-      </List>
+            <IconButton>
+              <CreateIcon style={{ color: 'white' }} />
+            </IconButton>
+            <ListItemText primary="註冊" style={{ color: 'white' }} />
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              props.history.push('/login');
+            }}
+          >
+            <IconButton>
+              <ExitToAppIcon style={{ color: 'white' }} />
+            </IconButton>
+            <ListItemText primary="登入" style={{ color: 'white' }} />
+          </ListItem>
+        </List>
+      )}
     </div>
   );
 
@@ -326,9 +401,6 @@ function MyNavbar(props) {
                         頻道追蹤
                       </Button>
                     </MenuItem>
-                    {/* <MenuItem onClick={handleClose}>
-                      <Button href="#">專欄</Button>
-                    </MenuItem> */}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -350,9 +422,13 @@ function MyNavbar(props) {
       </div>
       <div className="navBarBtn navbar-desktop-rwd">
         <IconButton
-          onClick={() => {
-            props.history.push('/cart');
-            console.log('11');
+          onClick={(event) => {
+            event.preventDefault();
+            if (props.member.sid) {
+              props.history.push('/cart');
+            } else {
+              setShowInformLoginModal(true);
+            }
           }}
         >
           {/* 這邊需要接購物車props過來的length */}
@@ -386,7 +462,7 @@ function MyNavbar(props) {
           props.history.push('/');
         }}
       ></div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button
           href="#"
           onClick={(event) => {
@@ -401,7 +477,7 @@ function MyNavbar(props) {
           加入播客
         </Button>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button
           onClick={() => {
             props.history.push(`/explore_home_page`);
@@ -411,16 +487,15 @@ function MyNavbar(props) {
           探索
         </Button>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button href="#">商城</Button>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         <Button href="#">專欄</Button>
       </div>
-      <div className="diverVertical my-auto ml-2 mr-2"></div>
-      <div className="navBarBtn">
+      <div className="diverVertical my-auto ml-2 mr-2 navbar-desktop-rwd"></div>
+      <div className="navBarBtn navbar-desktop-rwd">
         {/* samps */}
-        {/* <Button href="#">註冊</Button> */}
         <Button
           onClick={() => {
             props.history.push('/applymember');
@@ -429,9 +504,8 @@ function MyNavbar(props) {
           註冊
         </Button>
       </div>
-      <div className="navBarBtn">
+      <div className="navBarBtn navbar-desktop-rwd">
         {/* samps */}
-        {/* <Button href="#">登入</Button> */}
         <Button
           onClick={() => {
             props.history.push('/login');
@@ -440,23 +514,35 @@ function MyNavbar(props) {
           登入
         </Button>
       </div>
-      {/* <div className="navBarLogInBtn navBarBtn">
-        <Button href="#">
-          <ExitToAppIcon />
-        </Button>
-      </div> */}
-      <div className="diverVertical my-auto ml-2 mr-2"></div>
-      <div className="navBarBtn">
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-      </div>
-      <div className="navBarBtn">
-        <IconButton>
+      <div className="diverVertical my-auto ml-2 mr-2 navbar-desktop-rwd"></div>
+      <div className="navBarBtn navbar-desktop-rwd">
+        <IconButton
+          onClick={(event) => {
+            event.preventDefault();
+            if (props.member.sid) {
+              props.history.push('/cart');
+            } else {
+              setShowInformLoginModal(true);
+            }
+          }}
+        >
           <StyledBadge badgeContent={navCartNum} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
+      </div>
+      {/* rwd menu */}
+      <div className="navBarBtn navbar-cell-rwd">
+        <IconButton onClick={toggleDrawer('left', true)}>
+          <MenuIcon />
+        </IconButton>
+        <Drawer
+          anchor={'left'}
+          open={state['left']}
+          onClose={toggleDrawer('left', false)}
+        >
+          {list('left')}
+        </Drawer>
       </div>
       <InformLoginModal
         show={showInformLoginModal}
