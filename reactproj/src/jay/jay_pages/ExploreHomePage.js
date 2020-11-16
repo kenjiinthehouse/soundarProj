@@ -98,6 +98,10 @@ function ExploreHomePage(props) {
     }
   };
 
+  function truncate(str, n) {
+    return str.length > n ? str.substr(0, n - 1) + '...' : str;
+  }
+
   const imgUrlArray = [
     'http://localhost:3000/images/explore_categories/pexels-sahidin-sahidin-2695975.jpg',
     'http://localhost:3000/images/explore_categories/board-22098_1920.jpg',
@@ -410,7 +414,7 @@ function ExploreHomePage(props) {
                       </div>
                     </div>
                     <div className="jay-section2-part3">
-                      <h6>{item.channel_title}</h6>
+                      <h6>{truncate(item.channel_title, 8)}</h6>
                       <span>{transTermToChinese(item.channel_catagory)}</span>
                     </div>
                   </div>

@@ -27,6 +27,7 @@ function ProductMainPage(props) {
   const [backPrice,setBackPrice]= useState ('');
   //排序
   const [sort,setSort]= useState ('');
+  const [queryReset,setQueryReset]=useState('');
 
 
   useEffect(() => {
@@ -38,13 +39,15 @@ function ProductMainPage(props) {
         if(detailCate) query += `&detailCate=${detailCate}`
         if(search) query += `&search=${search}`
         if(sort) query += `&sort=${sort}`
+        if(frontPrice || backPrice) query += `&frontPrice=${frontPrice}&backPrice=${backPrice}`
+        if(queryReset){ query = ''};
         const url = `http://localhost:5566/products/get-api/?${query}`
         console.log("url",url)
         const response = await fetch(
           url,{ method: 'GET' }
         );
         const data = await response.json();
-        console.log('data', data.rows);
+        // console.log('data', data.rows);
         const newPds = data.rows;
 
         setProducts([...newPds]);
@@ -54,21 +57,41 @@ function ProductMainPage(props) {
       }
     };
     getDataFromServer();
-  }, [page,mainCate,detailCate,search,sort]);
+  }, [page,mainCate,detailCate,search,sort,frontPrice,backPrice,queryReset]);
   //查看後端抓回來的資料
 // useEffect(()=>{
 //   // console.log('productList',productList)
 // }, [productList])
 
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-  }, []);
+useEffect(() => {
+  setIsLoading(true);
+ 
+}, []);
+const imgUrlArray = [];
+function preLoadImgs() {
+  products.forEach((item) => {
+    imgUrlArray.push(item.pd_main_img);
+  });
+  let tempImgUrlArray = [];
+  for (let i = 0; i < imgUrlArray.length; i++) {
+    tempImgUrlArray[i] = new Image();
+    tempImgUrlArray[i].src = imgUrlArray[i];
+    // console.log(tempImgUrlArray);
+  }
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 800);
+}
+useEffect(() => {
+  preLoadImgs();
+}, [products]);
+
+
+  
 
   const MainPage = (
     <>
+    <div className="reBgWhite">
       <Banner />
       <div className="container pd-container">
         <SearchInput
@@ -79,6 +102,7 @@ function ProductMainPage(props) {
           products={products}
           productList={productList}
           page={page}
+          sort={sort}
           setPage={setPage}
           mainCate={mainCate}
           setMainCate={setMainCate}
@@ -86,6 +110,9 @@ function ProductMainPage(props) {
           setDetailCate={setDetailCate}
           setSearch={setSearch}
           setSort={setSort}
+          setBackPrice={setBackPrice}
+          setFrontPrice={setFrontPrice}
+          setQueryReset={setQueryReset}
         />
         <PaginationRounded
           products={products}
@@ -94,6 +121,10 @@ function ProductMainPage(props) {
           setPage={setPage}
         />
       </div>
+      
+    </div>
+      
+      
     </>
   );
   const loader_css = css`

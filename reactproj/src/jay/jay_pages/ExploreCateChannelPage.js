@@ -159,7 +159,7 @@ function ExploreCateChannelPage(props) {
             </ol>
           </nav>
           <div className="row mt-4">
-            <div className="col-3">
+            <div className="col-md-3 jay-cateHotList-section">
               <div className="jay-section-title-area py-2 px-3">
                 <h5>{breadcrumbCateTerm}類熱門排行</h5>
               </div>
@@ -200,9 +200,9 @@ function ExploreCateChannelPage(props) {
                         <div className="jay-border-line pb-2 container-fluid">
                           <div className=" row no-gutters d-flex">
                             <div className="jay-hot-list-cate-channel-rank d-flex align-items-center col-1">
-                              <h4>{index + 1}</h4>
+                              <h4>{index + 1}.</h4>
                             </div>
-                            <div className="jay-hot-list-cate-channel-pic mx-3 col-3">
+                            <div className="jay-hot-list-cate-channel-pic mx-3 col-lg-3 col-7">
                               <img
                                 src={
                                   item.podcaster_img.indexOf('http') !== -1
@@ -226,20 +226,105 @@ function ExploreCateChannelPage(props) {
                 })}
               </div>
             </div>
-            <div className="col-9">
-              {props.cate_channels.map((item, index) => {
-                if (index === hoverChannel) {
-                  return (
-                    <div className=" d-flex jay-svg-animation">
-                      <div className="jay-svg-area col-6 position-relative">
-                        <div className="jay-svg-img-area position-absolute">
-                          <img
-                            src={
-                              item.podcaster_img.indexOf('http') !== -1
-                                ? item.podcaster_img
-                                : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
-                            }
-                            alt=""
+            <div className="col-md-9 col-12">
+              <div className="jay-svg-animation">
+                {props.cate_channels.map((item, index) => {
+                  if (index === hoverChannel) {
+                    return (
+                      <div className=" d-flex">
+                        <div className="jay-svg-area col-6 position-relative">
+                          <div className="jay-svg-img-area position-absolute">
+                            <img
+                              src={
+                                item.podcaster_img.indexOf('http') !== -1
+                                  ? item.podcaster_img
+                                  : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
+                              }
+                              alt=""
+                              onClick={() => {
+                                props.history.push(
+                                  `/channel_page/${item.channel_catagory.toLowerCase()}/${
+                                    item.podcaster_id
+                                  }`
+                                );
+                              }}
+                            />
+                          </div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="heart-loader"
+                            viewBox="0 0 100 100"
+                          >
+                            <g className="heart-loader__group">
+                              <path
+                                fill="none"
+                                strokeWidth="0.5"
+                                d="M13 56v39h40V56z"
+                                className="heart-loader__square"
+                              ></path>
+                            </g>
+                          </svg>
+                        </div>
+                        <div style={{ overflow: 'hidden' }} className=" pl-3">
+                          <h4
+                            style={styles.fadeIn03}
+                            className="jay-ani-channel-title"
+                          >
+                            TOP {index + 1}. &nbsp;&nbsp; {item.channel_title}
+                          </h4>
+                          <p style={styles.fadeInLeft01} className="pt-3">
+                            {truncate(item.podcaster_description, 150)}
+                          </p>
+                          {props.subscribe_channels.indexOf(
+                            item.podcaster_id
+                          ) === -1 ? (
+                            <button
+                              type="button"
+                              className=" btn btn-sm btn-info my-3 mr-3"
+                              style={styles.fadeInLeft01}
+                              onClick={async () => {
+                                if (props.member.sid) {
+                                  await props.addChannelCollection(
+                                    props.member.sid,
+                                    item.podcaster_id
+                                  );
+                                  await props.initMemberChannelCollectionAsync(
+                                    props.member.sid
+                                  );
+                                } else {
+                                  setShowInformLoginModal(true);
+                                }
+                              }}
+                            >
+                              訂閱
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                              style={styles.fadeInLeft01}
+                              onClick={async () => {
+                                if (props.member.sid) {
+                                  await props.delChannelCollection(
+                                    props.member.sid,
+                                    item.podcaster_id
+                                  );
+                                  await props.initMemberChannelCollectionAsync(
+                                    props.member.sid
+                                  );
+                                } else {
+                                  setShowInformLoginModal(true);
+                                }
+                              }}
+                            >
+                              訂閱中
+                            </button>
+                          )}
+
+                          <button
+                            type="button"
+                            className=" btn btn-sm btn-secondary my-3 mr-3"
+                            style={styles.fadeInLeft01}
                             onClick={() => {
                               props.history.push(
                                 `/channel_page/${item.channel_catagory.toLowerCase()}/${
@@ -247,103 +332,22 @@ function ExploreCateChannelPage(props) {
                                 }`
                               );
                             }}
-                          />
+                          >
+                            前往
+                          </button>
                         </div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="heart-loader"
-                          viewBox="0 0 100 100"
-                        >
-                          <g className="heart-loader__group">
-                            <path
-                              fill="none"
-                              strokeWidth="0.5"
-                              d="M13 56v39h40V56z"
-                              className="heart-loader__square"
-                            ></path>
-                          </g>
-                        </svg>
                       </div>
-                      <div style={{ overflow: 'hidden' }} className=" pl-3">
-                        <h4
-                          style={styles.fadeIn03}
-                          className="jay-ani-channel-title"
-                        >
-                          TOP {index + 1}. &nbsp;&nbsp; {item.channel_title}
-                        </h4>
-                        <p style={styles.fadeInLeft01} className="pt-3">
-                          {truncate(item.podcaster_description, 150)}
-                        </p>
-                        {props.subscribe_channels.indexOf(item.sid) === -1 ? (
-                          <button
-                            type="button"
-                            className=" btn btn-sm btn-info my-3 mr-3"
-                            style={styles.fadeInLeft01}
-                            onClick={async () => {
-                              if (props.member.sid) {
-                                await props.addChannelCollection(
-                                  props.member.sid,
-                                  item.sid
-                                );
-                                await props.initMemberChannelCollectionAsync(
-                                  props.member.sid
-                                );
-                              } else {
-                                setShowInformLoginModal(true);
-                              }
-                            }}
-                          >
-                            訂閱
-                          </button>
-                        ) : (
-                          <button
-                            type="button"
-                            className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
-                            style={styles.fadeInLeft01}
-                            onClick={async () => {
-                              if (props.member.sid) {
-                                await props.delChannelCollection(
-                                  props.member.sid,
-                                  item.sid
-                                );
-                                await props.initMemberChannelCollectionAsync(
-                                  props.member.sid
-                                );
-                              } else {
-                                setShowInformLoginModal(true);
-                              }
-                            }}
-                          >
-                            訂閱中
-                          </button>
-                        )}
-
-                        <button
-                          type="button"
-                          className=" btn btn-sm btn-secondary my-3 mr-3"
-                          style={styles.fadeInLeft01}
-                          onClick={() => {
-                            props.history.push(
-                              `/channel_page/${item.channel_catagory.toLowerCase()}/${
-                                item.podcaster_id
-                              }`
-                            );
-                          }}
-                        >
-                          前往
-                        </button>
-                      </div>
-                    </div>
-                  );
-                }
-              })}
+                    );
+                  }
+                })}
+              </div>
               <hr className="jay-cate-hr" />
               <h4 className="cate-head-term py-3 px-5">{breadcrumbCateTerm}</h4>
               <div className="d-flex flex-wrap">
                 {props.cate_channels.map((item, index) => {
                   return (
                     <div
-                      className="col-6 col-lg-3 col-md-4 cate-all-channel"
+                      className="col-6 col-lg-3 col-sm-4 cate-all-channel"
                       key={index}
                       style={styles.fadeIn02}
                     >

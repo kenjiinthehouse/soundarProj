@@ -70,11 +70,12 @@
 }
 
 // Carousel Btn
-.indexCarousel .CarouselItem .MuiPaper-root button {
+.indexCarousel .CarouselItem .MuiPaper-root a {
   width: 32.938rem;
   height: 7.188rem;
   border-radius: 58px;
   background-color: #f8f8f8;
+  color: #232d2f !important;
   position: absolute;
   bottom: 3rem;
   right: 8rem;

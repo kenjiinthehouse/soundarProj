@@ -3,15 +3,17 @@
   font-size: 2.5rem;
   margin-top: 19.3rem;
   text-align: center;
-  width: 14.5rem;
+  // width: 14.5rem;
+  width: 25%;
 }
 
 .article-content-wrap {
-  width: 63.25rem;
+  // width: 63.25rem;
+  width: 75%;
   .article-title {
     font-size: 2.5rem;
     font-weight: 500;
-    padding-bottom:2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .article-img {
@@ -26,19 +28,25 @@
 
   .article-font-change {
     margin: 2rem 0;
-    .title{
-      width:auto;
+    .title {
+      width: auto;
     }
-    p {
-      margin: 0.5rem;
+    .fz-select {
+      margin: 0.3rem;
+      width: 1rem;
+      height: 1rem;
       border-radius: 50%;
       text-align: center;
+      background-color: #f8f8f8;
     }
-    p:hover{
-      cursor:pointer;
+    .fz-select:hover {
+      cursor: pointer;
     }
-    p.active {
-      color:#707070;
+    .fz-select.active {
+      background-color: #707070;
+    }
+    .active {
+      border-bottom: none; //去除active設定的藍底線
     }
   }
 
@@ -51,30 +59,46 @@
     text-align: justify;
     //使跳脫文字有作用
     white-space: pre-wrap;
-    p{
-      //  text-indent:2rem;
-    }
   }
 
   .article-page-category {
-    padding-bottom: 2.531rem;
+    padding-bottom: 1rem;
     border-bottom: solid 1px #707070;
-    .span-font {
+    display: flex;
+    align-items: baseline;
+
+    .span-category {
       font-size: 1.2rem;
       font-weight: 500;
+    }
+    a {
+      color: #f8f8f8;
+    }
+    a:hover {
+      color: #707070;
+    }
+    .span-clicks {
+      font-size: 0.8rem;
     }
   }
 
   .article-page-others {
     padding: 1.29rem 0 2rem 0;
     .article-page-previous,
-    .article-page-next{
-      cursor:pointer;
+    .article-page-next {
+      a {
+        color: #f8f8f8;
+        cursor: pointer;
+      }
+      a:hover {
+        color: #707070;
+      }
     }
-    .article-page-previous:hover,
-    .article-page-next:hover{
-      color:#707070;
-    }
-
+    // .article-page-previous:hover,
+    // .article-page-next:hover {
+    //   a {
+    //     color: #707070;
+    //   }
+    //}
   }
 }

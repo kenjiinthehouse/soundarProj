@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
@@ -7,7 +7,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '12rem' + theme.spacing(3) * 2,
+    width: '10rem' + theme.spacing(2) * 2,
   },
   margin: {
     height: theme.spacing(3),
@@ -35,16 +35,16 @@ const iOSBoxShadow =
 
 const marks = [
     {
-      value: 0,
-      label: 'NT$1000'
+      value: 1000,
+      label: '$1000'
     },
     {
       value: 5000,
-      label: 'NT$5000'
+      label: '$5000'
     },
     {
-      value:10000,
-      label: 'NT$10000'
+      value:8000,
+      label: '$8000'
     },
   ];
 const IOSSlider = withStyles({
@@ -54,12 +54,16 @@ const IOSSlider = withStyles({
     padding: '15px 0',
   },
   thumb: {
+  
+  margin: '-10 0 0 -10',
+  border: 'solid 4px #2690df',
+  backgroundColor: '#93caf4',
     height: 16,
     width: 16,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     boxShadow: iOSBoxShadow,
-    marginTop: -8,
-    marginLeft: -8,
+    // marginTop: -10,
+    // marginLeft: -10,
     '&:focus, &:hover, &$active': {
       boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
@@ -70,17 +74,17 @@ const IOSSlider = withStyles({
   },
   active: {},
   valueLabel: {
-    left: 'calc(-50%)',
-    top: -20,
+    right: 'calc(-50%)',
+    top: 24,
     '& *': {
       background: 'transparent',
       color: '#000',
     },
-    padding:2
+    padding:0
   },
   track: {
     height: 4,
-    // background:'transparent'
+    background:'#2690df'
   },
 //   rail: {
 //     height: 2,
@@ -90,6 +94,7 @@ const IOSSlider = withStyles({
   rail: {
     height: 4,
     borderRadius: 4,
+    backgroundColor: '#6f7a7c',
   },
   mark: {
     backgroundColor: '#bfbfbf',
@@ -105,12 +110,28 @@ const IOSSlider = withStyles({
 
 
 
-export default function CustomizedSlider() {
+export default function CustomizedSlider(props) {
+  const {rangeValue,setRangeValue} = props
   const classes = useStyles();
+ 
+
+  const handleChange = (event, newValue) => {
+    setRangeValue(newValue);
+  };
+  useEffect(()=>{
+    // console.log('val',rangeValue)
+  },[rangeValue])
 
   return (
     <div className={classes.root}>
-      <IOSSlider aria-label="ios slider" defaultValue={[1000,5000]} marks={marks} valueLabelDisplay="auto" max={10000}/>
+      <IOSSlider 
+      aria-label="ios slider" 
+      defaultValue={[1000,5000]} 
+      valueLabelDisplay="on" 
+      max={10000}
+      onChange={handleChange}
+      // onDragStop={ (e) => this.props.update(e, control.id, this.val)} 
+      />
       
       <div className={classes.margin} />
       

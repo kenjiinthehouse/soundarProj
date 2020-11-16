@@ -1,6 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .checkout-page {
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
   .container {
     width: 1356px;
     margin-top: 100px;
@@ -12,9 +13,12 @@
   }
 
   .ru-ckpage-ship-state {
-    width: calc(100% - 435px);
+    background-color: #fff;
+    width: calc(100% - 465px);
     padding: 40px;
     .ru-ckpage-choose-payment {
+      background-color: #fff;
+      border: 0;
       display: flex;
       align-items: center;
       padding-bottom: 30px;
@@ -25,6 +29,7 @@
       }
     }
     .ru-ckpage-payment-btn {
+      background-color: #fff;
       width: 12.5rem;
       height: 5rem;
       border: 2px solid #232d2f;
@@ -33,6 +38,8 @@
       position: relative;
       overflow: hidden;
       padding: 0;
+      text-decoration: none;
+      color: #232d2f;
       h5 {
         margin: 0;
       }
@@ -44,6 +51,7 @@
     .ru-ckpage-step-one,
     .ru-ckpage-step-two,
     .ru-ckpage-step-three {
+      background-color: #fff;
       width: 30%;
       //   width: 21rem;
       height: 12.5rem;
@@ -64,7 +72,7 @@
   }
 
   .ru-ckpage-choose-payment {
-    background-color: white;
+    background-color: #f1f2f6;
     padding: 0;
     .ru-ckpage-payment-btn img {
       width: 33%;
@@ -96,20 +104,15 @@
     }
   }
 
-  .card {
+  .ru-ckpage-card {
     border: 0;
     margin-bottom: 40px;
-    .btn-link {
-      text-decoration: none;
-      color: #232d2f;
-    }
+    height: auto;
   }
-  .card-header {
+
+  .ru-ckpage-card-body {
     border: 0;
-  }
-  .card-body {
-    border: 0;
-    padding: 0 10px;
+    padding: 20px;
     .payment-info-topic {
       margin-bottom: 30px;
       .info-topic-border-front {
@@ -129,14 +132,21 @@
     .form-control::placeholder {
       opacity: 0.5;
     }
-    form {
+    .ru-ckpage-form {
       margin-bottom: 30px;
     }
-    label {
+    .ru-ckpage-label {
       width: 100px;
     }
+    .ru-ckpage-feedback-tag {
+      padding-left: 132px;
+    }
+
     .ru-ckpage-choose-store {
       margin-bottom: 30px;
+      .ru-ckpage-store-info {
+        width: 60%;
+      }
       .choose-store-btn {
         width: 30%;
         height: 50px;
@@ -149,6 +159,7 @@
       }
       .store-info-key {
         p {
+          width: 64px;
           margin-right: 1rem;
         }
       }
@@ -182,9 +193,6 @@
   .ru-ckpage-next-btn {
     width: 18.75rem;
     height: 3.75rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #f8f8f8;
     background-color: #fc774c;
     border-radius: 2rem;
     text-align: center;
@@ -193,6 +201,12 @@
     cursor: pointer;
     &:hover {
       background-color: #ff6431;
+    }
+    .ru-cart-next-btn-pay {
+      width: 80%;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f8f8f8;
     }
   }
   .ru-ckpage-go-to-order-btn {

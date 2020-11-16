@@ -121,3 +121,11 @@ a:hover {
   bottom: 0;
 }
 ////////////////////////////////////FOOTER END//////////////////////////////////////
+
+
+//FOOTER rwd
+@media (max-width: 767.98px) {
+  .myFooter{
+      display: none !important;
+  }
+}

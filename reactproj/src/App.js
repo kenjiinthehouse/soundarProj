@@ -5,7 +5,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //components
-
 import ScrollToTop from './jay/jay_components/ScrollToTop.js';
 import MainContent from './jay/jay_components/MainContent.js';
 import { Layout } from 'antd';
@@ -30,7 +29,6 @@ import ArticleHome from './jen/pages/ArticleHome';
 import ArticlePage from './jen/pages/ArticlePage';
 import Cart from './ruby/ruby_pages/CartPage.js';
 import Checkout from './ruby/ruby_pages/CheckoutPage.js';
-import Orderlist from './ruby/ruby_pages/OrderPage.js';
 import ActivityMain from './chieh/ch_pages/ActivityMain';
 // import ActivityCart from './chieh/ch_pages/ActivityCart';
 import ActivityOrder from './chieh/ch_pages/ActivityOrder';
@@ -49,14 +47,26 @@ import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 
 function App() {
-  const [globalAudioArry, setGlobalAudioArry] = useState([]);
+  const [globalAudioArry, setGlobalAudioArry] = useState([
+    {
+      musicSrc: '',
+      cover: 'http://localhost:3000/k_img/logoforplayer.svg',
+      name: '歡迎來到 Soundar',
+      singer: '資策會 MFEE09 第2組',
+    },
+  ]);
   const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
   const [playingAudio, setPlayingAudio] = useState(null);
+  const [navCartNum, setNavCartNum] = useState(0);
+
+  //jen
+  const [category, setCategory] = useState('');
+  const [tags, setTags] = useState('');
 
   return (
     <Router>
       <Layout>
-        <MyNavbar />
+        <MyNavbar navCartNum={navCartNum} setNavCartNum={setNavCartNum} />
         <MainContent>
           <ScrollToTop>
             <Switch>
@@ -110,19 +120,26 @@ function App() {
                 />
               </Route>
               <Route path="/article">
-                <ArticleHome />
+                <ArticleHome
+                  category={category}
+                  setCategory={setCategory}
+                  tags={tags}
+                  setTags={setTags}
+                />
               </Route>
               <Route path="/articlepage/:sid">
-                <ArticlePage />
+                <ArticlePage
+                  category={category}
+                  setCategory={setCategory}
+                  tags={tags}
+                  setTags={setTags}
+                />
               </Route>
               <Route path="/cart">
-                <Cart />
+                <Cart setNavCartNum={setNavCartNum} navCartNum={navCartNum} />
               </Route>
               <Route path="/checkout">
                 <Checkout />
-              </Route>
-              <Route path="/orderlist">
-                <Orderlist />
               </Route>
               <Route path="/activitymain">
                 <ActivityMain />
@@ -173,7 +190,10 @@ function App() {
                 <ProductMainPage />
               </Route>
               <Route path="/product/:pd_id?">
-                <ProductItemPage />
+                <ProductItemPage
+                  navCartNum={navCartNum}
+                  setNavCartNum={setNavCartNum}
+                />
               </Route>
             </Switch>
           </ScrollToTop>

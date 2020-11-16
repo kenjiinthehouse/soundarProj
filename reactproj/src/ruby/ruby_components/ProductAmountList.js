@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-// import { MdNavigateNext, MdStayCurrentLandscape } from 'react-icons/md'
+import './../ruby_styles/ProductAmountList.scss'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
@@ -25,8 +27,9 @@ function ProductAmountList(props){
         axios({
             method: 'get',
             baseURL: 'http://localhost:5566',
-            url: '/coupon/client/get?client_sid=1',
+            url: '/coupon/client/get',
             'Content-Type': 'application/json',
+            params: {client_sid:props.member.sid}
           })
             .then((result) => { 
                 const newData = result.data.data
@@ -34,7 +37,8 @@ function ProductAmountList(props){
                     item.isActive = false
                     return item
                 })
-                setCouponDisplay(newDisplay)
+                let filtNewDisplay = newDisplay.filter(item => item.used !== 1)
+                setCouponDisplay(filtNewDisplay)
             })
             .catch((err) => { console.error(err) })
     }
@@ -104,6 +108,7 @@ function ProductAmountList(props){
             setOrderAmount(sum(mycartDisplay,0))
             setTotalAmount(sum(mycartDisplay,discount))
             let amountObj = {
+                client_sid:props.member.sid,
                 discount:discount,
                 coupon:coupon,
                 amount:orderAmount,
@@ -113,15 +118,16 @@ function ProductAmountList(props){
             }
             localStorage.setItem('amountData', JSON.stringify(amountObj))
         }
-    },[coupon, discount, mycartDisplay, totalAmount, orderAmount, path, dFee])
+    },[coupon, discount, mycartDisplay, totalAmount, orderAmount, path, dFee,props.member])
 
     return(
         <>
-            <Modal show={show} onHide={handleClose} className="">
+        <div className="amount-list">
+            <Modal show={show} onHide={handleClose} className="ru-amountlist-modal">
                 <Modal.Header closeButton style={{ backgroundColor: '#44494A',color: '#F8F8F8' }}>
                 <Modal.Title>我的優惠券</Modal.Title>
                 </Modal.Header>
-                    <Modal.Body >
+                    <Modal.Body className="amountlist-modal-body" >
                         {couponDisplay.map(value => {
                             return(
                                 <div className="ru-cart-coupon-card noselect"
@@ -142,8 +148,10 @@ function ProductAmountList(props){
                                 <div className={value.isActive ? "ru-cart-coupon-info ru-cart-coupon-active" : "ru-cart-coupon-info"}>
                                     <div className="ru-cart-coupon-id ml-auto">{value.sid}</div>
                                     <div className="ru-cart-coupon-exp">使用期限</div>
-                                    <div className="ru-cart-coupon-date">{setTimeFormat(value.start_date)}～{value.end_date}</div>
-                                    <div className="ru-cart-coupon-rule">*此禮券限使用一次</div>
+                                    <span className="ru-cart-coupon-date mr-2">{setTimeFormat(value.start_date)}</span>
+                                    <span>到</span>
+                                    <span className="ru-cart-coupon-date ml-2">{value.end_date  ? setTimeFormat(value.end_date) : '無期限'}</span>
+                                    <div className="ru-cart-coupon-rule mt-2">*此禮券限使用一次</div>
                                     <div className="ru-cart-coupon-rule">消費需滿${value.minimum_amount}方可使用</div>
                                 </div>
                             </div>)})}
@@ -152,11 +160,11 @@ function ProductAmountList(props){
             {
                 disableUse()
                 ?
-                <Button variant="primary use-btn radius-btn" onClick={handleSubmit} disabled>
+                <Button variant="primary ru-cart-use-btn ru-cart-radius-btn" onClick={handleSubmit} disabled>
                     立即使用
                 </Button>
                 :
-                <Button variant="primary use-btn radius-btn" onClick={handleSubmit} >
+                <Button variant="primary ru-cart-use-btn ru-cart-radius-btn" onClick={handleSubmit} >
                     立即使用
                 </Button>
             }
@@ -164,15 +172,15 @@ function ProductAmountList(props){
             </Modal>
             <aside className="">
                 <div className="ru-cart-amount-info">
-                    <div className="ru-cart-sum pb-2">
-                        <h4>訂單總結</h4>
+                    <div>
+                        <h4 className="ru-cart-sum pb-2">訂單總結</h4>
                     </div>
                     <div className="ru-cart-pd-price d-flex justify-content-between align-items-center w-100">
-                        <div>訂單金額</div>
-                        <div>NT$ {orderAmount.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}</div>
+                        <div className="ru-amountlist-font">訂單金額</div>
+                        <div className="ru-amountlist-font">NT$ {orderAmount.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}</div>
                     </div>
                     <div className="ru-cart-coupon d-flex justify-content-between align-items-center w-100">
-                        <div>優惠券</div>
+                        <div className="ru-amountlist-font">優惠券</div>
                         <div 
                         className="ru-cart-coupon-btn" 
                         variant="primary" 
@@ -184,12 +192,12 @@ function ProductAmountList(props){
                             </div>
                     </div>
                     <div className="ru-cart-coupon d-flex justify-content-between align-items-center w-100">
-                        <div>折扣</div>
-                        <div>-NT$ {discount}</div>
+                        <div className="ru-amountlist-font">折扣</div>
+                        <div className="ru-amountlist-font">-NT$ {discount}</div>
                     </div>
                     <div className="ru-cart-coupon d-flex justify-content-between align-items-center w-100">
-                        <div>運費</div>
-                        <div>
+                        <div className="ru-amountlist-font">運費</div>
+                        <div className="ru-amountlist-font">
                         { dFee > 0 ?
                             `NT$ ${dFee}`
                             :
@@ -207,8 +215,12 @@ function ProductAmountList(props){
                     <MdNavigateNext size={32} style={{ color: '#2690DF', backgroundColor: '#F8F8F8', borderRadius: '50%'}} />
                 </div> */}
             </aside>
+            </div>
         </>
     )
 }
 
-export default ProductAmountList
+const mapStateToProps = (store) => {
+    return {member: store.member}
+}
+export default withRouter(connect(mapStateToProps)(ProductAmountList))

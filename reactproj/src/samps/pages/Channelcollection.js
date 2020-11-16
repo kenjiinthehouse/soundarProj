@@ -120,17 +120,28 @@ function Channelcollection(props) {
                     <div
                       onClick={() => {
                         props.history.push(
-                          `/channel_page/${item.channel_catagory}/${item.channel_id}`
+                          `/channel_page/${item.channel_catagory.toLowerCase()}/${
+                            item.channel_id
+                          }`
                         );
                       }}
                       className="sa-channel-collection-colbox"
                     >
                       <div className="sa-channel-collection-img-area">
-                        <img
-                          className="sa-channel-collection-img"
-                          src={item.channel_img}
-                          alt=""
-                        />
+                        {item.channel_img.indexOf('http') !== -1 ? (
+                          <img
+                            className="sa-channel-collection-img"
+                            src={item.channel_img}
+                            alt=""
+                          />
+                        ) : (
+                          <img
+                            className="sa-channel-collection-img"
+                            // src={"/images/podcaster_imgs/" +item.channel_img}
+                            src={`images/podcaster_imgs/${item.channel_img}`}
+                            alt=""
+                          />
+                        )}
                       </div>
                       <div className="sa-channel-collection-title-area">
                         <span className="sa-channel-collection-title">

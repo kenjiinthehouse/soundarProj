@@ -5,7 +5,7 @@ import Breadcrumb from '../components/Breadcrumb'
 
 import PdPicField from '../components/Pditem/PdPicField'
 import PdMainField from '../components/Pditem/PdMainField'
-import ItemTabBar from '../components/Pditem/ItemTabBar';
+import ItemTabBar from '../components/Pditem/ItemTabBar'
 import { withRouter,useParams } from 'react-router-dom'
 
 import ScaleLoader from 'react-spinners/ScaleLoader';
@@ -14,12 +14,12 @@ import { css } from '@emotion/core';
 
 
 function ProductItemPage(props) {
-  console.log('pditemprops',props)
+  console.log('props',props)
   const {pd_id} = useParams()
-  console.log('pd_id',pd_id)
   const [pdDetail,setPdDetail]= useState()
   const [isLoading, setIsLoading] = useState(false);
   const [MainImg,setMainImg]= useState('')
+
 
 //SubPictures
 const [SubImg,setSubImg] = useState([])
@@ -35,9 +35,7 @@ const [SubImg,setSubImg] = useState([])
           const response = await fetch(`http://localhost:5566/products/get-api/${pd_id}`,{method:'GET',
           })
             const data = await response.json()
-            console.log('dataDetail',data)
-           
-            
+
             setPdDetail(data)
         } catch(error){
           console.log(error)
@@ -47,46 +45,47 @@ const [SubImg,setSubImg] = useState([])
 },[])
 //查看後端抓回來的資料
 useEffect(()=>{
-  console.log('productDetail',pdDetail)
-  const newSubImg = pdDetail?pdDetail.combine_img:''
+  const newSubImg = pdDetail?pdDetail.combine_img:'';
   setMainImg(pdDetail?pdDetail.pd_main_img:'')
-  
   setSubImg([...SubImg,...newSubImg])
+  
   setTimeout(()=>{
     setIsLoading(false)
 },800)
 }, [pdDetail])
 
-
   const PdItemPage = (
     <>
-      <div className="container">
+    <div className="reBgWhite">
+    <div className="container rePt-6rem">
       
-          <Breadcrumb/>  
-       
-        <div className="row mt-3 pdItemPage" >
-        <div className="col-6">
-        <PdPicField 
-        {...props} 
-        pdDetail={pdDetail}
-        MainImg={MainImg}
-        setMainImg={setMainImg}
-        SubImg={SubImg}
-        />
-        </div>
-        <div className="col-6 pl-5">
-        <PdMainField {...props} pdDetail={pdDetail} />
-        </div>
-        </div>
-        
-      </div>
-        
-          <ItemTabBar 
-          {...props} 
-          pdDetail={pdDetail}
-          SubImg={SubImg}
-          />
-         
+      <Breadcrumb pdDetail={pdDetail}/>  
+   
+    <div className="row mt-3 pdItemPage" >
+    <div className="col-6">
+    <PdPicField 
+    {...props} 
+    pdDetail={pdDetail}
+    MainImg={MainImg}
+    setMainImg={setMainImg}
+    SubImg={SubImg}
+    />
+    </div>
+    <div className="col-6 pl-5">
+    <PdMainField {...props} pdDetail={pdDetail} />
+    </div>
+    </div>
+    
+  </div>
+    
+      <ItemTabBar 
+      {...props} 
+      pdDetail={pdDetail}
+      SubImg={SubImg}
+      />
+     
+    </div>
+      
         
       </>
   )

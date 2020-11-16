@@ -52,6 +52,15 @@ useEffect(()=>{
       </Element>
       <Element key="bbb"
         prefixCls="banner-user-elem"
+        followParallax={{
+          delay: 1000,
+          data: [
+            { id: 'bg', value: 20, bgPosition: '50%', type: ['backgroundPositionX'] },
+            { id: 'title', value: -20, type: 'x' },
+            { id: 'queue', value: 50, type: 'x' },
+            { id: 'JText', value: -30, type: 'x' },
+          ],
+        }}
       >
         <BgElement
           key="bg"
@@ -62,17 +71,37 @@ useEffect(()=>{
             backgroundPosition: 'center',
           }}
         />
-       
-        <QueueAnim name="QueueAnim">
-          <h1 key="h1">Ant Motion Demo</h1>
-          <p key="p">Ant Motion Demo.Ant Motion Demo.Ant Motion Demo.Ant Motion Demo</p>
+        <div className="container">
+      <QueueAnim id="queue" name="QueueAnim">
+          <h1 key="h1" id="title" className="banner-slogan2 banner-slogan-title2">慶祝收聽人數破百萬！！</h1>
+          
         </QueueAnim>
-        <TweenOne animation={{ y: 50, opacity: 0, type: 'from', delay: 100 }} name="TweenOne1">
-          Ant Motion Demo.Ant MotionDemo
-        </TweenOne>
+        
+        <TweenOne animation={{ y: 50, opacity: 0, type: 'from' }} name="TweenOne" id="JText" className="banner-slogan-span2">
+        <div className="d-flex align-items-center">
+        <div>
+        <p key="p1">限量紀念文青帆布包</p>
+        <p key="p2">1000個</p>
+        </div>
+        <Button className="px-4 ml-4 re-btn-color">去逛逛</Button>
+        </div>
+        
+        </TweenOne>  
+       
+        </div>
+       
       </Element>
       <Element key="ccc"
         prefixCls="banner-user-elem"
+        followParallax={{
+          delay: 1000,
+          data: [
+            { id: 'bg', value: 20, bgPosition: '50%', type: ['backgroundPositionX'] },
+            { id: 'title', value: -20, type: 'x' },
+            { id: 'queue', value: 50, type: 'x' },
+            { id: 'JText', value: -30, type: 'x' },
+          ],
+        }}
       >
         <BgElement
           key="bg"
@@ -83,13 +112,25 @@ useEffect(()=>{
             backgroundPosition: 'center',
           }}
         />
-        <QueueAnim name="QueueAnim">
-          <h1 key="h1">Ant Motion Demo</h1>
-          <p key="p">Ant Motion Demo.Ant Motion Demo.Ant Motion Demo.Ant Motion Demo</p>
+        <div className="container">
+         <QueueAnim id="queue" name="QueueAnim">
+          <h1 key="h1" id="title" className="banner-slogan-title">達成五千訂閱紀念包！</h1>
+          
         </QueueAnim>
-        <TweenOne animation={{ y: 50, opacity: 0, type: 'from', delay: 200 }} name="TweenOne">
-          Ant Motion Demo.Ant Motion Demo
-        </TweenOne>
+        
+        <TweenOne animation={{ y: 50, opacity: 0, type: 'from' }} name="TweenOne" id="JText" className="banner-slogan-span">
+        <div className="d-flex align-items-center">
+        <div>
+        <p key="p1">熱賣中</p>
+        <p key="p2">商品數量有限，賣完不再補貨！</p>
+        </div>
+        <Button className="px-4 ml-4 re-btn-color">逛新品</Button>
+        </div>
+        
+        </TweenOne>  
+       
+        </div>
+      
       </Element>
     </BannerAnim>
    

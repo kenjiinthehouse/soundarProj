@@ -14,7 +14,8 @@
   .article-search-wrap {
     position: relative;
     width: 23.75rem;
-    height: 3rem;
+    height: 3.5rem;
+    overflow: hidden;
 
     .article-search-input {
       position: absolute;
@@ -42,7 +43,7 @@
     }
     .icon-cancel {
       position: absolute;
-      top: calc(50% - 0.9rem);
+      top: calc(50% - 1rem);
       right: 1.2rem;
       z-index: 2;
       font-size: 2rem;
@@ -105,6 +106,7 @@
     }
     .active {
       background-color: #444c4e;
+      border-bottom: none; //去除active設定的藍底線
     }
   }
 
@@ -141,7 +143,8 @@
 }
 
 .article-card {
-  width: 85rem;
+  // width: 85rem;
+  width: 100%;
   height: 22.5rem;
   border-radius: 5px;
   background-color: #707070;
@@ -165,12 +168,18 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      top: 0;
+      left: 0;
     }
+  }
+  .article-card-img:hover {
+    transform: scale(1.1);
   }
 
   .article-card-body {
     height: 100%;
     padding: 2.69rem 4.125rem;
+    width: 62%;
 
     .article-card-title {
       font-weight: bold;
@@ -199,8 +208,10 @@
       a {
         color: #f8f8f8;
       }
+      a:hover {
+        color: #232d2f;
+      }
     }
-      
   }
 }
 
@@ -217,13 +228,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 1px;
     a {
       color: #f8f8f8;
       font-size: 1rem;
     }
   }
-  li:hover,
-  li:active {
+  li:hover {
     background-color: #2690df;
   }
   li:first-child {
@@ -239,5 +250,9 @@
       // color: #f8f8f8;
       font-size: 1.25rem;
     }
+  }
+
+  .active {
+    background-color: #2690df;
   }
 }

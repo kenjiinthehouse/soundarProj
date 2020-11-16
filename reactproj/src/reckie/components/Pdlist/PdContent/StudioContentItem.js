@@ -67,7 +67,7 @@ function StudioContentItem(props){
       <div className="cardWrap">
       <CardMedia
         className={classes.media}
-        image={"http://localhost:3000/ch_img/S000101.jpg"}
+        image={studioData.studio_main_img}
         title="Paella dish"
       />
       <div className="cardBody">
@@ -79,9 +79,9 @@ function StudioContentItem(props){
       </div>
       </div>
      
-      <Collapse in={isShown} timeout="auto" unmountOnExit>                
+      {/* <Collapse in={isShown} timeout="auto" unmountOnExit>                
         <Button className="addCartBtn" onClick={()=>{props.history.push('/studiomain')}}>立即預訂</Button>                              
-      </Collapse>
+      </Collapse> */}
       </div>
     </Link>
 )

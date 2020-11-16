@@ -82,3 +82,24 @@ a:hover {
 .ant-layout-header .navBarBtn button {
   outline: none;
 }
+
+.navbar-cell-rwd{
+  display: none;
+}
+
+.MuiDrawer-paper{
+  background-color: #232d2f !important;  
+}
+.MuiDrawer-paper hr{
+  border: solid 1px rgba($color: #F8F8F8, $alpha: 0.3);
+}
+
+//jay scss rwd
+@media (max-width: 767.98px) {
+  .navbar-desktop-rwd{
+      display: none !important;
+  }
+  .navbar-cell-rwd{
+    display: block  !important;
+  }
+}

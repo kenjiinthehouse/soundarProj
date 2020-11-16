@@ -67,6 +67,10 @@ function Memberedit(props) {
     if (rs.gender == 1) {
       setGendervalue('男生')
     }
+
+
+
+
   }
 
   // name nickname gender birthday phone address podcaster payingmember sid
@@ -415,7 +419,7 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember()
+                  updatemember(payingmember,podcaster)
                   setNicknametoggle(!nicknametoggle)
                   // changeNickname()
                   // window.location.reload()
@@ -468,7 +472,7 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember()
+                  updatemember(payingmember,podcaster)
                   setRealnametoggle(!realnametoggle)
                 }}
               >
@@ -519,7 +523,7 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember()
+                  updatemember(payingmember,podcaster)
                   setPhonenumbertoggle(!phonenumbertoggle)
                 }}
               >
@@ -570,7 +574,7 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember()
+                  updatemember(payingmember,podcaster)
                   setBirthdaytoggle(!birthdaytoggle)
                 }}
               >
@@ -621,7 +625,7 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember()
+                  updatemember(payingmember,podcaster)
                   setAddresstoggle(!addresstoggle)
                 }}
               >
@@ -691,7 +695,7 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember()
+                  updatemember(payingmember,podcaster)
                   setGendertoggle(!gendertoggle)
                 }}
               >

@@ -1,4 +1,9 @@
 // $primary: #2690df;
+
+// $react-rater-link: #ccc !default; // color of star not rated
+// $react-rater-hover: #666 !default; // color of star on hover
+// $react-rater-active: #fadb28 !default; // color of star rated
+
 $thirdColor: #fc774c;
 $thirdColorBrighter: brighten($thirdColor, 85%);
 $baseSize: 16px;
@@ -10,8 +15,14 @@ $DarkOpacity60: rgba($Dark, 0.6);
 @function font($level: 1) {
   @return $baseSize * $level;
 }
+$react-rater-active: #fadb28 !default;
+@import 'react-rater/lib/react-rater.scss';
 
 @import '~bootstrap/scss/bootstrap.scss';
+.reBgWhite {
+  background-color: #fff;
+  padding-bottom: 3rem;
+}
 
 .head2 {
   font-size: font(2);
@@ -44,8 +55,16 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .re-btn-color {
   background-color: #2690df !important;
 }
+.re-btn-border-color {
+  border: 1px solid #2690df !important;
+  color: #2690df;
+}
+.re-btn-border-color:hover {
+  background-color: #2690df;
+  color: #fff;
+}
 .btn-rounded {
-  border-radius: 40px;
+  border-radius: calc(3rem * 0.5);
   margin-right: 1.8rem;
 }
 .btn-vital {
@@ -58,9 +77,10 @@ $DarkOpacity60: rgba($Dark, 0.6);
   color: #fff;
 }
 .re-btn {
-  width: 12.5rem;
-  height: 3.75rem;
+  min-width: 10rem;
+  height: 3rem;
   font-size: font(1.25);
+  padding: 0 0.5rem;
 }
 
 .wrap {
@@ -74,10 +94,18 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .container.pd-container {
   max-width: 1440px;
 }
-.reBreadcrumb {
-  background-color: transparent !important;
+.reBreadcrumbWrap {
+  margin: 2rem 3rem;
 }
 
+.reBreadcrumb {
+  background-color: transparent !important;
+  padding: 0;
+}
+.reBreadcrumbItem:hover {
+  color: #2690df;
+  // text-decoration: underline;
+}
 // -- space --
 .rePaddingX0 {
   padding-left: 0 !important;
@@ -87,6 +115,9 @@ $DarkOpacity60: rgba($Dark, 0.6);
 .rePaddingX1 {
   padding-left: 1rem !important;
   padding-right: 1rem !important;
+}
+.rePt-6rem {
+  padding-top: 6rem;
 }
 
 // -- banner start --
@@ -98,10 +129,17 @@ $DarkOpacity60: rgba($Dark, 0.6);
   color: #f8f8f8;
   padding: 20rem 0 2rem 0rem;
 }
+.banner-slogan-title2 {
+  color: #f8f8f8;
+  padding: 20rem 0 2rem 40rem;
+}
 .banner-slogan-span {
   color: #f8f8f8;
 }
-
+.banner-slogan-span2 {
+  color: #f8f8f8;
+  padding: 0 0 0 50rem;
+}
 .banner-anim-elem .bg {
   width: 100%;
   height: 100%;
@@ -218,10 +256,10 @@ input.reSearch:focus {
   display: none !important;
 }
 
-.pdCard {
-  max-width: 20rem;
-  padding: 0;
-}
+// .pdCard {
+//   max-width: 20rem;
+//   padding: 0;
+// }
 .pdCard:hover {
   text-decoration: none;
 }
@@ -230,28 +268,28 @@ input.reSearch:focus {
 // }
 .cardWrap {
   // min-height: 25rem;
-  box-shadow: 0px 1px 5px 2px #eee;
+  box-shadow: 0px 0px 5px 2px #eee;
   border-radius: 5px;
   margin: 0rem 0rem 3rem;
-  padding: 1rem;
-  transition: all 0.8s ease-out;
+  padding: 1rem 1.5rem;
+  transition: all 0.1s ease-out;
 }
 .cardWrap:hover {
   transform: translate(0.5px, 1px);
-  box-shadow: 1px 1px 8px 6px #eee;
+  box-shadow: 0px 1px 8px 5px #eee;
 }
 
 .cardBody {
   text-align: center;
-  height: 6rem;
+  height: 7rem;
   position: relative;
-  padding: 0rem;
+  padding: 1rem;
 }
-.twoLine {
+.oneLine {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 
@@ -264,8 +302,9 @@ input.reSearch:focus {
 .pdPrice {
   position: absolute;
   bottom: 0rem;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 1rem;
+  // left: 50%;
+  // transform: translateX(-50%);
 }
 .testTrans {
   transition: all 2s ease-in;
@@ -283,9 +322,16 @@ input.reSearch:focus {
 // -- card end --
 
 // *** product item ***
+// -- bread --
+// .pdItemBread {
+//   margin-top: 10crem;
+// }
 // -- pagination --
 .rePagination {
   margin-bottom: 5.5rem;
+}
+.MuiPaginationItem-textPrimary.Mui-selected {
+  background-color: #2690df !important;
 }
 
 // *** product Detail ***
@@ -351,6 +397,7 @@ input.reSearch:focus {
 .pdMainFieldLT {
   padding-top: 3rem;
 }
+
 // -- product top end --
 // -- ItemTabBar start --
 .ItemTabBar {
@@ -410,15 +457,29 @@ input.reSearch:focus {
 // -- ItemTabBar end --
 // -- Product Intro --
 .pdIntroPart {
-  padding: 4rem 0rem;
+  padding: 2rem 0rem;
   background: url('/reckie_img/bg-pdintro.jpg');
   background-attachment: fixed;
   background-size: cover;
+}
+.contentHeight2 {
+  padding: 4rem 0 2rem;
+}
+.contentHeight3 {
+  padding: 4rem 0 2rem;
 }
 .pdIntroImgField {
   // width: 100%;
   max-height: 30rem;
   overflow: hidden;
+}
+.rec.rec-arrow.rec-arrow-right,
+.rec.rec-arrow.rec-arrow-left {
+  background-color: #fff;
+}
+.rec.rec-arrow.rec-arrow-right:hover,
+.rec.rec-arrow.rec-arrow-left:hover {
+  background-color: #707070;
 }
 .contentPics {
   // width: 100%;
@@ -450,6 +511,7 @@ input.reSearch:focus {
   height: 8rem;
   border: 1px solid #ccc;
   border-radius: 5rem;
+  overflow: hidden;
 }
 .commentPdPic {
   width: 6rem;

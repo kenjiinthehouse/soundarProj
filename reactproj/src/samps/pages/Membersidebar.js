@@ -4,8 +4,16 @@ import { Link, Router, Switch, withRouter } from 'react-router-dom';
 import '../styles/Sidebar.scss';
 import Memberedit from '../components/Memberedit';
 
+// 訂單查詢 page2
+import Order from './../../ruby/ruby_components/OrderPage';
+
+// 優惠券 page6
+import Coupon from './../../ruby/ruby_components/CouponPage';
+
 //活動訂單
 import ActivityOrder from '../../chieh/ch_pages/ActivityOrder';
+//錄音室訂單
+import StudioOrder from '../../chieh/ch_pages/StudioOrder';
 //page7
 import PodcasterDashboardHome from './../../jay/jay_pages/PodcasterDashboardHome';
 //page8
@@ -89,7 +97,7 @@ function Membersidebar(props) {
                       場地租借訂單查詢
                     </div>
                   )}
-                  {activenumber == 5 ? (
+                  {/* {activenumber == 5 ? (
                     <div className="side-bar-option-active">退款申請</div>
                   ) : (
                     <div
@@ -100,7 +108,7 @@ function Membersidebar(props) {
                     >
                       退款申請
                     </div>
-                  )}
+                  )} */}
                   {activenumber == 6 ? (
                     <div className="side-bar-option-active">優惠卷</div>
                   ) : (
@@ -162,7 +170,13 @@ function Membersidebar(props) {
 
               <div className="sa-sidebar-mainarea col-9">
                 {activenumber == 1 ? <Memberedit></Memberedit> : <></>}
-                {activenumber == 2 ? <div>2</div> : <></>}
+                {activenumber == 2 ? (
+                  <div>
+                    <Order />
+                  </div>
+                ) : (
+                  <></>
+                )}
                 {activenumber == 3 ? (
                   <div>
                     <ActivityOrder />
@@ -170,9 +184,23 @@ function Membersidebar(props) {
                 ) : (
                   <></>
                 )}
-                {activenumber == 4 ? <div>4</div> : <></>}
-                {activenumber == 5 ? <div>5</div> : <></>}
-                {activenumber == 6 ? <div>6</div> : null}
+                {activenumber == 4 ? (
+                  <div>
+                    <div>
+                      <StudioOrder />
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {/* {activenumber == 5 ? <div>5</div> : <></>} */}
+                {activenumber == 6 ? (
+                  <div>
+                    <Coupon />
+                  </div>
+                ) : (
+                  <></>
+                )}
                 {activenumber == 7 ? (
                   <PodcasterDashboardHome {...props} />
                 ) : (

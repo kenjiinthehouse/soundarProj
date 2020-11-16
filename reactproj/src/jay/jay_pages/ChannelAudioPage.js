@@ -24,6 +24,7 @@ import { css } from '@emotion/core';
 import ScrollToTop from 'react-scroll-to-top';
 import MsgBoard from './../../kenji/components/MsgBoard';
 import InformLoginModal from './../jay_components/InformLoginModal';
+import InformAudioActionModal from './../jay_components/InformAudioActionModal';
 // bootstrap
 import ChannelRatingModal from './../jay_components/ChannelRatingModal';
 
@@ -62,6 +63,8 @@ function ChannelAudioPage(props) {
   const [showRatingModel, setShowRatingModel] = useState(false);
   const { cate_term, podcaster_id, audio_sid } = useParams();
   const [breadcrumbCateTerm, setBreadcrumbCateTerm] = useState('');
+  const [showActionModal, setShowActionModal] = useState(false);
+  const [actionModalText, setActionModalText] = useState('');
   const transTermToChinese = () => {
     switch (cate_term) {
       case 'news':
@@ -176,113 +179,130 @@ function ChannelAudioPage(props) {
             {props.channel_data.map((item, index) => {
               return (
                 <div
-                  className="col-3 jay-side-bar"
+                  className="col-lg-3 col-12 jay-side-bar"
                   key={index}
                   style={styles.fadeIn01}
                 >
                   <div className="jay-channel-head-pic-area">
-                    <img src={item.podcaster_img} alt="" />
-                  </div>
-                  <h3 className="pt-3" style={{ lineHeight: '1.5' }}>
-                    {item.channel_title}
-                  </h3>
-                  <div>
-                    <span>{breadcrumbCateTerm}</span>
-                  </div>
-                  <div>
-                    {props.subscribe_channels.indexOf(item.sid) === -1 ? (
-                      <button
-                        type="button"
-                        className=" btn btn-sm btn-info my-3 mr-3"
-                        style={styles.fadeInLeft01}
-                        onClick={async () => {
-                          if (props.member.sid) {
-                            await props.addChannelCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberChannelCollectionAsync(
-                              props.member.sid
-                            );
-                          } else {
-                            setShowInformLoginModal(true);
-                          }
-                        }}
-                      >
-                        訂閱
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
-                        style={styles.fadeInLeft01}
-                        onClick={async () => {
-                          if (props.member.sid) {
-                            await props.delChannelCollection(
-                              props.member.sid,
-                              item.sid
-                            );
-                            await props.initMemberChannelCollectionAsync(
-                              props.member.sid
-                            );
-                          } else {
-                            setShowInformLoginModal(true);
-                          }
-                        }}
-                      >
-                        訂閱中
-                      </button>
-                    )}
-                    <button
-                      type="button"
-                      className=" btn btn-sm btn-secondary my-3 mr-3"
-                    >
-                      分享
-                    </button>
-                    <button
-                      type="button"
-                      className=" btn btn-sm btn-secondary my-3"
-                      onClick={() => {
-                        if (props.member && props.member.sid) {
-                          setShowRatingModel(true);
-                        } else {
-                          setShowInformLoginModal(true);
-                        }
-                      }}
-                    >
-                      評分
-                    </button>
-                  </div>
-                  <div className=" mb-1">
-                    <Rate
-                      style={{ filter: 'brightness(1.5)', fontSize: '1.5rem' }}
-                      allowHalf
-                      disabled
-                      defaultValue={item.channel_rating}
+                    <img
+                      src={
+                        item.podcaster_img.indexOf('http') !== -1
+                          ? item.podcaster_img
+                          : `http://localhost:3000/images/podcaster_imgs/${item.podcaster_img}`
+                      }
+                      alt=""
                     />
                   </div>
-                  <div>
-                    <span>
-                      網友評比： &nbsp;&nbsp;{item.channel_rating} &nbsp;/&nbsp;
-                      5
-                    </span>
-                  </div>
-                  <div className="pt-4">
-                    <a target="_blank" href={item.channel_rss_link}>
-                      <FaRss style={{ fontSize: '1.25rem' }} />{' '}
-                      <span className="px-2">RSS訂閱</span>
-                    </a>
-                  </div>
-                  <div className="pt-2">
-                    <a href={'mailto:' + item.owner_email}>
-                      <MdEmail style={{ fontSize: '1.25rem' }} />
-                      <span className="px-2">聯絡我們</span>
-                    </a>
+                  <div className="col-12 col-sm mb-5">
+                    <h3 className="pt-3" style={{ lineHeight: '1.5' }}>
+                      {item.channel_title}
+                    </h3>
+                    <div>
+                      <span>{breadcrumbCateTerm}</span>
+                    </div>
+                    <div>
+                      {props.subscribe_channels.indexOf(item.podcaster_id) ===
+                      -1 ? (
+                        <button
+                          type="button"
+                          className=" btn btn-sm btn-info my-3 mr-3"
+                          style={styles.fadeInLeft01}
+                          onClick={async () => {
+                            if (props.member.sid) {
+                              await props.addChannelCollection(
+                                props.member.sid,
+                                item.podcaster_id
+                              );
+                              await props.initMemberChannelCollectionAsync(
+                                props.member.sid
+                              );
+                            } else {
+                              setShowInformLoginModal(true);
+                            }
+                          }}
+                        >
+                          訂閱
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className=" btn btn-sm btn-info my-3 mr-3 btn-danger"
+                          style={styles.fadeInLeft01}
+                          onClick={async () => {
+                            if (props.member.sid) {
+                              await props.delChannelCollection(
+                                props.member.sid,
+                                item.podcaster_id
+                              );
+                              await props.initMemberChannelCollectionAsync(
+                                props.member.sid
+                              );
+                            } else {
+                              setShowInformLoginModal(true);
+                            }
+                          }}
+                        >
+                          訂閱中
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-secondary my-3 mr-3"
+                      >
+                        分享
+                      </button>
+                      <button
+                        type="button"
+                        className=" btn btn-sm btn-secondary my-3"
+                        onClick={() => {
+                          if (props.member && props.member.sid) {
+                            setShowRatingModel(true);
+                          } else {
+                            setShowInformLoginModal(true);
+                          }
+                        }}
+                      >
+                        評分
+                      </button>
+                    </div>
+                    <div className=" mb-1">
+                      <Rate
+                        style={{
+                          filter: 'brightness(1.5)',
+                          fontSize: '1.5rem',
+                        }}
+                        allowHalf
+                        disabled
+                        defaultValue={item.channel_rating}
+                      />
+                    </div>
+                    <div>
+                      <span>
+                        網友評比： &nbsp;&nbsp;
+                        {(+item.channel_rating).toFixed(1)}
+                        &nbsp;/&nbsp; 5
+                      </span>
+                    </div>
+                    <div className="pt-4">
+                      <a target="_blank" href={item.channel_rss_link}>
+                        <FaRss style={{ fontSize: '1.25rem' }} />
+                        <span className="px-2">RSS訂閱</span>
+                      </a>
+                    </div>
+                    <div className="pt-2">
+                      <a href={'mailto:' + item.owner_email}>
+                        <MdEmail style={{ fontSize: '1.25rem' }} />
+                        <span className="px-2">聯絡我們</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               );
             })}
-            <div className="col-9 jay-main-bar" style={styles.fadeIn02}>
+            <div
+              className="col-lg-9 col-12 jay-main-bar"
+              style={styles.fadeIn02}
+            >
               {props.channel_audio_data.map((item, index) => {
                 if (item.sid === +audio_sid) {
                   return (
@@ -357,6 +377,8 @@ function ChannelAudioPage(props) {
                               <div
                                 className="audio-info-icon"
                                 onClick={(event) => {
+                                  setActionModalText('已加入至播放儲列');
+                                  setShowActionModal(true);
                                   let playTargetAudio = null;
                                   [
                                     playTargetAudio,
@@ -409,6 +431,8 @@ function ChannelAudioPage(props) {
                                         item.sid
                                       ) === -1
                                     ) {
+                                      setActionModalText('已加入我的收藏');
+                                      setShowActionModal(true);
                                       await props.addCollection(
                                         props.member.sid,
                                         item.sid
@@ -417,6 +441,8 @@ function ChannelAudioPage(props) {
                                         props.member.sid
                                       );
                                     } else {
+                                      setActionModalText('已從我的收藏移除');
+                                      setShowActionModal(true);
                                       await props.delCollection(
                                         props.member.sid,
                                         item.sid
@@ -467,6 +493,12 @@ function ChannelAudioPage(props) {
         onHide={() => setShowInformLoginModal(false)}
         setShowInformLoginModal={setShowInformLoginModal}
       />
+      {showActionModal ? (
+        <InformAudioActionModal
+          setShowActionModal={setShowActionModal}
+          actionModalText={actionModalText}
+        />
+      ) : null}
     </StyleRoot>
   );
 

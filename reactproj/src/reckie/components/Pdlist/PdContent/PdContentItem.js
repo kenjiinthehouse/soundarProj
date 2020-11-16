@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import { red } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
+import Rater from 'react-rater'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,50 +59,25 @@ const handleExpandEnter = () => {
       <CardMedia
       className={classes.media}
       image={products.pd_main_img.indexOf('http')=== -1 ?`/reckie_img/${products.pd_main_img}`:products.pd_main_img}
-      title="Paella dish"
+      title={products.pd_title}
       />
             <div className="cardBody">
-            <div variant="body2">
-                <h4 className="head5 twoLine">{products.pd_title}</h4>
-              </div>
-            <div variant="body2">
+            
+            <div variant="body2" className="text-left">
+                <h4 className="head5 oneLine ">{products.pd_title}</h4>  
+                <Rater total={5} rating={products.stars} interactive={false} /> 
+            </div>
+
+            <div variant="body2" >
                 <h4 className="pdPrice">${products.pd_price}</h4>
             </div>
+            
             </div>
            
-            <Collapse in={isShown} timeout="auto" unmountOnExit>
-                
-                   <Button className="addCartBtn re-btn-color" onClick={(event)=>{
-                    let cart = []
-                    if(localStorage.getItem('cart'))
-                      cart = JSON.parse(localStorage.getItem('cart'))
-                    //id一樣的話只加count
-                    console.log(cart.map(item => item.sid))
-                    if(cart.map(item => item.sid).indexOf(products.id) > -1) {
-                      let index = cart.map(item => item.sid).indexOf(products.id)
-                      cart[index].count ++
-                    }
-                    else{
-                      let obj = {
-                        sid: products.id,
-                        name: '',
-                        spec: '',
-                        price: products.pd_price,
-                        count: '1',
-                        pic_url: ''
-                      }
-                      cart.push(obj)
-                    }
-                    localStorage.setItem('cart',JSON.stringify(cart))
-                    event.stopPropagation();
-                    event.preventDefault();
-                  }}>加入購物車車車車</Button>
-                
-                
-            </Collapse>
-            </div>
+           
+      </div>
      
-          </Link>
+      </Link>
    
    
 

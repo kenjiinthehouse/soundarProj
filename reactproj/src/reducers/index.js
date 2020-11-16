@@ -15,8 +15,10 @@ import articleList from './articleList';
 import articleListPages from './articleListPages';
 import articleListTotalRows from './articleListTotalRows';
 import articleDetail from './articleDetail';
-import articleDetailPre from './articleDetailPre';
-import articleDetailNext from './articleDetailNext';
+// import articleDetailPre from './articleDetailPre';
+// import articleDetailNext from './articleDetailNext';
+import articleMsgBoard from './articleMsgBoard';
+import articleMsgReply from './articleMsgReply'; 
 
 //samps
 import member from './member';
@@ -36,8 +38,10 @@ export const rootReducer = combineReducers({
   articleDetail,
   articleListPages,
   articleListTotalRows,
-  articleDetailPre,
-  articleDetailNext,
+  // articleDetailPre,
+  // articleDetailNext,
+  articleMsgBoard,
+  articleMsgReply,
   member,
   memberRatingState,
   memberAudioCollection,
