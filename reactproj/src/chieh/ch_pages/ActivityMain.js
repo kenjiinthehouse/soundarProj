@@ -38,7 +38,6 @@ function ActivityMain(props) {
         getActivityFromServer()
     }, [])
 
-
   //切換方案票價、活動內容、注意事項  
     function ControlledTabs() {
       const [key, setKey] = useState('option');

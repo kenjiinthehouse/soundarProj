@@ -14,6 +14,9 @@ import {Form} from 'react-bootstrap'
 import AcContent from './PdContent/AcContent';
 import StudioContent from './PdContent/StudioContent';
 
+//活動、錄音室
+import AcContent from './PdContent/AcContent';
+import StudioContent from './PdContent/StudioContent';
 
 const StyledTab = withStyles((theme) => ({
   root: {
