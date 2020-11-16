@@ -88,7 +88,7 @@ function PdSideBar2(props){
         as={Button} 
         variant="link" 
         eventKey="0" 
-        className="rePaddingX0"
+        className="rePaddingX0 reOutlineFocus"
         onClick={()=> {setMainCate(1);resetData();}}
         >
         <h5>錄音設備</h5>
@@ -97,11 +97,11 @@ function PdSideBar2(props){
   <Accordion.Collapse eventKey="0" className="rePaddingX0">
   {/* detailCate: 1:耳塞式耳機_有線 2:耳塞式耳機_無線 3:耳罩式耳機_有線 4:耳罩式耳機_無線 5:專業麥克風_有線 6:shirt 7:帆布包 8:馬克杯 */}
   <ListGroup variant="flush" className="bg-test rePaddingX0">
-      <ListGroup.Item className="rePaddingX0" onClick={()=> {setDetailCate(5);setSearch('')}}> <MdKeyboardArrowRight className="reArrowSpace" />麥克風</ListGroup.Item>
+      <ListGroup.Item className="rePaddingX0" onClick={()=> {setDetailCate(5);setSearch('')}}> <MdKeyboardArrowRight className="reArrowSpace reOutlineFocus" />麥克風</ListGroup.Item>
       <Accordion className="sidebar rePaddingX0" hidden={(value===pdIndex)?false:true}>
         <div>
           <Accordion.Toggle 
-          className="rePaddingX0" 
+          className="rePaddingX0 reOutlineFocus" 
           as={Button} 
           variant="link" 
           eventKey="0"
@@ -124,7 +124,7 @@ function PdSideBar2(props){
   </Accordion.Collapse>
   <div>
     <Accordion.Toggle 
-    className="rePaddingX0" 
+    className="rePaddingX0 reOutlineFocus" 
     as={Button} 
     variant="link" 
     eventKey="1"
@@ -153,7 +153,7 @@ function PdSideBar2(props){
   <div>
     <Accordion.Toggle 
     as={Button} 
-    className="rePaddingX0" 
+    className="rePaddingX0 reOutlineFocus" 
     variant="link" 
     eventKey="2"
     onClick={() => {
@@ -183,7 +183,7 @@ function PdSideBar2(props){
   </Accordion.Collapse>
   <div>
     <Accordion.Toggle 
-    className="rePaddingX0" 
+    className="rePaddingX0 reOutlineFocus" 
     as={Button} 
     variant="link" 
     eventKey="3"
