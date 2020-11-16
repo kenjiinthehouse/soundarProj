@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 [1030/000711.752:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1030/101016.547:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1030/103225.138:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
@@ -10,37 +9,27 @@
 [1106/115847.892:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1109/100634.479:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1110/112648.182:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 [1112/114304.248:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
-=======
+
 [1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
->>>>>>> 9b50b81... chieh1112
-=======
 [1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
->>>>>>> a18b9f4... db帳號
-=======
+
 [1113/135330.801:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
->>>>>>> 97e0126... samps navbar 頻道節目 轉向修正  處理一開始直接用google登入 collection 圖片會產生問題
-=======
+
 [1112/114304.248:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
->>>>>>> ce68bab... 結合會員與播客後台
-=======
+
 [1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
->>>>>>> 9b50b81... chieh1112
-=======
+
 [1111/132413.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/104232.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 [1112/141447.444:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
+<<<<<<< HEAD
 >>>>>>> a18b9f4... db帳號
 =======
 [1113/135330.801:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
@@ -56,3 +45,16 @@
 =======
 [1116/100429.234:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
 >>>>>>> c10d0bd99a7abc4d6213e2202f509b906e1edb3f
+=======
+
+[1113/135330.801:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
+
+[1114/090412.297:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
+[1116/092415.549:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
+
+[1116/131131.578:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
+
+[1116/100429.234:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
+
+[1116/145058.454:ERROR:directory_reader_win.cc(43)] FindFirstFile: �t�Χ䤣����w�����|�C (0x3)
+>>>>>>> 34bd2b86fedac2f3ffc4d771e4b1593dcf71f1ac

@@ -8,7 +8,7 @@ import { getReply, getReplyAsync } from '../../actions/index';
 function MsgReplyInput(props) {
   const { parentId } = props;
   const [userId, setUserId] = useState('5566'); //memberId
-  const [userNickname, setUserNickname] = useState('浪漫Duke'); //nickname
+  const [userNickname, setUserNickname] = useState('小新'); //nickname
   const [textValue, setTextValue] = useState(''); //content
 
   const styleNone = {

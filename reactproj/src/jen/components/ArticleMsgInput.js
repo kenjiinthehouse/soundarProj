@@ -9,7 +9,7 @@ import { FaPlaceOfWorship } from 'react-icons/fa';
 
 function ArticleMsgInput(props) {
   const [userId, setUserId] = useState('9527'); //memberId
-  const [userNickname, setUserNickname] = useState('七星刀雷恩'); //nickname
+  const [userNickname, setUserNickname] = useState('小新'); //nickname
   const [textValue, setTextValue] = useState(''); //content
   const styleNone = {
     display: 'none',
@@ -20,7 +20,7 @@ function ArticleMsgInput(props) {
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify({
-        sid:props.sid, //對應到API article_sid
+        sid: props.sid, //對應到API article_sid
         memberId: userId,
         nickname: userNickname,
         content: textValue,
@@ -30,14 +30,14 @@ function ArticleMsgInput(props) {
         'Content-type': 'application/json',
       }),
     });
-      const response = await fetch(request);
-      const data = await response.json();
-      //完成後清空輸入框
-      setTextValue('');
-      async function msgList() {
-        await props.getArticleMsgAsync(props.sid);
-      }
-      msgList();
+    const response = await fetch(request);
+    const data = await response.json();
+    //完成後清空輸入框
+    setTextValue('');
+    async function msgList() {
+      await props.getArticleMsgAsync(props.sid);
+    }
+    msgList();
   };
 
   return (
@@ -46,7 +46,13 @@ function ArticleMsgInput(props) {
         <div className="writeBoxLogged">
           <form>
             <fieldset>
-              <legend className="ghost">留下評論<BiMessageSquareAdd style={{ fontSize: '1rem',color:'#232d11'}} onClick={()=>setTextValue('想請問有提供錄音室租借服務嗎?') }/></legend>
+              <legend className="ghost">
+                留下評論
+                <BiMessageSquareAdd
+                  style={{ fontSize: '1rem', color: '#232d11' }}
+                  onClick={() => setTextValue('想請問有提供錄音室租借服務嗎?')}
+                />
+              </legend>
               <div>
                 <div className="userProfile">
                   <span className="userId" style={styleNone}>
@@ -72,7 +78,10 @@ function ArticleMsgInput(props) {
                   <button
                     type="button"
                     className="article-cmtSendBtn"
-                    onClick={() => { sendInput(); props.setMsgSort(false)}}
+                    onClick={() => {
+                      sendInput();
+                      props.setMsgSort(false);
+                    }}
                   >
                     <IconContext.Provider value={{ className: 'addBtn' }}>
                       <MdAddCircle />

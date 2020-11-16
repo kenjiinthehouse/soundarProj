@@ -3,7 +3,6 @@ import '../styles/IndexPodcastEp.scss';
 import Button from '@material-ui/core/Button';
 import { BiFastForward } from 'react-icons/bi';
 
-
 let current = 0;
 function IndexPodcastEp(props) {
   function handleActiveDot(e) {
@@ -33,7 +32,6 @@ function IndexPodcastEp(props) {
     // console.log(e.target)
   }
 
-
   return (
     <>
       <div className="card-movie-container">
@@ -44,26 +42,29 @@ function IndexPodcastEp(props) {
           <div className="card-movie-carousel">
             <div className="card-movie card-movie--light card-movie--looper card-movie--active">
               <div className="card-movie__content">
-                <div className="card-movie__title">Looper</div>
+                <div className="card-movie__title">
+                  EP46 流浪錄音生活第一夜 ft.劇作家南宮邱邱
+                </div>
 
                 <div className="card-movie__details">
-                  <span className="card-movie__details-item">2012</span>
+                  <span className="card-movie__details-item">
+                    by台灣通勤第一品牌
+                  </span>
 
-                  <span className="card-movie__details-item">119 mins</span>
+                  <span className="card-movie__details-item">63 mins</span>
 
                   <ul className="card-movie__details-item card-movie__details-list">
-                    <li>Action</li>
-                    <li>Crime</li>
-                    <li>Sci-fi</li>
+                    <li>Society</li>
+                    <li>Story</li>
                   </ul>
                 </div>
                 {/* <!-- /.card-movie__details --> */}
 
                 <div className="card-movie__description">
                   <p>
-                    In 2074, when the mob wants to get rid of someone, the
-                    target is sent into the past, where a hired gun
-                    awaits&nbsp;-&nbsp;someone like Joe.
+                    本集節目由【高雄電影節XR無限幻境】贊助播出
+                    <br />
+                    高雄電影節自2017年發展VR沈浸式敘事作品，今成亞洲最大XR沈浸式影展單元，展現虛實科技魅力，360度全景影像Ｘ互動體驗Ｘ體感科技Ｘ聲音裝置Ｘ沈浸式劇場，選映31部國際沈浸式鉅作首度登台，虛實交錯的數位視聽體驗，讓觀眾在現實中徹底迷航，浸入未來。
                   </p>
                 </div>
                 {/* <!-- /.card-movie__description --> */}
@@ -82,35 +83,32 @@ function IndexPodcastEp(props) {
 
             <div className="card-movie card-movie--dark card-movie--tron">
               <div className="card-movie__content">
-                <div className="card-movie__title">Tron: Legacy</div>
+                <div className="card-movie__title">
+                  The KK Show - #044文化策展人 - 真蓉
+                </div>
 
                 <div className="card-movie__details">
-                  <span className="card-movie__details-item">2010</span>
+                  <span className="card-movie__details-item">by百靈果NEWS</span>
 
-                  <span className="card-movie__details-item">125 mins</span>
+                  <span className="card-movie__details-item">62 mins</span>
 
                   <ul className="card-movie__details-item card-movie__details-list">
-                    <li>Action</li>
-                    <li>Adventure</li>
-                    <li>Fantasy</li>
-                    <li>Sci-fi</li>
+                    <li>Entertainment</li>
+                    <li>News</li>
                   </ul>
                 </div>
                 {/* <!-- /.card-movie__details --> */}
 
                 <div className="card-movie__description">
                   <p>
-                    The son of a virtual world designer goes looking for his
-                    father and ends up inside the digital world that his father
-                    designed. He meets his father's corrupted creation and a
-                    unique ally who was born inside the digital world.
+                    真蓉策劃過各種大小嘉年華，從國外來臺的白晝之夜到台灣桃園的大溪大禧都是出自她的手裏。今天她來教我們如何辦一個真正的佈道大會。
                   </p>
                 </div>
                 {/* <!-- /.card-movie__description --> */}
               </div>
               {/* <!-- /.card-movie__content --> */}
 
-              <div className="card-movie__rating">6.8</div>
+              <div className="card-movie__rating">7.2</div>
 
               <div
                 className="card-movie__player"
@@ -122,32 +120,34 @@ function IndexPodcastEp(props) {
 
             <div className="card-movie card-movie--light card-movie--garden-state">
               <div className="card-movie__content">
-                <div className="card-movie__title">Garden State</div>
+                <div className="card-movie__title">
+                  EP79 | 有25萬哪個憨仔會選3萬
+                </div>
 
                 <div className="card-movie__details">
-                  <span className="card-movie__details-item">2004</span>
+                  <span className="card-movie__details-item">by股癌Gooaye</span>
 
                   <span className="card-movie__details-item">102 mins</span>
 
                   <ul className="card-movie__details-item card-movie__details-list">
-                    <li>Comedy</li>
-                    <li>Drama</li>
-                    <li>Romance</li>
+                    <li>Business</li>
+                    <li>Talk</li>
                   </ul>
                 </div>
                 {/* <!-- /.card-movie__details --> */}
 
                 <div className="card-movie__description">
                   <p>
-                    A quietly troubled young man returns home for his mother's
-                    funeral after being estranged from his family for a decade.
+                    前面先跟大家聊一下心靈雞湯喝太多傷身的一貫立場；談一下能源
+                    ETF 如 QCLN, ICLN, TAN 漲勢可能原因；聊 Big Tech 4
+                    被指控壟斷事件，帶一點虎牙和鬥魚合併，騰訊越來越大家的話題來當個對應比較。
                   </p>
                 </div>
                 {/* <!-- /.card-movie__description --> */}
               </div>
               {/* <!-- /.card-movie__content --> */}
 
-              <div className="card-movie__rating">7.6</div>
+              <div className="card-movie__rating">7.1</div>
 
               <div
                 className="card-movie__player"
@@ -284,9 +284,9 @@ function IndexPodcastEp(props) {
               ></li>
               <li onMouseEnter={(e) => handleActiveDot(e)} data-id="1"></li>
               <li onMouseEnter={(e) => handleActiveDot(e)} data-id="2"></li>
-              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="3"></li>
-              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="4"></li>
-              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="5"></li>
+              {/* <li onMouseEnter={(e) => handleActiveDot(e)} data-id="3"></li> */}
+              {/* <li onMouseEnter={(e) => handleActiveDot(e)} data-id="4"></li>
+              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="5"></li> */}
             </ul>
             {/* <!-- /.card-movie-navigation__list --> */}
 

@@ -47,10 +47,17 @@ import { colors } from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 
 function App() {
-  const [globalAudioArry, setGlobalAudioArry] = useState([]);
+  const [globalAudioArry, setGlobalAudioArry] = useState([
+    {
+      musicSrc: '',
+      cover: 'http://localhost:3000/k_img/logoforplayer.svg',
+      name: '歡迎來到 Soundar',
+      singer: '資策會 MFEE09 第2組',
+    },
+  ]);
   const [audioPlayerTheme, setAudioPlayerTheme] = useState('dark');
   const [playingAudio, setPlayingAudio] = useState(null);
-  const [navCartNum,setNavCartNum] = useState(0);
+  const [navCartNum, setNavCartNum] = useState(0);
 
   //jen
   const [category, setCategory] = useState('');
@@ -59,10 +66,7 @@ function App() {
   return (
     <Router>
       <Layout>
-        <MyNavbar 
-        navCartNum={navCartNum}
-        setNavCartNum={setNavCartNum}
-         />
+        <MyNavbar navCartNum={navCartNum} setNavCartNum={setNavCartNum} />
         <MainContent>
           <ScrollToTop>
             <Switch>
@@ -132,7 +136,7 @@ function App() {
                 />
               </Route>
               <Route path="/cart">
-                <Cart />
+                <Cart setNavCartNum={setNavCartNum} navCartNum={navCartNum} />
               </Route>
               <Route path="/checkout">
                 <Checkout />
@@ -186,7 +190,7 @@ function App() {
                 <ProductMainPage />
               </Route>
               <Route path="/product/:pd_id?">
-                <ProductItemPage 
+                <ProductItemPage
                   navCartNum={navCartNum}
                   setNavCartNum={setNavCartNum}
                 />

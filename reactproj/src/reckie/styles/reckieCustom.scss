@@ -18,7 +18,7 @@ $DarkOpacity60: rgba($Dark, 0.6);
 $react-rater-active: #fadb28 !default;
 @import 'react-rater/lib/react-rater.scss';
 
-@import '~bootstrap/scss/bootstrap.scss';
+// @import '~bootstrap/scss/bootstrap.scss';
 .reBgWhite {
   background-color: #fff;
   padding-bottom: 3rem;
@@ -52,6 +52,14 @@ $react-rater-active: #fadb28 !default;
 }
 
 // btn
+.reOutlineFocus:focus {
+  box-shadow: 0 0 0 0 transparent !important;
+  text-decoration: none !important;
+}
+.reOutlineFocus:hover {
+  box-shadow: 0 0 0 0 transparent !important;
+  text-decoration: none !important;
+}
 .re-btn-color {
   background-color: #2690df !important;
 }
@@ -340,6 +348,17 @@ input.reSearch:focus {
   position: relative;
   height: 100vh;
 }
+.informCartModal {
+  text-align: center;
+  position: fixed !important;
+  width: 105%;
+  top: 3.9rem;
+  right: -2px;
+  z-index: 99;
+  background-color: #707070a6;
+  color: #fff;
+  border: none;
+}
 .pdItemPage {
   margin-bottom: 5rem;
 }
@@ -493,6 +512,10 @@ input.reSearch:focus {
   padding: 0 10rem;
   line-height: 1.8rem;
 }
+.table-striped {
+  overflow: hidden;
+}
+
 // -- Comment start --
 .PdComment {
   border-bottom: 1px solid #ccc;
