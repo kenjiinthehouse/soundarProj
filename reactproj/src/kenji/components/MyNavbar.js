@@ -259,7 +259,7 @@ function MyNavbar(props) {
   }, []);
 
   useEffect(() => {
-    if (props.member.nickname) {
+    if (props.member.account) {
       setLogged(true);
     } else {
       setLogged(false);
