@@ -126,11 +126,19 @@ function Channelcollection(props) {
                       className="sa-channel-collection-colbox"
                     >
                       <div className="sa-channel-collection-img-area">
-                        <img
-                          className="sa-channel-collection-img"
-                          src={item.channel_img}
-                          alt=""
-                        />
+                        {item.channel_img.includes('http') ? (
+                          <img
+                            className="sa-channel-collection-img"
+                            src={item.channel_img}
+                            alt=""
+                          />
+                        ) : (
+                          <img
+                            className="sa-channel-collection-img"
+                            src={`podcaster_imgs/${item.channel_img}`}
+                            alt=""
+                          />
+                        )}
                       </div>
                       <div className="sa-channel-collection-title-area">
                         <span className="sa-channel-collection-title">
