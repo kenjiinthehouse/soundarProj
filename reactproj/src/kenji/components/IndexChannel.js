@@ -174,9 +174,13 @@ function IndexChannel(props) {
                           key={index}
                           className={classes.root}
                           data-cardId="1"
-                          onClick={()=>props.history.push(
-                            `/channel_page/${(item.channel_catagory).toLowerCase()}/${item.podcaster_id}`
-                          )}
+                          onClick={() =>
+                            props.history.push(
+                              `/channel_page/${item.channel_catagory.toLowerCase()}/${
+                                item.podcaster_id
+                              }`
+                            )
+                          }
                         >
                           {/* channel_page/news/8 */}
                           <div className={classes.details}>
@@ -220,7 +224,6 @@ function IndexChannel(props) {
                 </QueueAnim>
               </div>
             </div>
-        
           </div>
         </div>
       </div>

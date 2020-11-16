@@ -268,7 +268,7 @@
   // &__content
 
   &__title {
-    font-size: 60px;
+    font-size: 1.5rem;
     font-weight: 700;
     line-height: 1;
     margin-left: -4px;
@@ -323,6 +323,7 @@
   &__description {
     font-size: 14px;
     max-width: 390px;
+    // white-space: pre;
   }
   // &__description
 
@@ -401,22 +402,30 @@
 
 .card-movie--dark {
   background-color: #000;
-  color: #fff;
+  color: #000;
 
   [class*='__title'] {
-    color: #fff;
+    color: #000;
   }
   // [class*='__title']
 }
 // .card-movie--dark
 
 .card-movie--looper {
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/43525/looper.png');
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('http://localhost:3000/k_img/epcover1.jpg');
 }
 // .card-movie--looper
 
 .card-movie--tron {
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/43525/tron.png');
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('http://localhost:3000/k_img/epcover2.jpg');
 }
 // .card-movie--tron
 
@@ -427,7 +436,11 @@
 // .card-movie--interstellar
 
 .card-movie--garden-state {
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/43525/garden-state.png');
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('http://localhost:3000/k_img/epcover3.jpg');
 }
 // .card-movie--garden-state
 

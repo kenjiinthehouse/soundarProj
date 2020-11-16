@@ -63,12 +63,31 @@ function ProductMainPage(props) {
 //   // console.log('productList',productList)
 // }, [productList])
 
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-  }, []);
+useEffect(() => {
+  setIsLoading(true);
+ 
+}, []);
+const imgUrlArray = [];
+function preLoadImgs() {
+  products.forEach((item) => {
+    imgUrlArray.push(item.pd_main_img);
+  });
+  let tempImgUrlArray = [];
+  for (let i = 0; i < imgUrlArray.length; i++) {
+    tempImgUrlArray[i] = new Image();
+    tempImgUrlArray[i].src = imgUrlArray[i];
+    // console.log(tempImgUrlArray);
+  }
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 800);
+}
+useEffect(() => {
+  preLoadImgs();
+}, [products]);
+
+
+  
 
   const MainPage = (
     <>
