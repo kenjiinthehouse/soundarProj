@@ -17,7 +17,7 @@ function CartPage(props) {
 
   useEffect(() => {
     getCartFromLocalStorage();
-  }, []);
+  }, [navCartNum]);
 
   const emptyCart = (
     <>

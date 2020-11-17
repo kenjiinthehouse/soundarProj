@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { Link, Router, Switch, withRouter } from 'react-router-dom'
-import { Modal, Button } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react';
+import { Link, Router, Switch, withRouter } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 import {
   initMemberAsync,
   logOut,
   initMember,
   Member_nick_photo,
-} from '../../actions/index'
-import { connect } from 'react-redux'
-import '../styles/Memberedit.scss'
+} from '../../actions/index';
+import { connect } from 'react-redux';
+import '../styles/Memberedit.scss';
 
 function Memberedit(props) {
   const getMember = async function (sid) {
-    const url = 'http://localhost:5566/member/getmember'
+    const url = 'http://localhost:5566/member/getmember';
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -22,67 +22,70 @@ function Memberedit(props) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
-    })
-    const response = await fetch(request)
-    const data = await response.json()
+    });
+    const response = await fetch(request);
+    const data = await response.json();
     // console.log('data333', data)
-    const rs = data.rs
-    setAccount(rs.account)
-    setNickname(rs.nickname)
-    setPayingmember(rs.payingmember)
-    setPodcaster(rs.podcaster)
+    const rs = data.rs;
+    setAccount(rs.account);
+    setNickname(rs.nickname);
+    setPayingmember(rs.payingmember);
+    setPodcaster(rs.podcaster);
 
     if (rs.profile_picture) {
       if (rs.profile_picture.includes('http')) {
-        let src = rs.profile_picture
-        setPicture(src)
+        let src = rs.profile_picture;
+        setPicture(src);
       } else {
         // let local = 'http://localhost:3000/ppicture/'
-        let local = 'ppicture/'
-        let src = local + rs.profile_picture
-        setPicture(src)
+        let local = 'ppicture/';
+        let src = local + rs.profile_picture;
+        setPicture(src);
         // console.log('data444', src)
       }
     }
     if (rs.name) {
-      setRealname(rs.name)
+      setRealname(rs.name);
     }
     if (rs.phone) {
-      setPhonenumber(rs.phone)
+      setPhonenumber(rs.phone);
     }
     if (rs.birthday) {
-      setBirthday(rs.birthday)
+      setBirthday(rs.birthday);
     }
     if (rs.address) {
-      setAddress(rs.address)
+      setAddress(rs.address);
     }
 
     if (rs.gender) {
-      setGender(rs.gender)
+      setGender(rs.gender);
     }
 
     if (rs.gender == 0) {
-      setGendervalue('女生')
+      setGendervalue('女生');
     }
     if (rs.gender == 1) {
-      setGendervalue('男生')
+      setGendervalue('男生');
     }
-
-
-
-
-  }
+  };
 
   // name nickname gender birthday phone address podcaster payingmember sid
   const updatemember = async function (payingmember, podcaster) {
-    const url = 'http://localhost:5566/member/updatemember'
+    const url = 'http://localhost:5566/member/updatemember';
+    let birthnumber = '';
+
+    if (birthday.length == 0) {
+      birthnumber = null;
+    } else {
+      birthnumber = birthday;
+    }
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify({
         name: realname,
         nickname: nickname,
         gender: gender,
-        birthday: birthday,
+        birthday: birthnumber,
         phone: phonenumber,
         address: address,
         podcaster: podcaster,
@@ -93,47 +96,47 @@ function Memberedit(props) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
-    })
-    const response = await fetch(request)
-    const data = await response.json()
-    props.Member_nick_photo(props.member.sid)
+    });
+    const response = await fetch(request);
+    const data = await response.json();
+    props.Member_nick_photo(props.member.sid);
     // console.log('data2', data)
     // getMember()
-    getMember(props.member.sid)
-  }
+    getMember(props.member.sid);
+  };
 
-  const [title, settitle] = useState('')
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-  const [picture, setPicture] = useState('')
-  const [account, setAccount] = useState('')
-  const [nickname, setNickname] = useState('')
-  const [realname, setRealname] = useState('')
-  const [phonenumber, setPhonenumber] = useState('')
-  const [birthday, setBirthday] = useState('')
-  const [address, setAddress] = useState('')
-  const [gender, setGender] = useState('')
-  const [gendervalue, setGendervalue] = useState('尚未填寫')
-  const [payingmember, setPayingmember] = useState('')
-  const [podcaster, setPodcaster] = useState('')
-  const [temp, setTemp] = useState('')
-  const [temp2, setTemp2] = useState('')
-  const [nicknametoggle, setNicknametoggle] = useState(false)
-  const [realnametoggle, setRealnametoggle] = useState(false)
-  const [phonenumbertoggle, setPhonenumbertoggle] = useState(false)
-  const [birthdaytoggle, setBirthdaytoggle] = useState(false)
-  const [addresstoggle, setAddresstoggle] = useState(false)
-  const [gendertoggle, setGendertoggle] = useState(false)
-  const [init, setInit] = useState(false)
+  const [title, settitle] = useState('');
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [picture, setPicture] = useState('');
+  const [account, setAccount] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [realname, setRealname] = useState('');
+  const [phonenumber, setPhonenumber] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [address, setAddress] = useState('');
+  const [gender, setGender] = useState('');
+  const [gendervalue, setGendervalue] = useState('尚未填寫');
+  const [payingmember, setPayingmember] = useState('');
+  const [podcaster, setPodcaster] = useState('');
+  const [temp, setTemp] = useState('');
+  const [temp2, setTemp2] = useState('');
+  const [nicknametoggle, setNicknametoggle] = useState(false);
+  const [realnametoggle, setRealnametoggle] = useState(false);
+  const [phonenumbertoggle, setPhonenumbertoggle] = useState(false);
+  const [birthdaytoggle, setBirthdaytoggle] = useState(false);
+  const [addresstoggle, setAddresstoggle] = useState(false);
+  const [gendertoggle, setGendertoggle] = useState(false);
+  const [init, setInit] = useState(false);
 
-  const [filename, setFilename] = useState('')
-  const [filesrc, setFilesrc] = useState('')
+  const [filename, setFilename] = useState('');
+  const [filesrc, setFilesrc] = useState('');
 
   useEffect(() => {
     // console.log('getMember')
-    getMember(props.member.sid)
-  }, [props.member])
+    getMember(props.member.sid);
+  }, [props.member]);
 
   // useEffect(() => {
   //   console.log('picture', picture)
@@ -162,11 +165,11 @@ function Memberedit(props) {
     // console.log('file', file)
     // e.preventDefault();
     //     let file = e.target.files[0];
-    e.preventDefault()
-    const formdata = new FormData(e.target)
+    e.preventDefault();
+    const formdata = new FormData(e.target);
 
-    formdata.append('sid', props.member.sid)
-    const url = 'http://localhost:5566/member/picture-upload'
+    formdata.append('sid', props.member.sid);
+    const url = 'http://localhost:5566/member/picture-upload';
     // fetch(url, {
     //     method: 'POST',
     //     body: formdata,
@@ -179,21 +182,21 @@ function Memberedit(props) {
     const request = new Request(url, {
       method: 'POST',
       body: formdata,
-    })
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log('data:', data)
-    handleClose()
+    });
+    const response = await fetch(request);
+    const data = await response.json();
+    console.log('data:', data);
+    handleClose();
     // localStorage.removeItem('jwt')
 
     // setjwt()
     // props.initMemberAsync()
-    props.Member_nick_photo(props.member.sid)
-    getMember(props.member.sid)
+    props.Member_nick_photo(props.member.sid);
+    getMember(props.member.sid);
     // setInit(!init)
     // window.location.reload()
     // props.initMemberAsync()
-  }
+  };
 
   // const changeNickname = function () {
   //   localStorage.removeItem('jwt')
@@ -207,31 +210,31 @@ function Memberedit(props) {
   // }
 
   useEffect(() => {
-    props.initMemberAsync()
-    getMember(props.member.sid)
-  }, [init])
-  const FileInput = React.useRef(null)
+    props.initMemberAsync();
+    getMember(props.member.sid);
+  }, [init]);
+  const FileInput = React.useRef(null);
 
   const handleClick = (event) => {
-    FileInput.current.click()
-  }
+    FileInput.current.click();
+  };
 
   const handleChangeFile = (event) => {
     // console.log('i am not here')
     if (event.target.files[0]) {
       // console.log('i am here')
-      let reader = new FileReader()
+      let reader = new FileReader();
 
-      let file = event.target.files[0]
+      let file = event.target.files[0];
 
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file);
       reader.onloadend = () => {
-        setFilesrc(reader.result)
+        setFilesrc(reader.result);
         // console.log('i am here', reader.result)
-      }
+      };
       // console.log('src', reader.result)
     }
-  }
+  };
   const messageModal = (
     <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
       <Modal.Header closeButton>
@@ -248,8 +251,8 @@ function Memberedit(props) {
               style={{ display: 'none' }}
               onChange={(event) => {
                 if (event.target.files[0].name) {
-                  setFilename(event.target.files[0].name)
-                  handleChangeFile(event)
+                  setFilename(event.target.files[0].name);
+                  handleChangeFile(event);
                 }
               }}
               ref={FileInput}
@@ -299,8 +302,8 @@ function Memberedit(props) {
         <Button
           variant="secondary"
           onClick={() => {
-            handleClose()
-            setFilename('')
+            handleClose();
+            setFilename('');
           }}
         >
           取消
@@ -318,7 +321,7 @@ function Memberedit(props) {
         </Button> */}
       </Modal.Footer>
     </Modal>
-  )
+  );
 
   return (
     <>
@@ -351,7 +354,7 @@ function Memberedit(props) {
         <div
           className="sa-Memberedit-picture-button"
           onClick={() => {
-            handleShow()
+            handleShow();
           }}
         >
           更改頭貼
@@ -373,7 +376,7 @@ function Memberedit(props) {
           <div
             className="sa-Memberedit-bottom"
             onClick={() => {
-              props.history.push('/passwordreset')
+              props.history.push('/passwordreset');
             }}
           >
             編輯
@@ -388,8 +391,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setTemp(nickname)
-                  setNicknametoggle(!nicknametoggle)
+                  setTemp(nickname);
+                  setNicknametoggle(!nicknametoggle);
                 }}
               >
                 編輯
@@ -403,15 +406,15 @@ function Memberedit(props) {
                   className="form-control sa-Podlogin-account"
                   value={nickname}
                   onChange={(e) => {
-                    setNickname(e.target.value)
+                    setNickname(e.target.value);
                   }}
                 />
               </div>
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setNickname(temp)
-                  setNicknametoggle(!nicknametoggle)
+                  setNickname(temp);
+                  setNicknametoggle(!nicknametoggle);
                 }}
               >
                 取消
@@ -419,8 +422,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember(payingmember,podcaster)
-                  setNicknametoggle(!nicknametoggle)
+                  updatemember(payingmember, podcaster);
+                  setNicknametoggle(!nicknametoggle);
                   // changeNickname()
                   // window.location.reload()
                 }}
@@ -441,8 +444,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setTemp(realname)
-                  setRealnametoggle(!realnametoggle)
+                  setTemp(realname);
+                  setRealnametoggle(!realnametoggle);
                 }}
               >
                 編輯
@@ -456,15 +459,15 @@ function Memberedit(props) {
                   className="form-control sa-Podlogin-account"
                   value={realname}
                   onChange={(e) => {
-                    setRealname(e.target.value)
+                    setRealname(e.target.value);
                   }}
                 />
               </div>
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setRealname(temp)
-                  setRealnametoggle(!realnametoggle)
+                  setRealname(temp);
+                  setRealnametoggle(!realnametoggle);
                 }}
               >
                 取消
@@ -472,8 +475,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember(payingmember,podcaster)
-                  setRealnametoggle(!realnametoggle)
+                  updatemember(payingmember, podcaster);
+                  setRealnametoggle(!realnametoggle);
                 }}
               >
                 送出
@@ -492,8 +495,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setTemp(phonenumber)
-                  setPhonenumbertoggle(!phonenumbertoggle)
+                  setTemp(phonenumber);
+                  setPhonenumbertoggle(!phonenumbertoggle);
                 }}
               >
                 編輯
@@ -507,15 +510,15 @@ function Memberedit(props) {
                   className="form-control sa-Podlogin-account"
                   value={phonenumber}
                   onChange={(e) => {
-                    setPhonenumber(e.target.value)
+                    setPhonenumber(e.target.value);
                   }}
                 />
               </div>
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setPhonenumber(temp)
-                  setPhonenumbertoggle(!phonenumbertoggle)
+                  setPhonenumber(temp);
+                  setPhonenumbertoggle(!phonenumbertoggle);
                 }}
               >
                 取消
@@ -523,8 +526,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember(payingmember,podcaster)
-                  setPhonenumbertoggle(!phonenumbertoggle)
+                  updatemember(payingmember, podcaster);
+                  setPhonenumbertoggle(!phonenumbertoggle);
                 }}
               >
                 送出
@@ -543,8 +546,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setTemp(birthday)
-                  setBirthdaytoggle(!birthdaytoggle)
+                  setTemp(birthday);
+                  setBirthdaytoggle(!birthdaytoggle);
                 }}
               >
                 編輯
@@ -558,15 +561,15 @@ function Memberedit(props) {
                   className="form-control sa-Podlogin-account"
                   value={birthday}
                   onChange={(e) => {
-                    setBirthday(e.target.value)
+                    setBirthday(e.target.value);
                   }}
                 />
               </div>
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setBirthday(temp)
-                  setBirthdaytoggle(!birthdaytoggle)
+                  setBirthday(temp);
+                  setBirthdaytoggle(!birthdaytoggle);
                 }}
               >
                 取消
@@ -574,8 +577,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember(payingmember,podcaster)
-                  setBirthdaytoggle(!birthdaytoggle)
+                  updatemember(payingmember, podcaster);
+                  setBirthdaytoggle(!birthdaytoggle);
                 }}
               >
                 送出
@@ -594,8 +597,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setTemp(address)
-                  setAddresstoggle(!addresstoggle)
+                  setTemp(address);
+                  setAddresstoggle(!addresstoggle);
                 }}
               >
                 編輯
@@ -609,15 +612,15 @@ function Memberedit(props) {
                   className="form-control sa-Podlogin-account"
                   value={address}
                   onChange={(e) => {
-                    setAddress(e.target.value)
+                    setAddress(e.target.value);
                   }}
                 />
               </div>
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setAddress(temp)
-                  setAddresstoggle(!addresstoggle)
+                  setAddress(temp);
+                  setAddresstoggle(!addresstoggle);
                 }}
               >
                 取消
@@ -625,8 +628,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember(payingmember,podcaster)
-                  setAddresstoggle(!addresstoggle)
+                  updatemember(payingmember, podcaster);
+                  setAddresstoggle(!addresstoggle);
                 }}
               >
                 送出
@@ -646,9 +649,9 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setTemp(gender)
-                  setTemp2(gendervalue)
-                  setGendertoggle(!gendertoggle)
+                  setTemp(gender);
+                  setTemp2(gendervalue);
+                  setGendertoggle(!gendertoggle);
                 }}
               >
                 編輯
@@ -663,8 +666,8 @@ function Memberedit(props) {
                     value="1"
                     checked={gender === 1}
                     onChange={() => {
-                      setGender(1)
-                      setGendervalue('男生')
+                      setGender(1);
+                      setGendervalue('男生');
                     }}
                   />
                   男生
@@ -675,8 +678,8 @@ function Memberedit(props) {
                     value="0"
                     checked={gender === 0}
                     onChange={() => {
-                      setGender(0)
-                      setGendervalue('女生')
+                      setGender(0);
+                      setGendervalue('女生');
                     }}
                   />
                   女生
@@ -685,9 +688,9 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  setGender(temp)
-                  setGendervalue(temp2)
-                  setGendertoggle(!gendertoggle)
+                  setGender(temp);
+                  setGendervalue(temp2);
+                  setGendertoggle(!gendertoggle);
                 }}
               >
                 取消
@@ -695,8 +698,8 @@ function Memberedit(props) {
               <div
                 className="sa-Memberedit-bottom"
                 onClick={() => {
-                  updatemember(payingmember,podcaster)
-                  setGendertoggle(!gendertoggle)
+                  updatemember(payingmember, podcaster);
+                  setGendertoggle(!gendertoggle);
                 }}
               >
                 送出
@@ -717,7 +720,7 @@ function Memberedit(props) {
                 className="sa-Memberedit-bottom sa-subscription "
                 onClick={() => {
                   // setPayingmember('1')
-                  updatemember(1, podcaster)
+                  updatemember(1, podcaster);
                   // updatemember()
                   // setPayingmember('1')
                   // getMember()
@@ -746,7 +749,7 @@ function Memberedit(props) {
                 className="sa-Memberedit-bottom sa-open"
                 onClick={() => {
                   // setPodcaster('1')
-                  updatemember(payingmember, 1)
+                  updatemember(payingmember, 1);
                   // updatemember()
                   // setPodcaster('1')
                   // getMember()
@@ -762,11 +765,11 @@ function Memberedit(props) {
         </div>
       </div>
     </>
-  )
+  );
 }
 const mapStateToProps = (store) => {
-  return { member: store.member }
-}
+  return { member: store.member };
+};
 export default withRouter(
   connect(mapStateToProps, {
     initMemberAsync,
@@ -774,4 +777,4 @@ export default withRouter(
     initMember,
     Member_nick_photo,
   })(Memberedit)
-)
+);

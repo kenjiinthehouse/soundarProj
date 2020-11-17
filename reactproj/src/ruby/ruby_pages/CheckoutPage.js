@@ -10,7 +10,7 @@ import axios from 'axios'
 // import Cleave from 'cleave.js/react'
 
 function CheckoutPage(props){
-    const [ clientSid, setClientSid ] = useState(props.member.sid)
+    // const [ clientSid, setClientSid ] = useState(props.member.sid)
     const {mycartDisplay,setMycartDisplay}= props;
     const [isActive,setIsActive] = useState([false,false,false])
     const [status, setStatus] = useState(0)
@@ -35,6 +35,7 @@ function CheckoutPage(props){
     const [ memberCheckbox2, setMemberCheckbox2 ] = useState(false)
 
     const [ fakeStoreData, setFakeStoreData ] = useState(false)
+    const { navCartNum, setNavCartNum } = props;
 
     const [ cashForm, setCashForm ] = useState({
         receiver: '',
@@ -833,12 +834,14 @@ function CheckoutPage(props){
                 ?
                 <div className="ru-ckpage-next-btn ml-auto d-flex align-items-center justify-content-center"
                      onClick={()=>{
-                        checkFormData()     
+                        checkFormData()
+
                         let data = JSON.parse(localStorage.getItem('amountData'))
                         axios.post('http://localhost:5566/order/insert', 
                         data
                         )
-                            .then((res) => { 
+                            .then((res) => {
+                                setNavCartNum(0)
                                 console.table(res.data)
                                 localStorage.removeItem('cart')
                                 localStorage.removeItem('amountData')

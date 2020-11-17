@@ -166,7 +166,7 @@ router.patch('/update',(req,res) => {
     let minimum_amount = parseInt(obj.minimum_amount)
     let start_date = obj.start_date
     let end_date = obj.end_date || null
-    let sid = 'CP0003'
+    let sid = obj.coupon
     db.query("SELECT * FROM `coupon` WHERE 1")
         .then(([res]) => {            
             let sql = "UPDATE coupon SET coupon_name = ?, coupon_amount = ?, minimum_amount = ?, discount = ?, start_date = ?, end_date = ? WHERE coupon.coupon_sid = ?"
