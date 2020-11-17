@@ -67,7 +67,7 @@ function StudioOrderContent(props) {
                                     <ul className="list-unstyled">
                                         <li>{studioOrder.studio_name}</li>
                                         <li>{studioOrder.studio_location}</li>
-                                        <li>{studioOrder.rent_date}</li>
+                                        <li>{studioOrder.rent_date.slice(0,10)}</li>
                                         <li>{studioOrder.rent_time}</li>
                                         <li>{studioOrder.studio_option}</li>
                                     </ul>

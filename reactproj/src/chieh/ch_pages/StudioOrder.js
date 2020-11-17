@@ -43,7 +43,7 @@ function StudioOrder(props){
     return(
       <>
         <div className="activity-order">
-            <div className="list-title mx-auto">活動票券訂單查詢</div>            
+            <div className="list-title mx-auto">租借錄音室查詢</div>            
             <Tabs
                 id="controlled-tab-order"
                 activeKey={key}
