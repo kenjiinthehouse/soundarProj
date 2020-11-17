@@ -139,7 +139,7 @@ function App() {
                 <Cart setNavCartNum={setNavCartNum} navCartNum={navCartNum} />
               </Route>
               <Route path="/checkout">
-                <Checkout />
+                <Checkout setNavCartNum={setNavCartNum} navCartNum={navCartNum} />
               </Route>
               <Route path="/activitymain">
                 <ActivityMain />

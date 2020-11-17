@@ -59,7 +59,7 @@
       border-radius: 38px;
       border: 1px solid #f8f8f8;
       margin-left: 1rem;
-      font-size: 1.25rem;
+      font-size: 1.12rem;
       line-height: 3rem;
     }
     .article-search-btn:hover {
@@ -69,12 +69,13 @@
 
   .article-cate-btn {
     color: #f8f8f8;
+    width: 10rem;
     border-radius: 38px;
     border: 1px solid #f8f8f8;
     padding: 0 1.5rem;
     margin-left: 2rem;
     background-color: #232d2f;
-    font-size: 1.25rem;
+    font-size: 1.12rem;
     line-height: 3rem;
   }
   .article-cate-btn:hover {
@@ -93,7 +94,7 @@
   .article-sort-btn {
     span {
       border-radius: 38px;
-      font-size: 1.25rem;
+      font-size: 1.12rem;
       line-height: 1.8;
       font-weight: 500;
       padding: 0.5rem 1.2rem 0.5rem 1rem;
@@ -189,7 +190,6 @@
 
     .article-card-content {
       width: 42.063rem;
-      height: 9rem;
       line-height: 3;
       margin-bottom: 1.625rem;
       text-overflow: ellipsis;
