@@ -182,7 +182,10 @@ function AudioEditModal(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { channel_audio_data: store.podcasterAudioListState };
+  return {
+    channel_audio_data: store.podcasterAudioListState,
+    member: store.member,
+  };
 };
 
 export default withRouter(

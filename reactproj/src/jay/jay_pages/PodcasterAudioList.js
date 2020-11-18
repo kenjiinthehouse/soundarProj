@@ -42,7 +42,7 @@ function PodcasterAudioList(props) {
   useEffect(() => {
     async function fetchInitData() {
       await props.initalAudioListAsync(props.member.sid);
-      console.log(props.member.podcaster_id);
+      console.log(props.member.sid);
       setTimeout(() => setIsLoading(false), 2000);
     }
     fetchInitData();
