@@ -69,7 +69,13 @@ function CartPage(props) {
                   >
                     <div
                       className="ru-cart-pd-img"
-                      style={{ backgroundImage: `url(${value.pic_url})` }}
+                      style={{
+                        backgroundImage: `url(${
+                          value.pic_url.indexOf('http') === -1
+                            ? `/reckie_img/${value.pic_url}`
+                            : value.pic_url
+                        })`,
+                      }}
                     ></div>
                     <div className="ru-cart-intro-block">{value.name}</div>
                     <div className="ru-cart-intro-block">

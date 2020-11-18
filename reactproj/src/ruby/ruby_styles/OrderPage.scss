@@ -100,6 +100,11 @@
         height: 7.5rem;
         border-radius: 5px;
         position: relative;
+        img{
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
       }
       .ru-odPage-pic-mask {
         width: 100%;
