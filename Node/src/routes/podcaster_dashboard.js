@@ -65,7 +65,7 @@ router.get('/channel_audio/api/:podcaster_id?', async (req, res) => {
 router.post('/channel_audio/add/api', uploadAudio.single('audio_file'), async (req, res) => {
     console.log('有近新增node');
     const sql = "INSERT INTO `podcast_audio`( `podcaster_id`, `audio_file`, `audio_title`, `audio_content`, `audio_content_snippet`, `pubDate`) VALUES (?,?,?,?,?,NOW())";
-
+    console.log(req.file);
     const { podcaster_id, audio_file, audio_title, audio_content, audio_content_snippet } = { ...req.body };
     const [results] = await db.query(sql, [podcaster_id, req.file.filename, audio_title, audio_content, audio_content_snippet]);
 

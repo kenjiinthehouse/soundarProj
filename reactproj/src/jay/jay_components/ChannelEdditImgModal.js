@@ -49,7 +49,7 @@ function ChannelEdditImgModal(props) {
     await props.editChannelAsync(formData);
     await props.initalDashboardAsync(props.member.sid);
     setTimeout(() => {
-      setIsLoading(false)
+      setIsLoading(false);
     }, 500);
   };
 
@@ -66,7 +66,7 @@ function ChannelEdditImgModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="container">
+          <div className="container">
             <div className="form-group">
               <h6>選擇圖片</h6>
               <input
@@ -93,8 +93,8 @@ function ChannelEdditImgModal(props) {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => {
-                  handleSubmit();
+                onClick={(event) => {
+                  handleSubmit(event);
                   props.onHide();
                 }}
               >
@@ -104,7 +104,7 @@ function ChannelEdditImgModal(props) {
                 取消
               </button>
             </Modal.Footer>
-          </form>
+          </div>
         </Modal.Body>
       </Modal>
     </>

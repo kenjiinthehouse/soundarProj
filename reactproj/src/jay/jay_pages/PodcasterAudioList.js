@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 // react icon
 import { FaTrash, FaEdit } from 'react-icons/fa';
-import { AiFillPlayCircle, AiOutlineToTop } from 'react-icons/ai';
+import { AiFillPlayCircle } from 'react-icons/ai';
 import { TiArrowSortedUp } from 'react-icons/ti';
 
 // components
@@ -124,6 +124,9 @@ function PodcasterAudioList(props) {
                     return null;
                   }
                 }
+                if (!item.audio_title) {
+                  return null;
+                }
                 return (
                   <tr key={item.sid}>
                     <th scope="row">{item.sid}</th>
@@ -222,8 +225,6 @@ function PodcasterAudioList(props) {
       <AudioAddModal
         show={addModalShow}
         onHide={() => setAddModalShow(false)}
-        modalData={modalData}
-        setModalData={setModalData}
         setIsLoading={setIsLoading}
       />
     </>
