@@ -88,6 +88,7 @@ export const initalAudioListAsync = (podcaster_id) => {
 // 新增音檔
 export const addAudioAsync = (formData) => {
   return async function addAudioSubmit(dispatch) {
+    console.log('addAudioAsync');
     const url = `http://localhost:5566/podcaster_dashboard/channel_audio/add/api`;
     const request = new Request(url, {
       method: 'POST',

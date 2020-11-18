@@ -18,7 +18,7 @@ function AudioAddModal(props) {
     const formData = new FormData(event.target);
 
     await props.addAudioAsync(formData);
-    await props.initalAudioListAsync(modalData.editTargetData.podcaster_id);
+    await props.initalAudioListAsync(props.member.sid);
 
     props.onHide();
     setTimeout(() => setIsLoading(false), 1000);
@@ -42,11 +42,7 @@ function AudioAddModal(props) {
               type="text"
               className="form-control"
               aria-describedby="emailHelp"
-              value={
-                modalData.editTargetData
-                  ? modalData.editTargetData.podcaster_id
-                  : ''
-              }
+              value={props.member.sid ? props.member.sid : ''}
               style={{ display: 'none' }}
               name="podcaster_id"
               readOnly={true}
@@ -101,7 +97,10 @@ function AudioAddModal(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { channel_audio_data: store.podcasterAudioListState };
+  return {
+    channel_audio_data: store.podcasterAudioListState,
+    member: store.member,
+  };
 };
 
 export default withRouter(
